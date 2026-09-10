@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STR — Supremo Tribunal Regreiro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+
+    <header class="header">
+        <button class="header-switch" id="headerSwitch" title="Trocar para Breves Jornadas">
+            <span class="header-title" id="headerTitle">STR</span>
+            <span class="header-subtitle" id="headerSubtitle">Supremo Tribunal Regreiro</span>
+        </button>
+        <div class="header-btns">
+            <a href="../index.html" class="header-home-btn" title="Hub Central"><i class="fa-solid fa-dungeon"></i> <span>Hub</span></a>
+            <!-- Theme Switcher -->
+            <div class="theme-switcher" id="theme-switcher">
+                <button class="theme-btn" data-theme="blood" title="Tema Vectora (padrão)">🩸</button>
+                <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+                <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="filters-container">
+            <div class="filter-item">
+                <label for="dbSelector">Selecione a DB:</label>
+                <select id="dbSelector" class="filter-select"></select>
+            </div>
+            <div class="filter-item">
+                <label for="searchInput">Buscar por palavra:</label>
+                <input type="text" id="searchInput" class="filter-input" placeholder="Digite para buscar...">
+            </div>
+            <div class="filter-item">
+                <label for="filterClass">Filtrar por Tipo:</label>
+                <select id="filterClass" class="filter-select">
+                    <option value="all">Todas</option>
+                    <option value="classes">Classes</option>
+                    <option value="distincao">Distinções</option>
+                    <option value="regras">Regras</option>
+                    <option value="combate">Combate</option>
+                    <option value="magia">Magia</option>
+                    <option value="racas">Raças</option>
+                    <option value="ameacas">Ameaças</option>
+                    <option value="itens">Equipamentos</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label for="filterSistema">Filtrar por Sistema:</label>
+                <select id="filterSistema" class="filter-select">
+                    <option value="all">Todos</option>
+                    <option value="Tormenta20">Tormenta20</option>
+                    <option value="Ordem">Ordem Paranormal</option>
+                    <option value="3DeT">3D&T</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="check"> Ocultar conteúdo pré Jogo do Ano
+            </label>
+        </div>
+
+        <div id="content-area">
+            <div id="sticky-text">Carregando conteúdo…</div>
+        </div>
+
+        <div class="edition-nav" id="editionNav" style="display:none;">
+            <button id="editionPrev" title="Edição anterior"><i class="fa-solid fa-arrow-left"></i></button>
+            <span class="edition-nav-label" id="editionNavLabel"></span>
+            <button id="editionNext" title="Próxima edição"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </main>
+
+    <button id="backToTop" title="Voltar ao topo"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <footer>
+        <strong>O que diferencia o Supremo Tribunal Regreiro do sistema de suporte tradicional?</strong><br>
+        <p>O <strong>Supremo Tribunal Regreiro</strong> tem a finalidade de responder dúvidas dos
+            jogadores em relação ao universo de Tormenta20. Essas respostas são baseadas em fontes
+            canônicas, especialmente o <strong>Livro Básico de Tormenta20</strong>, buscando esclarecer
+            interpretações de regras, mecânicas de jogo, e ajudar mestres e jogadores a tomar decisões
+            informadas durante suas campanhas.
+        </p>
+        <hr>
+        <p>Este conteúdo é um material gratuito não-oficial, feito por fãs, sem orientação ou aprovação da Jambo Editora</p>
+    </footer>
+
+    <script src="database.js"></script>
+    <script src="breves_jornadas.js"></script>
+    <script src="../assets/templates/theme-init.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

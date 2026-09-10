@@ -1,0 +1,188 @@
+sup docs topo: 2236
+adds: data=2, dist=0, chassi=0, heranca=0, parc=0, itens=0, armas=0, armad=0, itesm=0, grim=0, orig=0, arsenal=0
+ars_add=0
+skipped: 2247 ({'magia-dupe': 53, 'item-dupe': 425, 'dupe-nome': 492, 'tipo-race': 47, 'parc-dupe': 79, 'atributo-racial': 37, 'moreau-dupe': 34, 'equiv-chassi-ours': 7, 'equiv-chassi-inevitavel': 2, 'chassi-dupe': 10, 'variante-ortografica-moreau': 3, 'mecanica-calculadora': 1, 'chassi-ferro': 1, 'equiv-chassi-mashin': 1, 'dupe-golem': 2, 'origem-dupe': 65, 'dupe-triplo': 473, 'sem-classe-atribuivel': 2, 'magia-vazia': 1, 'tipo-classe': 17, 'dupe-conhecida': 1, 'dist-dupe': 344, 'arsenal-dupe': 24, 'marca-dupe': 58, 'marca-diverge-mantida': 1, 'dist-ausente': 28, 'subtipo-corrompido': 1, 'subtipo-disperso': 35, 'variante-ortografica': 1, 'varia-dupe': 2})
+UNMATCHED: 0
+--- risky skips (dupe-parcial/varia/geral-vazio review) ---
+  sk[atributo-racial] Atributos - Kobolds
+  sk[atributo-racial] Atributos - Voracis
+  sk[atributo-racial] Atributos - Soterrado
+  sk[atributo-racial] Atributos - Moreau Urso
+  sk[atributo-racial] Atributos - Moreau Bufalo
+  sk[atributo-racial] Atributos - Moreau Raposa
+  sk[atributo-racial] Atributos - Ceratops
+  sk[atributo-racial] Atributos - Orc
+  sk[atributo-racial] Atributos - Moreau Morcego
+  sk[atributo-racial] Atributos - Moreau Crocodilo
+  sk[atributo-racial] Atributos - Yidishan
+  sk[atributo-racial] Atributos - Moreau Lobo
+  sk[atributo-racial] Atributos - Tengu
+  sk[atributo-racial] Atributos - Ogro
+  sk[atributo-racial] Atributos - Kappa
+  sk[atributo-racial] Atributos - Harpia
+  sk[atributo-racial] Atributos - Hobgoblin
+  sk[atributo-racial] Atributos - Moreau Hiena
+  sk[atributo-racial] Atributos - Finntroll
+  sk[atributo-racial] Atributos - Meio-Orc
+  sk[atributo-racial] Atributos - Nagah (Fêmea)
+  sk[atributo-racial] Atributos - Gnoll
+  sk[atributo-racial] Atributos - Moreau Gato
+  sk[atributo-racial] Atributos - Elfo-do-Mar
+  sk[atributo-racial] Atributos - Nagah (Macho)
+  sk[atributo-racial] Atributos - Minauro
+  sk[atributo-racial] Atributos - Bugbear
+  sk[atributo-racial] Atributos - Tabrachi
+  sk[atributo-racial] Atributos - Moreau Leão
+  sk[atributo-racial] Atributos - Nezumi
+  sk[atributo-racial] Atributos - Velocis
+  sk[atributo-racial] Atributos - Moreau Coelho
+  sk[atributo-racial] Atributos - Kaijin
+  sk[atributo-racial] Atributos - Moreau Serpente
+  sk[atributo-racial] Atributos - Trog Anão
+  sk[atributo-racial] Atributos - Centauro
+  sk[atributo-racial] Atributos - Moreau Coruja
+  sk[sem-classe-atribuivel] Golpe Semântico
+  sk[sem-classe-atribuivel] Andarilho Carregado
+  sk[marca-diverge-mantida] Combate Aéreo (Marca)
+  sk[dist-ausente] Especiarias Picantes
+  sk[dist-ausente] Ervas Aromáticas
+  sk[dist-ausente] Carne Monstruosa
+  sk[dist-ausente] Energizante
+  sk[dist-ausente] Núcleo de Temperatura
+  sk[dist-ausente] Passo Hilariante
+  sk[dist-ausente] Erudito
+  sk[dist-ausente] Rir da Desgraça Alheia
+  sk[dist-ausente] Humor Macabro
+  sk[dist-ausente] Despersonalizante
+  sk[dist-ausente] Deboche Mágico
+  sk[dist-ausente] Estalajadeiro
+  sk[dist-ausente] Boticário
+  sk[dist-ausente] Humor Macabro em Massa
+  sk[dist-ausente] Curandeiro
+  sk[dist-ausente] Raízes Curativas
+  sk[dist-ausente] Bateria Potente
+  sk[dist-ausente] Etiqueta de Instruções
+  sk[dist-ausente] Aristocrata
+  sk[dist-ausente] Sal Azul
+  sk[dist-ausente] Pirueta Desajeitada
+  sk[dist-ausente] Luneta Aproximadora
+  sk[dist-ausente] Imitação Irritante
+  sk[dist-ausente] Tonificante
+  sk[dist-ausente] Armeiro
+  sk[dist-ausente] Bobina Poderosa
+  sk[dist-ausente] Cristal Canalizador
+  sk[dist-ausente] Passo Hilariante em Massa
+  sk[subtipo-corrompido] Revoada de Texugos
+  sk[subtipo-disperso] Herança de Ordine
+  sk[subtipo-disperso] Herança de Vitalia
+  sk[subtipo-disperso] Citadino Abastado
+  sk[subtipo-disperso] Chef Hynne
+  sk[subtipo-disperso] Pescador
+  sk[subtipo-disperso] Cão de Briga
+  sk[subtipo-disperso] Interrogador
+  sk[subtipo-disperso] Insciente
+  sk[subtipo-disperso] Cirurgião-Barbeiro
+  sk[subtipo-disperso] Herança de Terápolis
+  sk[subtipo-disperso] Carcereiro
+  sk[subtipo-disperso] Herança de Nivenciuén
+  sk[subtipo-disperso] Herança de Skerry
+  sk[subtipo-disperso] Asas de Aço (Suraggel)
+  sk[subtipo-disperso] Contrabandista
+  sk[subtipo-disperso] Herança de Odisseia
+  sk[subtipo-disperso] Herança de Venomia
+  sk[varia-dupe] Arma Natural Aprimorada (Várias)
+  sk[subtipo-disperso] Herança de Werra
+  sk[subtipo-disperso] Ladrão de Túmulos
+  sk[subtipo-disperso] Goradista
+  sk[subtipo-disperso] Asas Extraplanares
+  sk[subtipo-disperso] Herança de Solaris
+  sk[subtipo-disperso] Freira
+  sk[subtipo-disperso] Espião
+  sk[subtipo-disperso] Caçador de Ratos
+  sk[subtipo-disperso] Menestrel
+  sk[subtipo-disperso] Herança de Serena
+  sk[subtipo-disperso] Escriba
+  sk[subtipo-disperso] Herança de Al-Gazara
+  sk[subtipo-disperso] Carpinteiro de Guilda
+  sk[subtipo-disperso] Herança de Magika
+  sk[subtipo-disperso] Herança de Sombria
+  sk[subtipo-disperso] Padeiro
+  sk[varia-dupe] Arma Natural Hábil (Várias)
+  sk[subtipo-disperso] Herança de Arbória
+  sk[subtipo-disperso] Herança de Sora
+--- LOG adds ---
+  ++ ('Estudante Deligente', 'class/frade/all', 'deuses-de-arton', 'classe', 'Frade')
+  ++ ('Sacrário do Compartilhamneto', 'class/frade/all', 'deuses-de-arton', 'classe', 'Frade')
+  ++ ('Material Especial', 'arsenal/aeronauta', 'distincoes', 'distincao', 'Ornitópteros Goblins')
+--- DBG golem-st names ---
+  golem? ('Chassi Gracioso', 'geral')
+  golem? ('Programação Holística', 'geral')
+--- DBG moreau sup (name, st) ---
+  mor? ('As Muitas Vidas de Um Gato', 'Moreau (Gato)')
+  mor? ('Asas', 'Moreau (Morcego)')
+  mor? ('Chifres', 'Moreau (Búlfalo)')
+  mor? ('Constritor', 'Moreau (Serpente)')
+  mor? ('Criatura da Noite', 'Moreau (Morcego)')
+  mor? ('Destemor', 'Moreau (Hiena)')
+  mor? ('Ecolocalização', 'Moreau (Morcego)')
+  mor? ('Esperteza Vulpina', 'Moreau (Raposa)')
+  mor? ('Espreitador', 'Moreau (Coruja)')
+  mor? ('Faro', 'Moreau (Búlfalo)')
+  mor? ('Faro', 'Moreau (Hiena)')
+  mor? ('Faro', 'Moreau (Lobo)')
+  mor? ('Faro', 'Moreau (Raposa)')
+  mor? ('Faro', 'Moreau (Urso)')
+  mor? ('Faro Aprimorado (Moreau do Lobo)', 'Moreau do Lobo')
+  mor? ('Garras', 'Moreau (Coruja)')
+  mor? ('Garras', 'Moreau (Gato)')
+  mor? ('Instintos Traiçoeiros', 'Moreau (Serpente)')
+  mor? ('Marrada Impressionante', 'Moreau (Búlfalo)')
+  mor? ('Mordida', 'Moreau (Hiena)')
+  mor? ('Mordida', 'Moreau (Leão)')
+  mor? ('Mordida', 'Moreau (Lobo)')
+  mor? ('Mordida', 'Moreau (Urso)')
+  mor? ('Mordida Poderosa', 'Moreau (Crocodilo)')
+  mor? ('Patas Ligeiras', 'Moreau (Coelho)')
+  mor? ('Predador Aquático', 'Moreau (Crocodilo)')
+  mor? ('Pé de Coelho', 'Moreau (Coelho)')
+  mor? ('Rugido Imponente', 'Moreau (Leão)')
+  mor? ('Sapiência', 'Moreau (Coruja)')
+  mor? ('Senso de Preservação', 'Moreau (Coelho)')
+  mor? ('Sentidos Felinos', 'Moreau (Gato)')
+  mor? ('Sentidos da Realeza', 'Moreau (Leão)')
+  mor? ('Surto Reptiliano', 'Moreau (Crocodilo)')
+  mor? ('Táticas de Matilha', 'Moreau (Lobo)')
+--- ours moreau/raposa check ---
+  raposa: {'agarrame se puderes', 'esperteza vulpina', 'faro'} | urso: {'faro', 'abraco de urso', 'mordida'} | serpente: {'instintos traicoeiros', 'constritor', 'arboricola'} | bufalo: {'chifres', 'faro', 'marrada impressionante'} | leao: {'rugido imponente', 'sentidos da realeza', 'mordida'} | lobo: {'faro', 'faro aprimorado moreau do lobo', 'taticas de matilha', 'mordida'}
+--- marca compares (False = DIVERGE, ours kept) ---
+  MARCA-DIVERGE: ('Aeronauta Goblin', 'Combate Aéreo (Marca)', 'aeronauta goblin', False)
+  marca total: 58 diverges: 1
+--- parse fails ---
+  fam_fail: []
+  tier_fail: []
+  magia_new: []
+  orig_new: []
+  arma sem dano: 0 | arma sem tipo_dano: 0 | dist sem req: 0
+--- index sanity ---
+  POW=1775 TRIPLE=1192 DIST2=64 MH=['bufalo', 'coelho', 'coruja', 'crocodilo', 'gato', 'hiena', 'leao', 'lobo', 'morcego', 'raposa', 'serpente', 'urso'] GOLEM={'mashin': 11, 'barro': 1, 'bronze': 1, 'carne': 1, 'espelho': 1, 'ferro': 1, 'gelo': 1, 'pedra': 1, 'sucata': 1, 'dourado': 1} ITF={'itens': 572, 'armas': 183, 'armad': 53, 'itesm': 316} ORIG=162 PAR=191 SPELL=260 ARS=133
+--- EOL ---
+  {'data': '\r\n', 'dist': '\r\n', 'parc': '\n', 'orig': '\n', 'racas': '\n', 'grim': '\n', 'main': '\n', 'phtml': '\n', 'ihtml': '\n', 'itens': '\r\n', 'armas': '\n', 'armad': '\r\n', 'itesm': '\r\n'}
+  anchor data-end: OK
+  anchor dist-end: OK
+  anchor orig-end: OK
+  anchor parc-end: OK
+  anchor grim-end: OK
+  anchor itens-end: OK
+  anchor armas-end: OK
+  anchor armad-end: OK
+  anchor itesm-end: OK
+  anchor arsenal: OK
+  anchor P1-opt: OK
+  anchor P2-btn: OK
+  anchor P3-cac: MISS
+  anchor P4-tre: MISS
+  anchor P5-fra: MISS
+  anchor P6-var: MISS
+  anchor P7-src: OK
+node: /usr/bin/node
+DRY-RUN: nada escrito. revise e rode com --apply

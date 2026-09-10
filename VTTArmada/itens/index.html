@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T20 Item Finder - Inventário</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="header-title">T20 Item Finder</h1>
+    <div class="header-btns">
+      <a href="../index.html" class="header-home-btn" title="VTTArmada do Mestre">🏠 Hub</a>
+      <!-- Theme Switcher -->
+      <div class="theme-switcher" id="theme-switcher">
+        <button class="theme-btn" data-theme="blood" title="Tema Vectora (padrão)">🩸</button>
+        <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+        <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container container-grid">
+
+      <div class="content-column">
+        <div class="filters-section">
+          <div class="filter-group">
+            <span class="filter-label-hint">Categorias:</span>
+            <button class="filter-btn active" data-category="todos">Todos</button>
+            <button class="filter-btn" data-category="Arma">Armas</button>
+            <button class="filter-btn" data-category="Armadura">Armaduras</button>
+            <button class="filter-btn" data-category="Escudo">Escudos</button>
+            <button class="filter-btn" data-category="Item Geral">Itens Gerais</button>
+            <button class="filter-btn" data-category="Item Superior">Itens Superiores</button>
+            <button class="filter-btn" data-category="Item Mágico">Itens Mágicos</button>
+            <button class="filter-btn" data-category="encantamento">Encantamentos</button>
+            <button class="filter-btn" data-category="Maldição">Maldições</button>
+          </div>
+
+          <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Buscar por nome do item..." class="search-input">
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Ordem:</span>
+            <select id="sortSelect" class="quantity-select">
+              <option value="name-asc">Nome (A-Z)</option>
+              <option value="name-desc">Nome (Z-A)</option>
+              <option value="price-asc">Preço (Menor &rarr; Maior)</option>
+              <option value="price-desc">Preço (Maior &rarr; Menor)</option>
+              <option value="spaces-asc">Espaços (Leve &rarr; Pesado)</option>
+              <option value="spaces-desc">Espaços (Pesado &rarr; Leve)</option>
+            </select>
+            <span class="filter-label">Fonte:</span>
+            <select id="sourceFilter" class="quantity-select">
+              <option value="todas">Todas as Fontes</option>
+              <option value="Livro Básico">Livro Básico (T20)</option>
+              <option value="Coração de Rubi">Coração de Rubi</option>
+              <option value="Ameaças de Arton">Ameaças de Arton</option>
+              <option value="Atlas de Arton">Atlas de Arton</option>
+              <option value="Guia de Deuses Menores">Guia de Deuses Menores</option>
+              <option value="Guerra Artoniana">Guerra Artoniana</option>
+              <option value="Guia de NPCs">Guia de NPCs</option>
+              <option value="Heróis de Arton">Heróis de Arton</option>
+              <option value="Deuses de Arton">Deuses de Arton</option>
+              <option value="Duelo de Dragões">Duelo de Dragões</option>
+              <option value="Dragão Brasil">Dragão Brasil</option>
+            </select>
+          </div>
+
+          <div id="empunhaduraFilters" class="filter-group" style="display: none;">
+            <button class="filter-btn active" data-empunhadura="todas">Todas Empunhaduras</button>
+            <button class="filter-btn" data-empunhadura="Leve">Leve</button>
+            <button class="filter-btn" data-empunhadura="Uma Mão">Uma Mão</button>
+            <button class="filter-btn" data-empunhadura="Duas Mãos">Duas Mãos</button>
+          </div>
+          <div id="specificFilters" class="filter-group"></div>
+          <br>
+          <div class="view-toggle">
+            <button id="viewGridBtn" class="view-btn active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Grid</span>
+            </button>
+            <button id="viewTableBtn" class="view-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+              <span>Tabela</span>
+            </button>
+            <button id="randomizerBtn" class="view-btn rand-inline-btn" onclick="openRandomizerModal()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 3 21 3 21 8"></polyline>
+                <line x1="4" y1="20" x2="21" y2="3"></line>
+                <polyline points="21 16 21 21 16 21"></polyline>
+                <line x1="15" y1="15" x2="21" y2="21"></line>
+              </svg>
+              <span>Aleatório</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div id="itemsGrid" class="items-grid">
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <aside id="inventoryContainer" class="inventory-container">
+    <button id="closeInventoryBtn" class="inventory-close-mobile">&times;</button>
+
+    <h2 class="inventory-title">Inventário</h2>
+
+    <div id="inventoryList" class="inventory-list">
+      <div class="inventory-empty">Seu inventário está vazio.</div>
+    </div>
+
+    <div id="inventorySummary" class="inventory-summary">
+      <div class="summary-row">
+        <span>Espaços Totais:</span>
+        <span id="totalSpaces">0</span>
+      </div>
+      <div class="summary-row summary-price">
+        <span>Preço Total:</span>
+        <span id="totalCost">T$ 0</span>
+      </div>
+      <div class="summary-row">
+        <span>Itens Vestidos:</span>
+        <span id="totalVestidos">0 / 4</span>
+      </div>
+      <button class="btn-exportar-ficha" onclick="enviarInventarioCompletoParaFicha()">
+        <i class="bi bi-box-arrow-right"></i> Enviar p/ Ficha
+      </button>
+
+      <button id="clearInventoryBtn" class="btn-limpar-estilo" onclick="clearInventory()" style="margin-top: 10px;">
+        <i class="bi bi-trash"></i> Limpar Inventário
+      </button>
+
+      <button id="backToTopBtn" class="inventory-top-btn" type="button" aria-label="Voltar ao topo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m18 15-6-6-6 6" />
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <div id="itemModal" class="modal">
+    <button class="modal-nav-btn modal-nav-prev" aria-label="Item anterior">&#10094;</button>
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+
+
+      <div class="modal-header">
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <p id="modalPrice" class="modal-price"></p>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-image-row">
+          <div class="modal-image-container">
+            <img id="modalImage" src="" alt="" class="modal-image" style="display:none;">
+          </div>
+          <div class="modal-add-item">
+            <label for="modalQuantity">Qtd:</label>
+            <input type="number" id="modalQuantity" class="quantity-input" value="1" min="1">
+            <button id="addItemBtn" class="add-item-btn">Adicionar ao Inventário</button>
+          </div>
+        </div>
+        <div id="modalBadges" class="modal-badges"></div>
+        <div class="modal-section">
+          <h3>Descrição</h3>
+          <p id="modalDescription"></p>
+          <div id="modalCustomActions" class="modal-custom-actions"></div>
+        </div>
+
+        <div id="weaponStats" class="modal-stats-container"></div>
+        <div id="armorStats" class="modal-stats-container"></div>
+
+        <div class="modal-section">
+          <div class="modal-stats">
+            <div class="stat-box">
+              <p class="stat-label">Espaços Ocupados</p>
+              <p id="modalSpaces" class="stat-value"></p>
+            </div>
+            <div id="modalVestido" class="stat-box" style="display: none;">
+              <p class="stat-label">Item Vestido</p>
+              <p class="stat-value" style="color: #4ade80;">Sim</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="itemCustomizer" class="modal-section" style="display: none;">
+
+          <div class="customizer-section">
+            <div class="customizer-header">
+              <label for="modQuantity">Modificações</label>
+              <select id="modQuantity" class="quantity-select">
+                <option value="0">0</option>
+                <option value="1">1 (T$ 300)</option>
+                <option value="2">2 (T$ 3.000)</option>
+                <option value="3">3 (T$ 9.000)</option>
+                <option value="4">4 (T$ 18.000)</option>
+              </select>
+            </div>
+            <div id="modSelectorsContainer" class="customizer-selectors">
+            </div>
+          </div>
+
+          <div class="customizer-section">
+            <div class="customizer-header">
+              <label for="enchantQuantity">Encantamentos</label>
+              <select id="enchantQuantity" class="quantity-select">
+                <option value="0">0</option>
+                <option value="1">1 (+ T$ 18.000)</option>
+                <option value="2">2 (+ T$ 36.000)</option>
+                <option value="3">3 (+ T$ 72.000)</option>
+              </select>
+            </div>
+            <div id="enchantSelectorsContainer" class="customizer-selectors">
+            </div>
+          </div>
+          <div class="customizer-section">
+            <div class="customizer-header">
+              <label for="curseCheckbox">Item Amaldiçoado?</label>
+              <input type="checkbox" id="curseCheckbox" class="curse-checkbox" />
+            </div>
+            <div id="curseQuantityContainer" class="customizer-header" style="display: none;">
+              <label for="curseQuantity">Qtd. Maldições:</label>
+              <select id="curseQuantity" class="quantity-select">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div id="curseSelectorsContainer" class="customizer-selectors">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="modal-nav-btn modal-nav-next" aria-label="Próximo item">&#10095;</button>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay"></div>
+  <div id="inventoryOverlay" class="drawer-overlay"></div>
+  <div class="floating-buttons">
+    <button id="scrollTopBtn" class="float-btn scroll-top-btn" aria-label="Voltar ao topo" style="display:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6" />
+      </svg>
+    </button>
+    <button id="mobileInventoryBtn" class="float-btn mobile-inv-trigger" aria-label="Abrir Inventário">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18" />
+        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+      </svg>
+      <span id="mobileInvCount" class="mobile-badge">0</span>
+    </button>
+  </div>
+  <!-- ASSINATURA / CRÉDITOS (STR-style) -->
+  <section class="sig-wrap" aria-label="Sobre e créditos">
+    <details class="sig-card">
+      <summary class="sig-summary">
+        <div class="sig-summary-left">
+          <span class="sig-badge">Sobre</span>
+          <span class="sig-title">Créditos e outros projetos</span>
+        </div>
+        <div class="sig-summary-right">
+          <span class="sig-hint">clique para abrir</span>
+          <span class="sig-chevron" aria-hidden="true">▾</span>
+        </div>
+      </summary>
+
+      <div class="sig-body">
+        <div class="sig-hero">
+          <h3 class="sig-h3">Quem fez isso?</h3>
+          <p class="sig-p">
+            Olá! Meu nome é <strong>Nicholas Lemos</strong>.
+            Sou jogador de RPG, desenvolvedor de software e entusiasta de ferramentas para <strong>Tormenta20</strong>.
+          </p>
+          <p class="sig-p">
+            Criei este <strong>Cmpilado de Itens</strong> porque senti falta de uma ferramenta
+            <strong>rápida, clara e pensada para a mesa</strong>, para buscas rápidas e simples. A ideia é manter tudo
+            <strong>visível, acessível e sem quebrar o
+              ritmo</strong>.
+          </p>
+          <p class="sig-p">
+            Feedbacks, sugestões e ideias são sempre bem-vindos.
+          </p>
+        </div>
+        <div class="sig-col">
+          <h4 class="sig-h4">Contato</h4>
+
+          <a class="sig-link"
+            href="https://api.whatsapp.com/send/?phone=5531992825753&text=Ol%C3%A1%2C+gostaria+de+tirar+uma+d%C3%BAvida.&type=phone_number&app_absent=0"
+            target="_blank" rel="noopener noreferrer">
+            <div class="sig-link-main">
+              <span class="sig-link-name">WhatsApp</span>
+              <span class="sig-link-url">Fale comigo diretamente</span>
+            </div>
+            <span class="sig-ext">↗</span>
+          </a>
+
+          <a class="sig-link" href="https://www.linkedin.com/in/nicholas-lemos/" target="_blank"
+            rel="noopener noreferrer">
+            <div class="sig-link-main">
+              <span class="sig-link-name">LinkedIn</span>
+              <span class="sig-link-url">Perfil profissional</span>
+            </div>
+            <span class="sig-ext">↗</span>
+          </a>
+
+          <a class="sig-link" href="https://github.com/nicholemos" target="_blank" rel="noopener noreferrer">
+            <div class="sig-link-main">
+              <span class="sig-link-name">GitHub</span>
+              <span class="sig-link-url">Repositórios e projetos</span>
+            </div>
+            <span class="sig-ext">↗</span>
+          </a>
+
+          <div class="sig-note sig-cta">
+            <div class="sig-note-title">Que tal um site para você?</div>
+            <div class="sig-note-text">
+              Dê uma olhada no modelo de site e me chame para conversarmos.
+              <br>
+              <a href="../index.html" target="_blank" rel="noopener noreferrer">
+                🏰 VTTArmada
+              </a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="sig-grid">
+          <div class="sig-col">
+            <h4 class="sig-h4">Conheça meus outros projetos</h4>
+
+            <a class="sig-link" href="../STR/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">STR – Supremo Tribunal Regreiro</span>
+                <span class="sig-link-url">nicholemos.github.io/STR</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../ficha/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Ficha Automática de Tormenta20</span>
+                <span class="sig-link-url">../ficha/</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../combate/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Compilado de Itens</span>
+                <span class="sig-link-url">nicholemos.github.io/combate</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../poderes/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Compilado de Poderes</span>
+                <span class="sig-link-url">nicholemos.github.io/poderes</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../calculadora/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Calculadora de Atributos</span>
+                <span class="sig-link-url">nicholemos.github.io/calculadora</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../EncontrosAleatorios/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Encontros Aleatórios</span>
+                <span class="sig-link-url">nicholemos.github.io/EncontrosAleatorios</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../calculadoraND_Tormenta/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Calculadora de ND</span>
+                <span class="sig-link-url">nicholemos.github.io/calculadoraND_Tormenta</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="sig-col">
+            <h4 class="sig-h4">Este projeto</h4>
+
+            <a class="sig-link sig-link-primary" href="../itens/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Compilado de Itens – Tormenta20</span>
+                <span class="sig-link-url">nicholemos.github.io/itens</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <div class="sig-note">
+              <div class="sig-note-title">Dica rápida</div>
+              <div class="sig-note-text">
+                Os links abrem em nova aba. Durante a semana vamos polir cada ferramenta aos poucos.
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="sig-footer">
+          <span class="sig-footer-text">Feito para mesa rápida. Feedbacks são bem-vindos.</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
+
+
+  <!-- ===== MODAL RANDOMIZADOR ===== -->
+  <div id="randomizerModal" class="modal">
+    <div class="modal-content rand-modal-content">
+      <button class="modal-close" onclick="closeRandomizerModal()">&times;</button>
+      <div class="modal-header">
+        <h2 class="modal-title">🎲 Gerador de Item Aleatório</h2>
+        <p class="modal-price" style="font-size:.85rem;color:#6b7a8d;">Configure e gere um item equipado aleatório</p>
+      </div>
+      <div class="modal-body rand-body">
+        <!-- CONFIGURAÇÃO -->
+        <div id="randConfig" class="rand-config">
+          <div class="rand-section">
+            <p class="rand-label">Tipo de geração</p>
+            <div class="rand-mode-btns">
+              <button class="rand-mode-btn active" id="randModeAleatorio" onclick="setRandMode('aleatorio')">🎲
+                Totalmente aleatório</button>
+              <button class="rand-mode-btn" id="randModeEscolher" onclick="setRandMode('escolher')">🎯 Escolher
+                categoria</button>
+              <button class="rand-mode-btn" id="randModeItem" onclick="setRandMode('item')">🗡️ Escolher item</button>
+            </div>
+          </div>
+
+          <!-- Seletor de categoria -->
+          <div id="randCategorySection" class="rand-section" style="display:none;">
+            <label class="rand-label" for="randCategorySelect">Categoria do item base</label>
+            <select id="randCategorySelect" class="quantity-select rand-select">
+              <option value="Arma">Arma</option>
+              <option value="Armadura">Armadura</option>
+              <option value="Escudo">Escudo</option>
+              <option value="Item Mágico">Item Mágico</option>
+            </select>
+          </div>
+
+          <!-- Seletor de item específico -->
+          <div id="randItemSection" class="rand-section" style="display:none;">
+            <label class="rand-label" for="randItemCatFilter">Filtrar por categoria</label>
+            <select id="randItemCatFilter" class="quantity-select rand-select" onchange="populateItemPicker()">
+              <option value="Arma">Arma</option>
+              <option value="Armadura">Armadura</option>
+              <option value="Escudo">Escudo</option>
+              <option value="Item Geral">Item Geral</option>
+              <option value="Item Mágico">Item Mágico</option>
+            </select>
+            <label class="rand-label" for="randItemSelect" style="margin-top:4px;">Item específico</label>
+            <select id="randItemSelect" class="quantity-select rand-select"></select>
+          </div>
+          <div class="rand-section rand-row">
+            <div class="rand-col">
+              <label class="rand-label" for="randModQty">Modificações</label>
+              <select id="randModQty" class="quantity-select rand-select">
+                <option value="-1">Aleatório</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="rand-col">
+              <label class="rand-label" for="randEnchQty">Encantamentos</label>
+              <select id="randEnchQty" class="quantity-select rand-select">
+                <option value="-1">Aleatório</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+          <button class="add-item-btn rand-generate-btn" onclick="generateRandomItem()">🎲 Gerar Item!</button>
+        </div>
+        <!-- RESULTADO -->
+        <div id="randResult" class="rand-result" style="display:none;">
+          <div class="rand-result-header">
+            <p class="rand-result-label">Item Gerado</p>
+            <button class="rand-reroll-btn" onclick="generateRandomItem()">🎲 Novo</button>
+          </div>
+          <div class="rand-result-card">
+            <h3 id="randResultName" class="rand-result-name"></h3>
+            <p id="randResultPrice" class="rand-result-price"></p>
+            <div id="randResultBadges" class="modal-badges" style="margin-bottom:10px;"></div>
+            <p id="randResultDesc" class="rand-result-desc"></p>
+            <div id="randResultStats" class="modal-stats" style="margin-top:10px;"></div>
+            <div id="randResultCustomizations" class="rand-customizations"></div>
+          </div>
+          <div class="modal-add-item" style="margin-top:14px;">
+            <label for="randResultQty">Qtd:</label>
+            <input type="number" id="randResultQty" class="quantity-input" value="1" min="1">
+            <button class="add-item-btn" onclick="addRandomItemToInventory()">Adicionar ao Inventário</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="data/armas.js"></script>
+  <script src="data/armaduras.js"></script>
+  <script src="data/modificacoes.js"></script>
+  <script src="data/encantamentos.js"></script>
+  <script src="data/itens.js"></script>
+  <script src="data/itensmagicos.js"></script>
+  <script src="data/maldicao.js"></script>
+
+  <script src="../assets/templates/theme-init.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

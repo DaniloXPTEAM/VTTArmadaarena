@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Montarias e Parceiros — VTTArmada do Mestre</title>
+
+  <style>
+    @font-face {
+      font-family: "Tormenta";
+      src: url("../assets/fonts/Tormenta.ttf") format("truetype");
+    }
+
+    :root {
+      --bg-dark-base: #0a0404;
+      --bg-dark-surface: #120a0a;
+      --bg-dark-panel: #160e0e;
+      --bg-dark-panel-hover: #241414;
+      --border-color: #4a1414;
+      --text-primary: #e8e4e4;
+      --text-secondary: #a39898;
+      --text-muted: #736868;
+      --gold-primary: #cc0d0d;
+      --gold-secondary: #cfa053;
+      --gold-glow: rgba(204, 13, 13, 0.35);
+      --glass-bg: rgba(22, 14, 14, 0.75);
+      --glass-backdrop: blur(12px);
+      --font-heading: "Tormenta", serif;
+      --font-body: 'Segoe UI', sans-serif;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+    }
+
+    .theme-dark {
+      --bg-dark-base: #06070c;
+      --bg-dark-surface: #0b0d14;
+      --bg-dark-panel: #11131e;
+      --bg-dark-panel-hover: #191c2b;
+      --border-color: #2a2e3d;
+      --text-primary: #e2d8c3;
+      --text-secondary: #a89f8a;
+      --text-muted: #6b6354;
+      --gold-primary: #c9933a;
+      --gold-secondary: #d4af37;
+      --gold-glow: rgba(201, 147, 58, 0.3);
+      --glass-bg: rgba(17, 19, 30, 0.75);
+      --glass-backdrop: blur(12px);
+    }
+
+    .theme-classic {
+      --bg-dark-base: #f0ece4;
+      --bg-dark-surface: #ffffff;
+      --bg-dark-panel: #ffffff;
+      --bg-dark-panel-hover: #f0ede6;
+      --border-color: #b0b8c8;
+      --text-primary: #2c3e50;
+      --text-secondary: #4a5568;
+      --text-muted: #7f8c8d;
+      --gold-primary: #e74c3c;
+      --gold-secondary: #c0392b;
+      --gold-glow: rgba(231, 76, 60, 0.2);
+      --glass-bg: rgba(255, 255, 255, 0.92);
+      --glass-backdrop: blur(8px);
+    }
+
+    body.theme-classic {
+      background: var(--bg-dark-base) !important;
+    }
+
+    .theme-classic .header {
+      background: linear-gradient(185deg, #2c3e50 0%, #1a252f 100%) !important;
+      border-bottom: 2px solid #e74c3c !important;
+    }
+
+    .theme-classic .header::after {
+      display: none !important;
+    }
+
+    .theme-classic .header-title {
+      color: #ecf0f1 !important;
+      text-shadow: none !important;
+    }
+
+    .theme-classic .header-home-btn {
+      color: #ecf0f1 !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      background: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .theme-classic .header-home-btn:hover {
+      border-color: #e74c3c !important;
+      box-shadow: 0 0 10px rgba(231, 76, 60, 0.3) !important;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark-base);
+      background-image: radial-gradient(circle at center, var(--bg-dark-surface) 0%, var(--bg-dark-base) 100%);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      padding-bottom: 40px;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: relative;
+      text-align: center;
+      padding: 40px 60px 28px;
+      z-index: 10;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    .header-title {
+      font-family: "Tormenta", var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--gold-primary), #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      margin-bottom: 8px;
+    }
+
+    .header-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    .header-btns {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .header-home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      line-height: 1;
+      background: rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--border-color);
+      color: var(--gold-primary);
+      padding: 7px 12px;
+      border-radius: 8px;
+      gap: 5px;
+    }
+
+    .header-home-btn:hover {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    /* ===== THEME SWITCHER ===== */
+    .theme-switcher {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 3px;
+      transition: border-color 0.25s ease;
+    }
+
+    .theme-btn {
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      transition: background 0.25s ease, transform 0.1s;
+      opacity: 0.55;
+    }
+
+    .theme-btn:hover {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.15);
+    }
+
+    .theme-btn.active {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+    }
+
+    .theme-dark .theme-switcher {
+      border-color: rgba(201, 147, 58, 0.3);
+    }
+
+    .theme-classic .theme-switcher {
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin: 32px 0 14px 4px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .partner-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-backdrop);
+      -webkit-backdrop-filter: var(--glass-backdrop);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: border-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .partner-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px var(--gold-glow);
+    }
+
+    .partner-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 6px;
+    }
+
+    .partner-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .partner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .partner-link:hover {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 8px var(--gold-glow);
+      color: var(--gold-primary);
+    }
+
+    .partner-ext {
+      font-size: 0.8rem;
+    }
+
+    /* ===== FILTROS ===== */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-dark-panel);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--text-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      color: #fff;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .theme-dark .filter-btn.active {
+      background: var(--gold-primary);
+    }
+
+    .theme-classic .filter-btn.active {
+      background: var(--gold-primary);
+    }
+
+    .filter-bar-secondary {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      padding: 8px 0;
+    }
+
+    .filter-btn-sm {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn-sm:hover {
+      border-color: var(--gold-primary);
+      color: var(--text-primary);
+    }
+
+    .filter-btn-sm.active {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      color: #fff;
+      box-shadow: 0 0 8px var(--gold-glow);
+    }
+
+    .theme-dark .filter-btn-sm.active {
+      background: var(--gold-primary);
+    }
+
+    .theme-classic .filter-btn-sm.active {
+      background: var(--gold-primary);
+    }
+
+    /* ===== BUSCA ===== */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-dark-panel);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.25s ease;
+      outline: none;
+    }
+
+    .search-wrap input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-wrap input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 8px var(--gold-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    .filter-section {
+      display: none;
+    }
+
+    .filter-section.active {
+      display: block;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 64px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    .empty-state-text {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .empty-state-hint {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* ===== CARDS ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .entry-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-backdrop);
+      -webkit-backdrop-filter: var(--glass-backdrop);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      transition: border-color 0.25s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .entry-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px var(--gold-glow);
+    }
+
+    .entry-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .entry-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      line-height: 1.2;
+    }
+
+    .entry-badge {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(201, 147, 58, 0.1);
+      border: 1px solid rgba(201, 147, 58, 0.25);
+      color: var(--gold-secondary);
+      flex-shrink: 0;
+    }
+
+    .entry-desc {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .entry-tier {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--text-primary);
+    }
+
+    .entry-tier strong {
+      font-family: var(--font-heading);
+      color: var(--gold-secondary);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== ASSINATURA ===== */
+    .sig-wrap {
+      max-width: 1100px;
+      margin: 48px auto 20px;
+      padding: 0 16px;
+    }
+
+    .sig-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-backdrop);
+      -webkit-backdrop-filter: var(--glass-backdrop);
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+
+    .sig-card:hover {
+      border-color: var(--gold-primary);
+    }
+
+    .sig-summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--bg-dark-surface);
+      color: var(--text-primary);
+      position: relative;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sig-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .sig-summary::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    }
+
+    .sig-summary-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .sig-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(201, 147, 58, 0.06);
+      border: 1px solid rgba(201, 147, 58, 0.2);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+    }
+
+    .sig-title {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.5px;
+    }
+
+    .sig-summary-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-secondary);
+    }
+
+    .sig-hint {
+      font-size: 12px;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    .sig-chevron {
+      font-size: 14px;
+      transition: transform 0.2s ease;
+      color: var(--gold-primary);
+    }
+
+    .sig-card[open] .sig-chevron {
+      transform: rotate(180deg);
+    }
+
+    .sig-body {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .sig-hero {
+      background: var(--bg-dark-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .sig-h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 10px;
+    }
+
+    .sig-p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .sig-p:last-child {
+      margin-bottom: 0;
+    }
+
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+    }
+
+    .sig-col {
+      background: var(--bg-dark-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .sig-h4 {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 14px;
+    }
+
+    .sig-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-dark-panel);
+      transition: all 0.2s ease;
+      margin-bottom: 12px;
+      text-decoration: none;
+    }
+
+    .sig-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-primary);
+      box-shadow: 0 4px 12px var(--gold-glow);
+    }
+
+    .sig-link-main {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .sig-link-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .sig-link-url {
+      color: var(--text-muted);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .sig-ext {
+      color: var(--gold-secondary);
+      font-size: 14px;
+      flex: 0 0 auto;
+    }
+
+    .sig-note {
+      margin-top: 14px;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-color);
+      background: rgba(0, 0, 0, 0.01);
+      padding: 12px;
+    }
+
+    .sig-note-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--gold-secondary);
+      margin-bottom: 6px;
+    }
+
+    .sig-note-text {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .sig-footer {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-dark-surface);
+      display: flex;
+      justify-content: center;
+    }
+
+    .sig-footer-text {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ===== REGRAS DE MONTARIA (EXPANDÍVEL) ===== */
+    .mount-rules-collapsible {
+      margin-bottom: 24px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-dark-panel);
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+
+    .mount-rules-collapsible:hover {
+      border-color: var(--gold-primary);
+    }
+
+    .mount-rules-summary {
+      padding: 14px 20px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      background: var(--bg-dark-surface);
+      transition: background 0.2s;
+      user-select: none;
+    }
+
+    .mount-rules-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .mount-rules-summary:hover {
+      background: var(--bg-dark-panel-hover);
+    }
+
+    .mount-rules-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      color: var(--gold-primary);
+      letter-spacing: 0.5px;
+    }
+
+    .mount-rules-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: normal;
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    .mount-rules-chevron {
+      font-size: 0.85rem;
+      transition: transform 0.25s ease;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .mount-rules-collapsible[open] .mount-rules-chevron {
+      transform: rotate(180deg);
+    }
+
+    .mount-rules-body {
+      padding: 20px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .mount-rules-body p {
+      margin-bottom: 12px;
+    }
+
+    .mount-rules-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .mount-rules-body ul {
+      margin: 0 0 12px 0;
+      padding-left: 24px;
+      list-style: none;
+    }
+
+    .mount-rules-body ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 10px;
+    }
+
+    .mount-rules-body ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--gold-primary);
+      font-weight: bold;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .header {
+        padding: 30px 16px 24px;
+      }
+
+      .header-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+
+      .header-btns {
+        position: static;
+        transform: none;
+        justify-content: center;
+        margin-top: 12px;
+      }
+
+      .sig-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sig-hint {
+        display: none;
+      }
+    }
+
+    /* ===== MODAL DE DESTAQUE ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    .modal-content-wrap {
+      position: relative;
+      background: var(--bg-dark-surface);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--gold-glow);
+      animation: scaleIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+      outline: none;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--gold-primary);
+    }
+
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-size: 3rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      z-index: 1010;
+    }
+
+    .modal-nav:hover {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px var(--gold-glow);
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .modal-nav:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .modal-nav-prev {
+      left: 30px;
+    }
+
+    .modal-nav-next {
+      right: 30px;
+    }
+
+    .modal-partner-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 8px;
+      gap: 12px;
+    }
+
+    .modal-partner-name {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold-primary);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-partner-badge {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(201, 147, 58, 0.1);
+      border: 1px solid rgba(201, 147, 58, 0.25);
+      color: var(--gold-secondary);
+      flex-shrink: 0;
+    }
+
+    .modal-partner-desc {
+      color: var(--text-primary);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .modal-tiers-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--gold-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 8px;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .modal-tier-item {
+      margin-top: 10px;
+      padding: 12px;
+      background: var(--bg-dark-panel);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--gold-primary);
+      transition: background-color 0.2s;
+    }
+
+    .modal-tier-item:hover {
+      background: var(--bg-dark-panel-hover);
+    }
+
+    .modal-tier-name {
+      font-family: var(--font-heading);
+      color: var(--gold-secondary);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .modal-tier-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text-primary);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .modal-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 2rem;
+      }
+      .modal-nav-prev {
+        left: 10px;
+      }
+      .modal-nav-next {
+        right: 10px;
+      }
+      .modal-content-wrap {
+        padding: 20px 24px;
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+      .modal-partner-name {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <h1 class="header-title">Montarias e Parceiros</h1>
+    <p class="header-subtitle">Montarias, parceiros e aliados para sua campanha</p>
+    <div class="header-btns">
+      <div class="theme-switcher" id="theme-switcher">
+        <button class="theme-btn" data-theme="blood" title="Tema Sangue (padrão)">🩸</button>
+        <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+        <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+      </div>
+      <a href="../index.html" class="header-home-btn" title="VTTArmada do Mestre">🏠 Hub</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="section-title">Montarias e Parceiros</div>
+
+    <div class="filter-bar">
+      <button class="filter-btn" data-filter="montarias">🐴 Montarias</button>
+      <button class="filter-btn active" data-filter="parceiros">🤝 Parceiros</button>
+      <button class="filter-btn" data-filter="familiares">🦉 Familiares</button>
+      <button class="filter-btn" data-filter="capangas">💪 Capangas</button>
+    </div>
+
+    <div class="filter-bar-secondary">
+      <button class="filter-btn-sm active" data-source="todas">Todas</button>
+      <button class="filter-btn-sm" data-source="t20">T20</button>
+      <button class="filter-btn-sm" data-source="atlas">Atlas</button>
+      <button class="filter-btn-sm" data-source="herois">Heróis de Arton</button>
+      <button class="filter-btn-sm" data-source="ameacas">Ameaças de Arton</button>
+      <button class="filter-btn-sm" data-source="deuses">Deuses de Arton</button>
+      <button class="filter-btn-sm" data-source="jornada">Jornada Heróica</button>
+      <button class="filter-btn-sm" data-source="dragaobrasil">Dragão Brasil</button>
+    </div>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Buscar por nome, descrição ou tier...">
+    </div>
+
+    <div id="section-montarias" class="filter-section">
+      <details class="mount-rules-collapsible">
+        <summary class="mount-rules-summary">
+          <span class="mount-rules-title">📖 Regras de Montaria</span>
+          <span class="mount-rules-hint">(clique para expandir)</span>
+          <span class="mount-rules-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="mount-rules-body">
+          <p><strong>Montarias</strong> são um tipo específico de parceiro. Elas usam as seguintes regras especiais.</p>
+          <ul>
+            <li>Para usar um parceiro montaria você precisa <strong>montar</strong> nele. Para passá-lo para outro aliado, precisa <strong>desmontar</strong> antes. Ambas são <strong>ações de movimento</strong>.</li>
+            <li>Uma vez montado, você precisa gastar uma <strong>ação de movimento</strong> e fazer um teste de <strong>Cavalgar (CD 10)</strong> por turno para guiar a montaria. Se passar, recebe os benefícios dela. Se falhar, perde a ação de movimento. Se falhar por 5 ou mais, <strong>cai da montaria</strong> e sofre <strong>1d6</strong> pontos de dano. Se for <strong>treinado em Cavalgar</strong>, você recebe os bônus da montaria automaticamente, sem precisar gastar a ação ou fazer o teste.</li>
+            <li>Se você sofrer dano, deve fazer um teste de <strong>Cavalgar (CD igual ao dano)</strong>. Se falhar, cai da montaria e sofre <strong>1d6</strong> pontos de dano. Se possuir o poder <strong>Ginete</strong>, você não precisa fazer esse teste.</li>
+            <li>Cada parceiro montaria possui uma <strong>categoria de tamanho</strong> (indicada ao lado do nome do parceiro). Um personagem só pode montar uma montaria <strong>maior do que ele mesmo</strong>, e enquanto estiver montado usa o tamanho da montaria para efeitos do espaço que ocupa e para modificador de <strong>Furtividade</strong>.</li>
+            <li>O balanço da montaria em movimento torna mais difícil atacar à distância (<strong>–2 em testes de ataque</strong>) e conta como <strong>condição ruim</strong> para lançar magias. Se possuir o poder <strong>Ginete</strong>, você não sofre nenhuma dessas penalidades.</li>
+          </ul>
+          <p>Montarias podem ser <strong>compradas</strong> ou <strong>recebidas por habilidades</strong>. No primeiro caso, são sempre parceiros iniciantes. No segundo, seu poder é definido pela habilidade em questão. Note que embora alguns animais sejam facilmente comprados, como cavalos e trobos, outros são raros. Encontrar um grifo à venda é quase impossível!</p>
+        </div>
+      </details>
+      <div id="montarias-grid" class="cards-grid"></div>
+      <div id="montarias-empty" class="empty-state" style="display:none;">
+        <div class="empty-state-icon">🐴</div>
+        <div class="empty-state-text">Nenhuma montaria encontrada.</div>
+      </div>
+    </div>
+
+    <div id="section-parceiros" class="filter-section active">
+      <details class="mount-rules-collapsible">
+        <summary class="mount-rules-summary">
+          <span class="mount-rules-title">⚖️ Variante: Parceiros Vulneráveis</span>
+          <span class="mount-rules-hint">(clique para expandir)</span>
+          <span class="mount-rules-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="mount-rules-body">
+          <p>Com esta variante, parceiros podem se ferir e morrer.</p>
+          <p>Sempre que um personagem sofre dano, deve rolar um dado para cada parceiro. Com um resultado <strong>"1"</strong>, o parceiro fica <strong>ferido</strong>. Por si só, isso não tem efeito em jogo. Porém, caso o jogador role um novo <strong>1</strong> para um parceiro que já esteja ferido, esse parceiro <strong>morre</strong>.</p>
+          <p>O dado rolado depende do poder do parceiro: <strong>d4</strong> para iniciantes, <strong>d6</strong> para veteranos e <strong>d8</strong> para mestres.</p>
+          <p>Esta variante coloca sobre o jogador a decisão de continuar ou não usando um parceiro ferido — o personagem abre mão da ajuda para não arriscar o amigo?</p>
+          <p style="margin-bottom:0;"><em>Recomendamos esta variante apenas para parceiros circunstanciais, não aqueles recebidos por habilidades de classe.</em></p>
+        </div>
+      </details>
+      <div id="parceiros-grid" class="cards-grid"></div>
+      <div id="parceiros-empty" class="empty-state" style="display:none;">
+        <div class="empty-state-icon">🤝</div>
+        <div class="empty-state-text">Nenhum parceiro encontrado.</div>
+      </div>
+    </div>
+
+    <div id="section-familiares" class="filter-section">
+      <details class="mount-rules-collapsible">
+        <summary class="mount-rules-summary">
+          <span class="mount-rules-title">🦉 Familiares Arcanos</span>
+          <span class="mount-rules-hint">(clique para expandir)</span>
+          <span class="mount-rules-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="mount-rules-body">
+          <p>Um <strong>familiar</strong> é uma criatura mágica. Em termos de jogo, é um parceiro especial com o qual você pode se comunicar <strong>telepaticamente</strong> em alcance longo. Ele obedece a suas ordens, mas ainda está limitado ao que uma criatura de sua espécie pode fazer.</p>
+          <p>Se ele morrer, você fica <strong>atordoado por uma rodada</strong>. Você pode invocar um novo familiar com um ritual que exige <strong>um dia</strong> e <strong>T$ 100</strong> em ingredientes.</p>
+        </div>
+      </details>
+      <div id="familiares-grid" class="cards-grid"></div>
+      <div id="familiares-empty" class="empty-state" style="display:none;">
+        <div class="empty-state-icon">🦉</div>
+        <div class="empty-state-text">Nenhum familiar encontrado.</div>
+      </div>
+    </div>
+
+    <div id="section-capangas" class="filter-section">
+      <details class="mount-rules-collapsible">
+        <summary class="mount-rules-summary">
+          <span class="mount-rules-title">💪 Regras de Capanga</span>
+          <span class="mount-rules-hint">(clique para expandir)</span>
+          <span class="mount-rules-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="mount-rules-body">
+          <p><strong>Capangas</strong> são um tipo de parceiro que atua em grupo. Individualmente, são fracos, mas graças aos números, tornam-se perigosos. Eles usam as seguintes regras.</p>
+          <ul>
+            <li>Para usar um grupo de capangas em combate, primeiro você deve <strong>posicioná-los</strong>. Para isso, você gasta uma <strong>ação completa</strong> e posiciona cada capanga do grupo em um espaço desocupado em <strong>alcance curto</strong>.</li>
+            <li>Você pode usar uma <strong>ação de movimento</strong> para fazer quaisquer capangas já posicionados se mover ao deslocamento deles, ou uma <strong>ação padrão</strong> para fazê-los causar <strong>dano automático</strong> a criaturas adjacentes (apenas uma vez por rodada). Capangas não agem sem receber ordens.</li>
+            <li>Exceto quando dito o contrário, capangas têm <strong>1 PV</strong> e falham automaticamente em qualquer teste oposto. Um capanga reduzido a 0 PV não pode ser usado pelo restante da cena.</li>
+            <li>Se o tamanho de um capanga não for indicado em sua descrição, ele é <strong>Médio</strong>.</li>
+            <li>Cada grupo de capangas conta como um <strong>parceiro</strong> para o limite de parceiros que você pode ter.</li>
+            <li>Usos criativos para capangas fora de combate ficam a <strong>critério do mestre</strong>.</li>
+            <li>Capangas são criaturas simplificadas e não se beneficiam de alguns efeitos (por exemplo, não recebem bônus em testes de ataque, pois causam dano automático).</li>
+          </ul>
+          <p><strong>Capangas Convocados.</strong> As criaturas convocadas pelas seguintes habilidades são capangas, e são afetadas por quaisquer efeitos que afetem especificamente capangas: <em>Conjurar Mortos-Vivos, Servos do Dragão, Tropas Duyshidakk</em> (Tormenta20), o aprimoramento que conjura kobolds de <em>Conjurar Monstro</em> (Ameaças de Arton) e <em>Legião Tapistana</em> (Jornada Heroica). Em especial, um efeito que aumente a quantidade de capangas que você recebe, como <strong>Comandante de Campo</strong>, aumenta a quantidade de capangas convocados. Da mesma forma, um efeito que reduza a ação necessária para posicionar seus capangas também reduz a ação necessária para usar essas habilidades (exceto para magias).</p>
+          <p>Capangas convocados <strong>não</strong> contam em seu limite de parceiros.</p>
+        </div>
+      </details>
+      <div id="capangas-grid" class="cards-grid"></div>
+      <div id="capangas-empty" class="empty-state" style="display:none;">
+        <div class="empty-state-icon">💪</div>
+        <div class="empty-state-text">Nenhum capanga encontrado.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal de Detalhes -->
+  <div id="partner-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-nav modal-nav-prev" id="modal-prev-btn" title="Anterior">&lsaquo;</div>
+    <div class="modal-content-wrap">
+      <button class="modal-close-btn" id="modal-close-btn" title="Fechar">&times;</button>
+      <div id="modal-body-content"></div>
+    </div>
+    <div class="modal-nav modal-nav-next" id="modal-next-btn" title="Próximo">&rsaquo;</div>
+  </div>
+
+  <section class="sig-wrap">
+    <details class="sig-card">
+      <summary class="sig-summary">
+        <div class="sig-summary-left">
+          <span class="sig-badge">Sobre</span>
+          <span class="sig-title">Créditos e outros projetos</span>
+        </div>
+        <div class="sig-summary-right">
+          <span class="sig-hint">clique para abrir</span>
+          <span class="sig-chevron" aria-hidden="true">▾</span>
+        </div>
+      </summary>
+
+      <div class="sig-body">
+        <div class="sig-hero">
+          <h3 class="sig-h3">Quem fez isso?</h3>
+          <p class="sig-p">
+            Olá! Meu nome é <strong>Nicholas Lemos</strong>.
+            Sou jogador de RPG, desenvolvedor de software e entusiasta de ferramentas para
+            <strong>Tormenta20</strong>.
+          </p>
+          <p class="sig-p">
+            Criei este VTTArmada porque senti falta de ferramentas
+            <strong>rápidas, claras e pensadas para a mesa</strong>, especialmente para mestres que lidam com muitos
+            inimigos, condições e regras ao mesmo tempo. A ideia é manter tudo <strong>visível, acessível e sem quebrar
+              o ritmo</strong>.
+          </p>
+          <p class="sig-p">
+            Feedbacks, sugestões e ideias são sempre bem-vindos.
+          </p>
+        </div>
+        <div class="sig-grid">
+          <div class="sig-col">
+            <h4 class="sig-h4">Contato</h4>
+
+            <a class="sig-link"
+              href="https://api.whatsapp.com/send/?phone=5531992825753&text=Ol%C3%A1%2C+gostaria+de+tirar+uma+d%C3%BAvida.&type=phone_number&app_absent=0"
+              target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">WhatsApp</span>
+                <span class="sig-link-url">Fale comigo diretamente</span>
+              </div>
+              <span class="sig-ext">↗</span>
+            </a>
+
+            <a class="sig-link" href="https://www.linkedin.com/in/nicholas-lemos/" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">LinkedIn</span>
+                <span class="sig-link-url">Perfil profissional</span>
+              </div>
+              <span class="sig-ext">↗</span>
+            </a>
+
+            <a class="sig-link" href="https://github.com/nicholemos" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">GitHub</span>
+                <span class="sig-link-url">Repositórios e projetos</span>
+              </div>
+              <span class="sig-ext">↗</span>
+            </a>
+
+            <div class="sig-note">
+              <div class="sig-note-title">Que tal um site para você?</div>
+              <div class="sig-note-text">
+                Dê uma olhada no modelo de site e me chame para conversarmos.
+                <br>
+                <a href="../index.html" target="_blank" rel="noopener noreferrer">
+                  🏰 VTTArmada
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="sig-col">
+            <h4 class="sig-h4">Este projeto</h4>
+
+            <a class="sig-link" href="../combate/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Gerenciador de Combate – Tormenta20</span>
+                <span class="sig-link-url">nicholemos.github.io/combate</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <div class="sig-note">
+              <div class="sig-note-title">Dica rápida</div>
+              <div class="sig-note-text">
+                Os links abrem em nova aba. Durante a semana vamos polir cada ferramenta aos poucos.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sig-footer">
+          <span class="sig-footer-text">Feito para mesa rápida. Feedbacks são bem-vindos.</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <script src="parceiros.js"></script>
+  <script src="../assets/templates/theme-init.js"></script>
+  <script>
+
+
+    // Filtro Montarias / Parceiros
+    document.querySelectorAll('.filter-bar .filter-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-bar .filter-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        document.querySelectorAll('.filter-section').forEach(function (s) { s.classList.remove('active'); });
+        document.getElementById('section-' + btn.getAttribute('data-filter')).classList.add('active');
+        applyFilters();
+      });
+    });
+
+    var currentSource = 'todas';
+    var searchTerm = '';
+
+    function renderCards() {
+      ['montarias', 'parceiros', 'familiares', 'capangas'].forEach(function (cat) {
+        var grid = document.getElementById(cat + '-grid');
+        var empty = document.getElementById(cat + '-empty');
+        var items = parceirosData.filter(function (p) {
+          var itemCat = p.category;
+          if (itemCat === 'parceiro') itemCat = 'parceiros';
+          if (itemCat === 'montaria') itemCat = 'montarias';
+          if (itemCat === 'familiar') itemCat = 'familiares';
+          if (itemCat === 'capanga') itemCat = 'capangas';
+          return itemCat === cat;
+        });
+        grid.innerHTML = '';
+        items.forEach(function (p) {
+          var sourceNames = { t20: 'T20', atlas: 'Atlas', herois: 'Heróis de Arton', ameacas: 'Ameaças de Arton', jornada: 'Jornada Heróica', dragaobrasil: 'Dragão Brasil', deuses: 'Deuses de Arton' };
+          var card = document.createElement('div');
+          card.className = 'entry-card';
+          card.setAttribute('data-source', p.source);
+          card._partnerData = p;
+          card.addEventListener('click', function () {
+            openModalForCard(card);
+          });
+          var html = '<div class="entry-header"><span class="entry-name">' + p.name + '</span><span class="entry-badge">' + (sourceNames[p.source] || p.source) + '</span></div>';
+          html += '<div class="entry-desc">' + p.desc + '</div>';
+          if (p.tiers) {
+            if (p.tiers.iniciante) html += '<div class="entry-tier"><strong>Iniciante:</strong> ' + p.tiers.iniciante + '</div>';
+            if (p.tiers.veterano) html += '<div class="entry-tier"><strong>Veterano:</strong> ' + p.tiers.veterano + '</div>';
+            if (p.tiers.mestre) html += '<div class="entry-tier"><strong>Mestre:</strong> ' + p.tiers.mestre + '</div>';
+          } else if (p.especial) {
+            html += '<div class="entry-tier"><strong>Especial:</strong> ' + p.especial + '</div>';
+          }
+          card.innerHTML = html;
+          grid.appendChild(card);
+        });
+        if (items.length === 0) { grid.style.display = 'none'; empty.style.display = ''; }
+        else { grid.style.display = ''; empty.style.display = 'none'; }
+      });
+      applyFilters();
+    }
+
+    function applyFilters() {
+      var activeSection = document.querySelector('.filter-section.active');
+      if (!activeSection) return;
+      var cards = activeSection.querySelectorAll('.entry-card');
+      var term = searchTerm.toLowerCase();
+      cards.forEach(function (card) {
+        var matchSource = currentSource === 'todas' || card.getAttribute('data-source') === currentSource;
+        var matchSearch = !term || card.textContent.toLowerCase().indexOf(term) !== -1;
+        card.style.display = (matchSource && matchSearch) ? '' : 'none';
+      });
+      var visible = activeSection.querySelectorAll('.entry-card:not([style*="display: none"])');
+      var grid = activeSection.querySelector('.cards-grid');
+      var empty = activeSection.querySelector('.empty-state');
+      if (visible.length === 0) { grid.style.display = 'none'; if (empty) empty.style.display = ''; }
+      else { grid.style.display = ''; if (empty) empty.style.display = 'none'; }
+    }
+
+    renderCards();
+
+    document.querySelectorAll('.filter-btn-sm').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn-sm').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        currentSource = btn.getAttribute('data-source');
+        applyFilters();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+      searchTerm = this.value;
+      applyFilters();
+    });
+
+    // ===== LÓGICA DO MODAL =====
+    var currentCardIndex = -1;
+    var currentVisibleCards = [];
+
+    function openModalForCard(card) {
+      var activeSection = document.querySelector('.filter-section.active');
+      if (!activeSection) return;
+      
+      var cards = activeSection.querySelectorAll('.entry-card');
+      currentVisibleCards = Array.prototype.slice.call(cards).filter(function (c) {
+        return c.style.display !== 'none';
+      });
+      
+      currentCardIndex = currentVisibleCards.indexOf(card);
+      if (currentCardIndex === -1) return;
+      
+      updateModalWithCard(card);
+      
+      var modal = document.getElementById('partner-modal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateModalWithCard(card) {
+      var p = card._partnerData;
+      if (!p) return;
+      
+      var sourceNames = { 
+        t20: 'T20', 
+        atlas: 'Atlas', 
+        herois: 'Heróis de Arton', 
+        ameacas: 'Ameaças de Arton', 
+        jornada: 'Jornada Heróica', 
+        dragaobrasil: 'Dragão Brasil', 
+        deuses: 'Deuses de Arton' 
+      };
+      
+      var modalBody = document.getElementById('modal-body-content');
+      
+      var html = '<div class="modal-partner-header">';
+      html += '  <span class="modal-partner-name">' + p.name + '</span>';
+      html += '  <span class="modal-partner-badge">' + (sourceNames[p.source] || p.source) + '</span>';
+      html += '</div>';
+      
+      html += '<div class="modal-partner-desc">' + p.desc + '</div>';
+      
+      if (p.tiers) {
+        html += '<div class="modal-tiers-title">Benefícios por Tiers</div>';
+        if (p.tiers.iniciante) {
+          html += '<div class="modal-tier-item">';
+          html += '  <span class="modal-tier-name">Iniciante</span>';
+          html += '  <span class="modal-tier-desc">' + p.tiers.iniciante + '</span>';
+          html += '</div>';
+        }
+        if (p.tiers.veterano) {
+          html += '<div class="modal-tier-item">';
+          html += '  <span class="modal-tier-name">Veterano</span>';
+          html += '  <span class="modal-tier-desc">' + p.tiers.veterano + '</span>';
+          html += '</div>';
+        }
+        if (p.tiers.mestre) {
+          html += '<div class="modal-tier-item">';
+          html += '  <span class="modal-tier-name">Mestre</span>';
+          html += '  <span class="modal-tier-desc">' + p.tiers.mestre + '</span>';
+          html += '</div>';
+        }
+      } else if (p.especial) {
+        html += '<div class="modal-tiers-title">Benefício Especial</div>';
+        html += '<div class="modal-tier-item">';
+        html += '  <span class="modal-tier-name">Especial</span>';
+        html += '  <span class="modal-tier-desc">' + p.especial + '</span>';
+        html += '</div>';
+      }
+      
+      modalBody.innerHTML = html;
+      
+      var prevBtn = document.getElementById('modal-prev-btn');
+      var nextBtn = document.getElementById('modal-next-btn');
+      if (currentVisibleCards.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+      } else {
+        prevBtn.style.display = '';
+        nextBtn.style.display = '';
+      }
+    }
+
+    function closeModal() {
+      var modal = document.getElementById('partner-modal');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function navigateModal(direction) {
+      if (currentVisibleCards.length <= 1) return;
+      
+      currentCardIndex += direction;
+      if (currentCardIndex < 0) {
+        currentCardIndex = currentVisibleCards.length - 1;
+      } else if (currentCardIndex >= currentVisibleCards.length) {
+        currentCardIndex = 0;
+      }
+      
+      var nextCard = currentVisibleCards[currentCardIndex];
+      updateModalWithCard(nextCard);
+    }
+
+    // Eventos do Modal
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.getElementById('partner-modal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+    
+    document.getElementById('modal-prev-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      navigateModal(-1);
+    });
+    
+    document.getElementById('modal-next-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      navigateModal(1);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      var modal = document.getElementById('partner-modal');
+      if (modal.style.display === 'flex') {
+        if (e.key === 'ArrowLeft') {
+          navigateModal(-1);
+        } else if (e.key === 'ArrowRight') {
+          navigateModal(1);
+        } else if (e.key === 'Escape') {
+          closeModal();
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

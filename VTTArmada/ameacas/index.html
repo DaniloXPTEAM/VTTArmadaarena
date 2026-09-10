@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ameaças de Arton - Bestiário de Monstros T20</title>
+    <meta name="description"
+        content="Um bestiário interativo de criaturas e ameaças para Tormenta 20. Explore monstros, simule rolagens de ataque e monte encontros de combate completos.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;600;700;900&family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Fire Embers Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="app-container">
+        <!-- Main Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <i class="fa-solid fa-skull-crossbones blood-glow-icon"></i>
+                <div class="title-wrapper">
+                    <h1>Ameaças de Arton</h1>
+                    <p class="subtitle">Bestiário de Combate - Tormenta 20</p>
+                </div>
+            </div>
+
+            <div class="header-btns">
+                <a href="../index.html" class="header-home-btn" title="VTTArmada do Mestre">🏠 Hub</a>
+                <!-- Theme Switcher -->
+                <div class="theme-switcher" id="theme-switcher">
+                    <button class="theme-btn active" data-theme="blood" title="Tema Vectora (padrão)">🩸</button>
+                    <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+                    <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+                </div>
+            </div>
+
+            <!-- Quick Stats & Encounter Manager Indicator -->
+            <div class="header-stats">
+
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-total-threats">0</span>
+                    <span class="stat-label">Criaturas</span>
+                </div>
+                <div class="stat-box encounter-stat-box" id="stat-box-encounter">
+                    <span class="stat-value" id="stat-encounter-count">0</span>
+                    <span class="stat-label">No Encontro</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout Grid -->
+        <div class="app-body">
+            <!-- Sidebar: Filters and Encounter Builder Tracker -->
+            <aside class="sidebar-panel">
+                <!-- Search Section -->
+                <div class="search-section">
+                    <div class="search-bar-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="search-input" placeholder="Buscar monstro, ataque, perícia..."
+                            autocomplete="off">
+                        <button id="clear-search" class="clear-btn" title="Limpar busca"><i
+                                class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <!-- Personal Grimoire/Encounter Toggle -->
+                <div class="encounter-toggle-wrapper">
+                    <button id="btn-toggle-encounter-view" class="toggle-encounter-btn">
+                        <i class="fa-solid fa-fire"></i>
+                        <span>Ver Encontro Atual</span>
+                    </button>
+                </div>
+
+                <!-- Database Source Selector -->
+                <div class="filter-group">
+                    <h3><i class="fa-solid fa-database"></i> Bestiário</h3>
+                    <label class="checkbox-container">
+                        Geral
+                        <input type="checkbox" class="database-checkbox" id="db-check-geral" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">
+                        Breves Jornadas
+                        <input type="checkbox" class="database-checkbox" id="db-check-jornadas">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">
+                        Guerra Artoniana
+                        <input type="checkbox" class="database-checkbox" id="db-check-guerra">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">
+                        Duelo de Dragões
+                        <input type="checkbox" class="database-checkbox" id="db-check-duelo-dragoes">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <!-- ND Filters (Nível de Desafio) -->
+                <div class="filter-group">
+                    <h3><i class="fa-solid fa-shield-halved"></i> Nível de Desafio (ND)</h3>
+                    <div class="nd-grid-container">
+                        <select id="filter-nd-select">
+                            <option value="">Todos os NDs</option>
+                            <option value="1/4">ND 1/4</option>
+                            <option value="1/2">ND 1/2</option>
+                            <option value="1">ND 1</option>
+                            <option value="2">ND 2</option>
+                            <option value="3">ND 3</option>
+                            <option value="4">ND 4</option>
+                            <option value="5">ND 5</option>
+                            <option value="6">ND 6</option>
+                            <option value="7">ND 7</option>
+                            <option value="8">ND 8</option>
+                            <option value="9">ND 9</option>
+                            <option value="10">ND 10</option>
+                            <option value="11">ND 11</option>
+                            <option value="12">ND 12</option>
+                            <option value="13">ND 13</option>
+                            <option value="14">ND 14</option>
+                            <option value="15">ND 15</option>
+                            <option value="16">ND 16</option>
+                            <option value="17">ND 17</option>
+                            <option value="18">ND 18</option>
+                            <option value="19">ND 19</option>
+                            <option value="20">ND 20</option>
+                            <option value="S">ND S (Supremo)</option>
+                            <option value="S+">ND S+ (Supremo+)</option>
+                            <option value="Épico">ND Épico (S / S+)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Type Filters -->
+                <div class="filter-group collapsible">
+                    <button class="filter-collapse-header" data-target="type-filters-content">
+                        <span><i class="fa-solid fa-spaghetti-monster-flying"></i> Tipo de Criatura</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="collapsible-content active" id="type-filters-content">
+                        <div class="filter-checklist" id="types-list-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Size Filters -->
+                <div class="filter-group collapsible">
+                    <button class="filter-collapse-header collapsed" data-target="sizes-filters-content">
+                        <span><i class="fa-solid fa-ruler"></i> Tamanho</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="collapsible-content collapsed" id="sizes-filters-content">
+                        <div class="filter-checklist" id="sizes-list-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Source Filters -->
+                <div class="filter-group collapsible">
+                    <button class="filter-collapse-header collapsed" data-target="sources-filters-content">
+                        <span><i class="fa-solid fa-book-bookmark"></i> Fontes</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="collapsible-content collapsed" id="sources-filters-content">
+                        <div class="filter-checklist" id="sources-list-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Filters Button -->
+                <button id="btn-reset-filters" class="reset-filters-btn">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Limpar Filtros</span>
+                </button>
+
+                <!-- Create Homebrew Threat Button -->
+                <div class="homebrew-controls-group" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+                    <button id="btn-create-threat-trigger" class="create-threat-btn" style="margin: 0; width: 100%;">
+                        <i class="fa-solid fa-skull"></i>
+                        <span>Criar Sua Ameaça</span>
+                    </button>
+                    <div class="homebrew-import-export-row" style="display: flex; gap: 0.5rem; width: 100%;">
+                        <button id="btn-export-homebrews" class="reset-filters-btn" style="flex: 1; margin: 0; padding: 0.6rem 0.4rem; font-size: 0.8rem;" title="Exportar Ameaças Homebrew (JSON)">
+                            <i class="fa-solid fa-file-export"></i> Exportar
+                        </button>
+                        <button id="btn-import-homebrews" class="reset-filters-btn" style="flex: 1; margin: 0; padding: 0.6rem 0.4rem; font-size: 0.8rem;" title="Importar Ameaças Homebrew (JSON)">
+                            <i class="fa-solid fa-file-import"></i> Importar
+                        </button>
+                    </div>
+                    <input type="file" id="import-homebrew-file-input" class="hidden" accept=".json">
+                </div>
+            </aside>
+
+            <!-- Main Content Area: Threats Grid -->
+            <main class="threats-content-area">
+                <div class="content-header">
+                    <div class="sorting-controls">
+                        <label for="sort-select">Ordenar por:</label>
+                        <select id="sort-select">
+                            <option value="name-asc">Nome (A-Z)</option>
+                            <option value="name-desc">Nome (Z-A)</option>
+                            <!-- Adicionado o atributo 'selected' aqui -->
+                            <option value="nd-asc" selected>ND (Menor - Maior)</option>
+                            <option value="nd-desc">ND (Maior - Menor)</option>
+                            <option value="pv-desc">PV (Maior - Menor)</option>
+                        </select>
+                    </div>
+                    <div class="active-filters-badges" id="active-filters-badges">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Grid of Threats -->
+                <div class="threats-grid" id="threats-grid">
+                    <!-- Dynamic threat cards -->
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state hidden" id="empty-state">
+                    <i class="fa-solid fa-ghost"></i>
+                    <p>Nenhuma ameaça condizente com os filtros ativos foi encontrada.</p>
+                </div>
+            </main>
+
+            <!-- Encounter Builder Sidebar Panel -->
+            <section class="encounter-sidebar hidden" id="encounter-sidebar">
+                <div class="sidebar-header">
+                    <h2><i class="fa-solid fa-fire"></i> Encontro Atual</h2>
+                    <button id="btn-close-encounter-sidebar" class="close-sidebar-btn"><i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="encounter-summary-card">
+                    <div class="summary-item">
+                        <span class="label">XP Total:</span>
+                        <span class="value" id="encounter-xp-total">0 XP</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Ameaças:</span>
+                        <span class="value" id="encounter-threats-total">0</span>
+                    </div>
+                    <button id="btn-roll-party-initiative" class="action-btn-blood">
+                        <i class="fa-solid fa-dice-d20"></i> Rolar Iniciativas
+                    </button>
+                </div>
+                <div class="encounter-list-container" id="encounter-list-container">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </section>
+
+            <!-- Threat Detail Sidebar Panel (Parchment/Iron themed) -->
+            <section class="detail-sidebar" id="detail-sidebar">
+                <div class="detail-close-btn-wrapper">
+                    <button id="btn-close-detail" title="Fechar Ficha">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="detail-scrollable-content" id="detail-content">
+                    <div class="detail-placeholder">
+                        <i class="fa-solid fa-dragon"></i>
+                        <p>Selecione uma criatura no bestiário para abrir sua ficha de Tormenta 20 e simular rolagens de
+                            ataque.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Homebrew Threat Creation Modal -->
+    <div class="modal-overlay hidden" id="homebrew-modal">
+        <div class="modal-card homebrew-modal-card">
+            <div class="modal-header">
+                <h2 id="hb-modal-title"><i class="fa-solid fa-skull"></i> Forjar Ameaça Homebrew</h2>
+                <button class="modal-close-btn" id="btn-close-homebrew-modal" title="Fechar"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body modal-scrollable-body">
+                <form id="homebrew-form" onsubmit="return false;">
+                    <div class="form-row-2">
+                        <div class="form-group-input">
+                            <label for="hb-nome">Nome da Ameaça *</label>
+                            <input type="text" id="hb-nome" placeholder="ex: Dragão Negro Filhote" required
+                                autocomplete="off">
+                        </div>
+                        <div class="form-row-2" style="margin-bottom:0; gap:0.6rem;">
+                            <div class="form-group-input">
+                                <label for="hb-nd">ND *</label>
+                                <select id="hb-nd" required>
+                                    <option value="1/4">1/4</option>
+                                    <option value="1/2">1/2</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="S">S</option>
+                                    <option value="S+">S+</option>
+                                </select>
+                            </div>
+                            <div class="form-group-input">
+                                <label for="hb-tipo">Tipo *</label>
+                                <input type="text" id="hb-tipo" placeholder="ex: Monstro Grande" required
+                                    autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row-3">
+                        <div class="form-group-input">
+                            <label for="hb-pv">PV Máximos *</label>
+                            <input type="number" id="hb-pv" min="1" value="50" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-pm">PM Máximos *</label>
+                            <input type="number" id="hb-pm" min="0" value="0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-defesa">Defesa *</label>
+                            <input type="number" id="hb-defesa" min="0" value="15" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row-3">
+                        <div class="form-group-input">
+                            <label for="hb-iniciativa">Iniciativa *</label>
+                            <input type="text" id="hb-iniciativa" placeholder="ex: +8" value="+0" required
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-percepcao">Percepção *</label>
+                            <input type="text" id="hb-percepcao" placeholder="ex: +5" value="+0" required
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-desl">Deslocamento *</label>
+                            <input type="text" id="hb-desl" placeholder="ex: 9m, voo 12m" value="9m" required
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form-row-3">
+                        <div class="form-group-input">
+                            <label for="hb-fort">Fortitude *</label>
+                            <input type="text" id="hb-fort" placeholder="+0" value="+0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-ref">Reflexos *</label>
+                            <input type="text" id="hb-ref" placeholder="+0" value="+0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-von">Vontade *</label>
+                            <input type="text" id="hb-von" placeholder="+0" value="+0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group-input">
+                            <label for="hb-defesa-obs">Observações de Defesa</label>
+                            <input type="text" id="hb-defesa-obs" placeholder="ex: redução de dano 5"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-percepcao-obs">Observações de Percepção</label>
+                            <input type="text" id="hb-percepcao-obs" placeholder="ex: visão no escuro"
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- Atributos -->
+                    <h3 class="form-section-title">Atributos</h3>
+                    <div class="form-row-6">
+                        <div class="form-group-input">
+                            <label for="hb-attr-for">FOR</label>
+                            <input type="text" id="hb-attr-for" value="0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-attr-des">DES</label>
+                            <input type="text" id="hb-attr-des" value="0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-attr-con">CON</label>
+                            <input type="text" id="hb-attr-con" value="0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-attr-int">INT</label>
+                            <input type="text" id="hb-attr-int" value="0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-attr-sab">SAB</label>
+                            <input type="text" id="hb-attr-sab" value="0" required>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-attr-car">CAR</label>
+                            <input type="text" id="hb-attr-car" value="0" required>
+                        </div>
+                    </div>
+
+                    <!-- Attacks Section -->
+                    <div class="form-upgrades-section">
+                        <div class="upgrades-section-header">
+                            <h3>Ataques da Criatura</h3>
+                            <button type="button" id="btn-add-hb-attack" class="btn-secondary-gold-small">
+                                <i class="fa-solid fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                        <div id="hb-attacks-container" class="hb-upgrades-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Abilities Section -->
+                    <div class="form-upgrades-section" style="border-top:none; padding-top:0; margin-top:0;">
+                        <div class="upgrades-section-header">
+                            <h3>Habilidades Especiais</h3>
+                            <button type="button" id="btn-add-hb-ability" class="btn-secondary-gold-small">
+                                <i class="fa-solid fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                        <div id="hb-abilities-container" class="hb-upgrades-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <div class="form-actions-row">
+                        <button type="button" id="btn-cancel-homebrew" class="action-btn-secondary">Cancelar</button>
+                        <button type="submit" id="btn-save-homebrew" class="action-btn-blood">Criar Ameaça</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Roll Result Modal Dialog -->
+    <div class="modal-overlay hidden" id="roll-modal">
+        <div class="modal-card roll-result-card">
+            <div class="modal-header" style="border:none;">
+                <h2><i class="fa-solid fa-dice-d20"></i> Jogo de Dados</h2>
+                <button class="modal-close-btn" id="btn-close-roll-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="roll-modal-body">
+                <div class="d20-visualizer" id="d20-visualizer">
+                    <span class="d20-number" id="roll-d20-number">20</span>
+                </div>
+                <div class="roll-result-details">
+                    <h3 id="roll-crit-status" class="">ACERTO!</h3>
+                    <div class="roll-math">
+                        <span class="label">Ataque:</span>
+                        <span class="value" id="roll-attack-math">15 (d20) + 12 = 27</span>
+                    </div>
+                    <div class="roll-damage-box" id="roll-damage-container">
+                        <div class="roll-math">
+                            <span class="label">Dados de Dano:</span>
+                            <span class="value" id="roll-damage-math">2d6+8 (fogo)</span>
+                        </div>
+                        <div class="total-damage-display" id="roll-total-damage">
+                            20 DANO
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="btn-scroll-top" class="scroll-top-btn hidden" title="Voltar ao Topo">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="db/ameacas_db.js"></script>
+    <script src="db/jornadas.js"></script>
+    <script src="db/guerra.js"></script>
+    <script src="db/duelo_dragoes.js"></script>
+    <script src="../assets/templates/theme-init.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

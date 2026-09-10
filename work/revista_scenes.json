@@ -1,0 +1,542 @@
+[
+ {
+  "aventura": "Campeões e Condenados",
+  "cena": "Coração das Tempestades",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2005/coracao-da-tempestade.jpg",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Campeões e Condenados",
+  "cena": "Encontro Harpias",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2005/encontro-harpias.png",
+  "w": 1080,
+  "h": 810,
+  "grid": 70,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Campeões e Condenados",
+  "cena": "Prole das Tempestades",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2005/proles-da-tempestade.png",
+  "w": 2539,
+  "h": 3248,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Campeões e Condenados",
+  "cena": "Soldados do Relâmpago",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2005/soldados-do%20relampago.jpg",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Cela",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/cena-cela.webp",
+  "w": 2401,
+  "h": 3001,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Combate Carvarel Enfraquecido",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/combate-carcavel.webp",
+  "w": 1750,
+  "h": 1750,
+  "grid": 70,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Combate Genério",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/combate-generico.webp",
+  "w": 2160,
+  "h": 2160,
+  "grid": 70,
+  "gridless": true,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Entrada do Templo",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/entrada-templo.webp",
+  "w": 1080,
+  "h": 1620,
+  "grid": 70,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Estábulo de Izmorra",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/estabulo-de-izmorra.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Guardião Carvarel",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/guardiao-carvarel.webp",
+  "w": 4200,
+  "h": 4900,
+  "grid": 100,
+  "gridless": true,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Patrulha Purista",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/patrulha-purista.webp",
+  "w": 1639,
+  "h": 2048,
+  "grid": 70,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Glória à Humanidade",
+  "cena": "Ritual Fullgori",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2003/cena-ritual.webp",
+  "w": 2469,
+  "h": 3549,
+  "grid": 155,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Cruz e Bigorna",
+  "bg": "https://i.imgur.com/GwQtPZl.jpeg",
+  "w": 438,
+  "h": 532,
+  "grid": 100,
+  "gridless": true,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Cicatrizes da Guerra",
+  "bg": "https://i.imgur.com/y8vSgct.jpeg",
+  "w": 2299,
+  "h": 1331,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Vozes que Ninguém Ouve",
+  "bg": "https://i.imgur.com/6tqH6MH.jpeg",
+  "w": 841,
+  "h": 840,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Símbolo Que Sangra",
+  "bg": "https://i.imgur.com/LRf1zx8.jpeg",
+  "w": 1009,
+  "h": 865,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Guerra que Não Cessa",
+  "bg": "https://i.imgur.com/kjuXPGE.jpeg",
+  "w": 1070,
+  "h": 1602,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Protetor Quebrado",
+  "bg": "https://i.imgur.com/eXa8O6F.jpeg",
+  "w": 1417,
+  "h": 1513,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Quando ele Queima",
+  "bg": "https://i.imgur.com/6mTyxmX.jpeg",
+  "w": 1417,
+  "h": 1513,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Bárbaro Solitário",
+  "bg": "https://i.imgur.com/Pd0IuGM.jpeg",
+  "w": 1050,
+  "h": 524,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Cicatrizes de Keenn",
+  "bg": "https://i.imgur.com/J4QEg7P.jpeg",
+  "w": 1484,
+  "h": 698,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Mercador Hynne",
+  "bg": "https://i.imgur.com/PQuc4AA.jpeg",
+  "w": 433,
+  "h": 436,
+  "grid": 100,
+  "gridless": true,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Gorloggs Malditos",
+  "bg": "https://i.imgur.com/YHtMlqz.jpeg",
+  "w": 2800,
+  "h": 1236,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Guerreiro Congelado",
+  "bg": "https://i.imgur.com/d6wJPCf.jpeg",
+  "w": 535,
+  "h": 433,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "A Cripta de Keenn",
+  "cena": "Ruína da Guerra",
+  "bg": "https://i.imgur.com/JBHuwFj.jpeg",
+  "w": 868,
+  "h": 714,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Forja das Cinzas",
+  "cena": "Aço Selvagem",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2006/Mapas/aco-selvagem.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Forja das Cinzas",
+  "cena": "Encontro - Asmithar",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2006/Mapas/combate-asmithar.webp",
+  "w": 1080,
+  "h": 1080,
+  "grid": 70,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Forja das Cinzas",
+  "cena": "Encontro com Devotos Deturpados",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2006/Mapas/emboscada.webp",
+  "w": 3047,
+  "h": 3898,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Forja das Cinzas",
+  "cena": "Garras de Tigre",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2006/Mapas/garras-de-tigre.webp",
+  "w": 3072,
+  "h": 4096,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Forja das Cinzas",
+  "cena": "Ladra Acorrentada",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2006/Mapas/ladra-acorrentada.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "A Sobrevivente",
+  "bg": "https://i.imgur.com/RVgLfB4.jpeg",
+  "w": 2298,
+  "h": 1116,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Oferendas Esquecidas",
+  "bg": "https://i.imgur.com/X5KsQEj.jpeg",
+  "w": 3605,
+  "h": 4915,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Avatar da Promessa",
+  "bg": "https://i.imgur.com/BPKUjkE.jpeg",
+  "w": 3686,
+  "h": 3686,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Câmara Vazia",
+  "bg": "https://i.imgur.com/unro0Qv.jpeg",
+  "w": 1175,
+  "h": 1178,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Patrulha Slark",
+  "bg": "https://i.imgur.com/4nVw9JV.jpeg",
+  "w": 1999,
+  "h": 1036,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Emboscada Slark",
+  "bg": "https://i.imgur.com/vW2Io5t.jpeg",
+  "w": 2307,
+  "h": 815,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Corredor Sinistro",
+  "bg": "https://i.imgur.com/9XG1w8V.jpeg",
+  "w": 2004,
+  "h": 1030,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Matilha Terrier",
+  "bg": "https://i.imgur.com/UJluuVZ.jpeg",
+  "w": 1848,
+  "h": 1184,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Promessa de Cinzas",
+  "cena": "Aranha Gigante",
+  "bg": "https://i.imgur.com/GhkyBda.jpeg",
+  "w": 1854,
+  "h": 1702,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Aço e Arcano",
+  "cena": "Laboratório de Rashid",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2008/Mapas/laboratorio-de-rashid.webp",
+  "w": 3386,
+  "h": 4331,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Aço e Arcano",
+  "cena": "Praça Suspensa",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2008/Mapas/praca-suspensa.webp",
+  "w": 3386,
+  "h": 4331,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Aço e Arcano",
+  "cena": "Templo de Wynna",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2008/Mapas/templo-de-wynna.webp",
+  "w": 3386,
+  "h": 4331,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Dia e Noite",
+  "cena": "Catedral de Tenebra",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2007/mapas/catedral-tenebra.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Dia e Noite",
+  "cena": "Encontro Aleatorio",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2007/mapas/encontro-aleatorio.webp",
+  "w": 1080,
+  "h": 1080,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Dia e Noite",
+  "cena": "Estrada do Reinado",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2007/mapas/estrada-do-reinado.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Dia e Noite",
+  "cena": "Portões de Baldonn",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2007/mapas/portoes-de-baldonn.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "O Jardim e o Tumor",
+  "cena": "Campos Sangrentos",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2004/Campos%20Sangrentos.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "O Jardim e o Tumor",
+  "cena": "Coração do Jardim de Outrora",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2004/Cora%C3%A7%C3%A3o%20do%20Jardim%20de%20Outora.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "O Jardim e o Tumor",
+  "cena": "Festival da Semeadura",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2004/Festival%20da%20Semeadura.webp",
+  "w": 2539,
+  "h": 3248,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "O Jardim e o Tumor",
+  "cena": "Combate Crianças do Solo",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2004/combate-criancas-do-solo-mudo.webp",
+  "w": 2048,
+  "h": 1536,
+  "grid": 100,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "O Jardim e o Tumor",
+  "cena": "Concílio das Mães",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2004/concilio-das-maes.webp",
+  "w": 1080,
+  "h": 1485,
+  "grid": 70,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Dor Profunda",
+  "cena": "Templo de Oceano",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2009/Mapas/academia-arcana.webp",
+  "w": 5079,
+  "h": 6496,
+  "grid": 175,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Dor Profunda",
+  "cena": "Oceano Aberto",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2009/Mapas/templo-do-oceano.webp",
+  "w": 5079,
+  "h": 6496,
+  "grid": 150,
+  "gridless": false,
+  "tokens": 0
+ },
+ {
+  "aventura": "Dor Profunda",
+  "cena": "Academia Arcana",
+  "bg": "https://raw.githubusercontent.com/mobguilherme/rpg-archive/refs/heads/main/Fullgor%20dos%20Deuses/Revista%2009/Mapas/oceano-aberto.webp",
+  "w": 5079,
+  "h": 6496,
+  "grid": 200,
+  "gridless": false,
+  "tokens": 0
+ }
+]

@@ -1,0 +1,217 @@
+/* ==========================================================================
+   VTTARMADA – SISTEMA DE TEMAS CENTRALIZADO
+   Arquivo: assets/templates/themes.css
+
+   Como usar em um novo app:
+     No <head> do HTML:
+       <link rel="stylesheet" href="../assets/templates/themes.css">
+
+   Temas disponíveis (classe no <body>):
+     (nenhuma classe) → Tema Tormenta  — fundo escuro, accent vermelho sangue
+     .theme-dark      → Tema Sombras   — fundo azul-escuro, accent dourado
+     .theme-classic   → Tema Clássico  — fundo branco/bege, tons neutros
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   FONTE TORMENTA
+   Caminho relativo ao CSS: assets/templates/ → ../fonts/ = assets/fonts/
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Tormenta';
+  src: url('../fonts/Tormenta.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Aplica Tormenta a headings e classes de título usadas no VTTArmada.
+   Cada app pode sobrescrever com font-family no seu próprio CSS. */
+h1, h2, h3, h4, h5, h6,
+.app-title,
+.t20-section-title,
+.logo-rune {
+  font-family: var(--font-heading, 'Tormenta', serif);
+  letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   TEMA TORMENTA / SANGUE  (padrão — sem classe no body)
+   Identidade: sangue, magia negra, perigo. Fundo vinho escuro, vermelho vivo.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Fundos */
+  --bg-base:          #0a0404;
+  --bg-surface:       #120a0a;
+  --bg-panel:         rgba(22, 14, 14, 0.75);
+  --bg-panel-hover:   rgba(22, 14, 14, 0.88);
+
+  /* Bordas */
+  --border-color:     rgba(204, 13, 13, 0.28);
+  --border-glow:      rgba(204, 13, 13, 0.40);
+
+  /* Textos */
+  --text-primary:     #e8e4e4;
+  --text-secondary:   #a39898;
+  --text-muted:       #736868;
+
+  /* Accent principal (vermelho sangue) */
+  --accent:           #cc0d0d;
+  --accent-alt:       #ff2e2e;
+  --accent-glow:      rgba(204, 13, 13, 0.35);
+
+  /* Accent secundário (rubi) – igual ao principal neste tema */
+  --accent2:          #cc0d0d;
+  --accent2-alt:      #ff2e2e;
+  --accent2-glow:     rgba(204, 13, 13, 0.35);
+
+  /* Efeito glass */
+  --glass-bg:         rgba(22, 14, 14, 0.75);
+  --glass-backdrop:   blur(12px);
+  --glass-border:     rgba(204, 13, 13, 0.15);
+
+  /* Barras de status */
+  --bar-hp:  linear-gradient(90deg, #b91c1c, #dc3545);
+  --bar-mp:  linear-gradient(90deg, #cc0d0d, #ff2e2e);
+
+  /* Fontes */
+  --font-heading: 'Tormenta', serif;
+  --font-body:    'Segoe UI', system-ui, sans-serif;
+
+  /* Transições */
+  --transition-fast:   0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Raios de borda */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   TEMA SOMBRAS / DARK  (classe .theme-dark no <body>)
+   Identidade: magia arcana, noite, mistério. Fundo azul-slate, dourado.
+   -------------------------------------------------------------------------- */
+.theme-dark {
+  /* Fundos */
+  --bg-base:          #06070c;
+  --bg-surface:       #0b0e1a;
+  --bg-panel:         rgba(18, 23, 38, 0.72);
+  --bg-panel-hover:   rgba(18, 23, 38, 0.85);
+
+  /* Bordas */
+  --border-color:     rgba(201, 147, 58, 0.22);
+  --border-glow:      rgba(201, 147, 58, 0.40);
+
+  /* Textos */
+  --text-primary:     #e3e6f0;
+  --text-secondary:   #9ea5b8;
+  --text-muted:       #646b7e;
+
+  /* Accent principal (dourado) */
+  --accent:           #c9933a;
+  --accent-alt:       #d4af37;
+  --accent-glow:      rgba(201, 147, 58, 0.35);
+
+  /* Accent secundário (rubi) */
+  --accent2:          #e0483f;
+  --accent2-alt:      #b91c1c;
+  --accent2-glow:     rgba(224, 72, 63, 0.30);
+
+  /* Efeito glass */
+  --glass-bg:         rgba(18, 23, 38, 0.72);
+  --glass-backdrop:   blur(12px);
+  --glass-border:     rgba(201, 147, 58, 0.10);
+
+  /* Barras de status */
+  --bar-hp:  linear-gradient(90deg, #b91c1c, #dc3545);
+  --bar-mp:  linear-gradient(90deg, #1d4ed8, #3b82f6);
+}
+
+/* --------------------------------------------------------------------------
+   TEMA CLÁSSICO / CLARO  (classe .theme-classic no <body>)
+   Identidade: pergaminho, taverna, aventura diurna. Fundo branco/bege.
+   -------------------------------------------------------------------------- */
+.theme-classic {
+  /* Fundos */
+  --bg-base:          #f0ece4;
+  --bg-surface:       #ffffff;
+  --bg-panel:         rgba(255, 255, 255, 0.92);
+  --bg-panel-hover:   rgba(255, 255, 255, 0.98);
+
+  /* Bordas */
+  --border-color:     #b0b8c8;
+  --border-glow:      rgba(44, 62, 80, 0.20);
+
+  /* Textos */
+  --text-primary:     #2c3e50;
+  --text-secondary:   #4a5568;
+  --text-muted:       #7f8c8d;
+
+  /* Accent principal (azul-ardósia escuro) */
+  --accent:           #2c3e50;
+  --accent-alt:       #34495e;
+  --accent-glow:      rgba(44, 62, 80, 0.20);
+
+  /* Accent secundário (vermelho claro) */
+  --accent2:          #e74c3c;
+  --accent2-alt:      #c0392b;
+  --accent2-glow:     rgba(231, 76, 60, 0.20);
+
+  /* Efeito glass */
+  --glass-bg:         rgba(255, 255, 255, 0.92);
+  --glass-backdrop:   blur(12px);
+  --glass-border:     rgba(44, 62, 80, 0.08);
+
+  /* Barras de status */
+  --bar-hp:  linear-gradient(90deg, #c0392b, #e74c3c);
+  --bar-mp:  linear-gradient(90deg, #2c3e50, #3498db);
+}
+
+/* ==========================================================================
+   BOTÕES DE ALTERNÂNCIA DE TEMA  (.theme-btn)
+   Coloque 3 botões no cabeçalho do seu HTML:
+     <button class="theme-btn" data-theme="blood"   title="Tema Tormenta">🩸</button>
+     <button class="theme-btn" data-theme="dark"    title="Tema Sombras">🌑</button>
+     <button class="theme-btn" data-theme="classic" title="Tema Clássico">📜</button>
+   ========================================================================== */
+.theme-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--border-color);
+  color: var(--accent);
+  font-size: 1.1rem;
+  padding: 6px 9px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-fast),
+              border-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+  line-height: 1;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.theme-btn.active {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Ajuste do botão no tema clássico (fundo claro) */
+.theme-classic .theme-btn {
+  background: rgba(44, 62, 80, 0.05);
+  border-color: rgba(44, 62, 80, 0.25);
+}
+
+.theme-classic .theme-btn:hover {
+  background: rgba(44, 62, 80, 0.10);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.theme-classic .theme-btn.active {
+  background: rgba(44, 62, 80, 0.12);
+  border-color: var(--accent);
+}

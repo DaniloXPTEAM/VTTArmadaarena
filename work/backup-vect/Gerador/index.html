@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forjador de Ameaças — Tormenta20</title>
+  <meta name="description" content="Crie ameaças e monstros para Tormenta20 passo a passo, com estatísticas calculadas automaticamente." />
+  <!-- Sistema de Temas VTTArmada -->
+  <link rel="stylesheet" href="../assets/templates/themes.css" />
+  <!-- Estilos do Gerador -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="masthead">
+  <!-- Navegação: voltar ao hub + seletor de temas -->
+  <nav class="masthead-nav" aria-label="Navegação e tema">
+    <a href="../index.html" class="hub-link" title="Voltar ao VTTArmada">🏰 VTTArmada</a>
+    <button class="theme-btn" data-theme="blood"   title="Tema Tormenta (padrão)">🩸</button>
+    <button class="theme-btn" data-theme="dark"    title="Tema Sombras">🌑</button>
+    <button class="theme-btn" data-theme="classic" title="Tema Clássico">📜</button>
+  </nav>
+
+  <div class="eyebrow">Ameaças de Arton · Cap. 2</div>
+  <h1 class="title">Forjador de <em>Ameaças</em></h1>
+  <div class="subtitle">Um manual de campo para criar seus próprios monstros e vilões</div>
+</header>
+
+<div class="wrap">
+  <main>
+
+    <!-- ATALHOS: tema elemental + importar (afeta toda a geração) -->
+    <div class="quick-pick">
+      <div class="quick-pick-head">
+        <span class="quick-pick-eyebrow">Atalhos</span>
+        <span class="quick-pick-hint">Tema elemental afeta nomes, conceitos, habilidades e resistências na geração automática. Importar puxa uma ameaça oficial pronta para modificação.</span>
+      </div>
+      <div class="quick-pick-grid">
+        <div class="field">
+          <label for="in-tema">Tema elemental <span class="tema-badge" id="tema-badge" style="display:none"></span></label>
+          <select id="in-tema" onchange="updateTemaBadge(); renderSheet(); renderAbilitySuggestions();">
+            <option value="nenhum">— nenhum / neutro —</option>
+            <option value="fogo">🔥 Fogo</option>
+            <option value="gelo">❄️ Gelo</option>
+            <option value="tempestade">⚡ Tempestade</option>
+            <option value="natureza">🌿 Natureza</option>
+            <option value="trevas">🌑 Trevas</option>
+            <option value="corrupcao">☠️ Corrupção</option>
+            <option value="morte">☠️ Morte / Necromancia</option>
+            <option value="terra">🪨 Terra</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>&nbsp;</label>
+          <button class="btn-import" onclick="openImportPanel()">📥 Importar do Bestiário Oficial</button>
+        </div>
+      </div>
+      <div id="import-panel" class="import-panel" style="display:none">
+        <div class="import-head">
+          <span>Bestiário Oficial — Ameaças de Arton</span>
+          <span class="import-count" id="import-count">0</span> resultados
+        </div>
+        <div class="import-filters">
+          <input id="import-search" type="text" placeholder="buscar por nome..." oninput="doImportSearch()">
+          <select id="import-filter-tipo" onchange="doImportSearch()">
+            <option value="">— todos os tipos —</option>
+          </select>
+          <select id="import-filter-nd" onchange="doImportSearch()">
+            <option value="">— todos os NDs —</option>
+          </select>
+        </div>
+        <div id="import-results" class="import-results"></div>
+        <p class="hint" style="margin-top:0.3rem">A importação substitui todos os dados atuais da ficha. A criatura virá com seus dados originais prontos para modificação.</p>
+      </div>
+    </div>
+
+    <!-- PASSO 0 -->
+    <section class="step open" data-step="0">
+      <div class="step-head">
+        <div class="step-num">0</div>
+        <h2>Conceito e Nome</h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">Uma boa criatura é aquela que pode ser descrita em poucas palavras — o dragão, por exemplo, é um <strong>"réptil alado que cospe fogo"</strong>. Como uma ameaça costuma aparecer em poucas cenas, não adianta ter dúzias de habilidades: pense primeiro no conceito, depois na ficha.</p>
+        <div class="field-row">
+          <div class="field" style="flex:1 1 220px">
+            <label for="in-nome">Nome da ameaça</label>
+            <input id="in-nome" type="text" placeholder="ex.: dejeto vivo" oninput="renderSheet()">
+          </div>
+          <div class="field" style="flex:2 1 320px">
+            <label for="in-conceito">Conceito em uma frase</label>
+            <input id="in-conceito" type="text" placeholder="ex.: pilha de lixo animada por magia e alquimia" oninput="renderSheet()">
+          </div>
+        </div>
+
+        <p class="lore" style="margin-top:1.2rem">Pense também na <strong>função</strong> da criatura na aventura — é só uma referência narrativa, não uma classificação rígida, mas ajuda a decidir o papel de combate no Passo 1.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="in-funcao">Função da ameaça</label>
+            <select id="in-funcao" onchange="updateFuncaoLore(); renderSheet();">
+              <option value="">— nenhuma / não se aplica —</option>
+              <option value="combatente">Combatente</option>
+              <option value="conjurador">Conjurador</option>
+              <option value="trapaceiro">Trapaceiro</option>
+              <option value="assecla">Assecla</option>
+              <option value="capitao">Capitão</option>
+              <option value="chefao">Chefão</option>
+            </select>
+          </div>
+        </div>
+        <p class="lore" id="funcao-lore" style="display:none"></p>
+      </div></div>
+    </section>
+
+    <!-- PASSO 1 -->
+    <section class="step" data-step="1">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <h2>Tipo, Tamanho e Papel</h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">O <strong>tipo</strong> representa a natureza da criatura e determina quais habilidades podem afetá-la. O <strong>tamanho</strong> é o porte físico. O <strong>papel de combate</strong> é o mais importante para as regras: <strong>solos</strong> são equilibrados e lutam sozinhos ou liderando; <strong>lacaios</strong> batem forte mas aguentam pouco, feitos para grupos; <strong>especiais</strong> batem pouco mas têm CDs altas e mais habilidades — conjuradores, trapaceiros e ameaças sociais.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="in-tipo">Tipo</label>
+            <select id="in-tipo" onchange="renderSheet(); renderAbilitySuggestions();">
+              <option>Animal</option><option>Construto</option><option>Espírito</option>
+              <option>Humanoide</option><option>Monstro</option><option>Morto-vivo</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="in-tamanho">Tamanho</label>
+            <select id="in-tamanho" onchange="updateDeslocamentoOptions(); renderSheet();">
+              <option>Minúsculo</option><option>Pequeno</option><option selected>Médio</option>
+              <option>Grande</option><option>Enorme</option><option>Colossal</option>
+            </select>
+          </div>
+        </div>
+        <div class="role-pick" id="role-pick">
+          <div class="role-btn active" data-role="solo"     onclick="setRole('solo')">Solo<small>chefões, caçadores solitários</small></div>
+          <div class="role-btn"        data-role="lacaio"   onclick="setRole('lacaio')">Lacaio<small>bandos, tropas</small></div>
+          <div class="role-btn"        data-role="especial" onclick="setRole('especial')">Especial<small>conjuradores, trapaceiros</small></div>
+        </div>
+
+        <p class="lore" style="margin-top:1.2rem">Escolha um tipo de deslocamento principal e sua velocidade. A <strong>Tabela 2-2</strong> ajusta o valor conforme o formato e o tamanho da criatura.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="in-loco">Forma de locomoção</label>
+            <select id="in-loco" onchange="updateDeslocamentoOptions(); renderSheet();">
+              <option value="bipede">Bípede (terrestre)</option>
+              <option value="quadrupede">Quadrúpede (terrestre)</option>
+              <option value="voador">Voador</option>
+              <option value="escalador">Escalador</option>
+              <option value="escavador">Escavador</option>
+              <option value="nadador">Nadador</option>
+            </select>
+          </div>
+          <div class="field small">
+            <label for="in-veloc">Velocidade</label>
+            <select id="in-veloc" onchange="renderSheet()">
+              <option value="lento">Lento</option>
+              <option value="normal" selected>Normal</option>
+              <option value="rapido">Rápido</option>
+            </select>
+          </div>
+          <div class="field small">
+            <label>Deslocamento</label>
+            <input id="out-deslocamento" type="text" disabled>
+          </div>
+        </div>
+        <p class="hint">Deslocamentos abaixo de 6m deixam a ameaça fraca; acima de 18m dão uma vantagem tática importante, sobretudo à distância.</p>
+      </div></div>
+    </section>
+
+    <!-- PASSO 2 e 3 -->
+    <section class="step" data-step="2">
+      <div class="step-head">
+        <div class="step-num">2–3</div>
+        <h2>Nível de Desafio &amp; Estatísticas de Combate</h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">Escolhido o papel, escolha o <strong>ND</strong>. Os valores de Defesa, resistências, PV, ataque, dano médio e CD saem direto da <strong>Tabela 2-3</strong> — não é preciso calcular nada. Você pode ajustar cada estatística manualmente para representar um ND de 1 ou 2 níveis acima/abaixo, se o conceito pedir.</p>
+        <div class="field-row">
+          <div class="field small">
+            <label for="in-nd">Nível de Desafio</label>
+            <select id="in-nd" onchange="applyTableValues(); renderSheet();"></select>
+          </div>
+          <div class="field" style="align-self:flex-end; display:flex; gap:0.5rem; flex-wrap:wrap">
+            <button class="btn-generate" style="margin-top:0" onclick="autoGenerate()">🎲 Gerar automaticamente</button>
+            <button class="btn-generate btn-generate-total" style="margin-top:0" onclick="autoGenerateTotal()">✨ Gerar tudo</button>
+          </div>
+        </div>
+        <p class="hint"><strong>🎲 Gerar automaticamente</strong> — preenche tipo, tamanho, deslocamento, ataques, habilidades, atributos e tesouro; preserva nome e conceito se já preenchidos.</p>
+        <p class="hint"><strong>✨ Gerar tudo</strong> — igual ao anterior, mas sempre sobrescreve também o nome e o conceito da ameaça.</p>
+
+        <div class="field-row" style="margin-top:1rem">
+          <div class="field small"><label for="st-defesa">Defesa</label><input id="st-defesa" type="number" oninput="renderSheet()"></div>
+          <div class="field small"><label for="st-pv">Pontos de Vida</label><input id="st-pv" type="number" oninput="renderSheet()"></div>
+          <div class="field small"><label for="st-cd">CD Habilidades</label><input id="st-cd" type="number" oninput="renderSheet(); renderAbilitySuggestions();"></div>
+        </div>
+        <div class="field-row">
+          <div class="field small"><label for="st-fort">Forte (Res.)</label><input id="st-fort" type="number" oninput="renderSheet()"></div>
+          <div class="field small"><label for="st-media">Média (Res.)</label><input id="st-media" type="number" oninput="renderSheet()"></div>
+          <div class="field small"><label for="st-fraca">Fraca (Res.)</label><input id="st-fraca" type="number" oninput="renderSheet()"></div>
+        </div>
+        <p class="lore" style="margin-top:1rem">Distribua Forte / Média / Fraca entre <strong>Fortitude, Reflexos e Vontade</strong> conforme o conceito — grandes e vigorosas puxam para Fortitude, pequenas e ágeis para Reflexos, mentais/mágicas para Vontade.</p>
+        <div class="field-row">
+          <div class="field small"><label for="st-fortval">Fortitude =</label><select id="st-fortval" onchange="renderSheet()"><option value="fort">Forte</option><option value="media">Média</option><option value="fraca">Fraca</option></select></div>
+          <div class="field small"><label for="st-refval">Reflexos =</label><select id="st-refval" onchange="renderSheet()"><option value="fort">Forte</option><option value="media" selected>Média</option><option value="fraca">Fraca</option></select></div>
+          <div class="field small"><label for="st-vonval">Vontade =</label><select id="st-vonval" onchange="renderSheet()"><option value="fort">Forte</option><option value="media">Média</option><option value="fraca" selected>Fraca</option></select></div>
+        </div>
+        <p class="hint" id="hint-habilidades"></p>
+
+        <p class="lore" style="margin-top:1rem">Opcionalmente, dê à ameaça <strong>Redução de Dano</strong> ou <strong>resistência a energia/alquimia/magia</strong> — como no dejeto vivo, que tem "resistência a alquimia e magia +5" contada como uma única habilidade.</p>
+        <div class="field-row">
+          <div class="field" style="flex:1 1 100%">
+            <label for="in-rd">Redução de Dano / Resistências</label>
+            <input id="in-rd" type="text" placeholder="ex.: RD 5/mágico, resistência a fogo e frio +5" oninput="renderSheet()">
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- PASSO 4 -->
+    <section class="step" data-step="3">
+      <div class="step-head">
+        <div class="step-num">4</div>
+        <h2>Ataques</h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">O <strong>valor de ataque</strong> e o <strong>dano médio total</strong> já vêm da tabela. Divida esse dano entre 1 a 3 ataques (evite mais que isso, exceto em chefões). Escolha os dados e a ferramenta calcula o bônus numérico necessário para bater a média-alvo — a mesma conta do manual: soma-se o menor e o maior resultado possível e divide-se por dois.</p>
+        <div id="atk-list"></div>
+        <div class="atk-actions">
+          <button class="add-btn" onclick="addAttack()">+ adicionar ataque</button>
+          <button class="add-btn add-btn-distribute" onclick="distributeTarget()">÷ distribuir média-alvo</button>
+        </div>
+        <div class="dano-calc" id="dano-total-info"></div>
+      </div></div>
+    </section>
+
+    <!-- PASSO 5 -->
+    <section class="step" data-step="4">
+      <div class="step-head">
+        <div class="step-num">5</div>
+        <h2>Habilidades</h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">A parte mais divertida. Pense primeiro no que a criatura <em>faz</em> (ataque, defesa, percepção, movimento) antes de se preocupar com regras. Marque com <strong>✦</strong> as habilidades mágicas (sofrem efeitos que afetam magia e são ignoradas por Redução de Dano /mágico).</p>
+        <p class="lore">As sugestões abaixo são filtradas automaticamente por <strong>tipo + papel de combate</strong> (e pelo tema elemental, se houver). Clique em uma habilidade para adicioná-la à ficha.</p>
+        <div id="ability-suggestions" class="ability-suggestions"></div>
+        <div id="ability-list"></div>
+        <button class="add-btn" onclick="addAbility()">+ adicionar habilidade manualmente</button>
+      </div></div>
+    </section>
+
+    <!-- PASSO 5B: PARCEIROS -->
+    <section class="step" data-step="4b">
+      <div class="step-head">
+        <div class="step-num">5b</div>
+        <h2>Parceiros de Ameaça <span style="font-family:var(--serif); font-style:italic; color:var(--ink-faint); font-size:0.85rem">(opcional)</span></h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">Algumas ameaças vêm com parceiros. Para todos os efeitos, eles seguem as regras normais de seu tipo e <strong>não contam como oponentes separados</strong> para XP e recompensas. Um parceiro não precisa ser derrotado para o combate terminar: quando a ameaça principal cai, seus parceiros se rendem, fogem ou desaparecem. Se quiser destacá-lo, o mestre pode tratar o parceiro como uma criatura separada — nesse caso, conte o ND dele ao calcular o nível do encontro e as recompensas, e ignore os benefícios que a ameaça ganharia dele.</p>
+        <div id="partner-list"></div>
+        <button class="add-btn" onclick="addPartner()">+ adicionar parceiro</button>
+      </div></div>
+    </section>
+
+    <!-- PASSO 6 -->
+    <section class="step" data-step="5">
+      <div class="step-head">
+        <div class="step-num">6</div>
+        <h2>Estatísticas Secundárias</h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">Atributos não afetam as estatísticas de combate (já definidas pelo ND) — escolha-os apenas pelo conceito, usando a <strong>Tabela 2-4</strong> como referência de categoria.</p>
+        <div class="field-row" id="attr-grid"></div>
+
+        <p class="lore" style="margin-top:1.2rem">Perícias usam as regras normais (ND como nível de personagem). Se a criatura for particularmente hábil, dê +2 ou +5; se for excepcionalmente hábil ou tiver uma capacidade mágica na perícia, dê +10.</p>
+        <div class="field-row">
+          <div class="field small"><label for="in-iniciativa">Iniciativa</label>
+            <input id="in-iniciativa" type="text" placeholder="ex.: +2" oninput="renderSheet()"></div>
+          <div class="field small"><label for="in-percepcao">Percepção</label>
+            <input id="in-percepcao" type="text" placeholder="ex.: +6" oninput="renderSheet()"></div>
+          <div class="field" style="flex:2"><label for="in-sentidos">Sentidos especiais</label>
+            <input id="in-sentidos" type="text" placeholder="ex.: percepção às cegas (alcance médio), visão no escuro" oninput="renderSheet()"></div>
+        </div>
+        <div class="field-row" style="margin-top:0.9rem">
+          <div class="field" style="flex:1 1 100%">
+            <label for="in-pericias">Outras perícias treinadas</label>
+            <textarea id="in-pericias" placeholder="ex.: Furtividade +12, Enganação +8" oninput="renderSheet()"></textarea>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- PASSO 7 -->
+    <section class="step" data-step="6">
+      <div class="step-head">
+        <div class="step-num">7</div>
+        <h2>Equipamento e Tesouro</h2>
+        <div class="chev">▸</div>
+      </div>
+      <div class="step-body"><div class="step-body-inner">
+        <p class="lore">O equipamento é cosmético — as estatísticas já foram definidas. Uma ameaça de Defesa baixa dificilmente veste armadura completa e escudo. Escolha a categoria de tesouro e, se quiser, um tesouro especial.</p>
+        <div class="field-row">
+          <div class="field small">
+            <label for="in-tesouro">Categoria de tesouro</label>
+            <select id="in-tesouro" onchange="renderSheet()">
+              <option>Nenhum</option><option>Metade</option><option selected>Padrão</option><option>Dobro</option>
+            </select>
+          </div>
+          <div class="field" style="flex:2">
+            <label for="in-equip">Equipamento</label>
+            <input id="in-equip" type="text" placeholder="ex.: nenhum" oninput="renderSheet()">
+          </div>
+          <div class="field small">
+            <label for="in-equip-cond">Condição</label>
+            <select id="in-equip-cond" onchange="renderSheet()">
+              <option value="normal">Normal</option>
+              <option value="avariado">Avariado (−5)</option>
+              <option value="destruido">Destruído</option>
+            </select>
+          </div>
+        </div>
+        <p class="hint" id="equip-cond-hint"></p>
+        <div class="field-row">
+          <div class="field" style="flex:1 1 100%">
+            <label for="in-tesouro-esp">Tesouro especial (opcional)</label>
+            <input id="in-tesouro-esp" type="text" placeholder="ex.: 1d6 doses de ácido (CD 21 para extrair)" oninput="renderSheet()">
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <details class="reference">
+      <summary>Consultar: Modificando uma ameaça existente</summary>
+      <div class="reference-body">
+        <p><b>Passo 0 — Novo conceito.</b> A criatura modificada será só "mais forte", ou ganhará um papel diferente (conjurador, capitão)?</p>
+        <p><b>Passo 1 — Novo ND.</b> Ajuste o nível de desafio conforme o novo conceito.</p>
+        <p><b>Passo 2 — Estatísticas.</b> Compare os valores atuais da criatura com a linha da Tabela 2-3 do ND original e anote as diferenças (ex.: ataque 2 pontos acima do padrão). Aplique a linha do novo ND e mantenha essas mesmas diferenças.</p>
+        <p><b>Passo 3 — Habilidades.</b> Ajuste dano e CDs como acima. Adicione ou remova habilidades só se o novo ND mudar de patamar; do contrário, prefira trocar habilidades a somar mais.</p>
+      </div>
+    </details>
+
+  </main>
+
+  <!-- FICHA AO VIVO -->
+  <aside class="sheet-wrap">
+    <div class="sheet">
+      <div class="sheet-name">
+        <span id="sh-nome">nova ameaça</span>
+        <span class="nd-badge" id="sh-nd">ND —</span>
+      </div>
+      <div class="sheet-type" id="sh-tipo">—</div>
+
+      <div class="sheet-line" id="sh-sentidos"></div>
+      <div class="sheet-line" id="sh-desloc"></div>
+      <div class="sheet-line" id="sh-init"></div>
+      <div class="sheet-line" id="sh-defesa"></div>
+      <div class="sheet-line" id="sh-pv"></div>
+      <div class="sheet-line" id="sh-rd"></div>
+
+      <hr class="sheet-divider">
+      <div id="sh-attacks"></div>
+
+      <hr class="sheet-divider">
+      <div id="sh-abilities"></div>
+      <div id="sh-partners"></div>
+
+      <hr class="sheet-divider">
+      <div class="sheet-attrs" id="sh-attrs"></div>
+      <div class="sheet-line" id="sh-pericias" style="margin-top:0.4rem"></div>
+
+      <hr class="sheet-divider">
+      <div class="sheet-line" id="sh-tesouro"></div>
+
+      <div class="sheet-actions">
+        <button class="btn-save" onclick="salvarNoBestiario()">💾 Salvar no bestiário</button>
+      </div>
+      <div class="sheet-actions" style="margin-top:0.5rem">
+        <button class="btn-copy" onclick="copySheet()">Copiar ficha</button>
+        <button class="btn-reset" onclick="resetAll()">Nova ameaça</button>
+      </div>
+      <div class="copied-msg" id="copied-msg"></div>
+    </div>
+
+    <div class="bestiario-panel">
+      <div class="bestiario-head">Bestiário salvo <span class="bestiario-count" id="bestiario-count">0</span></div>
+      <p class="hint" style="margin-top:0.2rem">Salvo neste navegador (localStorage) — fica disponível mesmo se você fechar a página, mas só neste computador/navegador.</p>
+      <div id="bestiario-list"></div>
+    </div>
+
+    <details class="reference">
+      <summary>Regra opcional: Ameaças e Morte</summary>
+      <div class="reference-body">
+        <p>Se controlar PV negativos de várias criaturas for trabalhoso, use esta variante: ao reduzir uma ameaça a 0 PV ou menos, anote o valor mas ignore sangramento. No fim do combate, <b>lacaios</b> nessa situação estão mortos; <b>solos e especiais</b> têm 50% de chance de estar vivos. Os personagens podem evitar isso estabilizando, curando ou causando dano não letal durante o combate.</p>
+      </div>
+    </details>
+  </aside>
+</div>
+
+<footer>Baseado no manual de criação de ameaças — Ameaças de Arton, p.377 · uso livre à mesa</footer>
+
+<!-- Scripts -->
+<script src="../ameacas/db/ameacas_db.js"></script>
+<script src="script.js"></script>
+<!-- Inicializador de tema VTTArmada (deve vir após o script do app) -->
+<script src="../assets/templates/theme-init.js"></script>
+</body>
+</html>

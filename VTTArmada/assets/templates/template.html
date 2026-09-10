@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  VTTARMADA – TEMPLATE DE NOVO APP                              ║
+    ║  Arquivo: assets/templates/template.html                     ║
+    ║                                                              ║
+    ║  Instruções:                                                 ║
+    ║  1. Copie este arquivo para a pasta do novo app              ║
+    ║     ex: VTTArmada/meu-app/index.html                           ║
+    ║  2. Ajuste o caminho de "../assets/..." conforme necessário  ║
+    ║     (se o app estiver 1 nível abaixo da raiz, mantém assim)  ║
+    ║  3. Preencha o <title> e a meta description                  ║
+    ║  4. Adicione seu CSS de app após o link do themes.css        ║
+    ║  5. Adicione seu JS de app após o theme-init.js              ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <!-- SEO -->
+  <title>Nome do App – VTTArmada T20</title>
+  <link rel="icon" type="image/png" href="../assets/imagens/logo-vttarmada.png">
+  <meta name="description" content="Descrição do app para o VTTArmada de Tormenta 20." />
+
+  <!-- Google Fonts (inclua apenas as que o app usar) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fonte recomendada para corpo de texto: -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" /> -->
+
+  <!-- ═══ SISTEMA DE TEMAS VTTARMADA ═══ -->
+  <link rel="stylesheet" href="../assets/templates/themes.css" />
+
+  <!-- CSS específico deste app (coloque APÓS o themes.css para poder sobrescrever) -->
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     Adicione aqui a classe de tema inicial (opcional – o JS cuida disso).
+     Se quiser evitar o "flash" de tema errado, aplique a classe via JS inline
+     antes do DOMContentLoaded, lendo do localStorage.
+     ─────────────────────────────────────────────────────────────────────── -->
+<body>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  CABEÇALHO PADRÃO DO VTTARMADA     ║
+       ╚══════════════════════════════════╝ -->
+  <header class="app-header" role="banner">
+
+    <!-- Botão voltar ao Hub -->
+    <a href="../index.html" class="hub-btn" title="Voltar ao VTTArmada" aria-label="Voltar ao VTTArmada">
+      🏰 VTTArmada
+    </a>
+
+    <!-- Título do App -->
+    <h1 class="app-title">Nome do App</h1>
+
+    <!-- Botões de tema -->
+    <nav class="theme-controls" aria-label="Selecionar tema">
+      <button class="theme-btn" data-theme="blood"   title="Tema Vectora (padrão)" aria-label="Tema Vectora">🩸</button>
+      <button class="theme-btn" data-theme="dark"    title="Tema Sombras"           aria-label="Tema Sombras">🌑</button>
+      <button class="theme-btn" data-theme="classic" title="Tema Clássico"          aria-label="Tema Clássico">📜</button>
+    </nav>
+
+  </header>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  CONTEÚDO PRINCIPAL              ║
+       ╚══════════════════════════════════╝ -->
+  <main id="app-main" role="main">
+
+    <!-- Coloque o conteúdo do seu app aqui -->
+    <p style="color: var(--text-muted); text-align: center; margin-top: 4rem;">
+      Conteúdo do app aqui...
+    </p>
+
+  </main>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  SCRIPTS                         ║
+       ╚══════════════════════════════════╝ -->
+
+  <!-- Inicializador de tema VTTArmada (deve vir ANTES do script do app) -->
+  <script src="../assets/templates/theme-init.js"></script>
+
+  <!-- JS específico deste app -->
+  <script src="script.js"></script>
+
+</body>
+</html>

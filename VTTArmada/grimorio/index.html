@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grimório de Arton - Spells Database T20</title>
+    <meta name="description"
+        content="Um grimório interativo de magias para Tormenta 20. Organize seus feitiços, calcule pontos de mana (PM) e monte seu livro de magias personalizado.">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Background Canvas for Magic Particles -->
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="app-container">
+        <!-- Main Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <i class="fa-solid fa-wand-magic-sparkles magic-icon-glow"></i>
+                <div class="title-wrapper">
+                    <h1>Grimório de Arton</h1>
+                    <p class="subtitle">Banco de Magias - Tormenta 20</p>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="header-stats">
+                <div class="stat-box accent-box">
+                    <i class="fa-solid fa-book-journal-whills"></i>
+                    <div class="grimoire-select-wrapper">
+                        <select id="grimoire-select" aria-label="Selecione seu grimório">
+                            <!-- Custom spellbooks loaded dynamically -->
+                        </select>
+                        <button id="btn-manage-grimoires" title="Gerenciar Grimórios">
+                            <i class="fa-solid fa-gear"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-total-spells">0</span>
+                    <span class="stat-label">Magias Totais</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-active-grimoire-spells">0</span>
+                    <span class="stat-label">No Grimório Atual</span>
+                </div>
+            </div>
+            <div class="header-btns">
+                <a href="../index.html" class="header-home-btn" title="VTTArmada do Mestre">🏠 Hub</a>
+                <!-- Theme Switcher -->
+                <div class="theme-switcher" id="theme-switcher">
+                    <button class="theme-btn" data-theme="blood" title="Tema Vectora (padrão)">🩸</button>
+                    <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+                    <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout Grid -->
+        <div class="app-body">
+            <!-- Sidebar: Filters and Grimoire Manager -->
+            <aside class="sidebar-panel">
+                <!-- Search Section -->
+                <div class="search-section">
+                    <div class="search-bar-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="search-input" placeholder="Buscar magia pelo nome ou descrição..."
+                            autocomplete="off">
+                        <button id="clear-search" class="clear-btn" title="Limpar busca"><i
+                                class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <!-- Personal Grimoire Filter Toggle -->
+                <div class="grimoire-filter-toggle">
+                    <button id="btn-toggle-favorites" class="toggle-favorites-btn">
+                        <i class="fa-solid fa-star star-filled-gold"></i>
+                        <span>Ver Grimório Pessoal</span>
+                    </button>
+                </div>
+
+                <!-- Tipo Filter (Arcana / Divina / Universal) -->
+                <div class="filter-group collapsible">
+                    <button class="filter-collapse-header" id="tipo-filters-header">
+                        <span><i class="fa-solid fa-wand-sparkles"></i> Tipo</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="collapsible-content active" id="tipo-filters-content">
+                        <div class="schools-list" style="gap: 0.3rem;">
+                            <button class="tipo-filter-btn" data-tipo="Arcana"
+                                style="display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.6rem;border:1px solid var(--border-color);border-radius:6px;background:var(--bg-card);color:var(--text-primary);cursor:pointer;transition:var(--transition-fast);font-family:var(--font-body);font-size:0.8rem;width:100%;">
+                                <span
+                                    style="width:10px;height:10px;border-radius:50%;background:#8a5ab5;display:inline-block;"></span>
+                                <span>Arcana</span>
+                            </button>
+                            <button class="tipo-filter-btn" data-tipo="Divina"
+                                style="display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.6rem;border:1px solid var(--border-color);border-radius:6px;background:var(--bg-card);color:var(--text-primary);cursor:pointer;transition:var(--transition-fast);font-family:var(--font-body);font-size:0.8rem;width:100%;">
+                                <span
+                                    style="width:10px;height:10px;border-radius:50%;background:#b8862a;display:inline-block;"></span>
+                                <span>Divina</span>
+                            </button>
+                            <button class="tipo-filter-btn" data-tipo="Universal"
+                                style="display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.6rem;border:1px solid var(--border-color);border-radius:6px;background:var(--bg-card);color:var(--text-primary);cursor:pointer;transition:var(--transition-fast);font-family:var(--font-body);font-size:0.8rem;width:100%;">
+                                <span
+                                    style="width:10px;height:10px;border-radius:50%;background:#4a7a7a;display:inline-block;"></span>
+                                <span>Universal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circles Filters (1 to 5) -->
+                <div class="filter-group">
+                    <h3><i class="fa-solid fa-circle-nodes"></i> Círculo</h3>
+                    <div class="circles-grid">
+                        <button class="circle-badge-btn" data-circle="1">1º</button>
+                        <button class="circle-badge-btn" data-circle="2">2º</button>
+                        <button class="circle-badge-btn" data-circle="3">3º</button>
+                        <button class="circle-badge-btn" data-circle="4">4º</button>
+                        <button class="circle-badge-btn" data-circle="5">5º</button>
+                    </div>
+                </div>
+
+                <!-- Schools Filters -->
+                <div class="filter-group collapsible">
+                    <button class="filter-collapse-header" id="school-filters-header">
+                        <span><i class="fa-solid fa-scroll"></i> Escola de Magia</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="collapsible-content active" id="school-filters-content">
+                        <div class="schools-list">
+                            <button class="school-filter-btn" data-school="Abjuração">
+                                <span class="school-color-indicator school-abj"></span>
+                                <span class="school-name">Abjuração</span>
+                            </button>
+                            <button class="school-filter-btn" data-school="Adivinhação">
+                                <span class="school-color-indicator school-adi"></span>
+                                <span class="school-name">Adivinhação</span>
+                            </button>
+                            <button class="school-filter-btn" data-school="Convocação">
+                                <span class="school-color-indicator school-con"></span>
+                                <span class="school-name">Convocação</span>
+                            </button>
+                            <button class="school-filter-btn" data-school="Encantamento">
+                                <span class="school-color-indicator school-enc"></span>
+                                <span class="school-name">Encantamento</span>
+                            </button>
+                            <button class="school-filter-btn" data-school="Evocação">
+                                <span class="school-color-indicator school-evo"></span>
+                                <span class="school-name">Evocação</span>
+                            </button>
+                            <button class="school-filter-btn" data-school="Ilusão">
+                                <span class="school-color-indicator school-ilu"></span>
+                                <span class="school-name">Ilusão</span>
+                            </button>
+                            <button class="school-filter-btn" data-school="Necromancia">
+                                <span class="school-color-indicator school-nec"></span>
+                                <span class="school-name">Necromancia</span>
+                            </button>
+                            <button class="school-filter-btn" data-school="Transmutação">
+                                <span class="school-color-indicator school-tra"></span>
+                                <span class="school-name">Transmutação</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Filters -->
+                <div class="filter-group collapsible">
+                    <button class="filter-collapse-header" id="tech-filters-header">
+                        <span><i class="fa-solid fa-sliders"></i> Atributos Adicionais</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="collapsible-content active" id="tech-filters-content">
+                        <!-- Range -->
+                        <div class="sub-filter">
+                            <label for="filter-range">Alcance:</label>
+                            <select id="filter-range">
+                                <option value="">Todos</option>
+                                <option value="pessoal">Pessoal</option>
+                                <option value="toque">Toque</option>
+                                <option value="curto">Curto</option>
+                                <option value="médio">Médio</option>
+                                <option value="longo">Longo</option>
+                                <option value="ilimitado">Ilimitado</option>
+                            </select>
+                        </div>
+
+                        <!-- Execution -->
+                        <div class="sub-filter">
+                            <label for="filter-execution">Execução:</label>
+                            <select id="filter-execution">
+                                <option value="">Todas</option>
+                                <option value="padrão">Padrão / Ação Padrão</option>
+                                <option value="movimento">Ação de Movimento</option>
+                                <option value="completa">Ação Completa</option>
+                                <option value="livre">Ação Livre</option>
+                                <option value="reação">Reação</option>
+                            </select>
+                        </div>
+
+                        <!-- Resistance -->
+                        <div class="sub-filter">
+                            <label for="filter-resistance">Resistência:</label>
+                            <select id="filter-resistance">
+                                <option value="">Todas</option>
+                                <option value="nenhuma">Nenhuma</option>
+                                <option value="vontade">Vontade</option>
+                                <option value="fortitude">Fortitude</option>
+                                <option value="reflexos">Reflexos</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Filters Button -->
+                <button id="btn-reset-filters" class="reset-filters-btn">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Limpar Filtros</span>
+                </button>
+
+                <!-- Create Homebrew Spell Button -->
+                <button id="btn-create-spell-trigger" class="create-spell-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Criar Sua Magia</span>
+                </button>
+            </aside>
+
+            <!-- Spells List Container -->
+            <main class="spells-content-area">
+                <div class="content-header">
+                    <div class="sorting-controls">
+                        <label for="sort-select">Ordenar por:</label>
+                        <select id="sort-select">
+                            <option value="name-asc">Nome (A-Z)</option>
+                            <option value="name-desc">Nome (Z-A)</option>
+                            <option value="circle-asc">Círculo (Crescente)</option>
+                            <option value="circle-desc">Círculo (Decrescente)</option>
+                        </select>
+                    </div>
+                    <div class="active-filters-badges" id="active-filters-badges">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <div class="spells-grid" id="spells-grid">
+                    <!-- Spells cards rendered dynamically -->
+                </div>
+
+                <div class="empty-state hidden" id="empty-state">
+                    <i class="fa-solid fa-ghost"></i>
+                    <p>Nenhuma magia condizente com os filtros ativos foi encontrada.</p>
+                </div>
+            </main>
+
+            <!-- Spell Detail Slider Panel -->
+            <section class="detail-sidebar" id="detail-sidebar">
+                <div class="detail-close-btn-wrapper">
+                    <button id="btn-close-detail" title="Fechar Detalhes">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="detail-scrollable-content" id="detail-content">
+                    <!-- Content populated by JavaScript -->
+                    <div class="detail-placeholder">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <p>Selecione uma magia no grimório para ler seus detalhes, segredos e calcular custos de PM.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Grimoire Management Modal -->
+    <div class="modal-overlay hidden" id="grimoire-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-book-bookmark"></i> Gerenciar Livros de Magia</h2>
+                <button class="modal-close-btn" id="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="create-grimoire-form">
+                    <input type="text" id="new-grimoire-name" placeholder="Nome do novo Grimório..." maxlength="30">
+                    <button id="btn-create-grimoire" class="action-btn-gold">Criar Novo</button>
+                </div>
+                <div class="grimoires-list-container">
+                    <h3>Seus Grimórios</h3>
+                    <ul class="grimoires-list" id="grimoires-list">
+                        <!-- Loaded dynamically -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homebrew Spell Creation Modal -->
+    <div class="modal-overlay hidden" id="homebrew-modal">
+        <div class="modal-card homebrew-modal-card">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Criar Magia Homebrew</h2>
+                <button class="modal-close-btn" id="btn-close-homebrew-modal" title="Fechar"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body modal-scrollable-body">
+                <form id="homebrew-form" onsubmit="return false;">
+                    <div class="form-row-2">
+                        <div class="form-group-input">
+                            <label for="hb-name">Nome da Magia *</label>
+                            <input type="text" id="hb-name" placeholder="ex: Relâmpago Arcano" required
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-circle">Círculo *</label>
+                            <select id="hb-circle" required>
+                                <option value="1">1º Círculo (1 PM)</option>
+                                <option value="2">2º Círculo (3 PM)</option>
+                                <option value="3">3º Círculo (6 PM)</option>
+                                <option value="4">4º Círculo (10 PM)</option>
+                                <option value="5">5º Círculo (15 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group-input">
+                            <label for="hb-school">Escola *</label>
+                            <select id="hb-school" required>
+                                <option value="Abjuração">Abjuração</option>
+                                <option value="Adivinhação">Adivinhação</option>
+                                <option value="Convocação">Convocação</option>
+                                <option value="Encantamento">Encantamento</option>
+                                <option value="Evocação">Evocação</option>
+                                <option value="Ilusão">Ilusão</option>
+                                <option value="Necromancia">Necromancia</option>
+                                <option value="Transmutação">Transmutação</option>
+                            </select>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-execution">Execução *</label>
+                            <input type="text" id="hb-execution" placeholder="ex: padrão, movimento, reator" required
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group-input">
+                            <label for="hb-tipo">Tipo</label>
+                            <select id="hb-tipo">
+                                <option value="Universal">Universal</option>
+                                <option value="Arcana">Arcana</option>
+                                <option value="Divina">Divina</option>
+                            </select>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-range">Alcance *</label>
+                            <input type="text" id="hb-range" placeholder="ex: curto, pessoal, toque" required
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-target">Alvo / Área</label>
+                            <input type="text" id="hb-target" placeholder="ex: 1 criatura, esfera de 6m"
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group-input">
+                            <label for="hb-duration">Duração *</label>
+                            <input type="text" id="hb-duration" placeholder="ex: instantânea, cena, 1 dia" required
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group-input">
+                            <label for="hb-resistance">Resistência</label>
+                            <input type="text" id="hb-resistance" placeholder="ex: Nenhuma, Reflexos reduz à metade"
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form-group-input">
+                        <label for="hb-description">Descrição *</label>
+                        <textarea id="hb-description" rows="4"
+                            placeholder="Descreva os efeitos mágicos. Use dados como 2d6 ou termos como PV e PM que serão destacados automaticamente."
+                            required></textarea>
+                    </div>
+
+                    <!-- Dynamic Upgrades (Aprimoramentos) Section -->
+                    <div class="form-upgrades-section">
+                        <div class="upgrades-section-header">
+                            <h3>Aprimoramentos Opcionais</h3>
+                            <button type="button" id="btn-add-hb-upgrade" class="btn-secondary-gold-small">
+                                <i class="fa-solid fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                        <div id="hb-upgrades-container" class="hb-upgrades-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <div class="form-actions-row">
+                        <button type="button" id="btn-cancel-homebrew" class="action-btn-secondary">Cancelar</button>
+                        <button type="submit" id="btn-save-homebrew" class="action-btn-gold">Criar Magia</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="btn-scroll-top" class="scroll-top-btn hidden" title="Voltar ao Topo">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="spells_db.js"></script>
+    <script src="../assets/templates/theme-init.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

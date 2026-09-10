@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Compêndio de Arton – VTTArmada T20</title>
+  <meta name="description" content="Compêndio consultável de raças, origens e distinções de Tormenta20: livro básico, Atlas, Ghanor, Ameaças de Arton, Heróis de Arton e outras fontes." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- ═══ SISTEMA DE TEMAS VTTARMADA ═══ -->
+  <link rel="stylesheet" href="../assets/templates/themes.css" />
+
+  <!-- CSS específico deste app -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  CABEÇALHO PADRÃO DO VTTARMADA     ║
+       ╚══════════════════════════════════╝ -->
+  <header class="app-header" role="banner">
+
+    <a href="../index.html" class="hub-btn" title="Voltar ao VTTArmada" aria-label="Voltar ao VTTArmada">
+      🏰 VTTArmada
+    </a>
+
+    <h1 class="app-title">Compêndio de Arton</h1>
+
+    <nav class="theme-controls" aria-label="Selecionar tema">
+      <button class="theme-btn" data-theme="blood"   title="Tema Tormenta (padrão)" aria-label="Tema Tormenta">🩸</button>
+      <button class="theme-btn" data-theme="dark"    title="Tema Sombras"           aria-label="Tema Sombras">🌑</button>
+      <button class="theme-btn" data-theme="classic" title="Tema Clássico"          aria-label="Tema Clássico">📜</button>
+    </nav>
+
+  </header>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  ABAS DE COLEÇÃO                 ║
+       ╚══════════════════════════════════╝ -->
+  <div class="tab-bar" id="collection-tabs" role="tablist" aria-label="Selecionar compêndio">
+    <!-- preenchido via JS -->
+  </div>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  CONTEÚDO PRINCIPAL              ║
+       ╚══════════════════════════════════╝ -->
+  <main id="app-main" role="main" class="compendio">
+
+    <!-- ── COLUNA DA ESQUERDA: busca + lista ── -->
+    <section class="pane pane-list" aria-label="Lista de itens do compêndio">
+
+      <div class="list-controls">
+        <div class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Buscar por nome, poder ou palavra-chave..."
+            autocomplete="off"
+            aria-label="Buscar no compêndio"
+          />
+        </div>
+
+        <div class="source-filters" id="source-filters" role="group" aria-label="Filtrar por fonte">
+          <!-- preenchido via JS -->
+        </div>
+
+        <div class="list-meta">
+          <span id="result-count">0 itens</span>
+          <button id="clear-filters" class="link-btn" type="button">Limpar filtros</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="race-table" id="race-table">
+          <thead>
+            <!-- preenchido via JS (colunas variam por coleção) -->
+          </thead>
+          <tbody id="race-table-body" role="listbox" aria-label="Itens do compêndio">
+            <!-- preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── COLUNA DA DIREITA: detalhe da raça ── -->
+    <section class="pane pane-detail" id="detail-pane" aria-label="Detalhes do item selecionado">
+      <button id="back-to-list" class="back-btn" type="button" aria-label="Voltar para a lista">← Voltar</button>
+
+      <div id="detail-empty" class="detail-empty">
+        <div class="sigil" aria-hidden="true">
+          <svg viewBox="0 0 100 100" width="72" height="72">
+            <polygon points="50,4 90,50 50,96 10,50" fill="none" stroke="currentColor" stroke-width="2"/>
+            <polygon points="50,22 76,50 50,78 24,50" fill="none" stroke="currentColor" stroke-width="1.4"/>
+            <circle cx="50" cy="50" r="5" fill="currentColor"/>
+          </svg>
+        </div>
+        <p>Selecione um item na lista ao lado para consultar sua ficha completa.</p>
+      </div>
+
+      <article id="detail-content" class="detail-content hidden">
+        <!-- preenchido via JS -->
+      </article>
+    </section>
+
+  </main>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  MODAL DE DETALHE                 ║
+       ╚══════════════════════════════════╝ -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Detalhe do item">
+    <button id="modal-prev" class="modal-nav modal-prev" type="button" aria-label="Item anterior">&#8249;</button>
+    <button id="modal-next" class="modal-nav modal-next" type="button" aria-label="Próximo item">&#8250;</button>
+    <div class="modal-container">
+      <button id="modal-close" class="modal-close" type="button" aria-label="Fechar">&times;</button>
+      <div class="modal-body" id="modal-body">
+        <!-- preenchido via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão voltar ao topo -->
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <!-- ╔══════════════════════════════════╗
+       ║  SCRIPTS                         ║
+       ╚══════════════════════════════════╝ -->
+  <script src="../assets/templates/theme-init.js"></script>
+  <script src="../calculadora/racas.js"></script>
+  <script src="../calculadora/racas_dragaobrasil.js"></script>
+  <script src="../poderes/js/origens.js"></script>
+  <script src="../poderes/js/distincoes-data.js"></script>
+  <script src="../poderes/js/data.js"></script>
+  <script src="../poderes/js/classes-data.js"></script>
+  <script src="../poderes/js/classes-db-data.js"></script>
+  <script src="../poderes/js/classes-db-base-data.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

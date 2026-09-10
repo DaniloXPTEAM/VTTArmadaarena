@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espólio — Rolador de Tesouros</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Estilos -->
+    <link rel="stylesheet" type="text/css" href="css.css">
+
+    <!-- Scripts -->
+    <!--
+      data.js: tabelas de tesouro (Tesouro por ND) e regras de Buscas.
+      js.js: lógica do rolador.
+    -->
+</head>
+
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="../index.html" class="btn-back" title="Voltar ao VTTArmada do Mestre">🚪 Hub</a>
+
+            <div class="header-brand">
+                <h1 class="header-title">ESPÓLIO</h1>
+                <p class="header-subtitle">Rolador de Tesouros e Recompensas</p>
+            </div>
+
+            <!-- Botão de tema -->
+            <div class="header-spacer">
+                <div class="theme-switcher" id="theme-switcher">
+                    <button class="theme-btn" data-theme="blood" title="Tema Sangue (padrão)">🩸</button>
+                    <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+                    <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Guia "Como Funciona?" -->
+        <div class="panel guide-panel">
+            <div id="toggleGuide" class="guide-toggle">
+                <span><i class="fa-solid fa-circle-question"></i> Como Funciona?</span>
+                <span id="guideIcon" class="guide-toggle-icon">[Mostrar]</span>
+            </div>
+            <div id="guideContent" class="guide-content" style="display: none;">
+                <p class="message">
+                    O <strong>Espólio</strong> automatiza as rolagens de tesouro de <strong>Tormenta20</strong>.
+                    <br><br>
+                    <strong>Legenda dos asteriscos (encantos de itens mágicos):</strong>
+                    <br>
+                    · <code>*</code> = só armadura<br>
+                    · <code>**</code> = role 1d6 para material<br>
+                    · <code>***</code> = conta como duas melhorias e inclui o pré-requisito; role de novo se só tiver
+                    uma
+                    <br><br>
+                    <strong>Recompensa de Missão</strong> segue a tabela "Tesouro por ND" (Capítulo 8): escolha o
+                    <strong>ND</strong> e a <strong>Quantidade de Tesouro</strong> (Nenhum/Padrão/Metade/Dobro) e
+                    role.
+                    <br><br>
+                    <strong>Recompensa de Busca</strong> segue as regras de Buscas (Capítulo 6): informe o
+                    <strong>Nível do Personagem</strong> e o número de <strong>Sucessos</strong> obtidos nos testes
+                    da busca, e o Espólio resolve castigos, recompensas e, quando houver, o tesouro ganho.
+                    <br><br>
+                    Os <strong>Bônus de Rolagem</strong> (Sala do Tesouro, Dinheiro Atrai Dinheiro...) somam
+                    diretamente à rolagem de d% que define o resultado, valendo para ambos os modos
+                    (Missão e Busca). O bônus incide sobre <em>todas</em> as rolagens de tesouro — tanto a
+                    coluna Riqueza (Dinheiro) quanto a coluna Itens.
+                </p>
+            </div>
+        </div>
+
+        <div class="espolio-grid">
+            <!-- Coluna Esquerda: Controles -->
+            <div class="column-left">
+                <!-- Painel 1: Configuração do Tesouro -->
+                <section class="panel" aria-label="Configuração do Tesouro">
+                    <div class="panel-header-row">
+                        <h2 class="panel-title"><i class="fa-solid fa-sliders"></i> Gerador de Tesouros</h2>
+                    </div>
+
+                    <div class="stack">
+                        <div class="card-dark">
+                            <div class="card-subtitle-gold">Tipo de Recompensa</div>
+                            <div class="btn-group" role="group" aria-label="Tipo de Recompensa">
+                                <label class="seg-btn active">
+                                    <input type="radio" name="modoRecompensa" id="modo-missao" autocomplete="off" checked value="missao">
+                                    <span>Missão</span>
+                                    <span class="seg-hint">Tesouro por ND</span>
+                                </label>
+                                <label class="seg-btn">
+                                    <input type="radio" name="modoRecompensa" id="modo-busca" autocomplete="off" value="busca">
+                                    <span>Busca</span>
+                                    <span class="seg-hint">Cap. 6 — Buscas</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO: RECOMPENSA DE MISSÃO -->
+                        <div id="blocoMissao" class="stack">
+                            <div class="card-dark">
+                                <div class="card-subtitle-gold">ND Específico</div>
+                                <select class="select" id="ndEspecifico" name="ndEspecifico">
+                                    <option value="1/4">ND 1/4</option>
+                                    <option value="1/2">ND 1/2</option>
+                                    <option value="1" selected>ND 1</option>
+                                    <option value="2">ND 2</option>
+                                    <option value="3">ND 3</option>
+                                    <option value="4">ND 4</option>
+                                    <option value="5">ND 5</option>
+                                    <option value="6">ND 6</option>
+                                    <option value="7">ND 7</option>
+                                    <option value="8">ND 8</option>
+                                    <option value="9">ND 9</option>
+                                    <option value="10">ND 10</option>
+                                    <option value="11">ND 11</option>
+                                    <option value="12">ND 12</option>
+                                    <option value="13">ND 13</option>
+                                    <option value="14">ND 14</option>
+                                    <option value="15">ND 15</option>
+                                    <option value="16">ND 16</option>
+                                    <option value="17">ND 17</option>
+                                    <option value="18">ND 18</option>
+                                    <option value="19">ND 19</option>
+                                    <option value="20">ND 20</option>
+                                </select>
+                                <div class="nd-ref" id="ndRefDisplay" aria-live="polite"></div>
+                            </div>
+
+                            <div class="card-dark">
+                                <div class="card-subtitle-gold">Composição da Mesa</div>
+                                <label class="check-row">
+                                    <input type="checkbox" id="usarMesa">
+                                    <span class="check-box"></span>
+                                    <span class="check-label">Usar composição <small>rolar vários NDs de uma vez</small></span>
+                                </label>
+
+                                <div class="mesa-builder" id="mesaBuilder" style="display:none;">
+                                    <div class="mesa-nd-label">O ND abaixo é usado como base. Ajuste a quantidade e adicione à mesa:</div>
+                                    <div class="mesa-add-row">
+                                        <span class="mesa-nd-atual" id="mesaNdAtual">ND 1</span>
+                                        <div class="mesa-qty">
+                                            <button class="qty-btn mesa-qty-btn" id="mesaQtyMinus" type="button" title="Diminuir">−</button>
+                                            <input type="number" class="mesa-qty-input" id="mesaQty" value="1" min="1" max="99" step="1" inputmode="numeric" aria-label="Quantidade">
+                                            <button class="qty-btn mesa-qty-btn" id="mesaQtyPlus" type="button" title="Aumentar">+</button>
+                                        </div>
+                                        <button class="btn btn-primary mesa-add-btn" id="mesaAddBtn" type="button">+ Adicionar</button>
+                                    </div>
+                                    <div class="mesa-chips" id="mesaChips"></div>
+                                    <button class="mesa-clear" id="mesaLimparBtn" type="button" style="display:none;">Limpar composição</button>
+                                    <div class="mesa-hint" id="mesaHint"></div>
+                                </div>
+                            </div>
+
+                            <div class="card-dark">
+                                <div class="card-subtitle-gold">Quantidade de Rolagens</div>
+                                <div class="qty-row">
+                                    <button class="qty-btn" id="qtyMinus" type="button" title="Diminuir">−</button>
+                                    <span class="qty-value" id="qtyValue">1</span>
+                                    <button class="qty-btn" id="qtyPlus" type="button" title="Aumentar">+</button>
+                                </div>
+                                <label class="check-row">
+                                    <input type="checkbox" id="separarPorCriatura">
+                                    <span class="check-box"></span>
+                                    <span class="check-label">Separar por criatura <small>um grupo por rolagem</small></span>
+                                </label>
+                            </div>
+
+                            <div class="card-dark">
+                                <div class="card-subtitle-gold">Quantidade de Tesouro</div>
+                                <select class="select" id="multiplicadorTesouro" name="multiplicadorTesouro">
+                                    <option value="nenhum">Nenhum — criatura não traz tesouro</option>
+                                    <option value="padrao" selected>Padrão</option>
+                                    <option value="metade">Metade — divide o Dinheiro por 2</option>
+                                    <option value="dobro">Dobro — role 2x cada coluna</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO: RECOMPENSA DE BUSCA -->
+                        <div id="blocoBusca" class="stack" style="display:none;">
+                            <div class="card-dark">
+                                <div class="card-subtitle-gold">Nível do Personagem</div>
+                                <select class="select" id="nivelBusca" name="nivelBusca">
+                                    <option value="1/4">Nível 1/4</option>
+                                    <option value="1/2">Nível 1/2</option>
+                                    <option value="1" selected>Nível 1</option>
+                                    <option value="2">Nível 2</option>
+                                    <option value="3">Nível 3</option>
+                                    <option value="4">Nível 4</option>
+                                    <option value="5">Nível 5</option>
+                                    <option value="6">Nível 6</option>
+                                    <option value="7">Nível 7</option>
+                                    <option value="8">Nível 8</option>
+                                    <option value="9">Nível 9</option>
+                                    <option value="10">Nível 10</option>
+                                    <option value="11">Nível 11</option>
+                                    <option value="12">Nível 12</option>
+                                    <option value="13">Nível 13</option>
+                                    <option value="14">Nível 14</option>
+                                    <option value="15">Nível 15</option>
+                                    <option value="16">Nível 16</option>
+                                    <option value="17">Nível 17</option>
+                                    <option value="18">Nível 18</option>
+                                    <option value="19">Nível 19</option>
+                                    <option value="20">Nível 20</option>
+                                </select>
+                            </div>
+
+                            <div class="card-dark">
+                                <div class="card-subtitle-gold">Sucessos na Busca</div>
+                                <div class="btn-group seg-4" role="group" aria-label="Sucessos">
+                                    <label class="seg-btn active">
+                                        <input type="radio" name="sucessosBusca" autocomplete="off" checked value="0">
+                                        <span>0</span>
+                                        <span class="seg-hint">1 castigo</span>
+                                    </label>
+                                    <label class="seg-btn">
+                                        <input type="radio" name="sucessosBusca" autocomplete="off" value="1">
+                                        <span>1</span>
+                                        <span class="seg-hint">nenhuma</span>
+                                    </label>
+                                    <label class="seg-btn">
+                                        <input type="radio" name="sucessosBusca" autocomplete="off" value="2">
+                                        <span>2</span>
+                                        <span class="seg-hint">1 recompensa</span>
+                                    </label>
+                                    <label class="seg-btn">
+                                        <input type="radio" name="sucessosBusca" autocomplete="off" value="3">
+                                        <span>3</span>
+                                        <span class="seg-hint">2 recompensas</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-ghost btn-sm w-100" id="btnSortearPericia" type="button">
+                                <i class="fa-solid fa-dice"></i> Sortear 3ª Perícia (2d12)
+                            </button>
+                        </div>
+
+                        <!-- BLOCO: BÔNUS DE ROLAGEM -->
+                        <div class="card-dark">
+                            <div class="card-subtitle-gold"><i class="fa-solid fa-star"></i> Bônus de Rolagem</div>
+
+                            <label class="check-row">
+                                <input type="checkbox" id="bonusSalaTesouro">
+                                <span class="check-box"></span>
+                                <span class="check-label">Sala do Tesouro (Base) <small>+5%</small></span>
+                            </label>
+
+                            <label class="check-row">
+                                <input type="checkbox" id="bonusDinheiroAtrai">
+                                <span class="check-box"></span>
+                                <span class="check-label">Poder de Grupo: Dinheiro Atrai Dinheiro <small>+5%
+                                        cada</small></span>
+                            </label>
+
+                            <div class="qty-row qty-row-inline" id="qtyDinheiroAtraiRow" style="display:none;">
+                                <button class="qty-btn" id="qtyDaaMinus" type="button" title="Diminuir">−</button>
+                                <span class="qty-value" id="qtyDaaValue">1</span>
+                                <button class="qty-btn" id="qtyDaaPlus" type="button" title="Aumentar">+</button>
+                                <span class="text-muted qty-inline-label">personagens com o poder</span>
+                            </div>
+
+                            <div class="bonus-total" id="bonusTotalDisplay">Bônus total na rolagem: +0%</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Coluna Direita: Resultado e Histórico -->
+            <div class="column-right">
+                <!-- Painel 2: Resultado da Rolagem -->
+                <section class="panel result-panel" id="resultPanel" style="display: none;" aria-label="Resultado do Tesouro">
+                    <div class="panel-header-row">
+                        <h2 class="panel-title"><i class="fa-solid fa-scroll"></i> Baú Aberto</h2>
+                    </div>
+
+                    <!-- Resumo rápido -->
+                    <div class="result-summary">
+                        <div class="stat-card">
+                            <span class="stat-label">Moedas</span>
+                            <span class="stat-value text-accent" id="resMoedas">—</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Itens / Efeitos</span>
+                            <span class="stat-value" id="resItens">—</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Valor Total</span>
+                            <span class="stat-value" id="resValor">—</span>
+                        </div>
+                    </div>
+
+                    <!-- Moedas -->
+                    <div class="coin-row" id="coinRow"></div>
+
+                    <!-- Itens -->
+                    <div id="treasureList" class="treasure-list"></div>
+
+                    <!-- Legenda dos asteriscos -->
+                    <div id="legendAsteriscos" class="legend-note" style="display: none;">
+                        <span class="legend-title">Legenda dos asteriscos</span>
+                        <span class="legend-item">* só armadura</span>
+                        <span class="legend-item">** role 1d6 para material</span>
+                        <span class="legend-item">*** conta como duas melhorias e inclui o pré-requisito; role de novo
+                            se só tiver uma</span>
+                    </div>
+                </section>
+
+                <!-- Painel 3: Histórico de Rolagens -->
+                <section class="panel history-panel" aria-label="Histórico de Rolagens">
+                    <div class="panel-header-row">
+                        <h2 class="panel-title text-muted"><i class="fa-solid fa-clock-rotate-left"></i> Histórico de Rolagens</h2>
+                        <span class="history-total" id="historyTotal"></span>
+                        <button class="btn btn-ghost btn-sm" id="btnClearHistory" type="button" title="Limpar histórico">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <ul id="historicoTesouros" class="history-list">
+                        <li class="history-empty">Nenhum tesouro descoberto ainda...</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Botão flutuante -->
+    <div class="floating-roll" id="floatingRoll">
+        <button class="btn btn-primary btn-glow btn-lg" id="btnRollChest" type="button">
+            <i class="fa-solid fa-box-open"></i> <span id="btnRollLabel">Abrir Baú</span>
+        </button>
+        <button class="btn btn-flotante-sec" id="btnReroll" type="button" style="display:none;" title="Refazer rolagem com a mesma configuração">
+            <i class="fa-solid fa-rotate-right"></i> <span>Refazer</span>
+        </button>
+        <button class="btn btn-flotante-sec" id="btnRerollCoins" type="button" style="display:none;" title="Rolar de novo só o Dinheiro (mantém os itens)">
+            <i class="fa-solid fa-coins"></i> <span>Só moedas</span>
+        </button>
+        <button class="btn btn-flotante-sec" id="btnRerollItems" type="button" style="display:none;" title="Rolar de novo só os Itens (mantém o dinheiro)">
+            <i class="fa-solid fa-gem"></i> <span>Só itens</span>
+        </button>
+        <button class="btn btn-flotante-sec" id="btnCopyResult" type="button" style="display:none;" title="Copiar resultado">
+            <i class="fa-solid fa-copy"></i> <span>Copiar</span>
+        </button>
+        <button class="btn btn-flotante-sec" id="btnClearData" type="button" title="Limpar todos os dados salvos (configurações, último baú aberto e histórico)">
+            <i class="fa-solid fa-eraser"></i> <span>Limpar dados</span>
+        </button>
+    </div>
+
+    <!-- ASSINATURA / CRÉDITOS (STR-style) -->
+    <section class="sig-wrap" aria-label="Sobre e créditos">
+        <details class="sig-card">
+            <summary class="sig-summary">
+                <div class="sig-summary-left">
+                    <span class="sig-badge">Sobre</span>
+                    <span class="sig-title">Créditos e outros projetos</span>
+                </div>
+                <div class="sig-summary-right">
+                    <span class="sig-hint">clique para abrir</span>
+                    <span class="sig-chevron" aria-hidden="true">▾</span>
+                </div>
+            </summary>
+
+            <div class="sig-body">
+                <div class="sig-hero">
+                    <h3 class="sig-h3">Quem fez isso?</h3>
+                    <p class="sig-p">
+                        Olá! Meu nome é <strong>Nicholas Lemos</strong>.
+                        Sou jogador de RPG, desenvolvedor de software e entusiasta de ferramentas para
+                        <strong>Tormenta20</strong>.
+                    </p>
+                    <p class="sig-p">
+                        Criei este <strong>Rolador de Tesouros</strong> para facilitar as recompensas de mesa,
+                        mantendo tudo <strong>visível, acessível e sem quebrar o ritmo</strong>.
+                    </p>
+                </div>
+                <div class="sig-grid">
+                    <div class="sig-col">
+                        <h4 class="sig-h4">Contato</h4>
+
+                        <a class="sig-link"
+                            href="https://api.whatsapp.com/send/?phone=5531992825753&text=Ol%C3%A1%2C+gostaria+de+tirar+uma+d%C3%BAvida.&type=phone_number&app_absent=0"
+                            target="_blank" rel="noopener noreferrer">
+                            <div class="sig-link-main">
+                                <span class="sig-link-name">WhatsApp</span>
+                                <span class="sig-link-url">Fale comigo diretamente</span>
+                            </div>
+                            <span class="sig-ext">↗</span>
+                        </a>
+
+                        <a class="sig-link" href="https://www.linkedin.com/in/nicholas-lemos/" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="sig-link-main">
+                                <span class="sig-link-name">LinkedIn</span>
+                                <span class="sig-link-url">Perfil profissional</span>
+                            </div>
+                            <span class="sig-ext">↗</span>
+                        </a>
+
+                        <a class="sig-link" href="https://github.com/nicholemos" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="sig-link-main">
+                                <span class="sig-link-name">GitHub</span>
+                                <span class="sig-link-url">Repositórios e projetos</span>
+                            </div>
+                            <span class="sig-ext">↗</span>
+                        </a>
+                    </div>
+
+                    <div class="sig-col">
+                        <h4 class="sig-h4">Este projeto</h4>
+
+                        <div class="sig-note">
+                            <div class="sig-note-title">Dica rápida</div>
+                            <div class="sig-note-text">
+                                A rolagem de Dinheiro e Itens segue a tabela "Tesouro por ND". Riquezas, Poções, Itens
+                                Mágicos, Melhorias e Equipamentos já são detalhados automaticamente, com valor em T$ no
+                                item e no total.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sig-footer">
+                    <span class="sig-footer-text">Feito para mesa rápida. Feedbacks são bem-vindos.</span>
+                </div>
+            </div>
+        </details>
+    </section>
+
+<script src="data.js"></script>
+    <script src="data_itens.js"></script>
+    <script src="sub_tabelas.js"></script>
+    <script src="../assets/templates/theme-init.js"></script>
+    <script src="js.js"></script>
+
+</body>
+
+</html>

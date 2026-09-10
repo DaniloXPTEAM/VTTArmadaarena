@@ -1,0 +1,3790 @@
+/* --- 1. FONTE TORMENTA --- */
+@font-face {
+    font-family: 'Tormenta';
+    src: url('../assets/fonts/Tormenta.ttf') format('truetype');
+}
+
+/* Aplica a fonte nos títulos e números grandes */
+.t20-section-title,
+.def-shield,
+.attr-val,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.fs-4,
+#charLevel,
+.inp-name,
+#skillsSection > div:first-child span,
+#skillsSection .skills-content > div:first-child.row,
+.skill-row select,
+.skill-row [id^="skAttrVal"],
+.skill-row [id^="skHalfLevel"],
+.ameaca-key,
+.ameaca-key-titulo,
+.ameaca-chave-titulo,
+.ameaca-nome-input,
+.ameaca-nd-label,
+.ameaca-nd-val,
+.ameaca-val-input,
+.ameaca-attr-input,
+.am-input,
+.am-select,
+.am-textarea,
+.am-per-nome,
+.am-per-valor {
+    font-family: 'Tormenta', serif !important;
+    letter-spacing: 1px;
+}
+
+/* Ajuste para a fonte não ficar pequena demais nos inputs */
+.attr-val {
+    font-size: 2.8rem !important;
+    /* Aumentei pois a fonte Tormenta costuma ser menor */
+    text-shadow: 2px 2px 0px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    /* Contorno para leitura */
+    color: #8b0000 !important;
+    /* Vermelho sangue */
+}
+
+/* --- 2. ESTILO DOS ATRIBUTOS (TOKENS) --- */
+.attr-token {
+    width: 100%;
+    max-width: 110px;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 4px solid #333;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.2s;
+    position: relative;
+    /* Essencial para o overlay */
+    overflow: hidden;
+    /* Para garantir que o overlay não vaze */
+}
+
+/* Nova camada de overlay para controlar a transparência da IMAGEM */
+.attr-token::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Cor branca com 20% de opacidade */
+    /* Ajuste o último número (0.2) para controlar a transparência:
+       0.0 = totalmente transparente (só o fundo original aparece)
+       0.1 = bem sutil
+       0.2 = levemente transparente (como no exemplo)
+       0.3 = um pouco mais visível
+       0.4 = perceptível
+       ...
+       1.0 = totalmente opaco (a imagem sumiria e ficaria só branco)
+    */
+    pointer-events: none;
+    /* Permite clicar no input por baixo */
+}
+
+.attr-token:hover {
+    transform: scale(1.05);
+    border-color: var(--t20-red);
+}
+
+/* O input fica transparente por cima da imagem */
+.attr-input-overlay {
+    background: transparent !important;
+    border: none !important;
+    text-align: center;
+    width: 80%;
+    height: 80%;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+    /* Garante que o número fique por cima do overlay */
+}
+
+.attr-input-overlay:focus {
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50%;
+}
+
+/* O Label (Nome do Atributo) agora fica embaixo, estilo legenda */
+.attr-footer-label {
+    text-align: center;
+    font-family: 'Tormenta', serif;
+    font-weight: bold;
+    color: var(--t20-red);
+    font-size: 1.2rem;
+    margin-top: 5px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+:root {
+    --t20-red: #e0483f;
+    --t20-bg: #f2f4f7;
+    --ouro: #c9933a;
+    --ouro-glow: rgba(201, 147, 58, 0.15);
+    --ouro-dark: #d4af37;
+    --bg-principal: #f2f4f7;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-card-solid: #ffffff;
+    --borda-card: #d0d0d0;
+    --borda-card-hover: #b0b0b0;
+    --texto-principal: #0f172a;
+    --texto-secundario: #475569;
+    --text-muted: #475569;
+}
+
+/* Ajustes Gerais */
+.sheet {
+    max-width: 1100px;
+    border-top: 5px solid var(--t20-red);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Cards de seção com bordas arredondadas e sombra sutil */
+#attacksSection,
+#defenseSection,
+#abilitiesSection,
+#spellsSection,
+#skillsSection,
+#inventorySection,
+#notesSection {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Inputs Customizados T20 */
+.t20-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--t20-red);
+    margin-left: 5px;
+}
+
+.t20-input {
+    border: 2px solid #333;
+    background-color: #f0f8ff;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.t20-input:focus {
+    border-color: var(--t20-red);
+    box-shadow: none;
+}
+
+/* Atributos (Escudos) */
+.attr-box {
+    position: relative;
+}
+
+.attr-label {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid black;
+    padding: 0 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.attr-val {
+    width: 100%;
+    height: 80px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--t20-red);
+    border: 3px solid black;
+    border-radius: 5px 5px 50% 50%;
+    /* Formato de escudo */
+    padding-top: 10px;
+}
+
+.attr-val:focus {
+    outline: none;
+    border-color: var(--t20-red);
+    background-color: #fff0f0;
+    color: #2c3e50 !important;
+}
+
+/* Labels flutuantes nas bordas */
+/* Labels flutuantes nas bordas */
+.t20-status-label,
+.t20-section-title {
+    position: absolute;
+    top: -12px;
+    left: 15px;
+    background: white;
+    padding: 1px 8px;
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: var(--t20-red);
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    /* <--- ISSO IMPEDE A QUEBRA DE LINHA */
+    z-index: 5;
+    /* Garante que fique acima da borda e da barra */
+}
+
+/* Escudo da Defesa */
+.def-shield {
+    width: 70px;
+    height: 80px;
+    background: #e9ecef;
+    border: 3px solid black;
+    border-radius: 5px 5px 50% 50%;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Perícias (Tabela zebrada customizada) */
+.skill-row:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.skill-row {
+    font-size: 0.8rem;
+    /* Reduzi um pouco para caber melhor */
+    background-color: white;
+    transition: background-color 0.2s ease;
+    /* Garante fundo limpo */
+}
+
+.skill-row:hover {
+    background-color: #f0f2f5;
+}
+
+.skill-row input[type="number"] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    width: 100%;
+    height: 20px;
+    /* Altura fixa compacta */
+    font-size: 0.8rem;
+}
+
+/* Ataques (Accordion) */
+.atk-summary input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    text-align: center;
+    font-weight: 600;
+}
+
+.atk-summary input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--t20-red);
+}
+
+.atk-details {
+    background-color: #f8f9fa;
+    border-left: 3px solid var(--t20-red);
+}
+
+.form-label-sm {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #666;
+    border-top: 1px solid #dee2e6;
+    display: block;
+    text-align: center;
+}
+
+/* Adicione ao seu CSS */
+
+.def-row .inp-bonus {
+    text-align: center;
+    background: #f0fff4;
+    /* Verdinho claro para bônus */
+    border: 1px solid #c3e6cb;
+}
+
+.def-row .inp-penalty {
+    text-align: center;
+    background: #fff5f5;
+    /* Vermelhinho claro para penalidade */
+    border: 1px solid #f5c6cb;
+}
+
+.def-details {
+    background-color: #e9ecef;
+    margin-top: 5px;
+    border-left: 4px solid #6c757d;
+}
+
+/* Ajuste visual do seletor de atributo na fórmula */
+#defAttrSelect {
+    font-size: 1.1rem;
+    /* Maior */
+    font-weight: 800;
+    /* Mais negrito */
+    color: var(--t20-red);
+    /* Vermelho T20 */
+    border: 2px solid #ddd;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+#defAttrSelect:hover {
+    color: var(--t20-red) !important;
+}
+
+
+#defAttrSelect:focus {
+    border-color: var(--t20-red);
+    box-shadow: 0 0 5px rgba(178, 34, 34, 0.3);
+}
+
+/* Estilo dos Slots Fixos (Armadura/Escudo) */
+.fixed-slot {
+    border: 1px solid #999;
+    border-left: 5px solid #333;
+    /* Faixa preta para indicar item base */
+    background-color: #fdfdfd;
+}
+
+.fixed-slot.armor {
+    border-left-color: var(--t20-red);
+}
+
+/* Faixa vermelha para armadura */
+.fixed-slot.shield {
+    border-left-color: #0d6efd;
+}
+
+/* Faixa azul para escudo */
+
+/* Ajuste para o botão de detalhe fixo */
+.btn-detail-fixed {
+    width: 100%;
+    padding: 2px;
+}
+
+/* Estilo para Magias */
+.spell-row .inp-pm {
+    color: #6f42c1;
+    /* Roxo */
+    font-weight: bold;
+}
+
+.spell-details {
+    border-left: 4px solid #6f42c1;
+    background-color: #f8f4ff;
+    /* Fundo levemente lilás */
+}
+
+/* Labels específicos para os dados técnicos da magia */
+.spell-label {
+    font-size: 0.65em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #6f42c1;
+    margin-bottom: 0;
+}
+
+/* Efeito na caixa de imagem */
+.char-img-container:hover {
+    border-color: var(--t20-red) !important;
+    opacity: 0.9;
+}
+
+.char-img-container:hover div {
+    background-color: var(--t20-red) !important;
+    /* Faixa inferior fica vermelha */
+}
+
+/* Deixa a espada mais visível */
+.bi-sword {
+    transform: rotate(-45deg);
+    /* Deixa ela inclinada pronta pro combate */
+    display: inline-block;
+}
+
+.bi-sword:hover {
+    transform: rotate(0deg) scale(1.2);
+    /* Animação de ataque ao passar o mouse */
+}
+
+/* --- 3. ESTILO DOS STATUS (BARRAS DINÂMICAS) --- */
+.status-card {
+    position: relative;
+    /* overflow: hidden;  <-- REMOVIDO para o título aparecer fora da caixa */
+    background-color: #e9ecef;
+    z-index: 1;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    /* O Bootstrap 'rounded' aplica border-radius, a barra precisa acompanhar */
+}
+
+/* A barra colorida que fica atrás */
+.status-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transition: width 0.4s ease-in-out;
+    opacity: 0.6;
+
+    /* ADICIONADO: Arredonda a barra para não vazar pelos cantos da caixa */
+    border-radius: 0.25rem;
+    /* Mesma curva do 'rounded' do Bootstrap */
+}
+
+/* Cores específicas */
+.bar-hp {
+    background-color: #dc3545;
+}
+
+/* Vermelho (Bootstrap danger) */
+.bar-mp {
+    background-color: #0d6efd;
+}
+
+/* Azul (Bootstrap primary) */
+
+/* Inputs transparentes para ver a barra */
+.status-card input {
+    background: transparent !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+    color: #000 !important;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+    /* Sombra branca para ler texto sobre cor */
+}
+
+.status-card input:focus {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* --- BOTÕES FLUTUANTES DE ATRIBUTO --- */
+.attr-wrapper {
+    position: relative;
+    /* Para posicionar os botões absolutos */
+}
+
+.attr-btn-float {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    /* Começa invisível e pequeno */
+    transition: transform 0.2s ease-out;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.attr-btn-float:active {
+    background-color: var(--t20-red);
+    color: white;
+    border-color: var(--t20-red);
+}
+
+/* Posições */
+.attr-btn-up {
+    top: -15px;
+}
+
+.attr-btn-down {
+    bottom: 25px;
+}
+
+/* Fica entre o token e o nome */
+
+/* Classe para mostrar os botões */
+.attr-wrapper.active .attr-btn-float {
+    transform: translateX(-50%) scale(1);
+    /* Aparece */
+}
+
+/* --- BOTÕES FLUTUANTES PARA PERÍCIAS --- */
+.skill-wrapper {
+    position: relative;
+}
+
+/* Versão mini dos botões */
+.skill-btn-mini {
+    width: 22px;
+    height: 22px;
+    font-size: 1rem;
+    z-index: 100 !important;
+    /* Garante que fique acima das outras linhas */
+}
+
+/* Ajuste de posição para a tabela */
+.skill-wrapper .attr-btn-up {
+    top: -22px;
+}
+
+.skill-wrapper .attr-btn-down {
+    bottom: -22px;
+}
+
+/* Estado Ativo */
+.skill-wrapper.active .attr-btn-float {
+    transform: translateX(-50%) scale(1);
+}
+
+/* --- SISTEMA DE COLAPSO (ACCORDION) --- */
+
+/* Ícone da setinha */
+.section-toggle {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    margin-right: 8px;
+    color: inherit;
+}
+
+/* Gira a seta quando fechado */
+.collapsed .section-toggle {
+    transform: rotate(-90deg);
+}
+
+/* REGRAS ESPECÍFICAS POR SEÇÃO */
+
+/* 1. HEADER: Esconde foto e linhas extras, mantém só a primeira linha (Nome) */
+#headerSection.collapsed .header-extra {
+    display: none !important;
+}
+
+#headerSection.collapsed .col-img {
+    display: none !important;
+}
+
+#headerSection.collapsed .col-data {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* 2. ATAQUES: Mostra apenas o 1º ataque, esconde o resto e botões */
+#attacksSection.collapsed .atk-header-row {
+    display: none !important;
+}
+
+#attacksSection.collapsed .atk-row:nth-child(n+2) {
+    display: none !important;
+}
+
+/* Esconde do 2º em diante */
+#attacksSection.collapsed .atk-details {
+    display: none !important;
+}
+
+/* Fecha detalhes se aberto */
+#attacksSection.collapsed .btn-add {
+    display: none !important;
+}
+
+/* 3. DEFESA: Mostra apenas o Escudo Total */
+
+
+#defenseSection.collapsed .def-formula {
+    display: none !important;
+}
+
+#defenseSection.collapsed .fixed-slot {
+    display: none !important;
+}
+
+#defenseSection.collapsed .def-extras {
+    display: none !important;
+}
+
+#defenseSection.collapsed .def-shield {
+    margin: 0 auto;
+    transform: scale(0.8);
+}
+
+#defenseSection.collapsed .def-header {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Centraliza */
+
+/* 4. CARACTERÍSTICAS: Esconde Profs/Status, mostra só 2 primeiros poderes */
+#abilitiesSection.collapsed .ab-extras {
+    display: none !important;
+}
+
+#abilitiesSection.collapsed .ability-row:nth-child(n+3) {
+    display: none !important;
+}
+
+/* Esconde do 3º em diante */
+#abilitiesSection.collapsed .btn-add {
+    display: none !important;
+}
+
+/* 5. MAGIAS: Esconde tudo */
+#spellsSection.collapsed .spells-content {
+    display: none !important;
+}
+
+/* 6. PERÍCIAS: Esconde tudo */
+#skillsSection.collapsed .skills-content {
+    display: none !important;
+}
+
+#skillsSection.collapsed .btn-add {
+    display: none !important;
+}
+
+#skillsSection.collapsed {
+    height: auto !important;
+    flex-grow: 0 !important;
+}
+
+/* 7. INVENTÁRIO: Esconde tudo */
+#inventorySection.collapsed .inv-content {
+    display: none !important;
+}
+
+
+/* Ícone de Arrastar */
+.drag-handle {
+    cursor: grab;
+    color: #aaa;
+    padding: 5px;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+    color: var(--t20-red);
+}
+
+/* Classe visual enquanto arrasta (opcional, o Sortable já faz um efeito, mas esse melhora) */
+.sortable-ghost {
+    opacity: 0.4;
+    background-color: #f0f0f0;
+}
+
+
+/* 8. ANOTAÇÕES: Regra para recolher a seção */
+#notesSection.collapsed .notes-content {
+    display: none !important;
+}
+
+
+
+
+/* =========================
+   ASSINATURA / CRÉDITOS (STR-style)
+   ========================= */
+
+.sig-wrap {
+    max-width: 1100px;
+    margin: 28px auto 40px;
+    padding: 0 16px;
+}
+
+.sig-card {
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, .12);
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    overflow: hidden;
+}
+
+.sig-summary {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 18px;
+    background: #2f3f4f;
+    /* header STR */
+    color: #ffffff;
+    position: relative;
+}
+
+.sig-summary::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: #e0483f;
+    /* faixa vermelha */
+}
+
+.sig-summary::-webkit-details-marker {
+    display: none;
+}
+
+.sig-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.sig-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .22);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+}
+
+.sig-title {
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sig-summary-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: .95;
+}
+
+.sig-hint {
+    font-size: 12px;
+    opacity: .85;
+    white-space: nowrap;
+}
+
+.sig-chevron {
+    font-size: 16px;
+    transition: transform .18s ease;
+}
+
+.sig-card[open] .sig-chevron {
+    transform: rotate(180deg);
+}
+
+.sig-body {
+    padding: 18px;
+    background: #f6f7fb;
+    /* leve cinza como card do STR */
+}
+
+.sig-hero {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, .10);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
+    margin-bottom: 14px;
+}
+
+.sig-h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #0f172a;
+}
+
+.sig-p {
+    margin: 0 0 10px;
+    color: rgba(15, 23, 42, .86);
+    line-height: 1.45;
+}
+
+.sig-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 14px;
+}
+
+@media (max-width: 900px) {
+    .sig-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sig-hint {
+        display: none;
+    }
+}
+
+.sig-col {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, .10);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .06);
+}
+
+.sig-h4 {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 900;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+}
+
+.sig-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    text-decoration: none;
+    background: #ffffff;
+    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease;
+    margin-bottom: 10px;
+}
+
+.sig-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, .08);
+    border-color: rgba(0, 0, 0, .16);
+}
+
+.sig-link:active {
+    transform: translateY(0px);
+}
+
+.sig-link-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.sig-link-name {
+    font-weight: 900;
+    color: #0f172a;
+    font-size: 14px;
+    line-height: 1.15;
+}
+
+.sig-link-url {
+    color: rgba(15, 23, 42, .62);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sig-ext {
+    color: rgba(15, 23, 42, .55);
+    font-size: 16px;
+    flex: 0 0 auto;
+}
+
+.sig-link-primary {
+    border-color: rgba(224, 72, 63, .35);
+    box-shadow: 0 10px 20px rgba(224, 72, 63, .10);
+}
+
+.sig-link-primary:hover {
+    border-color: rgba(224, 72, 63, .55);
+    box-shadow: 0 14px 24px rgba(224, 72, 63, .14);
+}
+
+.sig-note {
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 1px dashed rgba(0, 0, 0, .16);
+    background: rgba(47, 63, 79, .04);
+    padding: 12px;
+}
+
+.sig-note-title {
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    color: rgba(15, 23, 42, .72);
+    margin-bottom: 6px;
+}
+
+.sig-note-text {
+    color: rgba(15, 23, 42, .78);
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.sig-footer {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.sig-footer-text {
+    color: rgba(15, 23, 42, .68);
+    font-size: 12px;
+}
+
+
+/* Estilo para o indicador de excedente nas barras */
+.bar-plus {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+/* Garante que o preenchimento da barra suporte conteúdo absoluto */
+.status-bar-fill {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Cores normais com opacidade baixa para leitura (mantendo seu padrão) */
+.bar-hp {
+    background-color: #dc3545;
+    opacity: 0.6;
+}
+
+.bar-mp {
+    background-color: #0d6efd;
+    opacity: 0.6;
+}
+
+/* Destaque quando excedido: Opacidade total e Brilho */
+.status-bar-fill.bar-exceeded {
+    opacity: 1 !important;
+    /* Cor fica sólida e forte */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.3);
+    filter: brightness(1.2);
+    /* Deixa a cor levemente mais clara/viva */
+}
+
+/* Estilo do símbolo + */
+.bar-plus {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 900;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    font-size: 1.1rem;
+    pointer-events: none;
+    font-family: 'Tormenta', serif;
+    /* Mantendo a identidade visual */
+}
+
+/* Efeito opcional: Sutil animação de pulsação no brilho */
+.bar-exceeded {
+    animation: barPulse 2s infinite ease-in-out;
+}
+
+@keyframes barPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Indicador de excedente dourado */
+.bar-plus {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 900;
+    color: #ffd700;
+    /* Dourado */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 1px 1px 2px black;
+    font-size: 1.4rem;
+    pointer-events: none;
+    font-family: 'Tormenta', serif;
+    animation: goldGlow 1.5s infinite alternate;
+}
+
+@keyframes goldGlow {
+    from {
+        filter: brightness(1);
+    }
+
+    to {
+        filter: brightness(1.5) drop-shadow(0 0 2px gold);
+    }
+}
+
+/* Rótulos pequenos dentro das caixas de status */
+.t20-mini-label {
+    position: absolute;
+    top: -18px;
+    left: 5px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: var(--t20-red);
+    text-transform: uppercase;
+    background: white;
+    padding: 0 3px;
+    z-index: 10;
+}
+
+/* Separador vertical entre Atual/Máx */
+.vr {
+    width: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    align-self: stretch;
+    margin: 5px 0;
+}
+
+
+.ability-row .inp-name:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #dc3545 !important;
+}
+
+.ability-row .collapse-icon {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+/* Deixa a linha mais fina quando fechada */
+.ability-row {
+    transition: all 0.3s ease;
+}
+
+
+/* Estilo suave para os botões de atalho */
+.btn-outline-secondary,
+.btn-outline-danger,
+.btn-outline-dark {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    text-decoration: none;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-danger:hover,
+.btn-outline-dark:hover {
+    opacity: 1;
+}
+
+
+/* --- DRAG HANDLE MOBILE --- */
+.ability-drag-handle {
+    cursor: grab;
+    touch-action: none;
+    /* essencial para SortableJS no mobile */
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 4px 6px;
+    color: #aaa;
+}
+
+.ability-drag-handle:active {
+    cursor: grabbing;
+}
+
+/* Garante que inputs/botões dentro de sortable capturem toque */
+.ability-row input,
+.ability-row textarea,
+.ability-row button,
+.atk-row input,
+.atk-row textarea,
+.atk-row select,
+.atk-row button,
+.def-row input,
+.def-row button,
+.inv-row input,
+.inv-row button,
+.spell-row input,
+.spell-row textarea,
+.spell-row select,
+.spell-row button {
+    touch-action: auto;
+    -webkit-user-select: text;
+    user-select: text;
+    position: relative;
+    z-index: 1;
+}
+
+/* ================================================================
+   FICHA DE AMEAÇA
+   ================================================================ */
+
+.ameaca-sheet {
+    font-family: Georgia, 'Times New Roman', serif;
+    max-width: 680px;
+    margin: 0 auto;
+    color: #1a1a1a;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+/* Cabeçalho: nome + ND badge */
+.ameaca-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #8b0000;
+    margin-bottom: 4px;
+}
+
+.ameaca-titulo-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+.ameaca-nome-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 2px dashed #ccc;
+    background: transparent;
+    font-family: 'Tormenta', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #8b0000;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 0 0 2px 0;
+    outline: none;
+}
+
+.ameaca-nome-input:focus {
+    border-bottom-color: #8b0000;
+}
+
+.ameaca-tipo-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px dashed #ddd;
+    background: transparent;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #444;
+    padding: 2px 0;
+    outline: none;
+}
+
+/* ND Badge */
+.ameaca-nd-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #8b0000;
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 14px;
+    min-width: 72px;
+    flex-shrink: 0;
+}
+
+.ameaca-nd-label {
+    font-family: 'Tormenta', Georgia, serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+    line-height: 1;
+}
+
+.ameaca-nd-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-family: 'Tormenta', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+    width: 52px;
+    outline: none;
+    padding: 0;
+    margin-top: 2px;
+}
+
+.ameaca-nd-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* Blocos internos */
+.ameaca-bloco {
+    padding-bottom: 6px;
+}
+
+/* Linha de dados */
+.ameaca-linha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 3px;
+    margin-bottom: 2px;
+    line-height: 1.6;
+}
+
+.ameaca-chave {
+    font-weight: 700;
+    font-variant: small-caps;
+    color: #8b0000;
+    white-space: nowrap;
+    font-size: 0.88rem;
+}
+
+.ameaca-chave-titulo {
+    font-family: 'Tormenta', Georgia, serif;
+    font-weight: 700;
+    font-variant: small-caps;
+    color: #8b0000;
+    font-size: 0.9rem;
+}
+
+.ameaca-val {
+    color: #1a1a1a;
+}
+
+.ameaca-sep {
+    color: #666;
+}
+
+/* Input inline (resistências, perícias, tesouro) */
+.ameaca-inline-input {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: #1a1a1a;
+    outline: none;
+    padding: 0 2px;
+    min-width: 80px;
+}
+
+.ameaca-inline-input:focus {
+    border-bottom-color: #8b0000;
+}
+
+/* Atributos em linha (FOR +2, DES +3 ...) */
+.ameaca-atributos-linha {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: #f7f0f0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 6px;
+}
+
+.ameaca-attr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.ameaca-attr-nome {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #8b0000;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.ameaca-attr-val {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* Habilidades especiais */
+.ameaca-habilidade {
+    margin-bottom: 3px;
+}
+
+.ameaca-hab-nome {
+    font-weight: 700;
+    font-variant: small-caps;
+    color: #1a1a1a;
+    margin-right: 3px;
+}
+
+.ameaca-hab-desc {
+    color: #333;
+}
+
+/* Responsivo mobile */
+@media (max-width: 600px) {
+    .ameaca-nome-input {
+        font-size: 1.2rem;
+    }
+
+    .ameaca-atributos-linha {
+        gap: 12px;
+    }
+
+    .ameaca-header {
+        flex-direction: column;
+    }
+
+    .ameaca-img-container {
+        width: 80px;
+        height: 80px;
+        align-self: flex-end;
+    }
+
+    .ameaca-nd-badge {
+        align-self: flex-end;
+        flex-direction: row;
+        gap: 8px;
+        min-width: 0;
+        padding: 5px 12px;
+    }
+
+    .ameaca-nd-label {
+        font-size: 0.75rem;
+    }
+
+    .ameaca-nd-input {
+        font-size: 1.1rem;
+        width: 36px;
+    }
+}
+
+/* ================================================================
+   ABAS DA FICHA
+   ================================================================ */
+.sheet-tabs .nav-link {
+    font-family: 'Tormenta', 'Georgia', serif;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: #555;
+    border-bottom: 2px solid transparent;
+    padding: 8px 20px;
+}
+
+.sheet-tabs .nav-link.active {
+    color: #c0392b;
+    border-color: #c0392b;
+    font-weight: bold;
+}
+
+.sheet-tabs .nav-link:hover:not(.active) {
+    color: #c0392b;
+    border-color: #e0b0ae;
+}
+
+/* ================================================================
+   FICHA DE AMEAÇA — layout geral
+   ================================================================ */
+.ameaca-sheet {
+    max-width: 680px;
+    margin: 0 auto;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+/* CABEÇALHO: nome + ND */
+.ameaca-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 3px solid #8b0000;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.ameaca-header-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.ameaca-nome-input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: 'Tormenta', Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #8b0000;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: transparent;
+    padding: 0;
+    outline: none;
+}
+
+.ameaca-nome-input:focus {
+    border-bottom-color: #8b0000;
+}
+
+.ameaca-tipo-linha {
+    margin-top: 2px;
+}
+
+.ameaca-tipo-input {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    font-style: italic;
+    color: #444;
+    font-size: 0.88rem;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    padding: 0;
+}
+
+.ameaca-tipo-input:focus {
+    border-bottom-color: #8b0000;
+}
+
+/* Badge ND */
+.ameaca-nd-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #8b0000;
+    color: #fff;
+    border-radius: 6px;
+    min-width: 64px;
+    padding: 6px 10px;
+    flex-shrink: 0;
+    border: 1px solid #6b0000;
+}
+
+.ameaca-nd-label {
+    font-size: 0.65rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+}
+
+.ameaca-nd-val {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    width: 50px;
+    padding: 0;
+    outline: none;
+}
+
+.ameaca-nd-val::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Imagem da ameaça */
+.ameaca-img-container {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    border: 2px solid #8b0000;
+    border-radius: 6px;
+    background: #f9f4f4;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.ameaca-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: block;
+}
+
+/* BLOCOS */
+.ameaca-bloco {
+    margin-bottom: 6px;
+    padding: 4px 0;
+}
+
+.ameaca-bloco-atributos {
+    background: #f9f4f4;
+    border: 1px solid #e8d0d0;
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+.ameaca-hr {
+    border: none;
+    border-top: 1px solid #e0c8c8;
+    margin: 8px 0;
+}
+
+/* Linha inline */
+.ameaca-linha {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 3px;
+}
+
+.ameaca-key {
+    font-weight: bold;
+    font-style: italic;
+    color: #8b0000;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.ameaca-key-titulo {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ameaca-sep {
+    color: #666;
+}
+
+.ameaca-hint {
+    font-size: 0.72rem;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Inputs dentro da ficha de ameaça */
+.ameaca-val-input {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: #1a1a1a;
+    padding: 0 2px;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.ameaca-val-input:focus {
+    border-bottom-color: #8b0000;
+}
+
+.ameaca-val-xs {
+    width: 40px;
+    text-align: center;
+}
+
+.ameaca-val-sm {
+    width: 55px;
+    text-align: center;
+}
+
+.ameaca-val-md {
+    width: 80px;
+    text-align: center;
+}
+
+.ameaca-obs {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Atributos linha */
+.ameaca-atributos-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ameaca-attr-item {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.ameaca-attr-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #8b0000;
+    font-style: italic;
+}
+
+.ameaca-attr-input {
+    width: 40px;
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    text-align: center;
+    font-size: 0.9rem;
+    outline: none;
+    padding: 0;
+}
+
+.ameaca-attr-input:focus {
+    border-bottom-color: #8b0000;
+}
+
+.ameaca-attr-sep {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* ====== ROWS de Ataque, Habilidade, Perícia ====== */
+.am-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 6px 4px;
+    border-bottom: 1px solid #f0e4e4;
+    margin-bottom: 4px;
+}
+
+.am-row:last-child {
+    border-bottom: none;
+}
+
+.am-row-grip {
+    color: #ccc;
+    cursor: grab;
+    padding-top: 4px;
+    flex-shrink: 0;
+}
+
+.am-row-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.am-row-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.am-row-del {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 2px 4px;
+    flex-shrink: 0;
+    transition: color 0.15s;
+    line-height: 1;
+}
+
+.am-row-del:hover {
+    color: #c0392b;
+}
+
+.am-input {
+    border: 1px solid #e0c8c8;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    background: #fafafa;
+    outline: none;
+    flex: 1;
+    min-width: 80px;
+}
+
+.am-input.am-val-sm {
+    flex: 0 0 80px;
+    min-width: 0;
+}
+
+.am-input.am-val-md {
+    flex: 0 0 120px;
+    min-width: 0;
+}
+
+.am-input.fw-bold {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.am-input:focus {
+    border-color: #8b0000;
+    background: #fff;
+}
+
+.am-select {
+    border: 1px solid #e0c8c8;
+    border-radius: 4px;
+    padding: 3px 4px;
+    font-size: 0.82rem;
+    background: #fafafa;
+    color: #444;
+    flex: 0 0 auto;
+}
+
+.am-select:focus {
+    border-color: #8b0000;
+    outline: none;
+}
+
+.am-textarea {
+    width: 100%;
+    border: 1px solid #e8d8d8;
+    border-radius: 4px;
+    padding: 4px 6px;
+    font-size: 0.82rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 52px;
+    background: #fafafa;
+    outline: none;
+    color: #333;
+}
+
+.am-textarea:focus {
+    border-color: #8b0000;
+    background: #fff;
+}
+
+.am-paren {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Perícia row — mais compacta */
+.am-per-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 0;
+}
+
+.am-per-row .am-input {
+    flex: 1;
+}
+
+.am-per-row .am-per-valor {
+    flex: 0 0 60px;
+    text-align: center;
+}
+
+/* ====== RESPONSIVO MOBILE ====== */
+@media (max-width: 576px) {
+    .ameaca-nome-input {
+        font-size: 1.3rem;
+    }
+
+    .ameaca-nd-badge {
+        min-width: 52px;
+    }
+
+    .ameaca-nd-val {
+        font-size: 1.3rem;
+    }
+
+    .am-row-line {
+        gap: 4px;
+    }
+
+    .am-input.am-val-sm {
+        flex: 0 0 65px;
+    }
+
+    .am-input.am-val-md {
+        flex: 0 0 95px;
+    }
+}
+
+/* Container vira flex-wrap inline */
+#am-pericias-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 2px;
+    align-items: center;
+}
+
+/* Separador vírgula entre perícias */
+.am-per-row:not(:last-child)::after {
+    content: ',';
+    color: #666;
+    margin-left: 1px;
+}
+
+.am-per-row .am-per-nome {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.9rem;
+    width: auto;
+    min-width: 60px;
+    max-width: 160px;
+    padding: 0 2px;
+    outline: none;
+}
+
+.am-per-row .am-per-nome:focus {
+    border-bottom-color: #8b0000;
+}
+
+.am-per-row .am-per-valor {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    font-size: 0.9rem;
+    width: 38px;
+    text-align: center;
+    padding: 0 2px;
+    outline: none;
+    color: #8b0000;
+    font-weight: bold;
+}
+
+.am-per-row .am-per-valor:focus {
+    border-bottom-color: #8b0000;
+}
+
+.am-per-row .am-row-del {
+    font-size: 0.65rem;
+    padding: 0 2px;
+    color: #ddd;
+    line-height: 1;
+}
+
+.am-per-row .am-row-del:hover {
+    color: #c0392b;
+}
+
+/* ================================================================
+   MODIFICADORES TEMPORÁRIOS
+   ================================================================ */
+
+.mods-sheet {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 0;
+}
+
+.mods-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
+}
+
+.mods-card-title {
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #8b0000;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Grid dos bônus globais — 3 colunas para comportar as listas expans\u00edveis */
+.mods-globais-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 600px) {
+    .mods-globais-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.mods-campo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.mods-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #444;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.mods-input {
+    width: 76px;
+    height: 44px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #8b0000;
+    transition: border-color .15s;
+    padding: 0;
+}
+
+.mods-input:focus {
+    border-color: #8b0000;
+    outline: none;
+    background: #fff;
+}
+
+.mods-input:not(:placeholder-shown),
+.mods-input.has-value {
+    border-color: #e0483f;
+    background: #fff5f5;
+}
+
+/* Parceiros header */
+.mods-parceiros-header {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 80px 32px;
+    gap: 8px;
+    padding: 0 4px 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.mod-parceiro-row {
+    display: grid !important;
+    grid-template-columns: 2fr 1.5fr 80px 32px;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Área reservada */
+.mods-area-reservada {
+    min-height: 60px;
+}
+
+/* ── HUD abaixo da foto ─────────────────────────────────────── */
+.mod-hud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px 6px;
+    background: rgba(139, 0, 0, .06);
+    border: 1px solid rgba(139, 0, 0, .18);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    line-height: 1.3;
+}
+
+.mod-hud-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: #fff;
+    border: 1px solid #e0c0c0;
+    border-radius: 4px;
+    padding: 1px 5px;
+    white-space: nowrap;
+}
+
+.mod-hud-val {
+    font-weight: 700;
+    color: #8b0000;
+}
+
+.mod-hud-parceiro {
+    display: inline-flex;
+    align-items: center;
+    background: #f0f8f0;
+    border: 1px solid #b0d0b0;
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: #1a4a1a;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* --- ANOTAÇÕES DE ITEM (botão lápis + textarea) --- */
+.item-note-area {
+    animation: slideDown 0.18s ease;
+}
+
+.item-note-area .inp-note {
+    font-size: 0.8rem;
+    background: #fffef5;
+    border: 1px solid #ffc10730 !important;
+    border-left: 3px solid #ffc107 !important;
+    border-radius: 4px;
+    resize: vertical;
+    color: #555;
+}
+
+.item-note-area .inp-note:focus {
+    background: #fffff8;
+    border-color: #ffc107 !important;
+    box-shadow: 0 0 0 0.15rem rgba(255, 193, 7, 0.2);
+}
+
+.item-note-btn.text-warning {
+    color: #e6a800 !important;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Destaque de perícias por classe ──────────────────────────────── */
+.skill-row[style*="background"] {
+    border-left: 3px solid #dc3545 !important;
+}
+
+/* ── Drag da imagem ───────────────────────────────────────────────── */
+.char-img-container img {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.char-img-container:has(img[src*="data:image/jpeg"]),
+.char-img-container:has(img[src*="data:image/png"]),
+.char-img-container:has(img[src*="data:image/webp"]) {
+    cursor: grab;
+}
+
+.char-img-container:has(img[src*="data:image/jpeg"]):active,
+.char-img-container:has(img[src*="data:image/png"]):active,
+.char-img-container:has(img[src*="data:image/webp"]):active {
+    cursor: grabbing;
+}
+
+/* ── Agrupamento de perícias por atributo ─────────────────────────── */
+.skill-group-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+#btnGroupSkills.active {
+    background: rgba(255, 255, 255, 0.35) !important;
+    font-weight: 700;
+}
+
+/* ── Abas de Anotações ──────────────────────────────────────────── */
+#notesTabs .nav-link {
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    border-radius: 0 !important;
+    padding: 4px 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+    color: #666;
+}
+#notesTabs .nav-link.active {
+    color: var(--t20-red) !important;
+    border-bottom-color: var(--t20-red) !important;
+}
+#notesTabs .nav-link:hover:not(.active) {
+    color: var(--t20-red) !important;
+    border-bottom-color: rgba(224, 72, 63, 0.3) !important;
+}
+
+/* ==========================================================================
+   ARTON & JDA PREMIUM DARK & GOLD THEME OVERRIDES (REDESIGN PREMIUM)
+   ========================================================================== */
+
+/* 1. Global Light Theme Styles and Smooth Transition System */
+body {
+    background-color: #f4f3f0 !important; /* Soft parchment/paper-like light background */
+    color: #212529 !important;
+    font-family: 'Segoe UI', sans-serif !important;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+body, 
+.sheet, 
+.form-control, 
+.form-select, 
+.t20-input, 
+.note-area, 
+.am-input, 
+.am-select, 
+.am-textarea, 
+.inp-note, 
+.inp-name, 
+.inp-bonus, 
+.inp-penalty, 
+.skill-row, 
+.status-card, 
+#attacksSection, 
+#defenseSection, 
+#abilitiesSection, 
+#spellsSection, 
+#skillsSection, 
+#inventorySection, 
+#notesSection {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Chevron buttons for details expansion in Light Mode */
+.btn-toggle-details {
+    background: transparent !important;
+    border: none !important;
+    color: var(--t20-red) !important; /* Classic red (#b22222) */
+    font-size: 1.1rem !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+}
+.btn-toggle-details:hover {
+    color: #8b0000 !important;
+    transform: scale(1.15) !important;
+}
+
+body.theme-blood {
+    /* Tema Padrão (Sangue) - Fundo Claro com detalhes em Vermelho */
+    --ouro: #e0483f;
+    --ouro-glow: rgba(224, 72, 63, 0.2);
+    --ouro-dark: #b22222;
+}
+
+/* 2. Premium Dark & Gold Theme Overrides */
+body.theme-dark {
+    /* Paleta Dark & Gold de Tormenta20 */
+    --t20-red: #e0483f;
+    --t20-red-dark: #8b0000;
+    --ouro: #c9933a;
+    --ouro-glow: rgba(201, 147, 58, 0.22);
+    --ouro-dark: #e8bc60;
+    --bg-principal: #06070c;
+    --bg-radial: radial-gradient(circle at center, #0b0e1a 0%, #06070c 100%);
+    --bg-card: rgba(18, 23, 38, 0.72);
+    --bg-card-solid: #121621;
+    --borda-card: rgba(201, 147, 58, 0.2);
+    --borda-card-hover: rgba(201, 147, 58, 0.35);
+    --texto-principal: #e2d8c3;
+    --texto-secundario: #8e7d65;
+    --text-muted: #8e7d65;
+
+    /* Global & Body overrides under dark mode */
+    background-color: var(--bg-principal) !important;
+    background-image: var(--bg-radial) !important;
+    color: var(--texto-principal) !important;
+
+    .text-muted {
+        color: #94a3b8 !important;
+    }
+
+    /* Scrollbar Custom */
+    &::-webkit-scrollbar-track {
+        background: #0b0d14;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #1e2436;
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--ouro-dark);
+    }
+
+    /* Container da Ficha (Sheet) */
+    .sheet {
+        background-color: var(--bg-card) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--borda-card) !important;
+        border-top: 5px solid var(--ouro) !important;
+        color: var(--texto-principal) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+    }
+    .sheet:hover {
+        border-color: var(--borda-card-hover) !important;
+    }
+
+    /* Títulos e Subtítulos */
+    h1, h2, h3, h4, h5, h6, .fs-4, .fw-bold.text-danger {
+        font-family: "Tormenta", serif !important;
+        color: var(--ouro) !important;
+        text-shadow: 0 0 10px var(--ouro-glow) !important;
+    }
+    .fw-bold.text-danger.fst-italic {
+        font-family: 'Tormenta', 'Cinzel Decorative', serif !important;
+    }
+
+    /* Rótulos de Seção e Status Flutuantes */
+    .t20-section-title,
+    .t20-status-label,
+    .t20-mini-label {
+        background-color: var(--bg-card-solid) !important;
+        color: var(--ouro) !important;
+        border: 1px solid var(--borda-card) !important;
+        border-radius: 4px;
+        padding: 1px 6px !important;
+        font-size: 0.72rem !important;
+        text-shadow: 0 0 5px rgba(255, 213, 79, 0.2) !important;
+    }
+
+    /* Rótulo de Atributo */
+    .t20-label {
+        color: var(--ouro-dark) !important;
+        font-weight: 700;
+    }
+
+    /* Painéis Principais (Cards) */
+    #attacksSection, 
+    #defenseSection, 
+    #abilitiesSection, 
+    #spellsSection, 
+    #skillsSection, 
+    #inventorySection, 
+    #notesSection {
+        background-color: rgba(22, 28, 43, 0.6) !important;
+        border: 1px solid var(--borda-card) !important;
+        border-radius: 12px !important;
+        color: var(--texto-principal) !important;
+    }
+    #attacksSection:hover, 
+    #defenseSection:hover, 
+    #abilitiesSection:hover, 
+    #spellsSection:hover, 
+    #skillsSection:hover, 
+    #inventorySection:hover, 
+    #notesSection:hover {
+        border-color: var(--borda-card-hover) !important;
+    }
+
+    /* Inputs, Formulários e Controles */
+    .form-control, 
+    .form-select, 
+    .t20-input, 
+    .note-area, 
+    .am-input, 
+    .am-select, 
+    .am-textarea, 
+    .inp-note, 
+    .inp-name, 
+    .inp-bonus, 
+    .inp-penalty, 
+    .skill-row input {
+        background-color: rgba(7, 8, 12, 0.6) !important;
+        border: 1px solid rgba(255, 213, 79, 0.2) !important;
+        color: var(--texto-principal) !important;
+        border-radius: 6px;
+    }
+    .form-control::placeholder, 
+    .t20-input::placeholder, 
+    .am-input::placeholder, 
+    .am-textarea::placeholder {
+        color: var(--text-muted) !important;
+    }
+    .form-control:focus, 
+    .form-select:focus, 
+    .t20-input:focus, 
+    .note-area:focus, 
+    .am-input:focus, 
+    .am-select:focus, 
+    .am-textarea:focus, 
+    .inp-note:focus, 
+    .inp-name:focus, 
+    .inp-bonus:focus, 
+    .inp-penalty:focus, 
+    .skill-row input:focus {
+        background-color: rgba(7, 8, 12, 0.85) !important;
+        border-color: var(--ouro) !important;
+        box-shadow: 0 0 10px rgba(255, 213, 79, 0.35) !important;
+        color: #fff !important;
+    }
+
+    /* Caso especial de inputs de atributo customizados */
+    .t20-input.fw-bold.text-danger {
+        color: var(--t20-red) !important;
+    }
+
+    /* Atributos (Tokens Circulares e Controles) */
+    .attr-token {
+        border: 4px solid var(--ouro-dark) !important;
+        box-shadow: 0 0 15px rgba(255, 213, 79, 0.15) !important;
+        background-color: rgba(7, 8, 12, 0.3) !important;
+    }
+    .attr-token:hover {
+        border-color: var(--ouro) !important;
+        box-shadow: 0 0 20px rgba(255, 213, 79, 0.3) !important;
+        transform: scale(1.05);
+    }
+    .attr-token::before {
+        background-color: rgba(0, 0, 0, 0.15) !important;
+    }
+    .attr-val {
+        color: var(--ouro) !important;
+        text-shadow: 2px 2px 0px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000 !important;
+    }
+    .attr-footer-label {
+        color: var(--ouro) !important;
+        text-shadow: 1px 1px 2px #000 !important;
+    }
+
+    /* Botões flutuantes de ajuste de atributo */
+    .attr-btn-float {
+        background-color: var(--bg-card-solid) !important;
+        color: var(--ouro) !important;
+        border: 1px solid var(--ouro-dark) !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.5) !important;
+    }
+    .attr-btn-float:hover {
+        background-color: var(--ouro) !important;
+        color: #000 !important;
+        border-color: var(--ouro) !important;
+        transform: translateX(-50%) scale(1.1) !important;
+    }
+
+    /* Status Cards (Barras PV / PM) */
+    .status-card {
+        background-color: rgba(7, 8, 12, 0.5) !important;
+        border: 1px solid var(--borda-card) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+    }
+    .bar-hp {
+        background: linear-gradient(90deg, #8b0000 0%, #dc3545 100%) !important;
+        opacity: 0.75 !important;
+    }
+    .bar-mp {
+        background: linear-gradient(90deg, #104e8b 0%, #0d6efd 100%) !important;
+        opacity: 0.75 !important;
+    }
+    .status-card input {
+        color: #fff !important;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.15) !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+    }
+    .status-card input:focus {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        border-bottom-color: var(--ouro) !important;
+    }
+    .vr {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Tabela de Perícias */
+    #skillsSection {
+        background-color: rgba(18, 22, 33, 0.95) !important;
+    }
+    #skillsSection .bg-light {
+        background-color: transparent !important;
+    }
+
+    /* Rótulo do Cabeçalho de Perícias (Cinzel) */
+    #skillsSection > div:first-child {
+        background-color: var(--t20-red-dark) !important;
+        border-bottom: 2px solid var(--ouro-dark) !important;
+        border-top-left-radius: 11px !important;
+        border-top-right-radius: 11px !important;
+    }
+    #skillsSection > div:first-child span {
+        font-family: "Tormenta", serif !important;
+        letter-spacing: 1px;
+    }
+
+    /* Filtro de classe e agrupador */
+    #classSkillSelect {
+        background-color: rgba(7, 8, 12, 0.7) !important;
+        color: var(--ouro) !important;
+        border: 1px solid rgba(255, 213, 79, 0.3) !important;
+    }
+    #classSkillSelect option {
+        background-color: var(--bg-card-solid) !important;
+        color: var(--texto-principal) !important;
+    }
+    #btnGroupSkills {
+        background-color: rgba(7, 8, 12, 0.5) !important;
+        color: var(--ouro) !important;
+        border: 1px solid rgba(255, 213, 79, 0.3) !important;
+    }
+    #btnGroupSkills:hover,
+    #btnGroupSkills.active {
+        background-color: var(--ouro) !important;
+        color: #000 !important;
+        border-color: var(--ouro) !important;
+    }
+
+    /* Cabeçalho da tabela */
+    #skillsSection .skills-content > div:first-child.row {
+        border-bottom: 2px solid var(--ouro-dark) !important;
+        color: var(--ouro) !important;
+        font-family: "Tormenta", serif !important;
+        text-transform: uppercase;
+        font-size: 0.75rem !important;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+    }
+    #skillsSection .skills-content > div:first-child.row .text-danger {
+        color: var(--ouro) !important;
+        font-weight: bold;
+    }
+    #skillsSection .skills-content > div:first-child.row .text-muted {
+        color: #cbd5e1 !important;
+        font-weight: bold;
+    }
+
+    /* Linhas de perícias */
+    .skill-row {
+        background-color: rgba(22, 28, 43, 0.45) !important;
+        color: #e2e8f0 !important;
+        border-bottom: 1px solid rgba(255, 213, 79, 0.08) !important;
+    }
+    .skill-row:nth-child(even) {
+        background-color: rgba(7, 8, 12, 0.35) !important;
+    }
+    .skill-row:hover {
+        background-color: rgba(255, 213, 79, 0.08) !important;
+    }
+
+    .skill-row span.fw-bold {
+        color: #f8fafc !important;
+    }
+
+    /* Checkboxes na tabela de perícias */
+    #skillsSection .form-check-input.border-dark {
+        border-color: rgba(255, 213, 79, 0.4) !important;
+        background-color: rgba(7, 8, 12, 0.6) !important;
+    }
+    #skillsSection .form-check-input:checked {
+        background-color: var(--ouro) !important;
+        border-color: var(--ouro) !important;
+    }
+
+    /* Dado/Ícone de rolar */
+    .skill-row .dice-roller {
+        color: #a0aec0 !important;
+        cursor: pointer;
+    }
+    .skill-row .dice-roller:hover {
+        color: var(--ouro) !important;
+        transform: scale(1.2);
+    }
+
+    /* Dropdown de atributo da perícia */
+    .skill-row select.text-muted {
+        color: var(--ouro) !important;
+        font-weight: bold !important;
+        opacity: 0.8;
+    }
+    .skill-row select.text-muted:hover,
+    .skill-row select.text-muted:focus {
+        color: #fff !important;
+        opacity: 1;
+    }
+
+    /* Coluna TOTAL */
+    .skill-row .col-2.text-danger,
+    .skill-row [id^="skTotal"] {
+        color: var(--ouro) !important;
+        font-weight: 800 !important;
+        font-size: 1.15rem !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    /* Colunas secundárias */
+    .skill-row .text-muted.small {
+        color: #cbd5e1 !important;
+        font-weight: 700 !important;
+        font-size: 0.82rem !important;
+    }
+    .skill-row [id^="skHalfLevel"] {
+        color: #94a3b8 !important;
+        font-weight: 600 !important;
+        font-size: 0.82rem !important;
+    }
+    .skill-row [id^="skAttrVal"] {
+        color: #cbd5e1 !important;
+        font-weight: 700 !important;
+        font-size: 0.82rem !important;
+    }
+    .skill-row [id^="skTrainVal"] {
+        font-weight: 700 !important;
+        font-size: 0.82rem !important;
+    }
+
+    .text-success-custom {
+        color: #4ade80 !important;
+    }
+    .text-muted-custom {
+        color: #475569 !important;
+    }
+    .text-unusable-custom {
+        color: #475569 !important;
+        opacity: 0.4 !important;
+        text-shadow: none !important;
+    }
+
+    /* Inputs da linha de perícia */
+    .skill-row input[type="number"] {
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px dashed rgba(255, 213, 79, 0.3) !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        width: 100% !important;
+        height: 20px !important;
+        font-size: 0.82rem !important;
+    }
+    .skill-row input[type="number"]:focus {
+        outline: none !important;
+        border-bottom: 1px solid var(--ouro) !important;
+        box-shadow: none !important;
+    }
+    .skill-row input[type="text"] {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        color: #fff !important;
+        font-weight: bold !important;
+    }
+    .skill-row input[type="text"]:focus {
+        background-color: rgba(7, 8, 12, 0.4) !important;
+        border-bottom: 1px solid var(--ouro) !important;
+    }
+    .skill-row input::placeholder {
+        color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* Campo especialidade de Ofício */
+    .skill-row .oficio-specialty {
+        color: var(--ouro-dark) !important;
+        font-style: italic;
+        background-color: transparent !important;
+        border: none !important;
+    }
+    .skill-row .oficio-specialty:focus {
+        color: var(--ouro) !important;
+        background-color: rgba(7, 8, 12, 0.4) !important;
+    }
+
+    /* Estilo de perícias de classe */
+    .skill-row[style*="background"] {
+        background-color: rgba(220, 53, 69, 0.08) !important;
+        border-left: 4px solid var(--t20-red) !important;
+    }
+
+    /* Defesa e Outros Modificadores */
+    .def-shield {
+        background: rgba(7, 8, 12, 0.8) !important;
+        border: 3px solid var(--ouro) !important;
+        color: var(--ouro) !important;
+        text-shadow: 0 0 10px rgba(255, 213, 79, 0.4) !important;
+        box-shadow: 0 4px 12px rgba(255, 213, 79, 0.1) !important;
+    }
+    .def-formula, .def-extras h6 {
+        color: var(--texto-secundario) !important;
+    }
+    .fixed-slot {
+        background-color: rgba(22, 28, 43, 0.4) !important;
+        border: 1px solid var(--borda-card) !important;
+        color: var(--texto-principal) !important;
+    }
+    .fixed-slot.armor {
+        border-left: 5px solid var(--t20-red) !important;
+    }
+    .fixed-slot.shield {
+        border-left: 5px solid #0d6efd !important;
+    }
+
+    /* Magias e Grimório */
+    .spells-content .bg-light {
+        background-color: transparent !important;
+    }
+    .spell-row {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    .spell-details {
+        background-color: rgba(111, 66, 193, 0.08) !important;
+        border-left: 4px solid #a78bfa !important;
+    }
+    .spell-row .inp-pm {
+        color: var(--ouro) !important;
+    }
+    .spell-label {
+        color: #a78bfa !important; /* Made brighter for readability in dark mode */
+    }
+
+    /* Redesign do bloco de CD e títulos de Magias */
+    #spellsSection .t20-section-title[style*="color: #6f42c1"],
+    #spellsSection .t20-section-title {
+        color: #a78bfa !important;
+        border-color: #a78bfa !important;
+    }
+
+    #spellsSection .def-shield[style*="border-color: #6f42c1"],
+    #spellsSection .def-shield {
+        background: rgba(7, 8, 12, 0.8) !important;
+        border-color: var(--ouro) !important;
+        color: var(--ouro) !important;
+        text-shadow: 0 0 10px rgba(255, 213, 79, 0.4) !important;
+        box-shadow: 0 4px 12px rgba(255, 213, 79, 0.1) !important;
+    }
+
+    #spellsSection .spells-content > div:first-child {
+        background-color: rgba(22, 28, 43, 0.4) !important;
+        border: 1px solid rgba(255, 213, 79, 0.15) !important;
+        border-radius: 8px !important;
+    }
+
+    #spellsSection .spells-content div[style*="border-left: 4px solid #6f42c1"] {
+        border-left-color: #a78bfa !important;
+        background-color: rgba(22, 28, 43, 0.5) !important;
+        border-color: rgba(255, 213, 79, 0.15) !important;
+    }
+
+    #spellsSection .spells-content span[style*="color: #6f42c1"],
+    #spellsSection .spells-content span[style*="color:#6f42c1"],
+    #spellsSection .spells-content .fw-bold.small.text-uppercase {
+        color: #cbd5e1 !important;
+    }
+
+    #spellsSection .spells-content button[style*="color: #6f42c1"],
+    #spellsSection .spells-content button[style*="color:#6f42c1"] {
+        color: #a78bfa !important;
+    }
+
+    #spellCDAttrVal {
+        color: #a78bfa !important;
+        font-weight: bold !important;
+    }
+    #spellCDTotal {
+        color: var(--ouro) !important;
+        font-weight: bold !important;
+    }
+
+    /* Aba de Ameaça (Bestiário) */
+    .ameaca-sheet {
+        color: var(--texto-principal) !important;
+    }
+    .ameaca-nome-input {
+        color: var(--ouro) !important;
+        border-bottom-color: rgba(255, 213, 79, 0.2) !important;
+    }
+    .ameaca-nome-input:focus {
+        border-bottom-color: var(--ouro) !important;
+    }
+    .ameaca-tipo-input, 
+    .ameaca-inline-input, 
+    .ameaca-val-input, 
+    .ameaca-attr-input {
+        color: var(--texto-principal) !important;
+        border-bottom-color: rgba(255, 213, 79, 0.2) !important;
+    }
+    .ameaca-tipo-input:focus, 
+    .ameaca-inline-input:focus, 
+    .ameaca-val-input:focus, 
+    .ameaca-attr-input:focus {
+        border-bottom-color: var(--ouro) !important;
+    }
+    .ameaca-key {
+        color: var(--ouro) !important;
+        text-shadow: 0 0 5px rgba(255, 213, 79, 0.1) !important;
+    }
+    .ameaca-sep, .am-paren {
+        color: var(--texto-secundario) !important;
+    }
+    .am-row {
+        border-bottom-color: rgba(255, 213, 79, 0.08) !important;
+    }
+    .ameaca-atributos-linha, 
+    .ameaca-bloco-atributos {
+        background: rgba(7, 8, 12, 0.5) !important;
+        border: 1px solid var(--borda-card) !important;
+    }
+    .ameaca-hr {
+        border-top: 1px solid rgba(255, 213, 79, 0.1) !important;
+    }
+
+    /* Modificadores e Aliados */
+    .mods-card {
+        background-color: rgba(22, 28, 43, 0.5) !important;
+        border: 1px solid var(--borda-card) !important;
+        color: var(--texto-principal) !important;
+    }
+    .mods-card-title {
+        color: var(--ouro) !important;
+    }
+    .mods-globais-grid .mods-campo label {
+        color: var(--texto-secundario) !important;
+    }
+    .mods-input {
+        background-color: rgba(7, 8, 12, 0.6) !important;
+        border: 2px solid rgba(255, 213, 79, 0.2) !important;
+        color: var(--ouro) !important;
+    }
+    .mods-input:focus {
+        border-color: var(--ouro) !important;
+    }
+    .mods-input:not(:placeholder-shown),
+    .mods-input.has-value {
+        border-color: var(--t20-red) !important;
+        background-color: rgba(224, 72, 63, 0.08) !important;
+    }
+
+    /* Assinatura e Créditos */
+    .sig-card {
+        background: var(--bg-card-solid) !important;
+        border-color: var(--borda-card) !important;
+        color: var(--texto-principal) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    }
+    .sig-body {
+        background: rgba(7, 8, 12, 0.6) !important;
+    }
+    .sig-hero, .sig-col {
+        background: var(--bg-card-solid) !important;
+        border-color: var(--borda-card) !important;
+        color: var(--texto-principal) !important;
+    }
+    .sig-h3, .sig-h4, .sig-p, .sig-link-name, .sig-footer-text {
+        color: var(--texto-principal) !important;
+    }
+    .sig-summary {
+        background: #1c2436 !important;
+        color: var(--ouro) !important;
+    }
+    .sig-summary::after {
+        background: var(--ouro) !important;
+    }
+    .sig-link {
+        background: rgba(22, 28, 43, 0.8) !important;
+        border-color: var(--borda-card) !important;
+    }
+    .sig-link:hover {
+        border-color: var(--ouro) !important;
+        box-shadow: 0 5px 15px rgba(255, 213, 79, 0.1) !important;
+    }
+
+    /* Modais (Grimório, Perícias, etc.) */
+    #modalImportarPericias > div, 
+    #modalGrimorio > div, 
+    #modalGeral > div {
+        background: var(--bg-card-solid) !important;
+        color: #fff !important;
+        border: 2px solid var(--ouro) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+    }
+    #modalImportarPericias div, 
+    #modalGrimorio div, 
+    #modalGeral div {
+        border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+    .list-group-item, 
+    .list-group-item-action {
+        background-color: rgba(22, 28, 43, 0.7) !important;
+        color: var(--texto-principal) !important;
+        border-color: rgba(255, 255, 255, 0.05) !important;
+    }
+    .list-group-item:hover, 
+    .list-group-item-action:hover {
+        background-color: rgba(255, 213, 79, 0.08) !important;
+        color: #fff !important;
+    }
+
+    /* Toasts e Notificações */
+    .toast {
+        background: rgba(18, 22, 33, 0.95) !important;
+        border: 1px solid var(--borda-card) !important;
+        border-left: 4px solid var(--ouro) !important;
+        border-radius: 8px !important;
+        color: var(--texto-principal) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    }
+    .toast-header {
+        background: rgba(7, 8, 12, 0.5) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: var(--ouro) !important;
+    }
+    .toast-body {
+        color: #fff !important;
+    }
+
+    /* Bootstrap Buttons Estilo Tormenta */
+    .btn-outline-danger {
+        color: var(--t20-red) !important;
+        border-color: var(--t20-red) !important;
+    }
+    .btn-outline-danger:hover {
+        background-color: var(--t20-red) !important;
+        color: #fff !important;
+    }
+    .btn-outline-primary {
+        color: #5ea1ff !important;
+        border-color: #5ea1ff !important;
+    }
+    .btn-outline-primary:hover {
+        background-color: #5ea1ff !important;
+        color: #000 !important;
+    }
+    .btn-outline-warning {
+        color: var(--ouro) !important;
+        border-color: var(--ouro) !important;
+    }
+    .btn-outline-warning:hover {
+        background-color: var(--ouro) !important;
+        color: #000 !important;
+    }
+    .btn-outline-dark {
+        color: var(--ouro) !important;
+        border-color: var(--ouro) !important;
+    }
+    .btn-outline-dark:hover {
+        background-color: var(--ouro) !important;
+        color: #000 !important;
+    }
+    .btn-add, .btn-dark {
+        background-color: rgba(255, 213, 79, 0.08) !important;
+        border: 1px solid var(--ouro-dark) !important;
+        color: var(--ouro) !important;
+    }
+    .btn-add:hover, .btn-dark:hover {
+        background-color: var(--ouro) !important;
+        color: #000 !important;
+        border-color: var(--ouro) !important;
+    }
+
+    /* Abas da Ficha */
+    .sheet-tabs .nav-link {
+        color: var(--texto-secundario) !important;
+        border-bottom: 2px solid transparent !important;
+    }
+    .sheet-tabs .nav-link.active {
+        color: var(--ouro) !important;
+        border-color: var(--ouro) !important;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.03) !important;
+    }
+    .sheet-tabs .nav-link:hover:not(.active) {
+        color: var(--ouro-dark) !important;
+        border-color: rgba(255, 213, 79, 0.2) !important;
+    }
+
+    /* Outros pequenos detalhes */
+    .ab-extras .border {
+        border-color: var(--borda-card) !important;
+        background-color: rgba(7, 8, 12, 0.4) !important;
+    }
+    .ab-extras label {
+        color: var(--ouro-dark) !important;
+    }
+    .border-top.border-secondary {
+        border-color: rgba(255, 213, 79, 0.1) !important;
+    }
+    .list-group-item.ability-row {
+        background-color: rgba(18, 22, 33, 0.4) !important;
+        border-color: rgba(255, 255, 255, 0.05) !important;
+    }
+    .list-group-item.ability-row:hover {
+        background-color: rgba(255, 213, 79, 0.04) !important;
+    }
+    .section-title-small {
+        color: var(--ouro) !important;
+        font-weight: bold;
+    }
+    .item-note-area .inp-note {
+        background-color: rgba(7, 8, 12, 0.9) !important;
+        color: #eee !important;
+        border-left: 3px solid var(--ouro) !important;
+    }
+
+    /* Modificadores Temporários - Ajustes Específicos */
+    .mods-card .border-primary {
+        border-color: var(--ouro-dark) !important;
+    }
+    .mods-card .bg-white {
+        background-color: rgba(7, 8, 12, 0.4) !important;
+    }
+    .mods-card .text-primary {
+        color: var(--ouro) !important;
+    }
+    .mods-card .bg-light {
+        background-color: rgba(7, 8, 12, 0.2) !important;
+        color: #fff !important;
+    }
+    .mods-card-title.bg-primary,
+    .mods-card-title.bg-warning-subtle,
+    .mods-card-title.bg-danger {
+        background-color: rgba(7, 8, 12, 0.85) !important;
+        color: var(--ouro) !important;
+        border-bottom: 2px solid var(--ouro-dark) !important;
+        text-shadow: 0 0 5px rgba(255, 213, 79, 0.3) !important;
+    }
+    .mods-card.border-primary-subtle,
+    .mods-card.border-warning-subtle,
+    .mods-card.border-danger-subtle {
+        border-color: var(--borda-card) !important;
+    }
+
+    /* Condições de Jogo Checklist */
+    #condicoes-grid .form-check.bg-white {
+        background-color: rgba(7, 8, 12, 0.4) !important;
+        border-color: var(--borda-card) !important;
+        color: var(--texto-principal) !important;
+    }
+    #condicoes-grid .form-check.bg-white:hover {
+        background-color: rgba(255, 213, 79, 0.08) !important;
+        border-color: var(--ouro) !important;
+    }
+    #condicoes-grid .form-check-label {
+        color: var(--texto-principal) !important;
+    }
+
+    /* Ficha de Ameaça Headers e ND */
+    .ameaca-header {
+        border-bottom: 3px solid var(--t20-red) !important;
+    }
+    .ameaca-nd-badge {
+        background-color: var(--t20-red-dark) !important;
+        border: 1px solid var(--ouro) !important;
+        box-shadow: 0 0 10px rgba(255, 213, 79, 0.15) !important;
+    }
+    .ameaca-key-titulo, .ameaca-chave-titulo {
+        color: var(--ouro) !important;
+        font-family: "Tormenta", serif !important;
+    }
+    .am-per-row .am-per-nome {
+        color: var(--texto-principal) !important;
+        border-bottom: 1px dashed rgba(255, 213, 79, 0.3) !important;
+    }
+    .am-per-row .am-per-nome:focus {
+        border-bottom-color: var(--ouro) !important;
+    }
+    .am-per-row .am-per-valor {
+        color: var(--ouro) !important;
+        border-bottom: 1px dashed rgba(255, 213, 79, 0.3) !important;
+    }
+    .am-per-row .am-per-valor:focus {
+        border-bottom-color: var(--ouro) !important;
+    }
+
+    /* Modais Header & Elementos Internos */
+    #modalGrimorio > div > div:first-child,
+    #modalGeral > div > div:first-child,
+    #modalImportarPericias > div > div:first-child {
+        background: rgba(7, 8, 12, 0.95) !important;
+        border-bottom: 2px solid var(--ouro-dark) !important;
+    }
+    #modalGrimorio strong,
+    #modalGeral strong,
+    #modalImportarPericias strong {
+        font-family: "Tormenta", serif !important;
+        color: var(--ouro) !important;
+    }
+    #modalGrimorio > div > div,
+    #modalGeral > div > div,
+    #modalImportarPericias > div > div {
+        border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* Lista de Magias Busca */
+    #listaMagiasBusca .hover-bg-light {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        background-color: transparent !important;
+    }
+    #listaMagiasBusca .hover-bg-light:hover {
+        background-color: rgba(255, 213, 79, 0.08) !important;
+    }
+    #listaMagiasBusca .fw-bold {
+        color: var(--ouro) !important;
+    }
+    #listaMagiasBusca .text-muted {
+        color: var(--texto-secundario) !important;
+    }
+    #listaMagiasBusca .text-primary {
+        color: var(--ouro) !important;
+    }
+
+    /* Lista de Ameaças Oficiais */
+    #listaAmeacas button {
+        border-color: rgba(255, 213, 79, 0.2) !important;
+        color: var(--texto-principal) !important;
+    }
+    #listaAmeacas button:hover {
+        background-color: rgba(255, 213, 79, 0.08) !important;
+        border-color: var(--ouro) !important;
+        color: #fff !important;
+    }
+    #listaAmeacas .text-muted {
+        color: var(--texto-secundario) !important;
+    }
+    #listaAmeacas .badge.bg-danger {
+        background-color: var(--t20-red-dark) !important;
+        color: var(--ouro) !important;
+        border: 1px solid var(--ouro-dark) !important;
+    }
+    #listaAmeacas .badge.bg-secondary {
+        background-color: rgba(7, 8, 12, 0.8) !important;
+        color: var(--texto-secundario) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Lista de Perícias para Importar */
+    #pericias-import-list label {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        color: var(--texto-principal) !important;
+    }
+    #pericias-import-list label:hover {
+        background-color: rgba(255, 213, 79, 0.05) !important;
+    }
+    #pericias-import-list .text-danger {
+        color: var(--ouro) !important;
+    }
+
+    /* Botões Secundários */
+    .btn-outline-secondary {
+        color: var(--texto-secundario) !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    .btn-outline-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #fff !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .btn-secondary {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: var(--texto-principal) !important;
+    }
+    .btn-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        color: #fff !important;
+    }
+
+    /* Custom overrides for inventory carga div and notes tabs (fix white backgrounds) */
+    #inventorySection .bg-light {
+        background-color: rgba(7, 8, 12, 0.4) !important;
+        border-color: var(--borda-card) !important;
+    }
+    #inventorySection .input-group-text {
+        background-color: rgba(7, 8, 12, 0.6) !important;
+        color: var(--texto-principal) !important;
+        border: 1px solid rgba(255, 213, 79, 0.15) !important;
+    }
+    #inventorySection .input-group-text.bg-white {
+        background-color: rgba(7, 8, 12, 0.8) !important;
+        color: var(--ouro) !important;
+        font-weight: bold !important;
+        border: 1px solid rgba(255, 213, 79, 0.2) !important;
+    }
+    #inventorySection .input-group-text.bg-secondary {
+        background-color: rgba(7, 8, 12, 0.8) !important;
+        color: var(--texto-secundario) !important;
+    }
+
+    #notesTabs .nav-link {
+        color: var(--texto-secundario) !important;
+        background-color: transparent !important;
+        border: none !important;
+        border-bottom: 2px solid transparent !important;
+        border-radius: 0 !important;
+        transition: all 0.2s;
+    }
+    #notesTabs .nav-link.active {
+        color: var(--ouro) !important;
+        border-bottom: 2px solid var(--ouro) !important;
+        background-color: rgba(255, 213, 79, 0.1) !important;
+    }
+    #notesTabs .nav-link:hover:not(.active) {
+        color: var(--ouro-dark) !important;
+        border-bottom: 2px solid rgba(255, 213, 79, 0.2) !important;
+    }
+
+    /* Fix White backgrounds in dynamic elements */
+    .atk-details {
+        background-color: rgba(7, 8, 12, 0.5) !important;
+        border-left: 3px solid var(--ouro) !important;
+        color: var(--texto-principal) !important;
+    }
+    .form-label-sm {
+        color: var(--texto-secundario) !important;
+        border-top: 1px solid rgba(255, 213, 79, 0.15) !important;
+    }
+    .btn-toggle-details {
+        color: var(--ouro) !important;
+    }
+    .btn-toggle-details:hover {
+        color: #fff !important;
+        text-shadow: 0 0 10px var(--ouro-glow) !important;
+        transform: scale(1.15) !important;
+    }
+}
+
+/* 3. Classic Theme Overrides (Original STR / T20 JdA style) */
+.theme-classic {
+  --t20-red: #c0392b;
+  --t20-red-dark: #8b1a1a;
+  --ouro: #c9933a;
+  --ouro-glow: rgba(201, 147, 58, 0.15);
+  --bg-principal: #f5eedc;
+  --bg-card: rgba(253, 251, 247, 0.95);
+  --bg-card-solid: #fdfbf7;
+  --borda-card: #c5bba8;
+  --borda-card-hover: #8e7a5c;
+  --texto-principal: #2c3e50;
+  --texto-secundario: #5d5245;
+  --text-muted: #7d7265;
+}
+
+.theme-classic body,
+body.theme-classic {
+  background-color: var(--bg-principal) !important;
+  color: var(--texto-principal) !important;
+}
+
+.theme-classic .sheet,
+.theme-classic .card,
+.theme-classic .modal-content,
+.theme-classic .list-group-item,
+.theme-classic .table {
+  background-color: var(--bg-card-solid) !important;
+  color: var(--texto-principal) !important;
+  border-color: var(--borda-card) !important;
+}
+
+.theme-classic .btn-outline-warning {
+  color: #a07226 !important;
+  border-color: #a07226 !important;
+}
+.theme-classic .btn-outline-warning:hover {
+  background-color: #a07226 !important;
+  color: #fff !important;
+  border-color: #a07226 !important;
+}
+
+.theme-classic .btn-outline-danger {
+  color: #c0392b !important;
+  border-color: #c0392b !important;
+}
+.theme-classic .btn-outline-danger:hover {
+  background-color: #c0392b !important;
+  color: #fff !important;
+  border-color: #c0392b !important;
+}
+
+.theme-classic .btn-outline-secondary {
+  color: #5d5245 !important;
+  border-color: #c5bba8 !important;
+}
+.theme-classic .btn-outline-secondary:hover {
+  background-color: #8e7a5c !important;
+  color: #fff !important;
+  border-color: #8e7a5c !important;
+}
+
+.theme-classic .btn-outline-primary {
+  color: #2c3e50 !important;
+  border-color: #2c3e50 !important;
+}
+.theme-classic .btn-outline-primary:hover {
+  background-color: #2c3e50 !important;
+  color: #fff !important;
+  border-color: #2c3e50 !important;
+}
+
+.theme-classic .text-danger,
+.theme-classic .fw-bold.text-danger {
+  color: #c0392b !important;
+}
+
+.theme-classic h1,
+.theme-classic h2,
+.theme-classic h3,
+.theme-classic h4,
+.theme-classic h5,
+.theme-classic h6,
+.theme-classic .fs-4 {
+  color: #2c3e50 !important;
+  text-shadow: none !important;
+}
+
+.theme-classic .t20-section-title,
+.theme-classic .t20-status-label,
+.theme-classic .t20-mini-label {
+  background-color: #fdfbf7 !important;
+  color: #c0392b !important;
+  border: 1px solid #c5bba8 !important;
+  border-radius: 4px !important;
+  padding: 1px 8px !important;
+  font-size: 0.72rem !important;
+  text-shadow: none !important;
+}
+
+/* Caso especial para "PONTOS DE MANA" que usa cores azuis inline */
+.theme-classic .t20-section-title[style*="color: #0d6efd"],
+.theme-classic .t20-mini-label[style*="color: #0d6efd"] {
+  color: #1a5276 !important;
+}
+
+.theme-classic .t20-label {
+  color: #2c3e50 !important;
+}
+
+.theme-classic #attacksSection,
+.theme-classic #defenseSection,
+.theme-classic #abilitiesSection,
+.theme-classic #spellsSection,
+.theme-classic #skillsSection,
+.theme-classic #inventorySection,
+.theme-classic #notesSection {
+  background-color: var(--bg-card-solid) !important;
+  border: 1px solid var(--borda-card) !important;
+  border-left: 3px solid #c0392b !important;
+  border-radius: 12px !important;
+  color: var(--texto-principal) !important;
+}
+.theme-classic #attacksSection:hover,
+.theme-classic #defenseSection:hover,
+.theme-classic #abilitiesSection:hover,
+.theme-classic #spellsSection:hover,
+.theme-classic #skillsSection:hover,
+.theme-classic #inventorySection:hover,
+.theme-classic #notesSection:hover {
+  border-color: #8e7a5c !important;
+}
+
+.theme-classic .form-control,
+.theme-classic .form-select,
+.theme-classic .t20-input,
+.theme-classic .note-area,
+.theme-classic .am-input,
+.theme-classic .am-select,
+.theme-classic .am-textarea,
+.theme-classic .inp-note,
+.theme-classic .inp-name,
+.theme-classic .inp-bonus,
+.theme-classic .inp-penalty,
+.theme-classic .skill-row input {
+  background-color: #faf8f5 !important;
+  border: 1px solid var(--borda-card) !important;
+  color: var(--texto-principal) !important;
+}
+.theme-classic .form-control:focus,
+.theme-classic .form-select:focus,
+.theme-classic .t20-input:focus,
+.theme-classic .note-area:focus,
+.theme-classic .am-input:focus,
+.theme-classic .am-select:focus,
+.theme-classic .am-textarea:focus,
+.theme-classic .inp-note:focus,
+.theme-classic .inp-name:focus,
+.theme-classic .inp-bonus:focus,
+.theme-classic .inp-penalty:focus,
+.theme-classic .skill-row input:focus {
+  background-color: #ffffff !important;
+  border-color: #c9933a !important;
+  box-shadow: 0 0 8px rgba(201, 147, 58, 0.4) !important;
+  color: #2c3e50 !important;
+}
+
+.theme-classic .attr-token {
+  border: 4px solid #c9933a !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  background-color: #fdfbf7 !important;
+}
+.theme-classic .attr-token::before {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+.theme-classic .attr-token:hover {
+  border-color: #c0392b !important;
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3) !important;
+}
+.theme-classic .attr-input-overlay {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+.theme-classic .attr-val:focus {
+  color: #2c3e50 !important;
+}
+.theme-classic .attr-val {
+  color: #c0392b !important;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8) !important;
+}
+.theme-classic .attr-footer-label {
+  color: #2c3e50 !important;
+  text-shadow: none !important;
+}
+
+.theme-classic .status-card {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06) !important;
+}
+
+.theme-classic .attr-btn-float {
+  background-color: #ffffff !important;
+  color: #2c3e50 !important;
+  border: 1px solid #2c3e50 !important;
+}
+.theme-classic .attr-btn-float:hover {
+  background-color: #2c3e50 !important;
+  color: #ffffff !important;
+  border-color: #2c3e50 !important;
+}
+
+.theme-classic .status-card {
+  background-color: var(--bg-card-solid) !important;
+  border: 1px solid var(--borda-card) !important;
+}
+
+.theme-classic .text-muted {
+  color: var(--text-muted) !important;
+}
+
+.theme-classic .bar-hp {
+  background: linear-gradient(90deg, #8b0000 0%, #dc3545 100%) !important;
+}
+.theme-classic .bar-mp {
+  background: linear-gradient(90deg, #1a5276 0%, #3498db 100%) !important;
+}
+.theme-classic .bar-xp {
+  background: linear-gradient(90deg, #7d3c98 0%, #a569bd 100%) !important;
+}
+
+.theme-classic .btn-toggle-details {
+  color: #2c3e50 !important;
+}
+.theme-classic .btn-toggle-details:hover {
+  color: #e74c3c !important;
+}
+
+.theme-classic .section-toggle {
+  color: #c0392b !important;
+}
+
+.theme-classic .form-check-input:checked {
+  background-color: #2c3e50 !important;
+  border-color: #2c3e50 !important;
+}
+
+.theme-classic #notesTabs .nav-link {
+  color: #7d7265 !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+}
+.theme-classic #notesTabs .nav-link.active {
+  color: #c0392b !important;
+  border-bottom-color: #c0392b !important;
+}
+.theme-classic #notesTabs .nav-link:hover:not(.active) {
+  color: #c0392b !important;
+  border-bottom-color: rgba(192, 57, 43, 0.3) !important;
+}
+
+.theme-classic .sheet {
+  border-top: 5px solid #2c3e50 !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.theme-classic .fw-bold.text-danger.fst-italic {
+  color: #c0392b !important;
+}
+
+.theme-classic #charLevel,
+.theme-classic .inp-name,
+.theme-classic #skillsSection > div:first-child span,
+.theme-classic #skillsSection .skills-content > div:first-child.row,
+.theme-classic .skill-row select,
+.theme-classic .skill-row [id^="skAttrVal"],
+.theme-classic .skill-row [id^="skHalfLevel"],
+.theme-classic .ameaca-key,
+.theme-classic .ameaca-key-titulo,
+.theme-classic .ameaca-chave-titulo,
+.theme-classic .ameaca-nome-input,
+.theme-classic .ameaca-nd-label,
+.theme-classic .ameaca-nd-val,
+.theme-classic .ameaca-val-input,
+.theme-classic .ameaca-attr-input,
+.theme-classic .am-input,
+.theme-classic .am-select,
+.theme-classic .am-textarea,
+.theme-classic .am-per-nome,
+.theme-classic .am-per-valor {
+  font-family: "Tormenta", serif !important;
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   LIGHT MODE — Contornos dourados (em vez de azul Bootstrap)
+   ========================================================= */
+body:not(.theme-dark):not(.theme-classic) .btn-outline-primary {
+  border-color: var(--ouro) !important;
+  color: var(--ouro) !important;
+}
+body:not(.theme-dark):not(.theme-classic) .btn-outline-primary:hover {
+  background-color: var(--ouro) !important;
+  border-color: var(--ouro) !important;
+  color: #fff !important;
+}
+body:not(.theme-dark):not(.theme-classic) .btn-primary {
+  background-color: var(--ouro) !important;
+  border-color: var(--ouro) !important;
+}
+body:not(.theme-dark):not(.theme-classic) .btn-primary:hover {
+  background-color: var(--ouro-dark) !important;
+  border-color: var(--ouro-dark) !important;
+}
+body:not(.theme-dark):not(.theme-classic) .text-primary {
+  color: var(--ouro) !important;
+}
+body:not(.theme-dark):not(.theme-classic) .border-primary {
+  border-color: var(--ouro) !important;
+}
+
+body:not(.theme-dark):not(.theme-classic) [id^="mod-attr-"],
+body:not(.theme-dark):not(.theme-classic) [id^="mod-skill-attr-"] {
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 6px !important;
+}
+
+/* ===== THEME SWITCHER (FICHA) ===== */
+.theme-switcher {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+body.theme-dark .theme-switcher {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+body.theme-blood .theme-switcher,
+body.theme-classic .theme-switcher {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  transition: background 0.25s ease, transform 0.1s;
+  opacity: 0.55;
+}
+
+.theme-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.15);
+}
+
+body.theme-classic .theme-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.theme-btn.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+body.theme-classic .theme-btn.active {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+/* --- MODAL BUSCA DE ITENS --- */
+.item-search-container {
+  background: var(--bg-card-solid, #fff);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
+  overflow: hidden;
+}
+
+.item-search-header {
+  background: #8b0000;
+  color: #fff;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  font-family: 'Tormenta', serif !important;
+  letter-spacing: 1px;
+}
+
+.item-search-filters {
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.item-search-filters input {
+  border-radius: 20px;
+  padding-left: 14px;
+  font-size: 0.85rem;
+}
+
+.item-filter-btn {
+  font-size: 0.72rem !important;
+  padding: 2px 10px !important;
+  border-radius: 20px !important;
+  border: 1px solid #ccc !important;
+  background: transparent;
+  color: #555;
+  transition: all 0.15s ease;
+}
+
+.item-filter-btn:hover {
+  background: #f0f0f0;
+  border-color: #999 !important;
+}
+
+.item-filter-btn.active {
+  background: #8b0000 !important;
+  color: #fff !important;
+  border-color: #8b0000 !important;
+}
+
+.item-search-count {
+  padding: 4px 16px;
+  font-size: 0.7rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.item-search-results {
+  overflow-y: auto;
+  padding: 4px 12px 12px;
+  flex: 1;
+  min-height: 200px;
+}
+
+.item-result-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.item-result-row:hover {
+  background: rgba(139, 0, 0, 0.06);
+}
+
+.item-result-row:active {
+  background: rgba(139, 0, 0, 0.12);
+}
+
+.item-result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-result-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-result-meta {
+  font-size: 0.7rem;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-result-badge {
+  font-size: 0.62rem;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.item-result-badge.badge-arma {
+  background: #fef0f0;
+  color: #c0392b;
+  border: 1px solid #f5c6cb;
+}
+
+.item-result-badge.badge-armadura {
+  background: #eaf7ea;
+  color: #198754;
+  border: 1px solid #c3e6cb;
+}
+
+.item-result-badge.badge-escudo {
+  background: #e8f0fe;
+  color: #0d6efd;
+  border: 1px solid #b8daff;
+}
+
+.item-result-badge.badge-item {
+  background: #fff8e1;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.item-result-badge.badge-magico {
+  background: #f3e8ff;
+  color: #6f42c1;
+  border: 1px solid #d6b8ff;
+}
+
+.item-result-add {
+  flex-shrink: 0;
+  color: #8b0000;
+  font-size: 1.1rem;
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+}
+
+.item-result-row:hover .item-result-add {
+  opacity: 1;
+}
+
+.item-result-added {
+  color: #198754 !important;
+  opacity: 1 !important;
+}
+
+/* Dark theme adjustments */
+body.theme-dark .item-search-container {
+  background: #1a1a2e;
+}
+
+body.theme-dark .item-search-filters {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.theme-dark .item-search-filters input {
+  background: #16213e;
+  border-color: #333;
+  color: #eee;
+}
+
+body.theme-dark .item-filter-btn {
+  border-color: #444 !important;
+  color: #aaa;
+}
+
+body.theme-dark .item-filter-btn:hover {
+  background: #16213e;
+  border-color: #666 !important;
+}
+
+body.theme-dark .item-result-row:hover {
+  background: rgba(139, 0, 0, 0.15);
+}
+
+body.theme-dark .item-result-name {
+  color: #eee;
+}
+
+body.theme-dark .item-result-meta {
+  color: #999;
+}
+
+body.theme-dark .item-search-count {
+  color: #777;
+}
+
+body.theme-dark .item-result-row {
+  border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .item-search-container {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 8px;
+  }
+}

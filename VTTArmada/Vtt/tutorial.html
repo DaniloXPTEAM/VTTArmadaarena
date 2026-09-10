@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial — VTTArmada</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ═══ Ajustes específicos do Tutorial (reaproveita as variáveis de style.css) ═══ */
+  html, body { overflow-y: auto; overflow-x: hidden; height: auto; }
+  body { padding-bottom: 4rem; }
+
+  .tut-topbar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.6rem; padding: 0.6rem 1.2rem;
+    background: rgba(26,20,16,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+  .tut-topbar-title { font-family:'Cinzel',serif; font-size:0.8rem; letter-spacing:0.1em; color: var(--gold-light); text-transform: uppercase; white-space: nowrap; }
+  .tut-nav { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; max-width: 76%; }
+  .tut-nav a {
+    font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.05em; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none; padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border); border-radius: 3px; transition: all .2s; white-space:nowrap;
+  }
+  .tut-nav a:hover { color: var(--gold-light); border-color: var(--gold); background: rgba(201,144,58,0.08); }
+
+  .tut-hero { text-align:center; padding: 3.2rem 1.5rem 2rem; }
+  .tut-hero .logo-sub { margin-top: 0.6rem; }
+  .tut-hero p { max-width: 640px; margin: 1.1rem auto 0; color: var(--text-dim); font-size: 1rem; line-height: 1.6; }
+
+  .tut-section { max-width: 980px; margin: 0 auto; padding: 2.6rem 1.5rem; border-top: 1px solid rgba(107,77,42,0.35); }
+  .tut-section:first-of-type { border-top: none; }
+  .tut-section-eyebrow { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.3em; color: var(--text-muted); text-transform: uppercase; }
+  .tut-section h2 { font-family:'Cinzel',serif; font-size:1.5rem; color: var(--gold); letter-spacing:0.03em; margin: 0.35rem 0 0.3rem; }
+  .tut-section > p.lead { color: var(--text-dim); font-size:0.98rem; line-height:1.65; max-width: 720px; margin-bottom: 1.6rem; }
+
+  .icon-svg { width: 46px; height: 46px; stroke: var(--gold); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ─── Cartões genéricos (mouse / seleção) ─── */
+  .info-card {
+    display:flex; gap:1.1rem; align-items:flex-start; background: var(--parch2);
+    border:1px solid var(--border); border-radius:6px; padding:1.1rem 1.3rem; margin-bottom: 1rem;
+  }
+  .info-card .icon-wrap { flex-shrink:0; width:64px; height:64px; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; background: var(--parch3); }
+  .info-card h3 { font-family:'Cinzel',serif; font-size:0.9rem; color: var(--gold-light); letter-spacing:0.04em; margin-bottom:0.35rem; }
+  .info-card p { color: var(--text-dim); font-size:0.9rem; line-height:1.55; }
+  .info-card p + p { margin-top:0.4rem; }
+
+  /* ─── Grade de atalhos ─── */
+  .shortcut-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  .shortcut-card {
+    background: var(--parch2); border:1px solid var(--border); border-radius:6px;
+    padding: 1.2rem 1.3rem 1.3rem; position: relative; display:flex; flex-direction:column; gap:0.6rem;
+  }
+  .shortcut-card-head { display:flex; align-items:center; gap:0.8rem; }
+  .key-badge {
+    font-family:'Cinzel',serif; font-weight:700; font-size:1.05rem; color: var(--gold-light);
+    background: var(--parch3); border: 1px solid var(--border-bright); border-radius:5px;
+    min-width: 2.5rem; padding: 0.35rem 0.6rem; text-align:center; letter-spacing:0.02em;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3), 0 2px 0 rgba(0,0,0,0.35);
+  }
+  .shortcut-card h3 { font-family:'Cinzel',serif; font-size:0.85rem; color: var(--text); letter-spacing:0.03em; }
+  .shortcut-card .icon-wrap { margin-left:auto; width:46px; height:46px; display:flex; align-items:center; justify-content:center; }
+  .shortcut-card p { color: var(--text-dim); font-size:0.86rem; line-height:1.55; }
+  .shortcut-card .req { color: var(--text-muted); font-size:0.78rem; font-style: italic; border-top: 1px dashed var(--border); padding-top:0.5rem; margin-top:0.1rem; }
+  .tag-row { display:flex; gap:0.4rem; flex-wrap:wrap; }
+  .tag-mestre, .tag-jogador, .tag-geral {
+    font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase;
+    padding: 0.16rem 0.5rem; border-radius:2px; border:1px solid;
+  }
+  .tag-geral { color: var(--text-dim); border-color: var(--border-bright); background: rgba(255,255,255,0.03); }
+
+  /* ─── tabela resumo ─── */
+  .tut-table { width:100%; border-collapse: collapse; margin-bottom: 1.8rem; font-size:0.85rem; }
+  .tut-table th, .tut-table td { text-align:left; padding: 0.55rem 0.7rem; border-bottom: 1px solid rgba(107,77,42,0.4); }
+  .tut-table th { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.08em; text-transform:uppercase; color: var(--text-muted); }
+  .tut-table td { color: var(--text-dim); }
+  .tut-table td:first-child { font-family:'Cinzel',serif; color: var(--gold-light); white-space:nowrap; }
+
+  .callout { border-left: 3px solid var(--gold); background: rgba(201,144,58,0.06); padding: 0.9rem 1.1rem; border-radius: 0 4px 4px 0; font-size: 0.88rem; color: var(--text-dim); line-height:1.6; margin: 1.4rem 0; }
+  .callout strong { color: var(--gold-light); }
+
+  .bonus-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:0.8rem; }
+  .bonus-item { background: var(--parch2); border:1px solid var(--border); border-radius:6px; padding:0.85rem 1rem; }
+  .bonus-item .key-badge { font-size:0.78rem; padding:0.2rem 0.45rem; min-width:auto; display:inline-block; margin-right:0.5rem; }
+  .bonus-item p { color: var(--text-dim); font-size:0.82rem; margin-top:0.4rem; line-height:1.5; }
+
+  /* ─── Sumário ─── */
+  .toc { max-width:980px; margin: 0 auto; padding: 0 1.5rem 2.6rem; }
+  .toc-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap:0.6rem; }
+  .toc-grid a {
+    display:flex; align-items:center; gap:0.6rem; text-decoration:none; color: var(--text-dim);
+    background: var(--parch2); border:1px solid var(--border); border-radius:5px; padding:0.6rem 0.8rem;
+    font-size:0.85rem; transition: all .2s;
+  }
+  .toc-grid a:hover { color: var(--gold-light); border-color: var(--gold); }
+  .toc-grid a .emoji { font-size:1.15rem; }
+
+  /* ─── Cartões leves de recurso (usados nas seções de sistemas) ─── */
+  .feature-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.85rem; }
+  .feature-card {
+    background: var(--parch2); border:1px solid var(--border); border-radius:6px;
+    padding: 0.95rem 1.1rem; display:flex; gap:0.7rem; align-items:flex-start;
+  }
+  .feature-card .emoji { font-size:1.3rem; line-height:1; flex-shrink:0; margin-top:0.1rem; }
+  .feature-card h4 { font-family:'Cinzel',serif; font-size:0.78rem; letter-spacing:0.03em; color: var(--gold-light); margin-bottom:0.3rem; }
+  .feature-card p { color: var(--text-dim); font-size:0.82rem; line-height:1.5; }
+  .feature-subgroup { margin-bottom: 1.6rem; }
+  .feature-subgroup > h3 { font-family:'Cinzel',serif; font-size:0.95rem; color: var(--text); letter-spacing:0.02em; margin-bottom:0.7rem; padding-bottom:0.35rem; border-bottom: 1px solid rgba(107,77,42,0.4); }
+
+  .tut-footer { text-align:center; padding: 2.5rem 1.5rem 1rem; color: var(--text-muted); font-size:0.8rem; }
+  .tut-footer a.btn { display:inline-block; margin-top:1rem; text-decoration:none; }
+
+  @media (max-width:640px) {
+    .tut-topbar { flex-direction:column; align-items:flex-start; gap:0.5rem; }
+    .tut-nav { justify-content:flex-start; }
+    .tut-hero { padding: 2rem 1rem 1.4rem; }
+    .logo-rune { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="tut-topbar">
+  <div class="tut-topbar-title">⚔ VTTArmada · Tutorial</div>
+  <nav class="tut-nav">
+    <a href="#conexao">Conexão</a>
+    <a href="#tabuleiro">Tabuleiro</a>
+    <a href="#nevoa">Névoa &amp; Luz</a>
+    <a href="#tokens">Tokens</a>
+    <a href="#atalhos">Atalhos</a>
+    <a href="#desenho">Desenho</a>
+    <a href="#cenas">Cenas</a>
+    <a href="#combate">Combate</a>
+    <a href="#fichas">Fichas</a>
+    <a href="#compendio">Compêndio</a>
+    <a href="#chat">Chat</a>
+    <a href="#audio">Áudio</a>
+    <a href="#bonus">Extras</a>
+  </nav>
+</div>
+
+<div class="tut-hero">
+  <div class="logo-rune">⚔ VTTArmada</div>
+  <div class="logo-sub">Guia Rápido de Mestres e Jogadores</div>
+  <div class="logo-divider"></div>
+  <p>Este guia reúne todos os sistemas do VTTArmada — do básico de conexão à mesa até combate, compêndio, áudio e atalhos. Use o índice abaixo para pular direto ao que precisa, ou role a página inteira pra conhecer tudo que o VTT oferece.</p>
+</div>
+
+<div class="toc">
+  <div class="toc-grid">
+    <a href="#conexao"><span class="emoji">🌐</span> Conexão &amp; Mesa</a>
+    <a href="#tabuleiro"><span class="emoji">🗺️</span> Tabuleiro &amp; Navegação</a>
+    <a href="#nevoa"><span class="emoji">🌫️</span> Névoa, Luz &amp; Visão</a>
+    <a href="#tokens"><span class="emoji">🎯</span> Tokens &amp; Objetos</a>
+    <a href="#selecao"><span class="emoji">🖱️</span> Selecionando Tokens</a>
+    <a href="#atalhos"><span class="emoji">⌨️</span> Atalhos de Teclado</a>
+    <a href="#desenho"><span class="emoji">📐</span> Desenho &amp; Gatilhos</a>
+    <a href="#cenas"><span class="emoji">🗂️</span> Múltiplas Cenas</a>
+    <a href="#reguas"><span class="emoji">📏</span> Réguas &amp; Medição</a>
+    <a href="#combate"><span class="emoji">⚔️</span> Iniciativa &amp; Combate</a>
+    <a href="#fichas"><span class="emoji">📋</span> Fichas de Personagem</a>
+    <a href="#compendio"><span class="emoji">📚</span> Compêndio (Baú)</a>
+    <a href="#encontros"><span class="emoji">🎲</span> Encontros Aleatórios</a>
+    <a href="#chat"><span class="emoji">💬</span> Chat &amp; Rolagens</a>
+    <a href="#macros"><span class="emoji">⚡</span> Macros &amp; Ações Rápidas</a>
+    <a href="#audio"><span class="emoji">🎵</span> Jukebox &amp; Soundboard</a>
+    <a href="#imagens"><span class="emoji">🎨</span> Editor de Imagens</a>
+    <a href="#bonus"><span class="emoji">✨</span> Atalhos Extras</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════ CONEXÃO & MESA ═══════════════════════ -->
+<section class="tut-section" id="conexao">
+  <div class="tut-section-eyebrow">Antes da sessão</div>
+  <h2>Conexão &amp; Mesa</h2>
+  <p class="lead">O VTTArmada roda em P2P (conexão direta entre os navegadores, via WebRTC) — não depende de servidor pago pra sala funcionar.</p>
+
+  <div class="feature-subgroup">
+    <h3>Salas e Papéis</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🔑</span><div><h4>Criar / Entrar em Sala</h4><p>Gere um código de sala único ou compartilhe o link direto — com botão de cópia rápida — para convidar o grupo.</p></div></div>
+      <div class="feature-card"><span class="emoji">👑</span><div><h4>Mestre (GM)</h4><p>Controle total: mapas, iluminação, paredes, encontros, fichas de NPCs e visibilidade de tudo na mesa.</p></div></div>
+      <div class="feature-card"><span class="emoji">👤</span><div><h4>Jogador</h4><p>Controla apenas os próprios tokens e a própria ficha.</p></div></div>
+      <div class="feature-card"><span class="emoji">👁️</span><div><h4>Espectador</h4><p>Acompanha a mesa de forma passiva, sem controlar nada.</p></div></div>
+      <div class="feature-card"><span class="emoji">🙈</span><div><h4>Cego</h4><p>Papel com visão e chat restritos, para casos especiais de mesa.</p></div></div>
+    </div>
+  </div>
+
+  <div class="feature-subgroup">
+    <h3>Sincronização e Persistência</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🔄</span><div><h4>Tempo Real</h4><p>Tokens, movimentação, névoa, desenhos, sons, rodadas de combate e rolagens são sincronizados instantaneamente entre todos os conectados.</p></div></div>
+      <div class="feature-card"><span class="emoji">💾</span><div><h4>Salvar Mesa</h4><p>Exporta o estado completo da sala (mapas, tokens, cenas, tudo) para um arquivo <code>.json</code>.</p></div></div>
+      <div class="feature-card"><span class="emoji">📂</span><div><h4>Resgatar Mesa</h4><p>Importa e restaura totalmente uma sessão salva anteriormente — ótimo para retomar campanhas longas.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TABULEIRO & NAVEGAÇÃO ═══════════════════════ -->
+<section class="tut-section" id="tabuleiro">
+  <div class="tut-section-eyebrow">O mapa</div>
+  <h2>Tabuleiro &amp; Navegação</h2>
+  <p class="lead">O canvas do VTTArmada suporta grid quadrado ou hexagonal, múltiplos andares e diferentes formas de medir distância — tudo configurável por mapa.</p>
+
+  <div class="feature-subgroup">
+    <h3>Grid e Projeção</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🔲</span><div><h4>Tipo de Grade</h4><p>Quadrada ou Hexagonal, com tamanho de célula ajustável (40px a 80px+) e escala configurável (ex: 1,5m por quadrado).</p></div></div>
+      <div class="feature-card"><span class="emoji">🧲</span><div><h4>Snap to Grid</h4><p>Tokens se alinham e centralizam automaticamente nas células ao serem movidos.</p></div></div>
+      <div class="feature-card"><span class="emoji">🎬</span><div><h4>2D / Isométrico</h4><p>Alterne entre visão clássica Top-Down e projeção 2.5D Isométrica.</p></div></div>
+      <div class="feature-card"><span class="emoji">📏</span><div><h4>Métrica de Distância</h4><p>Livre (euclidiana), Quadrados (Manhattan) ou Diagonais x2 (regra tática de T20).</p></div></div>
+      <div class="feature-card"><span class="emoji">🏢</span><div><h4>Andares (Z)</h4><p>Suporte a múltiplos andares no mesmo mapa, com indicador de altura (Z) por token.</p></div></div>
+      <div class="feature-card"><span class="emoji">📚</span><div><h4>Camadas</h4><p>Mapa/Fundo, Jogadores (tokens e objetos) e Camada Oculta do Mestre, cada uma isolável.</p></div></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Ping:</strong> segure o clique esquerdo sobre qualquer ponto do mapa para emitir uma onda visual pulsante, visível para todos na mesa — ótimo pra apontar algo sem precisar descrever no chat.
+  </div>
+</section>
+
+<!-- ═══════════════════════ NÉVOA, LUZ & VISÃO ═══════════════════════ -->
+<section class="tut-section" id="nevoa">
+  <div class="tut-section-eyebrow">Atmosfera e mistério</div>
+  <h2>Névoa de Guerra, Iluminação &amp; Visão</h2>
+  <p class="lead">Controle o que cada jogador enxerga, com névoa manual, luz dinâmica e paredes que bloqueiam visão e movimento de verdade.</p>
+
+  <div class="feature-subgroup">
+    <h3>Névoa e Visão Dinâmica</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🖌️</span><div><h4>Pintar / Revelar Névoa</h4><p>Pincel circular livre ou seleção por retângulo, além de um botão de limpeza rápida de toda a névoa.</p></div></div>
+      <div class="feature-card"><span class="emoji">👀</span><div><h4>Modos de Visão</h4><p>Normal, Penumbra e Escuro Total por token, respeitando paredes e portas no caminho.</p></div></div>
+      <div class="feature-card"><span class="emoji">✨</span><div><h4>Auras e Luzes</h4><p>Auras com raio e cor customizáveis, e fontes de luz portáteis (Tocha 6m, Lanterna 9m, Fogueira 12m).</p></div></div>
+      <div class="feature-card"><span class="emoji">👑</span><div><h4>Visão de Jogador</h4><p>Tecla <strong style="color:var(--gold-light)">V</strong> — o mestre enxerga o mapa exatamente como o token selecionado vê, névoa e luz inclusas.</p></div></div>
+    </div>
+  </div>
+
+  <div class="feature-subgroup">
+    <h3>Paredes, Portas &amp; Clima</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🧱</span><div><h4>Parede Normal</h4><p>Bloqueia movimentação e linha de visão.</p></div></div>
+      <div class="feature-card"><span class="emoji">👻</span><div><h4>Parede Invisível</h4><p>Bloqueia movimentação mas deixa ver através.</p></div></div>
+      <div class="feature-card"><span class="emoji">🚪</span><div><h4>Portas Interativas</h4><p>Abrem e fecham durante o jogo, com som próprio ao interagir.</p></div></div>
+      <div class="feature-card"><span class="emoji">🪟</span><div><h4>Janelas</h4><p>Bloqueiam passagem física mas liberam a visão.</p></div></div>
+      <div class="feature-card"><span class="emoji">📥</span><div><h4>Importar UVTT</h4><p>Suporte a mapas <code>.dd2vtt</code>, <code>.uvtt</code> e <code>.zip</code> (ex: Dungeondraft) já com paredes e luzes prontas.</p></div></div>
+      <div class="feature-card"><span class="emoji">🌦️</span><div><h4>Clima Ambiente</h4><p>☀️ Sol, 🌧 Chuva, ❄️ Neve, 🌙 Noite, 🌆 Crepúsculo, 🕳️ Caverna.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TOKENS & OBJETOS ═══════════════════════ -->
+<section class="tut-section" id="tokens">
+  <div class="tut-section-eyebrow">Personagens e criaturas</div>
+  <h2>Tokens &amp; Objetos</h2>
+  <p class="lead">Cada token guarda atributos, estilo visual e comportamentos próprios — e pode ser vinculado a uma ficha completa.</p>
+
+  <div class="feature-subgroup">
+    <h3>Criação e Atributos</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">❤️</span><div><h4>Atributos</h4><p>PV atual/máximo, PM atual/máximo, Defesa (DEF) e Elevação (Z).</p></div></div>
+      <div class="feature-card"><span class="emoji">📐</span><div><h4>Tamanhos</h4><p>Predefinidos (½×½ até 4×4) ou dimensões retangulares customizadas para objetos.</p></div></div>
+      <div class="feature-card"><span class="emoji">🖼️</span><div><h4>Imagens</h4><p>URL externa, upload local, WebM e GIFs animados direto no canvas, com editor circular de recorte.</p></div></div>
+    </div>
+  </div>
+
+  <div class="feature-subgroup">
+    <h3>Estilo Visual</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🖌️</span><div><h4>Bordas</h4><p>Sólida, Tracejada, Pontilhada, Dupla, Neon com brilho, Rúnica ou sem borda.</p></div></div>
+      <div class="feature-card"><span class="emoji">⭐</span><div><h4>Formas</h4><p>Círculo, Quadrado, Quadrado arredondado ou Hexágono.</p></div></div>
+      <div class="feature-card"><span class="emoji">🙈</span><div><h4>Ocultar Nome</h4><p>Esconde o nome do token para os jogadores — útil pra manter mistério sobre um NPC ou monstro.</p></div></div>
+    </div>
+  </div>
+
+  <div class="feature-subgroup">
+    <h3>Comportamentos</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🔒</span><div><h4>Travar Token</h4><p>Impede movimentação e edição acidental (a tecla <strong style="color:var(--gold-light)">E</strong> avisa se tentar editar um token travado).</p></div></div>
+      <div class="feature-card"><span class="emoji">🛡️</span><div><h4>Modo "Só Eu"</h4><p>Filtra a seleção por clique para evitar pegar sem querer o token de outro jogador.</p></div></div>
+      <div class="feature-card"><span class="emoji">🩹</span><div><h4>Menu de Condições</h4><p>Aplica estados (Abalado, Cego, Caído, Desprevenido, etc.) com tooltip explicando cada um.</p></div></div>
+      <div class="feature-card"><span class="emoji">📋</span><div><h4>Vincular Ficha</h4><p>Associa o token a uma ficha de jogador ou de NPC/monstro do mestre, sincronizando PV, PM e rolagens.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SELEÇÃO DE TOKENS ═══════════════════════ -->
+<section class="tut-section" id="selecao">
+  <div class="tut-section-eyebrow">Antes de tudo</div>
+  <h2>Selecionando Tokens</h2>
+  <p class="lead">Quase todo atalho abaixo age sobre o(s) token(s) selecionado(s) no tabuleiro. Por isso, o primeiro hábito a criar é este:</p>
+
+  <div class="info-card">
+    <div class="icon-wrap">
+      <svg class="icon-svg" viewBox="0 0 48 48">
+        <path d="M10 8 L10 30 L16 25 L20 33 L24 31 L20 23 L28 23 Z" stroke-linejoin="round"/>
+        <rect x="6" y="6" width="30" height="24" rx="2" stroke-dasharray="3 3" stroke-width="1.4" opacity="0.6"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Clique simples</h3>
+      <p>Seleciona apenas o token clicado, desmarcando qualquer seleção anterior.</p>
+      <p><strong style="color:var(--gold-light)">Shift + clique</strong> — adiciona ou remove um token da seleção atual, permitindo selecionar vários de uma vez (útil para o atalho <span class="key-badge" style="font-size:0.7rem;padding:0.1rem 0.4rem;">M</span> de montaria, que exige exatamente 2 tokens).</p>
+      <p><strong style="color:var(--gold-light)">Clique e arraste</strong> em uma área vazia do mapa — desenha uma caixa de seleção e marca todos os tokens dentro dela de uma vez.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ MOUSE ═══════════════════════ -->
+<section class="tut-section" id="mouse">
+  <div class="tut-section-eyebrow">Navegação</div>
+  <h2>Controles do Mouse</h2>
+  <p class="lead">Além dos botões da barra de ferramentas, o mapa responde a um controle direto do mouse para navegação rápida:</p>
+
+  <div class="info-card">
+    <div class="icon-wrap">
+      <svg class="icon-svg" viewBox="0 0 48 48">
+        <rect x="15" y="6" width="18" height="30" rx="9"/>
+        <line x1="24" y1="6" x2="24" y2="18"/>
+        <rect x="21.5" y="12" width="5" height="8" rx="2.5" fill="var(--gold)" stroke="none"/>
+        <path d="M24 24 L24 34 M20 30 L24 34 L28 30" stroke-width="2"/>
+        <path d="M24 24 L24 34 M20 28 L24 24 L28 28" stroke-width="2" transform="translate(0,-10)"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Botão do meio pressionado (scroll) — navegar pelo mapa</h3>
+      <p>Segure o botão central do mouse (a rodinha de rolagem) e arraste para deslocar a câmera livremente pelo tabuleiro, em qualquer direção, sem mexer em tokens ou ferramentas selecionadas.</p>
+      <p>É o jeito mais rápido de "andar" pela mesa — funciona a qualquer momento, independente da ferramenta ativa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ATALHOS DE TECLADO ═══════════════════════ -->
+<section class="tut-section" id="atalhos">
+  <div class="tut-section-eyebrow">Combate mais rápido</div>
+  <h2>Atalhos de Teclado</h2>
+  <p class="lead">Com um ou mais tokens selecionados, estas teclas disparam ações direto — sem abrir menus. Todos ficam desativados automaticamente enquanto você digita em um campo de texto (chat, nome, busca etc.), então pode usá-los sem medo de atrapalhar a digitação.</p>
+
+  <table class="tut-table">
+    <thead><tr><th>Tecla</th><th>Ação</th><th>Quem usa</th></tr></thead>
+    <tbody>
+      <tr><td>Delete</td><td>Apaga o(s) token(s) selecionado(s), com confirmação</td><td>Mestre</td></tr>
+      <tr><td>M</td><td>Monta ou desmonta os 2 tokens selecionados</td><td>Todos</td></tr>
+      <tr><td>F</td><td>Câmera passa a seguir o token selecionado</td><td>Todos</td></tr>
+      <tr><td>C</td><td>Centraliza a câmera no token selecionado</td><td>Todos</td></tr>
+      <tr><td>E</td><td>Abre a edição do token selecionado</td><td>Todos</td></tr>
+      <tr><td>V</td><td>Entra ou sai da Visão de Jogador</td><td>Mestre</td></tr>
+      <tr><td>B</td><td>Abre o Bestiário no Baú</td><td>Todos</td></tr>
+      <tr><td>T</td><td>Marca ou desmarca o token selecionado como alvo</td><td>Todos</td></tr>
+    </tbody>
+  </table>
+
+  <div class="shortcut-grid">
+
+    <!-- DELETE -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">Delete</span>
+        <h3>Apagar Token(s)</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <circle cx="24" cy="16" r="9"/>
+            <circle cx="20.5" cy="15" r="1.6" fill="var(--gold)" stroke="none"/>
+            <circle cx="27.5" cy="15" r="1.6" fill="var(--gold)" stroke="none"/>
+            <path d="M15 27 L33 27 L31 40 L17 40 Z" stroke-linejoin="round"/>
+            <line x1="19" y1="27" x2="19" y2="40" stroke-width="1.3" opacity="0.6"/>
+            <line x1="29" y1="27" x2="29" y2="40" stroke-width="1.3" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-mestre">Somente Mestre</span></div>
+      <p>Remove permanentemente do tabuleiro todos os tokens selecionados que você controla e que não estejam travados (🔒). Antes de apagar, um diálogo de confirmação mostra os nomes dos tokens afetados.</p>
+      <p class="req">Se um token estiver montado, a montaria é desfeita automaticamente antes da remoção.</p>
+    </div>
+
+    <!-- M -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">M</span>
+        <h3>Montar / Desmontar</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <path d="M14 30 Q14 14 24 14 Q34 14 34 30" />
+            <circle cx="14" cy="33" r="3" fill="var(--gold)" stroke="none"/>
+            <circle cx="34" cy="33" r="3" fill="var(--gold)" stroke="none"/>
+            <path d="M20 22 L28 22" stroke-width="1.4" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-geral">Todos (tokens que controla)</span></div>
+      <p>Com <strong style="color:var(--gold-light)">exatamente 2 tokens</strong> selecionados (use Shift + clique), a tecla decide sozinha o que fazer: se os dois já formam um par montado, desmonta; caso contrário, tenta montar.</p>
+      <p class="req">Para montar: os tokens precisam ter tamanhos diferentes e estar a até 3 quadrados de distância. Com apenas 1 token selecionado que já esteja montado, <strong>M</strong> também desmonta.</p>
+    </div>
+
+    <!-- F -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">F</span>
+        <h3>Seguir Token</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <rect x="8" y="16" width="26" height="18" rx="3"/>
+            <path d="M34 21 L42 17 L42 31 L34 27 Z" stroke-linejoin="round"/>
+            <circle cx="20" cy="25" r="5"/>
+            <circle cx="12" cy="19" r="1.3" fill="var(--gold)" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-geral">Todos</span></div>
+      <p>Ativa o modo "seguir": a câmera passa a acompanhar automaticamente o token selecionado sempre que ele se mover, como uma câmera de perseguição. Pressione <strong>F</strong> de novo (ou selecione outro token e pressione <strong>F</strong>) para parar de seguir.</p>
+      <p class="req">Diferente de <strong>C</strong>, que centraliza uma única vez, <strong>F</strong> mantém o acompanhamento contínuo — ideal para não perder de vista o token do grupo enquanto ele explora o mapa.</p>
+    </div>
+
+    <!-- C -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">C</span>
+        <h3>Centralizar Câmera</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="14"/>
+            <circle cx="24" cy="24" r="7"/>
+            <circle cx="24" cy="24" r="1.6" fill="var(--gold)" stroke="none"/>
+            <line x1="24" y1="4" x2="24" y2="10"/>
+            <line x1="24" y1="38" x2="24" y2="44"/>
+            <line x1="4" y1="24" x2="10" y2="24"/>
+            <line x1="38" y1="24" x2="44" y2="24"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-geral">Todos</span></div>
+      <p>Move a câmera imediatamente para o centro do token selecionado, num único salto — e troca de andar automaticamente se o token estiver em outro nível do mapa.</p>
+      <p class="req">Não fica "grudado": depois do salto, você pode navegar livremente até usar o atalho de novo.</p>
+    </div>
+
+    <!-- E -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">E</span>
+        <h3>Editar Token</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <path d="M30 8 L40 18 L18 40 L8 40 L8 30 Z" stroke-linejoin="round"/>
+            <line x1="26" y1="12" x2="36" y2="22"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-geral">Todos</span></div>
+      <p>Abre a janela de edição do token selecionado (nome, atributos, imagem, condições, etc.) na posição atual dele no mapa.</p>
+      <p class="req">Se o token estiver travado (🔒), o atalho apenas avisa que ele está bloqueado, em vez de abrir a edição — destrave o token primeiro pelo menu de contexto.</p>
+    </div>
+
+    <!-- V -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">V</span>
+        <h3>Visão de Jogador</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <path d="M4 24 C 10 12, 38 12, 44 24 C 38 36, 10 36, 4 24 Z" stroke-linejoin="round"/>
+            <circle cx="24" cy="24" r="6"/>
+            <circle cx="24" cy="24" r="1.6" fill="var(--gold)" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-mestre">Somente Mestre</span></div>
+      <p>Alterna a tela do mestre para enxergar o mapa exatamente como o token selecionado enxerga — respeitando névoa de guerra e iluminação daquele personagem. Pressionar <strong>V</strong> de novo sai da visão e volta ao modo mestre normal.</p>
+      <p class="req">Ótimo para conferir rapidamente "o que os jogadores estão vendo agora" sem precisar abrir uma segunda tela.</p>
+    </div>
+
+    <!-- B -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">B</span>
+        <h3>Abrir Bestiário</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <ellipse cx="24" cy="28" rx="9" ry="7"/>
+            <circle cx="14" cy="17" r="4"/>
+            <circle cx="22" cy="12" r="4"/>
+            <circle cx="30" cy="12" r="4"/>
+            <circle cx="38" cy="17" r="4"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-geral">Todos</span></div>
+      <p>Vai direto para a aba Baú → subaba Bestiário, pulando qualquer outra aba aberta no momento. Rápido para o mestre consultar uma criatura no meio da narração, sem tirar a mão do teclado.</p>
+    </div>
+
+    <!-- T -->
+    <div class="shortcut-card">
+      <div class="shortcut-card-head">
+        <span class="key-badge">T</span>
+        <h3>Marcar Alvo</h3>
+        <div class="icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 48 48">
+            <path d="M10 10 L10 18 M10 10 L18 10"/>
+            <path d="M38 10 L30 10 M38 10 L38 18"/>
+            <path d="M10 38 L10 30 M10 38 L18 38"/>
+            <path d="M38 38 L38 30 M38 38 L30 38"/>
+            <circle cx="24" cy="24" r="3" fill="var(--gold)" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tag-row"><span class="tag-geral">Todos</span></div>
+      <p>Marca (ou desmarca) o token selecionado como alvo 🎯. Tokens marcados aparecem destacados no tabuleiro e são usados automaticamente por ataques e magias roladas no chat, aplicando dano/cura direto nos alvos marcados.</p>
+      <p class="req">É possível marcar mais de um alvo: selecione outro token e pressione <strong>T</strong> de novo para adicioná-lo à marcação.</p>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <strong>Dica:</strong> a maioria dos atalhos age sobre o <em>primeiro</em> token da seleção atual. Ao selecionar vários tokens com Shift + clique, prefira usá-los para <strong>M</strong> (montaria) ou <strong>Delete</strong> (remoção em massa) — os demais atalhos consideram apenas um token por vez.
+  </div>
+</section>
+
+<!-- ═══════════════════════ DESENHO & GATILHOS ═══════════════════════ -->
+<section class="tut-section" id="desenho">
+  <div class="tut-section-eyebrow">Cenário interativo</div>
+  <h2>Formas, Paredes &amp; Gatilhos</h2>
+  <p class="lead">Desenhe direto no mapa e transforme qualquer forma em obstáculo ou em armadilha automática.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">✏️</span><div><h4>Ferramentas de Desenho</h4><p>Retângulo, Círculo e Desenho Livre, com seletor de cor.</p></div></div>
+    <div class="feature-card"><span class="emoji">🧱</span><div><h4>Converter em Parede</h4><p>Qualquer desenho pode virar obstáculo físico e/ou visual com um clique.</p></div></div>
+    <div class="feature-card"><span class="emoji">🪜</span><div><h4>Escadas / Elevadores</h4><p>Teletransporte automático ou manual entre andares, com tela de transição.</p></div></div>
+    <div class="feature-card"><span class="emoji">🕳️</span><div><h4>Armadilhas e Buracos</h4><p>Gatilho com imagem de revelação de segredo, ativado quando alguém pisa em cima.</p></div></div>
+    <div class="feature-card"><span class="emoji">🔊</span><div><h4>Gatilhos Sonoros</h4><p>Dispara um efeito sonoro automaticamente ao entrar na área marcada.</p></div></div>
+    <div class="feature-card"><span class="emoji">⚠️</span><div><h4>Gatilhos de Condição</h4><p>Aplica uma condição automaticamente ao token que entrar na área — modo único ou contínuo.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CENAS ═══════════════════════ -->
+<section class="tut-section" id="cenas">
+  <div class="tut-section-eyebrow">Organização da campanha</div>
+  <h2>Gerenciador de Múltiplas Cenas</h2>
+  <p class="lead">Cada mapa da campanha vive em uma aba própria, com seu próprio estado.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">🗂️</span><div><h4>Abas de Cena</h4><p>Crie e alterne rapidamente entre vários mapas de uma mesma campanha.</p></div></div>
+    <div class="feature-card"><span class="emoji">🚚</span><div><h4>Puxar Jogadores</h4><p>O mestre transporta todos os jogadores para a cena ativa com um único clique.</p></div></div>
+    <div class="feature-card"><span class="emoji">🔐</span><div><h4>Estado Independente</h4><p>Cada cena guarda seus próprios tokens, paredes, iluminação, névoa e configurações de grid.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ RÉGUAS ═══════════════════════ -->
+<section class="tut-section" id="reguas">
+  <div class="tut-section-eyebrow">Tática</div>
+  <h2>Réguas &amp; Medição</h2>
+  <p class="lead">Três formas de medir distância e área direto no tabuleiro.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">📏</span><div><h4>Régua Linear</h4><p>Mede a distância direta em metros ou quadrados entre dois pontos.</p></div></div>
+    <div class="feature-card"><span class="emoji">⭕</span><div><h4>Régua Circular / Raio</h4><p>Desenha áreas de efeito radiais — ótimo para explosões e magias em área.</p></div></div>
+    <div class="feature-card"><span class="emoji">🧭</span><div><h4>Régua de Caminho</h4><p>Traça um trajeto com múltiplos pontos de parada, calculando o deslocamento total exato.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ COMBATE ═══════════════════════ -->
+<section class="tut-section" id="combate">
+  <div class="tut-section-eyebrow">Round a round</div>
+  <h2>Rastreador de Iniciativa &amp; Combate</h2>
+  <p class="lead">Um painel do mestre e um widget flutuante mantêm todo mundo sincronizado sobre de quem é a vez.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">🎯</span><div><h4>Painel + Widget Flutuante</h4><p>Acompanha rodada e turno atual, sincronizado para todos na mesa.</p></div></div>
+    <div class="feature-card"><span class="emoji">⏭️</span><div><h4>Controle de Turnos</h4><p>Avança e retrocede turno/rodada, com ordenação automática por iniciativa.</p></div></div>
+    <div class="feature-card"><span class="emoji">➕</span><div><h4>Adicionar Combatentes</h4><p>Puxe direto do Bestiário de Tormenta20 ou das fichas dos jogadores, sem digitar nada manualmente.</p></div></div>
+    <div class="feature-card"><span class="emoji">📊</span><div><h4>Status ao Vivo</h4><p>PV, PM e iniciativa de cada combatente atualizados em tempo real.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FICHAS ═══════════════════════ -->
+<section class="tut-section" id="fichas">
+  <div class="tut-section-eyebrow">Personagens</div>
+  <h2>Fichas de Personagem Integradas</h2>
+  <p class="lead">A ficha completa de Tormenta20 roda dentro do próprio VTT, sem precisar de outra aba.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">📋</span><div><h4>Ficha Embutida</h4><p>A ficha completa de Tormenta20 carrega direto dentro do VTT.</p></div></div>
+    <div class="feature-card"><span class="emoji">🪄</span><div><h4>Criar Token da Ficha</h4><p>Botão "+ Criar Token da Ficha" já instancia o token configurado no mapa.</p></div></div>
+    <div class="feature-card"><span class="emoji">🔄</span><div><h4>Sincronização Bidirecional</h4><p>Vida, mana, defesa e rolagens se atualizam entre o token e a ficha automaticamente.</p></div></div>
+    <div class="feature-card"><span class="emoji">🔒</span><div><h4>Travas de Customização</h4><p>Bloqueia atualizações automáticas em perícias, ataques, magias ou poderes para ajustes manuais no token.</p></div></div>
+    <div class="feature-card"><span class="emoji">👑</span><div><h4>Fichas do Mestre</h4><p>Importe e gerencie vários arquivos <code>.json</code> de NPCs e monstros.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ COMPÊNDIO ═══════════════════════ -->
+<section class="tut-section" id="compendio">
+  <div class="tut-section-eyebrow">Baú de recursos</div>
+  <h2>Compêndio de Tormenta20</h2>
+  <p class="lead">Todo o material oficial de T20 pesquisável dentro da mesa, sem trocar de aba ou abrir o livro.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">⚔️</span><div><h4>Equipamentos</h4><p>Armas, Armaduras, Escudos, Itens Gerais e Superiores, Itens Mágicos, Encantamentos e Maldições, com filtros.</p></div></div>
+    <div class="feature-card"><span class="emoji">🔮</span><div><h4>Grimório / Magias</h4><p>Filtros por Tipo (Arcana, Divina, Universal), Círculo (1° ao 5°) e Escola, com visualizador de aprimoramentos.</p></div></div>
+    <div class="feature-card"><span class="emoji">⭐</span><div><h4>Poderes, Origens &amp; Distinções</h4><p>Catálogo completo com filtros por classe e tipo.</p></div></div>
+    <div class="feature-card"><span class="emoji">🐾</span><div><h4>Bestiário</h4><p>Filtro por Nível de Desafio (ND ¼ até S+), cards com estatísticas completas e botão para gerar o token da criatura direto no mapa. Acesso rápido: tecla <strong style="color:var(--gold-light)">B</strong>.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ENCONTROS ═══════════════════════ -->
+<section class="tut-section" id="encontros">
+  <div class="tut-section-eyebrow">Entre uma cena e outra</div>
+  <h2>Gerador de Encontros Aleatórios</h2>
+  <p class="lead">Simula viagens e sorteia encontros prontos pra jogar.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">🗓️</span><div><h4>Diário de Viagem</h4><p>Conta os dias de marcha e calcula a probabilidade acumulada de encontro.</p></div></div>
+    <div class="feature-card"><span class="emoji">🏔️</span><div><h4>Terreno e Patamar</h4><p>Ajuste por tipo de ambiente e patamar do grupo (Iniciante, Veterano, Campeão, Lenda).</p></div></div>
+    <div class="feature-card"><span class="emoji">🎲</span><div><h4>Geração Instantânea</h4><p>Sorteia o encontro com fichas das criaturas e descrição do ambiente já prontas pro combate.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CHAT ═══════════════════════ -->
+<section class="tut-section" id="chat">
+  <div class="tut-section-eyebrow">Comunicação e dados</div>
+  <h2>Chat, Diário, Pergaminhos &amp; Rolagens</h2>
+  <p class="lead">Do sussurro privado à rolagem 3D cinematográfica, tudo integrado ao mesmo painel de chat.</p>
+
+  <div class="feature-subgroup">
+    <h3>Visibilidade de Mensagens</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🌍</span><div><h4>Global</h4><p>Visível para todos na mesa.</p></div></div>
+      <div class="feature-card"><span class="emoji">🕵️</span><div><h4>To GM</h4><p>Visível só para quem enviou e o mestre.</p></div></div>
+      <div class="feature-card"><span class="emoji">🙈</span><div><h4>Blind</h4><p>Rolagem cega — só o mestre vê o resultado.</p></div></div>
+      <div class="feature-card"><span class="emoji">👤</span><div><h4>Pessoal (Whisper)</h4><p>Só quem enviou visualiza. O mestre pode revelar publicamente a qualquer momento.</p></div></div>
+    </div>
+  </div>
+
+  <div class="feature-subgroup">
+    <h3>Dados e Registros</h3>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="emoji">🎲</span><div><h4>Rolador Completo</h4><p>Comando de texto (ex: <code>/r 1d20+8</code>), atalhos de d4 a d100, e janela com quantidade, bônus, vantagem e desvantagem.</p></div></div>
+      <div class="feature-card"><span class="emoji">🎬</span><div><h4>Dados 3D Animados</h4><p>Overlay cinematográfico com bandeja física de dados rolando na tela.</p></div></div>
+      <div class="feature-card"><span class="emoji">📜</span><div><h4>Pergaminhos</h4><p>Documentos, cartas e pistas secretas, com opção de compartilhar com os jogadores quando quiser.</p></div></div>
+      <div class="feature-card"><span class="emoji">🎬</span><div><h4>GIPHY</h4><p>Busca e envia GIFs animados direto no chat da mesa.</p></div></div>
+      <div class="feature-card"><span class="emoji">↩️</span><div><h4>Histórico de Rolagens</h4><p>Registro das jogadas com botão de repetir a última rolagem.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ MACROS ═══════════════════════ -->
+<section class="tut-section" id="macros">
+  <div class="tut-section-eyebrow">Agilidade em jogo</div>
+  <h2>Macros &amp; Ações Rápidas do Token</h2>
+  <p class="lead">Ações de combate a um clique, sem abrir a ficha inteira.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">⚡</span><div><h4>Barra de Macros</h4><p>Slots customizáveis com paginação, para registrar comandos <code>/r</code> e ações frequentes.</p></div></div>
+    <div class="feature-card"><span class="emoji">🎯</span><div><h4>Ataques</h4><p>Lista de armas e ataques com cálculo de acerto, dano base, bônus, multiplicador de crítico e desconto de PM.</p></div></div>
+    <div class="feature-card"><span class="emoji">🎲</span><div><h4>Perícias</h4><p>Testes rápidos com seletores de opções e vantagens.</p></div></div>
+    <div class="feature-card"><span class="emoji">🔮</span><div><h4>Magias</h4><p>Lançamento com controle de custo de PM e descrição completa da magia.</p></div></div>
+    <div class="feature-card"><span class="emoji">🛡️</span><div><h4>Poderes</h4><p>Execução direta de habilidades e poderes de classe.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ÁUDIO ═══════════════════════ -->
+<section class="tut-section" id="audio">
+  <div class="tut-section-eyebrow">Ambientação</div>
+  <h2>Jukebox, Soundboard &amp; Áudio</h2>
+  <p class="lead">Música e efeitos sonoros com controle de volume independente pra não estourar o ouvido de ninguém.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">🎵</span><div><h4>Música Ambiente</h4><p>URLs diretas, links do YouTube ou upload local (.mp3, .ogg, .wav, .flac).</p></div></div>
+    <div class="feature-card"><span class="emoji">🔊</span><div><h4>Soundboard</h4><p>Lista de efeitos sonoros favoritados, disparados instantaneamente.</p></div></div>
+    <div class="feature-card"><span class="emoji">🔍</span><div><h4>Busca Freesound</h4><p>Pesquisa de áudios e efeitos direto pela API do Freesound.</p></div></div>
+    <div class="feature-card"><span class="emoji">🎚️</span><div><h4>Volumes Independentes</h4><p>Sliders separados para Master, Efeitos (SFX) e Música Ambiente (BGM).</p></div></div>
+    <div class="feature-card"><span class="emoji">🚪</span><div><h4>Áudios Vinculados</h4><p>Sons de abertura/fechamento de portas, armadilhas e tokens tocam automaticamente.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ EDITOR DE IMAGENS ═══════════════════════ -->
+<section class="tut-section" id="imagens">
+  <div class="tut-section-eyebrow">Mídia</div>
+  <h2>Editor de Imagens &amp; Buscador de Mídias</h2>
+  <p class="lead">Ajuste artes e mapas sem sair do navegador.</p>
+
+  <div class="feature-grid">
+    <div class="feature-card"><span class="emoji">🔍</span><div><h4>Buscador de Mídias</h4><p>Integração com Unsplash, Pexels e Pixabay para achar fotos e mapas direto na mesa.</p></div></div>
+    <div class="feature-card"><span class="emoji">✂️</span><div><h4>Recorte</h4><p>Proporção livre, 1:1 ou circular.</p></div></div>
+    <div class="feature-card"><span class="emoji">🌈</span><div><h4>Ajustes de Imagem</h4><p>Brilho, Contraste, Saturação, Matiz, Escala de Cinza e Inversão de cores.</p></div></div>
+    <div class="feature-card"><span class="emoji">🖌️</span><div><h4>Pincel &amp; Borracha</h4><p>Desenho manual com espessura ajustável, paleta de cores e pipeta conta-gotas.</p></div></div>
+    <div class="feature-card"><span class="emoji">↩️</span><div><h4>Desfazer / Refazer</h4><p>Histórico de edições dentro do próprio editor.</p></div></div>
+    <div class="feature-card"><span class="emoji">💾</span><div><h4>Exportação Direta</h4><p>Envie a imagem tratada direto como Mapa de Fundo, Objeto, Token ou baixe localmente.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BÔNUS ═══════════════════════ -->
+<section class="tut-section" id="bonus">
+  <div class="tut-section-eyebrow">Para ir além</div>
+  <h2>Atalhos Extras do Tabuleiro</h2>
+  <p class="lead">Além da lista principal, o tabuleiro do VTTArmada também responde a estes atalhos gerais — bons de guardar de reserva:</p>
+
+  <div class="bonus-grid">
+    <div class="bonus-item">
+      <span class="key-badge">↑ ↓ ← →</span>
+      <p>Move o token selecionado uma célula na direção da seta, sem precisar arrastar com o mouse.</p>
+    </div>
+    <div class="bonus-item">
+      <span class="key-badge">Esc</span>
+      <p>Cancela a seleção atual, sai da Visão de Jogador ou interrompe uma régua de caminho em andamento.</p>
+    </div>
+    <div class="bonus-item">
+      <span class="key-badge">Ctrl + Z</span>
+      <p>Desfaz a última alteração no tabuleiro. <span class="key-badge" style="font-size:0.7rem;">Ctrl+Shift+Z</span> ou <span class="key-badge" style="font-size:0.7rem;">Ctrl+Y</span> refazem.</p>
+    </div>
+    <div class="bonus-item">
+      <span class="key-badge">Ctrl + C / V</span>
+      <p><span class="tag-mestre" style="margin-right:0.3rem;">Mestre</span>Copia e cola o token selecionado, criando uma cópia ao lado do original.</p>
+    </div>
+    <div class="bonus-item">
+      <span class="key-badge">Segurar clique</span>
+      <p>Segurar o botão esquerdo do mouse sobre o mapa por um instante dispara um "ping" visual naquele ponto, visível para todos na mesa.</p>
+    </div>
+  </div>
+</section>
+
+<div class="tut-footer">
+  Bons dados e boas aventuras. ⚔
+  <br>
+  <a class="btn btn-gold" href="index.html">← Voltar para a Mesa</a>
+</div>
+
+</body>
+</html>

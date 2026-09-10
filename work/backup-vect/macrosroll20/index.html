@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macro Forge 20</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="header-inner">
+                <div class="header-brand">
+                    <h1>MACRO FORGE 20</h1>
+                    <p>Gerador de Macros para Roll20</p>
+                </div>
+                <div class="header-actions">
+                    <a href="../index.html" class="header-btn" title="VTTArmada do Mestre">🏠 Hub</a>
+                    <!-- Theme Switcher -->
+                    <div class="theme-switcher" id="theme-switcher">
+                        <button class="theme-btn" data-theme="blood" title="Tema Sangue (padrão)">🩸</button>
+                        <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+                        <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" id="btn-tab-pericia" onclick="openTab('pericia')">⚔️ Perícia</button>
+            <button class="tab-btn" id="btn-tab-combate" onclick="openTab('combate')">🛡️ Combate</button>
+            <button class="tab-btn" id="btn-tab-magia" onclick="openTab('magia')">🔮 Magia</button>
+            <button class="tab-btn" id="btn-tab-seletor" onclick="openTab('seletor')">⚙️ Gerar Seletor</button>
+            <button class="tab-btn" id="btn-tab-simples" onclick="openTab('simples')">📋 Modelo Simples</button>
+            <button class="tab-btn" id="btn-tab-avancado" onclick="openTab('avancado')">✨ Avançado</button>
+        </nav>
+
+        <section class="global-info" id="globalInfoSection">
+            <div class="input-row">
+                <div class="input-group" style="flex: 2;">
+                    <label>Nome do Personagem</label>
+                    <input type="text" id="charName" placeholder="Nome do Personagem no roll20" oninput="updateAll()"
+                        value="selected">
+                    <label>Ou mantenha "selected", assim funciona no token selecionado</label>
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label>Crítico ≥</label>
+                    <input type="number" id="critMargin" value="20" min="1" max="20" oninput="updateAll()">
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label>Falha Crítica ≤</label>
+                    <input type="number" id="failMargin" placeholder="Ex: 1" min="1" max="20" oninput="updateAll()">
+                </div>
+            </div>
+            <details class="collapsible">
+                <summary>🎲 Modificador de Dado Global (Vantagem / Desvantagem)</summary>
+                <div class="details-content radio-group">
+                    <label class="radio-option"><input type="radio" name="diceMod" id="rollNormal" checked
+                            onchange="updateAll()"> Normal</label>
+                    <label class="radio-option"><input type="radio" name="diceMod" id="rollVantagem"
+                            onchange="updateAll()"> Vantagem</label>
+                    <label class="radio-option"><input type="radio" name="diceMod" id="rollDesvantagem"
+                            onchange="updateAll()"> Desvantagem</label>
+                </div>
+            </details>
+        </section>
+
+        <!-- ABA PERÍCIA -->
+        <div id="pericia" class="tab-content active">
+            <div class="input-group">
+                <label>Nome da Perícia</label>
+                <input type="text" id="skillName" placeholder="Ex: Reflexos" oninput="updateAll()">
+            </div>
+            <details class="collapsible">
+                <summary>🖼️ Gifs de Reação</summary>
+                <div class="details-content">
+                    <div class="media-item"><input type="checkbox" id="checkCrit" onchange="updateAll()"><input
+                            type="text" id="urlCrit" placeholder="URL GIF Crítico" oninput="updateAll()"></div>
+                    <div class="media-item"><input type="checkbox" id="checkNormal" onchange="updateAll()"><input
+                            type="text" id="urlNormal" placeholder="URL GIF Normal" oninput="updateAll()"></div>
+                    <div class="media-item"><input type="checkbox" id="checkFail" onchange="updateAll()"><input
+                            type="text" id="urlFail" placeholder="URL GIF Falha" oninput="updateAll()"></div>
+                </div>
+            </details>
+            <div class="output-box">
+                <textarea id="output" class="macro-output" readonly></textarea>
+                <button class="btn-copy" onclick="copyAndLog('output', 'Perícia')">Copiar e Salvar no Log</button>
+            </div>
+        </div>
+
+        <!-- ABA COMBATE -->
+        <div id="combate" class="tab-content">
+            <div class="input-group">
+                <label>Arma / Ataque</label>
+                <input type="text" id="atkWeapon" placeholder="Ex: Machadinha (Corte)" oninput="updateAll()">
+            </div>
+            <div class="input-row">
+                <div class="input-group"><label>Dano Base</label><input type="text" id="atkDmgDice" placeholder="1d6"
+                        oninput="updateAll()"></div>
+                <div class="input-group"><label>Crítico (x)</label><input type="number" id="atkCritMult" value="3"
+                        oninput="updateAll()"></div>
+                <div class="input-group"><label>Dano Extra</label><input type="text" id="atkExtraDmg"
+                        placeholder="Ex: 2 ou 1d6" oninput="updateAll()"></div>
+                <div class="input-group atk-count-group"
+                    title="Ataques idênticos. O 1º inclui lógica de crítico/GIF; os demais aparecem como pares Ataque N + Dano N.">
+                    <label>Ataques</label>
+                    <input type="number" id="atkCount" value="1" min="1" max="10" oninput="updateAll()">
+                </div>
+            </div>
+
+            <label style="margin-top:15px;">Perícia de Combate</label>
+            <div class="combat-skill-row">
+                <button class="combat-skill-btn active" data-skill="Luta" onclick="setCombatSkill('Luta')">Luta</button>
+                <button class="combat-skill-btn" data-skill="Pontaria"
+                    onclick="setCombatSkill('Pontaria')">Pontaria</button>
+                <button class="combat-skill-btn" data-skill="Atuação"
+                    onclick="setCombatSkill('Atuação')">Atuação</button>
+                <button class="combat-skill-btn" data-skill="Misticismo"
+                    onclick="setCombatSkill('Misticismo')">Misticismo</button>
+                <input type="text" id="combatSkillInput" class="combat-skill-input" value="Luta"
+                    placeholder="Outra perícia..." oninput="onCombatSkillInput(this.value)"
+                    title="Nome exato da perícia no Roll20 (sem acentos na ficha)">
+            </div>
+
+            <div class="attr-double-row">
+                <div class="attr-half">
+                    <label>Atributo na Rolagem</label>
+                    <div class="attribute-grid">
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-roll" value="for_mod"
+                                onchange="updateAll()"> FOR</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-roll" value="des_mod"
+                                onchange="updateAll()"> DES</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-roll" value="con_mod"
+                                onchange="updateAll()"> CON</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-roll" value="int_mod"
+                                onchange="updateAll()"> INT</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-roll" value="sab_mod"
+                                onchange="updateAll()"> SAB</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-roll" value="cha_mod"
+                                onchange="updateAll()"> CAR</label>
+                    </div>
+                </div>
+                <div class="attr-half">
+                    <label>Atributo no Dano</label>
+                    <div class="attribute-grid">
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-dmg" value="for_mod"
+                                onchange="updateAll()"> FOR</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-dmg" value="des_mod"
+                                onchange="updateAll()"> DES</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-dmg" value="con_mod"
+                                onchange="updateAll()"> CON</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-dmg" value="int_mod"
+                                onchange="updateAll()"> INT</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-dmg" value="sab_mod"
+                                onchange="updateAll()"> SAB</label>
+                        <label class="attr-checkbox"><input type="checkbox" class="attr-dmg" value="cha_mod"
+                                onchange="updateAll()"> CAR</label>
+                    </div>
+                </div>
+            </div>
+
+            <details class="collapsible">
+                <summary>🖼️ Gifs de Reação de Combate</summary>
+                <div class="details-content">
+                    <div class="media-item"><input type="checkbox" id="checkAtkCrit" onchange="updateAll()"><input
+                            type="text" id="urlAtkCrit" placeholder="URL GIF Crítico" oninput="updateAll()"></div>
+                    <div class="media-item"><input type="checkbox" id="checkAtkNorm" onchange="updateAll()"><input
+                            type="text" id="urlAtkNorm" placeholder="URL GIF Normal" oninput="updateAll()"></div>
+                    <div class="media-item"><input type="checkbox" id="checkAtkFail" onchange="updateAll()"><input
+                            type="text" id="urlAtkFail" placeholder="URL GIF Falha Crítica" oninput="updateAll()"></div>
+                </div>
+            </details>
+            <div class="output-box">
+                <textarea id="outputCombate" class="macro-output" readonly></textarea>
+                <button class="btn-copy" onclick="copyAndLog('outputCombate', 'Combate')">Copiar e Salvar no
+                    Log</button>
+            </div>
+        </div>
+
+        <!-- ABA MAGIA -->
+        <div id="magia" class="tab-content">
+
+            <!-- Identificação -->
+            <div class="input-group">
+                <div class="spell-name-header">
+                    <label>Nome da Magia</label>
+                    <button class="btn-grimorio" onclick="openGrimorio()">📖 Grimório</button>
+                </div>
+                <input type="text" id="spellName" placeholder="Ex: Toque Chocante" oninput="updateAll()">
+            </div>
+            <div class="input-group">
+                <label>Tipo / Escola</label>
+                <input type="text" id="spellType" placeholder="Ex: Arcana 1 (Evocação)" oninput="updateAll()">
+            </div>
+            <div class="input-row">
+                <div class="input-group"><label>Execução</label><input type="text" id="spellExec" placeholder="padrão"
+                        oninput="updateAll()"></div>
+                <div class="input-group"><label>Duração</label><input type="text" id="spellDur"
+                        placeholder="instantânea" oninput="updateAll()"></div>
+                <div class="input-group"><label>Alcance</label><input type="text" id="spellRange" placeholder="toque"
+                        oninput="updateAll()"></div>
+                <div class="input-group"><label>Alvo / Área</label><input type="text" id="spellTarget"
+                        placeholder="1 criatura" oninput="updateAll()"></div>
+            </div>
+
+            <!-- Resistência -->
+            <div class="spell-section">
+                <label class="spell-toggle-label">
+                    <input type="checkbox" id="checkSpellResVar" onchange="toggleSpellResVar(); updateAll()">
+                    Resistência com variação (query do jogador)
+                </label>
+                <div id="spellResVarBlock" class="spell-sub hidden">
+                    <div class="input-group" style="margin-top:8px;"><label>Label da Pergunta</label>
+                        <input type="text" id="spellResLabel" placeholder="Ex: Aprimoramento de Acerto?"
+                            oninput="updateAll()">
+                    </div>
+                    <div class="input-group">
+                        <label>Opções (separadas por <code>|</code>)</label>
+                        <textarea id="spellResOpts" class="simples-desc-input" rows="2"
+                            placeholder="Não, Fortitude reduz à metade|Sim (+2 PM), Nenhuma (Ataque CC)"
+                            oninput="updateAll()"></textarea>
+                    </div>
+                </div>
+                <div id="spellResFixBlock" class="spell-sub" style="margin-top:8px;">
+                    <div class="input-group"><label>Resistência</label>
+                        <input type="text" id="spellResFix"
+                            placeholder="Ex: Fortitude (CD @{selected|cdtotal}) reduz metade" oninput="updateAll()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dano da Magia -->
+            <div class="spell-section">
+                <label style="font-weight:bold; display:block; margin-bottom:4px;">Dano Base da Magia</label>
+                <div class="input-row">
+                    <div class="input-group" style="flex:0 0 90px"><label>Dados</label>
+                        <input type="number" id="spellDmgBase" value="0" min="0" oninput="updateAll()">
+                    </div>
+                    <div class="input-group" style="flex:0 0 90px"><label>Tipo</label>
+                        <select id="spellDmgDie" onchange="updateAll()">
+                            <option>d4</option>
+                            <option>d6</option>
+                            <option selected>d8</option>
+                            <option>d10</option>
+                            <option>d12</option>
+                            <option>d20</option>
+                        </select>
+                    </div>
+                    <div class="input-group"><label>Dano Extra Fixo</label>
+                        <input type="text" id="spellDmgExtra" placeholder="Ex: 6" oninput="updateAll()">
+                    </div>
+                    <div class="input-group"><label>Tipo de Dano</label>
+                        <input type="text" id="spellDmgType" placeholder="Ex: fogo" oninput="updateAll()">
+                    </div>
+                </div>
+
+                <label class="spell-toggle-label" style="margin-top:12px;">
+                    <input type="checkbox" id="checkSpellDmgPM" onchange="toggleSpellDmgPM(); updateAll()">
+                    Aprimoramentos (Aumento de Dano)
+                </label>
+                <div id="spellDmgPMBlock" class="spell-sub hidden" style="margin-top:8px;">
+                    <div class="input-row">
+                        <div class="input-group"><label>Label da Query</label>
+                            <input type="text" id="spellPMLabel" placeholder="Ex: Aumento de dano" value="Aumento de dano" oninput="updateAll()">
+                        </div>
+                        <div class="input-group" style="flex:0 0 110px"><label>Dados por PM</label>
+                            <input type="number" id="spellDmgPerPM" value="1" min="0" oninput="updateAll()">
+                        </div>
+                        <div class="input-group" style="flex:0 0 110px"><label>Bônus por PM</label>
+                            <input type="number" id="spellDmgBonusPerPM" value="0" min="0" oninput="updateAll()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atributo no Dano -->
+            <div class="attr-half" style="margin-top:4px; margin-bottom:12px;">
+                <label>Atributo no Dano</label>
+                <div class="attribute-grid">
+                    <label class="attr-checkbox"><input type="checkbox" class="attr-spell" value="for_mod"
+                            onchange="updateAll()"> FOR</label>
+                    <label class="attr-checkbox"><input type="checkbox" class="attr-spell" value="des_mod"
+                            onchange="updateAll()"> DES</label>
+                    <label class="attr-checkbox"><input type="checkbox" class="attr-spell" value="con_mod"
+                            onchange="updateAll()"> CON</label>
+                    <label class="attr-checkbox"><input type="checkbox" class="attr-spell" value="int_mod"
+                            onchange="updateAll()"> INT</label>
+                    <label class="attr-checkbox"><input type="checkbox" class="attr-spell" value="sab_mod"
+                            onchange="updateAll()"> SAB</label>
+                    <label class="attr-checkbox"><input type="checkbox" class="attr-spell" value="cha_mod"
+                            onchange="updateAll()"> CAR</label>
+                </div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="input-group">
+                <label>Descrição / Aprimoramentos</label>
+                <textarea id="spellDesc" class="simples-desc-input" rows="4"
+                    placeholder="Ex: Aprimoramentos aplicados:&#10;+1 PM: Aumenta o dano em em +1d8+1. &#10;+2 PM: Ataque corpo a corpo (Resistência: Nenhuma).&#10;+2 PM: Área esfera 6m (Alcance: Pessoal)."
+                    oninput="updateAll()"></textarea>
+            </div>
+
+            <div class="output-box">
+                <textarea id="outputMagia" class="macro-output" readonly></textarea>
+                <button class="btn-copy" onclick="copyAndLog('outputMagia', 'Magia')">Copiar e Salvar no Log</button>
+            </div>
+        </div>
+
+        <!-- ABA SELETOR -->
+        <div id="seletor" class="tab-content">
+            <div class="input-row">
+                <div class="input-group" style="flex: 2;">
+                    <label>Título do Menu</label>
+                    <input type="text" id="queryTitle" value="Selecione o teste" oninput="updateAll()">
+                </div>
+                <div class="input-group" style="flex: 1;">
+                    <label>CD (Opcional)</label>
+                    <input type="text" id="querySelectorCD" placeholder="Ex: 15" oninput="updateAll()">
+                </div>
+            </div>
+            <div class="add-btn-row">
+                <input type="text" id="btnLabel" placeholder="Nova Opção" onkeypress="handleEnter(event)">
+                <button class="btn-add" onclick="addButton()">ADICIONAR</button>
+            </div>
+            <div id="buttonContainer"></div>
+            <details class="collapsible">
+                <summary>🖼️ Gif do Seletor</summary>
+                <div class="details-content">
+                    <div class="media-item"><input type="checkbox" id="checkSelectorGif" onchange="updateAll()"><input
+                            type="text" id="urlSelectorGif" placeholder="URL GIF Seletor" oninput="updateAll()"></div>
+                </div>
+            </details>
+            <div class="output-box">
+                <textarea id="outputSelector" class="macro-output" readonly></textarea>
+                <button class="btn-copy" onclick="copyAndLog('outputSelector', 'Seletor')">Copiar e Salvar no
+                    Log</button>
+            </div>
+        </div>
+
+        <!-- ABA MODELO SIMPLES -->
+        <div id="simples" class="tab-content">
+            <div class="input-group">
+                <label>Nome do Efeito / Habilidade</label>
+                <input type="text" id="simplesName" placeholder="Ex: Bola de Fogo" oninput="updateAll()">
+            </div>
+
+            <div class="simples-fields-header">
+                <label style="margin:0;">Campos Extras <span
+                        style="font-weight:normal; color:#999;">(opcional)</span></label>
+                <button class="btn-add" onclick="addSimplesField()">+ CAMPO</button>
+            </div>
+            <div id="simplesFieldsContainer"></div>
+
+            <div class="input-group" style="margin-top:12px;">
+                <label>Descrição</label>
+                <textarea id="simplesDesc" class="simples-desc-input"
+                    placeholder="Ex: Uma explosão de chamas no local definido ou ao acertar um alvo..."
+                    oninput="updateAll()"></textarea>
+            </div>
+
+            <details class="collapsible">
+                <summary>🖼️ GIF / Imagem</summary>
+                <div class="details-content">
+                    <div class="media-item">
+                        <input type="checkbox" id="checkSimplesGif" onchange="updateAll()">
+                        <input type="text" id="urlSimplesGif" placeholder="URL do GIF/Imagem" oninput="updateAll()">
+                    </div>
+                </div>
+            </details>
+
+            <div class="output-box">
+                <textarea id="outputSimples" class="macro-output" readonly></textarea>
+                <button class="btn-copy" onclick="copyAndLog('outputSimples', 'Simples')">Copiar e Salvar no
+                    Log</button>
+            </div>
+        </div>
+
+        <!-- ABA AVANÇADO -->
+        <div id="avancado" class="tab-content">
+            <div class="input-group">
+                <label>Descrição da Rolagem</label>
+                <input type="text" id="advDesc" placeholder="Ex: Bola de Fogo Exposiva!" oninput="updateAll()">
+            </div>
+            <div id="diceGroupsContainer"></div>
+            <button class="btn-add" style="width:100%; padding:10px; margin-bottom:15px;" onclick="addDiceGroup()">+
+                ADICIONAR DADOS DIFERENTES</button>
+            <div class="input-group">
+                <label>Bônus Fixo</label>
+                <input type="number" id="advBonus" value="0" oninput="updateAll()">
+            </div>
+            <div class="output-box">
+                <textarea id="outputAvancado" class="macro-output" readonly></textarea>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn-copy" style="flex:2;" onclick="copyAndLog('outputAvancado', 'Avançado')">Copiar
+                        Macro Avançada</button>
+                    <button id="btnCopyDice" class="btn-copy" style="flex:1; background:var(--accent-dark);"
+                        onclick="copyDiceOnly()">Copiar Dados</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREVIEW SECTION -->
+        <section class="preview-section">
+            <div class="section-title">PRÉ-VISUALIZAÇÃO (ROLL20 STYLE)</div>
+            <div class="r20-card">
+                <div class="r20-header" id="pre-header">Nome</div>
+                <div class="r20-body">
+                    <div style="font-size:0.8rem; color:#666;" id="pre-skill">Perícia</div>
+                    <button class="r20-roll-trigger" onclick="executeTestRoll()">Rolar Dados</button>
+                    <div class="r20-result-box">
+                        <span class="r20-result-value" id="roll-result-value">?</span>
+                    </div>
+                    <div class="r20-roll-details" id="roll-details-text">Clique para rolar</div>
+                    <div id="pre-gif-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOG SECTION -->
+        <section class="log-section">
+            <div class="section-title">LOG DE MACROS RECENTES</div>
+            <div id="macroLog" class="log-container">
+                <div style="color:#999; font-size:0.8rem; text-align:center; padding:10px;">Nenhuma macro copiada ainda.
+                </div>
+            </div>
+            <button onclick="clearAllData()"
+                style="margin-top: 25px; background: #e74c3c; color: white; border: 2px dashed #c0392b; width: 100%; padding: 12px; cursor: pointer; font-size: 0.8rem; font-family: 'Tormenta', serif; text-transform: uppercase; font-weight: bold; border-radius: 8px; transition: 0.3s;">
+                ⚠️ Limpar todos os dados salvos
+            </button>
+
+        </section>
+
+        <!-- ASSINATURA / CRÉDITOS (STR-style) -->
+        <section class="sig-wrap" aria-label="Sobre e créditos">
+            <details class="sig-card">
+                <summary class="sig-summary">
+                    <div class="sig-summary-left">
+                        <span class="sig-badge">Sobre</span>
+                        <span class="sig-title">Créditos e outros projetos</span>
+                    </div>
+                    <div class="sig-summary-right">
+                        <span class="sig-hint">clique para abrir</span>
+                        <span class="sig-chevron" aria-hidden="true">▾</span>
+                    </div>
+                </summary>
+
+                <div class="sig-body">
+                    <div class="sig-hero">
+                        <h3 class="sig-h3">Quem fez isso?</h3>
+                        <p class="sig-p">
+                            Olá! Meu nome é <strong>Nicholas Lemos</strong>.
+                            Sou jogador de RPG, desenvolvedor de software e entusiasta de ferramentas para
+                            <strong>Tormenta20</strong>.
+                        </p>
+                        <p class="sig-p">
+                            Criei este <strong>Gerador de Macros</strong> para facilitar jogadores do roll20. Basta
+                            preencher e colocar na aba Coleção > Macros >Adicionar.
+                        </p>
+                        <p class="sig-p">
+                            Feedbacks, sugestões e ideias são sempre bem-vindos.
+                        </p>
+                    </div>
+                    <div class="sig-col">
+                        <h4 class="sig-h4">Contato</h4>
+
+                        <a class="sig-link"
+                            href="https://api.whatsapp.com/send/?phone=5531992825753&text=Ol%C3%A1%2C+gostaria+de+tirar+uma+d%C3%BAvida.&type=phone_number&app_absent=0"
+                            target="_blank" rel="noopener noreferrer">
+                            <div class="sig-link-main">
+                                <span class="sig-link-name">WhatsApp</span>
+                                <span class="sig-link-url">Fale comigo diretamente</span>
+                            </div>
+                            <span class="sig-ext">↗</span>
+                        </a>
+
+                        <a class="sig-link" href="https://www.linkedin.com/in/nicholas-lemos/" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="sig-link-main">
+                                <span class="sig-link-name">LinkedIn</span>
+                                <span class="sig-link-url">Perfil profissional</span>
+                            </div>
+                            <span class="sig-ext">↗</span>
+                        </a>
+
+                        <a class="sig-link" href="https://github.com/nicholemos" target="_blank"
+                            rel="noopener noreferrer">
+                            <div class="sig-link-main">
+                                <span class="sig-link-name">GitHub</span>
+                                <span class="sig-link-url">Repositórios e projetos</span>
+                            </div>
+                            <span class="sig-ext">↗</span>
+                        </a>
+
+                        <div class="sig-note sig-cta">
+                            <div class="sig-note-title">Que tal um site para você?</div>
+                            <div class="sig-note-text">
+                                Dê uma olhada no modelo de site e me chame para conversarmos.
+                                <br>
+                                <a href="../index.html" target="_blank" rel="noopener noreferrer">
+                                    🏰 VTTArmada
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="sig-grid">
+                        <div class="sig-col">
+                            <h4 class="sig-h4">Conheça meus outros projetos</h4>
+
+                            <a class="sig-link" href="../STR/index.html" target="_blank"
+                                rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">STR – Supremo Tribunal Regreiro</span>
+                                    <span class="sig-link-url">nicholemos.github.io/STR</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a class="sig-link" href="../ficha/index.html" target="_blank"
+                                rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Ficha Automática de Tormenta20</span>
+                                    <span class="sig-link-url">nicholemos.github.io/ficha</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a class="sig-link" href="../itens/index.html" target="_blank"
+                                rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Compilado de Itens</span>
+                                    <span class="sig-link-url">nicholemos.github.io/itens</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a class="sig-link" href="../poderes/index.html" target="_blank"
+                                rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Compilado de Poderes</span>
+                                    <span class="sig-link-url">nicholemos.github.io/poderes</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a class="sig-link" href="../calculadora/index.html"
+                                target="_blank" rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Calculadora de Atributos</span>
+                                    <span class="sig-link-url">nicholemos.github.io/calculadora</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a class="sig-link" href="../EncontrosAleatorios/index.html" target="_blank"
+                                rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Encontros Aleatórios</span>
+                                    <span class="sig-link-url">nicholemos.github.io/EncontrosAleatorios</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a class="sig-link" href="../combate/index.html" target="_blank"
+                                rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Gerenciador de Combates</span>
+                                    <span class="sig-link-url">nicholemos.github.io/combate</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <a class="sig-link" href="../calculadoraND_Tormenta/index.html"
+                                target="_blank" rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Calculadora de ND</span>
+                                    <span class="sig-link-url">nicholemos.github.io/calculadoraND_Tormenta</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+
+                        <div class="sig-col">
+                            <h4 class="sig-h4">Este projeto</h4>
+
+                            <a class="sig-link sig-link-primary" href="../combate/index.html"
+                                target="_blank" rel="noopener noreferrer">
+                                <div class="sig-link-main">
+                                    <span class="sig-link-name">Macros para Roll20</span>
+                                    <span class="sig-link-url">nicholemos.github.io/macrosroll20</span>
+                                </div>
+                                <span class="sig-ext" aria-hidden="true">↗</span>
+                            </a>
+
+                            <div class="sig-note">
+                                <div class="sig-note-title">Dica rápida</div>
+                                <div class="sig-note-text">
+                                    Os links abrem em nova aba. Durante a semana vamos polir cada ferramenta aos poucos.
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="sig-footer">
+                        <span class="sig-footer-text">Feito para mesa rápida. Feedbacks são bem-vindos.</span>
+                    </div>
+                </div>
+            </details>
+        </section>
+    </div>
+    <script src="../grimorio/spells_db.js"></script>
+    <script src="script.js"></script>
+
+
+
+    <!-- MODAL GRIMÓRIO -->
+    <div id="grimorioOverlay" class="grimorio-overlay hidden" onclick="closeGrimorioIfBg(event)">
+        <div class="grimorio-modal">
+            <div class="grimorio-header">
+                <span class="grimorio-title">📖 Grimório</span>
+                <button class="grimorio-close" onclick="closeGrimorio()">×</button>
+            </div>
+            <div class="grimorio-filters">
+                <input type="text" id="grimorioSearch" class="grimorio-search"
+                    placeholder="Buscar magia..." oninput="renderGrimorio()">
+                <select id="grimorioCircle" onchange="renderGrimorio()">
+                    <option value="">Todos os círculos</option>
+                    <option value="1">1º círculo</option>
+                    <option value="2">2º círculo</option>
+                    <option value="3">3º círculo</option>
+                    <option value="4">4º círculo</option>
+                    <option value="5">5º círculo</option>
+                </select>
+                <select id="grimorioSchool" onchange="renderGrimorio()">
+                    <option value="">Todas as escolas</option>
+                </select>
+            </div>
+            <div id="grimorioCount" class="grimorio-count"></div>
+            <div id="grimorioList" class="grimorio-list"></div>
+        </div>
+    </div>
+<script src="../assets/templates/theme-init.js"></script>
+</body>
+
+</html>

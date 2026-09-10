@@ -1,0 +1,651 @@
+// armaduras.js
+
+const armadurasData = {
+    "armadura": [
+        // ---------- ARMADURAS LEVES ----------
+        {
+            "nome": "Armadura acolchoada",
+            "preco": "T$ 5",
+            "bonus_defesa": "+1",
+            "penalidade_armadura": "0",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Túnica almofadada que oferece +1 na Defesa sem penalidade de armadura. Ocupa 2 espaços. A mais leve das armaduras, ideal para personagens que precisam de mobilidade.",
+            "imagem": "data/img/armadura-acolchoada.webp"
+        },
+        {
+            "nome": "Armadura de couro",
+            "preco": "T$ 20",
+            "bonus_defesa": "+2",
+            "penalidade_armadura": "0",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Peitoral de couro curtido em óleo fervente que oferece +2 na Defesa sem penalidade de armadura. Ocupa 2 espaços. Confortável e acessível.",
+            "imagem": "data/img/armadura-couro.webp"
+        },
+        {
+            "nome": "Couro batido",
+            "preco": "T$ 35",
+            "bonus_defesa": "+3",
+            "penalidade_armadura": "–1",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Versão pesada da armadura de couro, reforçada com rebites de metal, que oferece +3 na Defesa com penalidade de –1 na armadura. Ocupa 2 espaços.",
+            "imagem": "data/img/couro-batido.webp"
+        },
+        {
+            "nome": "Gibão de peles",
+            "preco": "T$ 25",
+            "bonus_defesa": "+4",
+            "penalidade_armadura": "–3",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Armadura feita de várias camadas de peles e couro de animais que oferece +4 na Defesa com penalidade de –3 na armadura. Ocupa 2 espaços. Favorita de bárbaros.",
+            "imagem": "data/img/gibao-peles.webp"
+        },
+        {
+            "nome": "Couraça",
+            "preco": "T$ 500",
+            "bonus_defesa": "+5",
+            "penalidade_armadura": "–4",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Placa metálica que protege peito e costas, oferecendo +5 na Defesa com penalidade de –4 na armadura. Ocupa 2 espaços. A mais robusta das armaduras leves.",
+            "imagem": "data/img/couraca.webp"
+        },
+        // ---------- ARMADURAS PESADAS ----------
+        {
+            "nome": "Brunea",
+            "preco": "T$ 50",
+            "bonus_defesa": "+5",
+            "penalidade_armadura": "–2",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Colete de couro coberto com plaquetas de metal sobrepostas que oferece +5 na Defesa com penalidade de –2 na armadura. Ocupa 5 espaços. A mais utilizada no Reinado.",
+            "imagem": "data/img/brunea.webp"
+        },
+        {
+            "nome": "Cota de malha",
+            "preco": "T$ 150",
+            "bonus_defesa": "+6",
+            "penalidade_armadura": "–2",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Veste longa de anéis metálicos interligados que oferece +6 na Defesa com penalidade de –2 na armadura. Ocupa 5 espaços. Flexível e resistente.",
+            "imagem": "data/img/cota-malha.webp"
+        },
+        {
+            "nome": "Loriga segmentada",
+            "preco": "T$ 250",
+            "bonus_defesa": "+7",
+            "penalidade_armadura": "–3",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Armadura composta por tiras horizontais de metal que oferece +7 na Defesa com penalidade de –3 na armadura. Ocupa 5 espaços. Muito utilizada por legionários.",
+            "imagem": "data/img/loriga-segmentada.webp"
+        },
+        {
+            "nome": "Meia armadura",
+            "preco": "T$ 600",
+            "bonus_defesa": "+8",
+            "penalidade_armadura": "–4",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Cota de malha reforçada com placas de metal que oferece +8 na Defesa com penalidade de –4 na armadura. Ocupa 5 espaços.",
+            "imagem": "data/img/meia-armadura.webp"
+        },
+        {
+            "nome": "Armadura completa",
+            "preco": "T$ 3.000",
+            "bonus_defesa": "+10",
+            "penalidade_armadura": "–5",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Placas de metal forjadas e encaixadas que oferecem +10 na Defesa com penalidade de –5 na armadura. Ocupa 5 espaços. Precisa ser feita sob medida. A mais forte e pesada das armaduras.",
+            "imagem": "data/img/armadura-completa.webp"
+        },
+        // ---------- ESCUDOS ----------
+        {
+            "nome": "Escudo leve",
+            "preco": "T$ 5",
+            "bonus_defesa": "+1",
+            "penalidade_armadura": "–1",
+            "espacos": "1",
+            "categoria": "Escudo",
+            "tipo": "Escudo Leve",
+            "descricao": "Escudo de madeira amarrado no antebraço que oferece +1 na Defesa com penalidade de –1 na armadura. Ocupa 1 espaço. Deixa a mão livre.",
+            "imagem": "data/img/escudo-leve.webp"
+        },
+        {
+            "nome": "Escudo pesado",
+            "preco": "T$ 15",
+            "bonus_defesa": "+2",
+            "penalidade_armadura": "–2",
+            "espacos": "2",
+            "categoria": "Escudo",
+            "tipo": "Escudo Pesado",
+            "descricao": "Escudo de aço preso ao antebraço que oferece +2 na Defesa com penalidade de –2 na armadura. Ocupa 2 espaços. Ocupa uma mão ao ser empunhado.",
+            "imagem": "data/img/escudo-pesado.webp"
+        },
+
+        // (Itens de Ameaças de Arton)
+        {
+            nome: "Armadura de Ossos",
+            preco: "T$ 120",
+            bonus_defesa: "+3",
+            penalidade_armadura: "–2",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Armadura sinistra feita de ossos que oferece +3 na Defesa com penalidade de –2 na armadura. Ocupa 2 espaços. Fornece +1 em Intimidação e na CD de efeitos de medo.",
+            fonte: "Ameaças de Arton",
+            imagem: "data/img/gibao-peles.webp"
+        },
+        {
+            nome: "Veste de Teia de Aranha",
+            preco: "T$ 3.000",
+            bonus_defesa: "+4",
+            penalidade_armadura: "0",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Veste feita com teia de aranha gigante que oferece +4 na Defesa sem penalidade de armadura. Ocupa 2 espaços. Fornece +5 em Furtividade. Não pode receber melhoria material especial.",
+            fonte: "Ameaças de Arton",
+            imagem: "data/img/teia.webp"
+        },
+        {
+            nome: "Armadura de Quitina",
+            preco: "T$ 350",
+            bonus_defesa: "+7",
+            penalidade_armadura: "–3",
+            espacos: "5",
+            categoria: "Armadura",
+            tipo: "Armadura Pesada",
+            descricao: "Feita com carapaças de grandes insetos, esta armadura dos povos-trovão é mais leve que suas contrapartes metálicas. Embora seja uma armadura pesada, não reduz o deslocamento do usuário.",
+            fonte: "Ameaças de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Escudo de Couro",
+            preco: "T$ 3",
+            bonus_defesa: "+1",
+            penalidade_armadura: "–1",
+            espacos: "1",
+            categoria: "Escudo",
+            tipo: "Escudo Leve",
+            descricao: "Feito com uma armação de madeira esticando uma membrana de couro. Contra ataques à distância, o bônus na Defesa do escudo aumenta em +2. É muito leve para ser usado como arma.",
+            fonte: "Ameaças de Arton",
+            imagem: "data/img/escudo-leve.webp"
+        },
+        // (Itens de Heróis de Arton)
+        {
+            nome: "Armadura Sensual",
+            preco: "T$ 55",
+            bonus_defesa: "+1",
+            penalidade_armadura: "0",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Permite usar o poder Atraente. Se já o tiver, o bônus aumenta para +5. Pode não ser apropriada em certas situações sociais.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Armadura de Folhas",
+            preco: "T$ 75",
+            bonus_defesa: "+2",
+            penalidade_armadura: "0",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Feita de folhas preparadas. Se for treinado em Sobrevivência, você recebe +2 PM (somente após 1 dia de uso).",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Armadura de Engenhoqueiro Goblin",
+            preco: "T$ 85",
+            bonus_defesa: "+3",
+            penalidade_armadura: "–2 a –10",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Pode levar até 2 espaços de itens na armadura. Pode levar +8 espaços (total 10), mas a penalidade aumenta em –1 por espaço extra (até –10). Penalidade não se aplica a testes para ativar engenhocas. Causa –5 em Furtividade. Não pode ter penalidade reduzida.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Cota de Moedas",
+            preco: "T$ 350",
+            bonus_defesa: "+4",
+            penalidade_armadura: "–3",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Feita de tibares entrelaçados. Você recebe +2 em Diplomacia (cumulativo com melhorias). Pode impor –2 em Diplomacia contra certos grupos.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/cota-malha.webp"
+        },
+        {
+            nome: "Colete Fora da Lei",
+            preco: "T$ 750",
+            bonus_defesa: "+5",
+            penalidade_armadura: "–5",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Colete metálico com ranhuras. Contra armas de disparo, o bônus na Defesa aumenta em +2.",
+            fonte: "Heróis de Arton"
+        },
+        {
+            nome: "Veste de Teia de Aranha",
+            preco: "T$ 3.000",
+            bonus_defesa: "+4",
+            penalidade_armadura: "0",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Veste feita com teia de aranha gigante que oferece +4 na Defesa sem penalidade de armadura. Ocupa 2 espaços. Fornece +5 em Furtividade. Não pode receber melhoria material especial.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/teia.webp"
+        },
+        {
+            nome: "Armadura de Ossos",
+            preco: "T$ 120",
+            bonus_defesa: "+3",
+            penalidade_armadura: "–2",
+            espacos: "2",
+            categoria: "Armadura",
+            tipo: "Armadura Leve",
+            descricao: "Armadura sinistra feita de ossos que oferece +3 na Defesa com penalidade de –2 na armadura. Ocupa 2 espaços. Fornece +1 em Intimidação e na CD de efeitos de medo.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/gibao-peles.webp"
+        },
+        {
+            nome: "Brigantina",
+            preco: "T$ 75",
+            bonus_defesa: "+6",
+            penalidade_armadura: "0",
+            espacos: "5",
+            categoria: "Armadura",
+            tipo: "Armadura Pesada",
+            descricao: "Veste de couro com pequenas placas metálicas. Contra armas de perfuração, o bônus na Defesa diminui em –2.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/couro-batido.webp"
+        },
+        {
+            nome: "Armadura de Quitina",
+            preco: "T$ 350",
+            bonus_defesa: "+7",
+            penalidade_armadura: "–3",
+            espacos: "5",
+            categoria: "Armadura",
+            tipo: "Armadura Pesada",
+            descricao: "Feita com carapaças de grandes insetos. Embora seja uma armadura pesada, não reduz o deslocamento do usuário.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Armadura de Chumbo",
+            preco: "T$ 750",
+            bonus_defesa: "+7",
+            penalidade_armadura: "–5",
+            espacos: "5",
+            categoria: "Armadura",
+            tipo: "Armadura Pesada",
+            descricao: "Extremamente pesada. Fornece redução de dano 2/mundano e resistência a magia +2 (cumulativo).",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Armadura de Justa",
+            preco: "T$ 1.200",
+            bonus_defesa: "+9",
+            penalidade_armadura: "–5",
+            espacos: "5",
+            categoria: "Armadura",
+            tipo: "Armadura Pesada",
+            descricao: "Meia armadura de placas. Fornece +5 para resistir a ser derrubado (montado). Contra armas de perfuração, bônus na Defesa +2. Penalidade de armadura aumenta em 2 se não estiver montado.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-completa.webp"
+        },
+        {
+            nome: "Armadura de Hussardo Alado",
+            preco: "T$ 4.500",
+            bonus_defesa: "+10",
+            penalidade_armadura: "–6",
+            espacos: "5",
+            categoria: "Armadura",
+            tipo: "Armadura Pesada",
+            descricao: "Armadura completa com 'asas' de penas. Quando faz uma investida montada, pode fazer um teste de Intimidação para assustar o alvo (1/cena por oponente).",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Armadura de Pedra",
+            preco: "T$ 5.500",
+            bonus_defesa: "+12",
+            penalidade_armadura: "–5",
+            espacos: "5",
+            categoria: "Armadura",
+            tipo: "Armadura Pesada",
+            descricao: "Armadura completa de pedra. Fornece redução de dano 2 (cumulativo). Seu deslocamento é reduzido pela metade (em vez de -3m). Não pode receber material especial.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/armadura-couro.webp"
+        },
+        {
+            nome: "Broquel",
+            preco: "T$ 25",
+            bonus_defesa: "0",
+            penalidade_armadura: "–1",
+            espacos: "0,5",
+            categoria: "Escudo",
+            tipo: "Escudo Leve",
+            descricao: "Não fornece bônus passivo. 1/rodada, quando é atingido por um ataque, pode fazer um teste de ataque corpo a corpo (reação). Para cada 10 pontos no resultado, reduz o dano em 2. Pode atacar como escudo leve.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/escudo-leve.webp"
+        },
+
+        {
+            nome: "Escudo de Vime",
+            preco: "T$ 15",
+            bonus_defesa: "+2",
+            penalidade_armadura: "–2",
+            espacos: "2",
+            categoria: "Escudo",
+            tipo: "Escudo Pesado",
+            descricao: "Leve e volumoso. Exige duas mãos (impede empunhar armas). Não pode ser usado montado ou para atacar. Fornece camuflagem leve. Pode gastar ação para fornecer o bônus de Defesa e camuflagem a um aliado adjacente. Se você ou o aliado sofrerem um crítico, o escudo é destruído.",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/escudo-leve.webp"
+        },
+        {
+            nome: "Escudo Torre",
+            preco: "T$ 45",
+            bonus_defesa: "+2",
+            penalidade_armadura: "–4",
+            espacos: "2",
+            categoria: "Escudo",
+            tipo: "Escudo Pesado",
+            descricao: "Escudo grande e retangular. Não pode ser usado para atacar ou montado. Pode gastar uma ação de movimento para fixá-lo no chão (fornece cobertura leve).",
+            fonte: "Heróis de Arton",
+            imagem: "data/img/escudo-pesado.webp"
+        },
+        {
+            nome: "Sagna",
+            preco: "T$ 20",
+            bonus_defesa: "+2",
+            penalidade_armadura: "–3",
+            espacos: "2",
+            categoria: "Escudo",
+            tipo: "Escudo Pesado",
+            descricao: "Grande escudo de madeira. Anula a penalidade de armadura (deste escudo e da sua armadura) para natação. Se passa em teste de natação, avança deslocamento normal (+3m se já tiver desloc. de natação). Pode atacar como escudo pesado.",
+            fonte: "Heróis de Arton"
+        },
+        {
+            "nome": "Grilhão de Descrença",
+            "preco": "T$ 24.000",
+            "bonus_defesa": "+10",
+            "penalidade_armadura": "–5",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Esta armadura completa reforçada e selada contém uma forte maldição divina: uma vez vestida, não pode ser retirada. Qualquer criatura que chegue a 0 PV vestindo esta armadura não pode ser ressuscitada e se torna um guerreiro perpétuo (veja p. 139). Se de alguma forma a maldição for removida (como por dissipar o item ou quebrar a maldição), ela se transforma numa armadura completa reforçada e selada com um encanto aleatório (veja Tormenta20, p. 338). Uma armadura grilhão de descrença não pode ser fabricada e é encontrada apenas em guerreiros perpétuos. Armadura específica menor, preço T$ 24.000.",
+            "fonte": "Ameaças de Arton"
+        },
+        {
+            "nome": "Colar de Presas",
+            "preco": "T$ 21.000",
+            "bonus_defesa": "+0",
+            "penalidade_armadura": "0",
+            "espacos": "1",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Este adereço é feito com dentes e garras de monstros unidos por tendões. Se for vestido, fornece +2 em Intimidação, mas impõe –2 em Diplomacia. Mais do que isso, carrega em seu âmago o instinto brutal das feras e, se você for um devoto de Megalokk, fornece também +2 em testes de ataque e rolagens de dano com armas naturais.",
+            "fonte": "Deuses de Arton"
+        },
+        {
+            "nome": "Armadura do Julgamento (Campeão)",
+            "preco": "T$ 54.000",
+            "bonus_defesa": "+14",
+            "penalidade_armadura": "–-5",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta armadura completa polida reforçada é feita de aço reluzente quase tão reflexivo quanto um espelho. Se você for um devoto de Khalmyr, ela se torna uma armadura completa polida reforçada defensora. Sempre que uma criatura atacá-lo, você pode gastar 2 PM para fazê-la ver seus pecados refletidos na armadura. A criatura fica pasma por 1 rodada (apenas uma vez por cena) e frustrada (Von CD Sab reduz para apenas frustrada). Note que a penalidade em testes mentais imposta pela frustração pode tornar mais fácil convencer a criatura a abandonar a luta através de Diplomacia ou outros efeitos que exijam testes de Vontade — um caminho digno para devotos do Deus da Justiça que queiram julgar seus inimigos em vez de apenas executálos sumariamente! Se você for um devoto de patamar campeão ou superior, a armadura se torna uma armadura completa polida reforçada guardiã.",
+            "fonte": "Deuses de Arton"
+        },
+        {
+            "nome": "Armadura do Julgamento",
+            "preco": "T$ 54.000",
+            "bonus_defesa": "+10",
+            "penalidade_armadura": "–-5",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta armadura completa polida reforçada é feita de aço reluzente quase tão reflexivo quanto um espelho. Se você for um devoto de Khalmyr, ela se torna uma armadura completa polida reforçada defensora. Sempre que uma criatura atacá-lo, você pode gastar 2 PM para fazê-la ver seus pecados refletidos na armadura. A criatura fica pasma por 1 rodada (apenas uma vez por cena) e frustrada (Von CD Sab reduz para apenas frustrada). Note que a penalidade em testes mentais imposta pela frustração pode tornar mais fácil convencer a criatura a abandonar a luta através de Diplomacia ou outros efeitos que exijam testes de Vontade — um caminho digno para devotos do Deus da Justiça que queiram julgar seus inimigos em vez de apenas executálos sumariamente! Se você for um devoto de patamar campeão ou superior, a armadura se torna uma armadura completa polida reforçada guardiã.",
+            "fonte": "Deuses de Arton"
+        },
+        {
+            "nome": "Botas Inquietas",
+            "preco": "T$ 15.000",
+            "bonus_defesa": "+0",
+            "penalidade_armadura": "0",
+            "espacos": "1",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esse par de botas reforçadas é bastante surrado, com marcas dos diversos terrenos pelos quais já passou: carrapichos de florestas, manchas das águas escuras de pântanos, pequenos rasgos das pedras afiadas de montanhas… Se você for um devoto de Valkaria e vestir as botas inquietas, sente um grande desejo de viajar e desbravar o mundo — e a disposição para tal empreitada! Você recebe +1 em Constituição (apenas após 1 dia de uso) e +5 em testes de Fortitude para marcha forçada. Além disso, sempre que realizar uma investida durante um combate, recebe 1 PM temporário cumulativo (até um máximo de 3 PM por patamar por dia).",
+            "fonte": "Deuses de Arton"
+        },
+        {
+            "nome": "Armadura de Arsenal",
+            "preco": "T$ —",
+            "bonus_defesa": "+14",
+            "penalidade_armadura": "–-5",
+            "espacos": "0",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Esta é uma armadura completa de adamante guardiã invulnerável protetora capaz de assimilar até três itens mágicos vestidos. Itens armazenados dessa forma fornecem seus benefícios normalmente, não podem ser desarmados e não contam no limite de itens vestidos do personagem. Artefato",
+            "fonte": "Deuses de Arton"
+        },
+        {
+            "nome": "Trombeta do Cruzado",
+            "preco": "T$ —",
+            "bonus_defesa": "+0",
+            "penalidade_armadura": "0",
+            "espacos": "0",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta trombeta santificada infunde energia divina nas criaturas que você convoca. Se estiver empunhando esta trombeta quando usa um poder concedido ou uma magia divina que convoca capangas (como Servos do Dragão ou Conjurar Mortos-vivos), o custo da habilidade é reduzido em –1 PM e os capangas convocados recebem +2 em rolagens de dano. Conta como um instrumento musical.",
+            "fonte": "Deuses de Arton"
+        },
+        {
+            "nome": "Armadura do Julgamento (Devoto)",
+            "preco": "T$ 54.000",
+            "bonus_defesa": "+12",
+            "penalidade_armadura": "–-5",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta armadura completa polida reforçada é feita de aço reluzente quase tão reflexivo quanto um espelho. Se você for um devoto de Khalmyr, ela se torna uma armadura completa polida reforçada defensora. Sempre que uma criatura atacá-lo, você pode gastar 2 PM para fazê-la ver seus pecados refletidos na armadura. A criatura fica pasma por 1 rodada (apenas uma vez por cena) e frustrada (Von CD Sab reduz para apenas frustrada). Note que a penalidade em testes mentais imposta pela frustração pode tornar mais fácil convencer a criatura a abandonar a luta através de Diplomacia ou outros efeitos que exijam testes de Vontade — um caminho digno para devotos do Deus da Justiça que queiram julgar seus inimigos em vez de apenas executálos sumariamente! Se você for um devoto de patamar campeão ou superior, a armadura se torna uma armadura completa polida reforçada guardiã.",
+            "fonte": "Deuses de Arton"
+        },
+        {
+            "nome": "Batina Consagrada",
+            "preco": "T$ 80.000",
+            "bonus_defesa": "+1",
+            "penalidade_armadura": "0",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta armadura acolchoada guardiã refletora é dedicada a uma divindade específica, que pode ser identificada pelos símbolos bordados em seu peito e mangas. Conta como um Manto Eclesiástico aprimorado e, se vestida por um devoto da divindade à qual é dedicada, fornece redução de dano 5.",
+            "fonte": "Guia de NPCs"
+        },
+        {
+            "nome": "Armadura de Crânio Negro",
+            "preco": "T$ —",
+            "bonus_defesa": "+14",
+            "penalidade_armadura": "0",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta armadura foi criada pelos diabretes negociantes a partir das memórias de Ellisa Thorn, ex-membro do Esquadrão do Inferno. Sua aparência é notável e ameaçadora: completamente negra, parece sugar a luz e destaca-se até mesmo contra o céu noturno. O elmo tem a forma de um crânio estilizado, com adornos que o tornam ainda mais sinistro. Ela é uma armadura completa fortificada guardiã macabra que parece se mover sozinha (suas placas deslizam para manter o usuário protegido e defendê-lo). Apesar de seu peso e rigidez, não atrapalha os movimentos, permitindo saltos e acrobacias em meio ao combate: conta como uma armadura leve com penalidade de armadura 0. Contudo, por ser feita a partir das memórias de uma artoniana, a armadura tem um efeito colateral: bombardeia o usuário com impressões da vida de Ellisa Thorn. Molda o estilo de luta e até mesmo parte do comportamento do usuário para refletir os membros do Esquadrão do Inferno. Por exemplo, Crânio Negro luta com duas espadas (como Vallen Allond), rastreia (como a própria Ellisa ou Andilla Dente-de- -Ferro) e repete “não há morte” (como Gregor Vahn). Artefato.",
+            "fonte": "Guia de NPCs"
+        },
+        {
+            "nome": "Armadura de Khalmyr",
+            "preco": "T$ 42.000",
+            "bonus_defesa": "+12",
+            "penalidade_armadura": "–-3",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Esta armadura completa sob medida defensora fica armazenada magicamente em uma gargantilha com o símbolo do Deus da Justiça. Enquanto está armazenada dessa forma, a armadura não ocupa nenhum espaço (embora ainda conte como um item vestido) e não impõe nenhuma penalidade ao usuário (como se ele não estivesse de armadura). Ao pronunciar o nome de Khalmyr, o usuário evoca a armadura, que é vestida automaticamente. Devolver a armadura à gargantilha também é uma ação livre.",
+            "fonte": "Guia de NPCs"
+        },
+        {
+            "nome": "Óculos da revelação",
+            "preco": "T$ 10.500",
+            "bonus_defesa": "+0",
+            "penalidade_armadura": "0",
+            "espacos": "1",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Quando invoca o poder destas lentes, você pode lançar a magia Lendas e Histórias",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Tonsura",
+            "preco": "T$ 3",
+            "bonus_defesa": "+0",
+            "penalidade_armadura": "0",
+            "espacos": "0",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Não uma roupa, mas um estilo de cabelo. A tonsura pode significar que o devoto tem o topo da cabeça raspado, ou toda a frente do couro cabeludo, ou ainda algum corte mais exótico. A maioria das pessoas acha um sacerdote tonsurado bastante engraçado e “bonitinho”. Impõe –5 em Intimidação, mas permite usar o poder Aparência Inofensiva. Se já tiver este poder, em vez disso você pode usá-lo contra as duas primeiras criaturas inteligentes que o atacarem em uma cena. Uma tonsura conta como um item vestido porque você precisa deixar a cabeça à mostra, mas não ocupa um espaço.",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Armadura das Sombras Profundas",
+            "preco": "T$ 40.500",
+            "bonus_defesa": "+8",
+            "penalidade_armadura": "–-2",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Esta cota de malha sob medida defensora sombria negra e translúcida parece feita de pura escuridão. Você recebe redução de luz 10 e pode lançar Invisibilidade. Caso já conheça essa magia, o custo para lançá-la diminui em –1 PM.",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Escudo do Trovão",
+            "preco": "T$ 54.000",
+            "bonus_defesa": "+6",
+            "penalidade_armadura": "0",
+            "espacos": "1",
+            "categoria": "Escudo",
+            "tipo": "Escudo Pesado",
+            "descricao": "Este escudo pesado guardião de mitral é decorado com raios em alto-relevo. Sempre que você sofre dano de um ataque corpo a corpo, pode gastar 2 PM para liberar um estrondo sônico que empurra inimigos adjacentes 3m para trás (Fort CD Car evita) Aprimoramentos: Material Especial - Mitral Encantos: Defensor, Guardião",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Cota da Serpente Marinha",
+            "preco": "T$ 27.000",
+            "bonus_defesa": "+6",
+            "penalidade_armadura": "–-2",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Esta cota de malha ajustada guardiã azul-esverdeada é feita com escamas de monstros marinhos. Você recebe deslocamento de natação 12m e pode lançar Sopro das Uivantes (CD Sab). Caso já conheça essa magia, o custo para lançá-la diminui em –1 PM.",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Escudo da Luz Estelar",
+            "preco": "T$ 27.000",
+            "bonus_defesa": "+3",
+            "penalidade_armadura": "–-1",
+            "espacos": "1",
+            "categoria": "Escudo",
+            "tipo": "Escudo Pesado",
+            "descricao": "Este escudo leve defensor parece feito de cristal e brilha com a luz das estrelas. Você recebe +5 em Percepção. Além disso, pode lançar Luz e usar seus aprimoramentos como se tivesse acesso aos mesmos círculos de magia que um arcanista de seu nível (CD Int). Caso já conheça essa magia, o custo para lançá-la diminui em –1 PM Encantos: Defensor",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Arreios Namalkahnianos",
+            "preco": "T$ 50",
+            "bonus_defesa": "+0",
+            "penalidade_armadura": "0",
+            "espacos": "1",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Feitos de couro com nós e fivelas que permitem ajustes precisos, estes arreios permitem que um animal de tração puxe um veículo da forma mais confortável e eficiente possível. Contam como um item vestido do animal e aumentam o deslocamento de um veículo de tração animal em +3m.",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Armadura do Inverno Perene",
+            "preco": "T$ 40.500",
+            "bonus_defesa": "+5",
+            "penalidade_armadura": "–-4",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta couraça defensora gélida de gelo eterno é coberta por névoa gelada. Quando você usa a habilidade ativada do encanto gélido, recebe 20 PV (em vez de 10). Além disso, pode lançar Área Escorregadia (CD Sab) como uma ação de movimento — o efeito assume a forma de uma fina camada de gelo escorregadio. Caso já conheça essa magia, o custo para lançá-la diminui em –1 PM.",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Tomo da técnica definitiva",
+            "preco": "T$ 30.000",
+            "bonus_defesa": "+0",
+            "penalidade_armadura": "0",
+            "espacos": "1",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Destinado a guerreiros que desenvolveram seu próprio Golpe Pessoal, este manual permite aprimorar ainda mais sua técnica. Estudar o tomo exige uma ação entre aventuras. Uma vez que você tenha feito isso, seu Golpe Pessoal recebe novos efeitos num total de até 2 PM, que não contam no limite para construí-lo e que não aumentam seu custo em PM. Quando sobe de nível e reconstrói seu golpe, você pode alterá-los. Se você possuir mais de um Golpe Pessoal, esse efeito se aplica apenas a um deles",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Escudo do Grifo",
+            "preco": "T$ 27.000",
+            "bonus_defesa": "+4",
+            "penalidade_armadura": "–-2",
+            "espacos": "2",
+            "categoria": "Escudo",
+            "tipo": "Escudo Pesado",
+            "descricao": "Este escudo pesado defensor é forjado no formato de uma asa gigante. Você recebe redução de dano 10 contra ataques à distância e pode lançar Sopro das Uivantes (CD Sab). Caso já conheça essa magia, o custo para lançá-la diminui em –1 PM Encantos: Defensor",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Couraça do Guardião Celeste",
+            "preco": "T$ 54.000",
+            "bonus_defesa": "+5",
+            "penalidade_armadura": "–-4",
+            "espacos": "2",
+            "categoria": "Armadura",
+            "tipo": "Armadura Leve",
+            "descricao": "Esta couraça banhada a ouro defensora protetora é adornada com asas douradas no peitoral e nas ombreiras. Você recebe +1 em Carisma (somente após um dia de uso) e seus efeitos de cura de luz curam +1 PV por dado de cura.",
+            "fonte": "Heróis de Arton"
+        },
+        {
+            "nome": "Armadura do Dragão Ancião",
+            "preco": "T$ 10.000",
+            "bonus_defesa": "+14",
+            "penalidade_armadura": "–-5",
+            "espacos": "5",
+            "categoria": "Armadura",
+            "tipo": "Armadura Pesada",
+            "descricao": "Esta armadura completa guardiã invulnerável feita de escamas douradas iridescentes é incrivelmente resistente. Você recebe redução de eletricidade, fogo e frio 10. Além disso, enquanto estiver com menos da metade dos seus pontos de vida, você pode emitir um rugido dracônico idêntico ao efeito de um item assustador (Tormenta20, p. 338).",
+            "fonte": "Heróis de Arton"
+        }
+    ]
+};
+
+// Publica a variável para o script.js
+window.armadurasData = armadurasData;

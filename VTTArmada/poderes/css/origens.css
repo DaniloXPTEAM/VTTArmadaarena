@@ -1,0 +1,399 @@
+/* ==============================
+   ORIGENS — Estilos
+   ============================== */
+
+/* ── Toggle de view (Poderes / Origens) ──────────────────── */
+.view-switcher {
+  display: flex;
+  gap: 0;
+  background: rgba(0, 0, 0, .25);
+  border-radius: 999px;
+  padding: 3px;
+  border: 2px solid rgba(255, 255, 255, .2);
+}
+
+.view-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, .75);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .18s, color .18s;
+  white-space: nowrap;
+}
+
+.view-btn:hover {
+  background: rgba(255, 255, 255, .10);
+  color: #fff;
+}
+
+.view-btn.active {
+  background: var(--str-accent);
+  color: #fff;
+}
+
+/* ── Seção de origens ─────────────────────────────────────── */
+#origensSection {
+  width: 100%;
+}
+
+#origensContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.origins-empty {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 24px;
+  grid-column: 1 / -1;
+}
+
+/* ── Card de origem ───────────────────────────────────────── */
+.origin-card {
+  border-left: 4px solid var(--str-accent);
+}
+
+/* ── Tags de benefícios no card ──────────────────────────── */
+.origin-benefits-preview {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+
+.origin-tag {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.origin-tag-skill {
+  background: rgba(39, 174, 96, .15);
+  color: #27ae60;
+  border: 1px solid rgba(39, 174, 96, .3);
+}
+
+.origin-tag-power {
+  background: rgba(224, 72, 63, .12);
+  color: var(--str-accent);
+  border: 1px solid rgba(224, 72, 63, .25);
+}
+
+/* Badges no modal */
+.origin-badge-t20 {
+  background: #344a5c;
+  color: #fff;
+}
+
+.origin-badge-atlas {
+  background: #5d4037;
+  color: #ffe0b2;
+}
+
+/* ── Filtros de origens (header) ─────────────────────────── */
+#origensFilters {
+  display: none;
+  /* JS controla */
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+#atlasRegionSelector {
+  background: rgba(0, 0, 0, .25);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, .35);
+  border-radius: 12px;
+  padding: 7px 12px;
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  display: none;
+  /* JS exibe quando Atlas selecionado */
+}
+
+#atlasRegionSelector option {
+  background: #1e293b;
+  color: #fff;
+}
+
+#origensSearch {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: 1rem;
+}
+
+#origensSearch::placeholder {
+  color: rgba(255, 255, 255, .65);
+}
+
+/* ── Modal de origens ─────────────────────────────────────── */
+.origin-items-row {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, .04);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+
+.origin-items-row strong {
+  color: var(--text-main);
+}
+
+.origin-region-label {
+  font-size: .82rem;
+  color: #8d6e63;
+  font-style: italic;
+  margin-left: 8px;
+}
+
+/* ── Benefit Picker ──────────────────────────────────────── */
+.benefit-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0 10px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.benefit-count {
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--str-accent);
+  background: rgba(224, 72, 63, .1);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.benefit-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+
+.benefit-item:has(.benefit-check:checked) {
+  border-color: var(--str-accent);
+  background: rgba(224, 72, 63, .04);
+}
+
+.benefit-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.benefit-label:hover {
+  background: rgba(0, 0, 0, .03);
+}
+
+.benefit-check {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--str-accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.benefit-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.benefit-label-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.benefit-label-name {
+  display: block;
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--text-main);
+}
+
+.benefit-label-type {
+  display: block;
+  font-size: .75rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* "Clique para expandir" hint */
+.benefit-label::after {
+  content: '▸';
+  color: var(--text-muted);
+  font-size: .8rem;
+  transition: transform .15s;
+  flex-shrink: 0;
+}
+
+/* Descrição colapsável */
+.benefit-desc {
+  display: none;
+  padding: 0 14px 12px 50px;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.benefit-desc.open {
+  display: block;
+}
+
+/* ── Seção Atlas ──────────────────────────────────────────── */
+.atlas-benefits-header {
+  margin: 16px 0 10px;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text-main);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.atlas-training-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 14px;
+}
+
+.atlas-unique-box {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(93, 64, 55, .06);
+}
+
+.atlas-unique-name {
+  display: block;
+  font-size: .95rem;
+  font-weight: 800;
+  color: #5d4037;
+  margin-bottom: 4px;
+}
+
+.atlas-unique-text {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  #origensContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .view-switcher {
+    order: -1;
+    align-self: center;
+  }
+}
+
+/* ── Search row (view toggle + input lado a lado) ──────── */
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.search-row #searchInput,
+.search-row #origensSearch {
+  flex: 1;
+  min-width: 0;
+}
+
+.origin-badge-herois {
+  background: #1a4731;
+  color: #a8e6c1;
+}
+
+.origin-badge-outras {
+  background: #4a1d6e;
+  color: #e0b8ff;
+}
+
+/* --- Destaque para ORIGENS no carrinho --- */
+.origin-card.in-cart-highlight {
+  border-color: #d4af37 !important;
+  /* Dourado */
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3) !important;
+  background: linear-gradient(145deg, #fdf8e8, #fffaf0) !important;
+  transition: all 0.2s ease;
+}
+
+/* Ajuste do Título da Origem */
+.origin-card.in-cart-highlight .power-name {
+  color: #b8962e !important;
+  /* Dourado escuro */
+  font-weight: 800;
+}
+
+/* Ajuste da descrição e preview de benefícios */
+.origin-card.in-cart-highlight .power-desc,
+.origin-card.in-cart-highlight .origin-benefits-preview {
+  color: #8b7355 !important;
+  /* Marrom acinzentado */
+}
+
+/* Ajuste das Tags de benefícios dentro do card selecionado */
+.origin-card.in-cart-highlight .origin-tag-skill {
+  background: rgba(212, 175, 55, 0.15);
+  color: #b8962e;
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Dica inferior (Clique para ver...) */
+.origin-card.in-cart-highlight .power-hint {
+  color: #b8962e !important;
+  font-weight: 600;
+}
+
+/* Estilo para o item de Origem dentro do Carrinho (Painel Lateral) */
+.cart-item.origin-item {
+  border-left: 4px solid #d4af37;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.cart-item.origin-item .cart-item-name {
+  color: #b8962e;
+}

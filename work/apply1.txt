@@ -1,0 +1,1230 @@
+sup docs topo: 2236
+adds: data=598, dist=36, chassi=10, heranca=1, parc=59, itens=98, armas=74, armad=23, itesm=1, grim=1, orig=1, arsenal=0
+cobaia: pod=15 marca=True ars_add=10
+skipped: 1321 ({'magia-dupe': 52, 'item-dupe': 229, 'tipo-race': 47, 'parc-dupe': 20, 'atributo-racial': 37, 'moreau-dupe': 33, 'equiv-chassi-ours': 7, 'equiv-chassi-inevitavel': 2, 'dupe-nome': 252, 'variante-ortografica-moreau': 3, 'mecanica-calculadora': 1, 'chassi-ferro': 1, 'equiv-chassi-mashin': 1, 'dupe-golem': 2, 'origem-dupe': 64, 'dupe-triplo': 117, 'sem-classe-atribuivel': 2, 'magia-vazia': 1, 'tipo-classe': 17, 'dupe-conhecida': 1, 'dist-dupe': 293, 'arsenal-dupe': 14, 'marca-dupe': 57, 'marca-diverge-mantida': 1, 'dist-ausente': 28, 'subtipo-corrompido': 1, 'subtipo-disperso': 35, 'variante-ortografica': 1, 'varia-dupe': 2})
+UNMATCHED: 0
+--- risky skips (dupe-parcial/varia/geral-vazio review) ---
+  sk[atributo-racial] Atributos - Kobolds
+  sk[atributo-racial] Atributos - Voracis
+  sk[atributo-racial] Atributos - Soterrado
+  sk[atributo-racial] Atributos - Moreau Urso
+  sk[atributo-racial] Atributos - Moreau Bufalo
+  sk[atributo-racial] Atributos - Moreau Raposa
+  sk[atributo-racial] Atributos - Ceratops
+  sk[atributo-racial] Atributos - Orc
+  sk[atributo-racial] Atributos - Moreau Morcego
+  sk[atributo-racial] Atributos - Moreau Crocodilo
+  sk[atributo-racial] Atributos - Yidishan
+  sk[atributo-racial] Atributos - Moreau Lobo
+  sk[atributo-racial] Atributos - Tengu
+  sk[atributo-racial] Atributos - Ogro
+  sk[atributo-racial] Atributos - Kappa
+  sk[atributo-racial] Atributos - Harpia
+  sk[atributo-racial] Atributos - Hobgoblin
+  sk[atributo-racial] Atributos - Moreau Hiena
+  sk[atributo-racial] Atributos - Finntroll
+  sk[atributo-racial] Atributos - Meio-Orc
+  sk[atributo-racial] Atributos - Nagah (Fêmea)
+  sk[atributo-racial] Atributos - Gnoll
+  sk[atributo-racial] Atributos - Moreau Gato
+  sk[atributo-racial] Atributos - Elfo-do-Mar
+  sk[atributo-racial] Atributos - Nagah (Macho)
+  sk[atributo-racial] Atributos - Minauro
+  sk[atributo-racial] Atributos - Bugbear
+  sk[atributo-racial] Atributos - Tabrachi
+  sk[atributo-racial] Atributos - Moreau Leão
+  sk[atributo-racial] Atributos - Nezumi
+  sk[atributo-racial] Atributos - Velocis
+  sk[atributo-racial] Atributos - Moreau Coelho
+  sk[atributo-racial] Atributos - Kaijin
+  sk[atributo-racial] Atributos - Moreau Serpente
+  sk[atributo-racial] Atributos - Trog Anão
+  sk[atributo-racial] Atributos - Centauro
+  sk[atributo-racial] Atributos - Moreau Coruja
+  sk[sem-classe-atribuivel] Golpe Semântico
+  sk[sem-classe-atribuivel] Andarilho Carregado
+  sk[marca-diverge-mantida] Combate Aéreo (Marca)
+  sk[dist-ausente] Especiarias Picantes
+  sk[dist-ausente] Ervas Aromáticas
+  sk[dist-ausente] Carne Monstruosa
+  sk[dist-ausente] Energizante
+  sk[dist-ausente] Núcleo de Temperatura
+  sk[dist-ausente] Passo Hilariante
+  sk[dist-ausente] Erudito
+  sk[dist-ausente] Rir da Desgraça Alheia
+  sk[dist-ausente] Humor Macabro
+  sk[dist-ausente] Despersonalizante
+  sk[dist-ausente] Deboche Mágico
+  sk[dist-ausente] Estalajadeiro
+  sk[dist-ausente] Boticário
+  sk[dist-ausente] Humor Macabro em Massa
+  sk[dist-ausente] Curandeiro
+  sk[dist-ausente] Raízes Curativas
+  sk[dist-ausente] Bateria Potente
+  sk[dist-ausente] Etiqueta de Instruções
+  sk[dist-ausente] Aristocrata
+  sk[dist-ausente] Sal Azul
+  sk[dist-ausente] Pirueta Desajeitada
+  sk[dist-ausente] Luneta Aproximadora
+  sk[dist-ausente] Imitação Irritante
+  sk[dist-ausente] Tonificante
+  sk[dist-ausente] Armeiro
+  sk[dist-ausente] Bobina Poderosa
+  sk[dist-ausente] Cristal Canalizador
+  sk[dist-ausente] Passo Hilariante em Massa
+  sk[subtipo-corrompido] Revoada de Texugos
+  sk[subtipo-disperso] Herança de Ordine
+  sk[subtipo-disperso] Herança de Vitalia
+  sk[subtipo-disperso] Citadino Abastado
+  sk[subtipo-disperso] Chef Hynne
+  sk[subtipo-disperso] Pescador
+  sk[subtipo-disperso] Cão de Briga
+  sk[subtipo-disperso] Interrogador
+  sk[subtipo-disperso] Insciente
+  sk[subtipo-disperso] Cirurgião-Barbeiro
+  sk[subtipo-disperso] Herança de Terápolis
+  sk[subtipo-disperso] Carcereiro
+  sk[subtipo-disperso] Herança de Nivenciuén
+  sk[subtipo-disperso] Herança de Skerry
+  sk[subtipo-disperso] Asas de Aço (Suraggel)
+  sk[subtipo-disperso] Contrabandista
+  sk[subtipo-disperso] Herança de Odisseia
+  sk[subtipo-disperso] Herança de Venomia
+  sk[varia-dupe] Arma Natural Aprimorada (Várias)
+  sk[subtipo-disperso] Herança de Werra
+  sk[subtipo-disperso] Ladrão de Túmulos
+  sk[subtipo-disperso] Goradista
+  sk[subtipo-disperso] Asas Extraplanares
+  sk[subtipo-disperso] Herança de Solaris
+  sk[subtipo-disperso] Freira
+  sk[subtipo-disperso] Espião
+  sk[subtipo-disperso] Caçador de Ratos
+  sk[subtipo-disperso] Menestrel
+  sk[subtipo-disperso] Herança de Serena
+  sk[subtipo-disperso] Escriba
+  sk[subtipo-disperso] Herança de Al-Gazara
+  sk[subtipo-disperso] Carpinteiro de Guilda
+  sk[subtipo-disperso] Herança de Magika
+  sk[subtipo-disperso] Herança de Sombria
+  sk[subtipo-disperso] Padeiro
+  sk[varia-dupe] Arma Natural Hábil (Várias)
+  sk[subtipo-disperso] Herança de Arbória
+  sk[subtipo-disperso] Herança de Sora
+--- LOG adds ---
+  ++ ('Amuleto do Abutre', 'itens', 'ameacas-de-arton', 'acessorio', '')
+  ++ ('Pés Rapinantes', 'raca/Pteros', 'ameacas-de-arton', 'racial', 'Pteros')
+  ++ ('Pistola Demoníaca', 'armas', 'ameacas-de-arton', None, '')
+  ++ ('Presença Arcana', 'raca/Finntroll', 'ameacas-de-arton', 'racial', 'Finntroll')
+  ++ ('Alma da Água', 'raca/Kappa', 'ameacas-de-arton', 'racial', 'Kappa')
+  ++ ('Organizadinhos', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Pistola-Punhal', 'armas', 'ameacas-de-arton', None, '')
+  ++ ('Pequeno', 'raca/Golem', 'ameacas-de-arton', 'racial', 'Golem')
+  ++ ('Dependência de Água', 'raca/Elfo-do-Mar', 'ameacas-de-arton', 'racial', 'Elfo-do-Mar')
+  ++ ('Montaria: Troll', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Cocatriz Real', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Medo de Altura', 'raca/Centauro', 'ameacas-de-arton', 'racial', 'Centauro')
+  ++ ('Pakk (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Grande', 'raca/Golem', 'ameacas-de-arton', 'racial', 'Golem')
+  ++ ('Grito Aterrorizante', 'raca/Harpia', 'ameacas-de-arton', 'racial', 'Harpia')
+  ++ ('Grilhão de Descrença', 'armad', 'ameacas-de-arton', 'pesada', '')
+  ++ ('Montaria: Tuntram', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Diferentão', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Montaria: Leão', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('...Maior a Porrada', 'raca/Ogro', 'ameacas-de-arton', 'racial', 'Ogro')
+  ++ ('Montaria: Deinonico', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Senhor dos Céus', 'raca/Pteros', 'ameacas-de-arton', 'racial', 'Pteros')
+  ++ ('Lança de Fogo', 'armas', 'ameacas-de-arton', None, '')
+  ++ ('Preço da Não Vida', 'raca/Soterrado', 'ameacas-de-arton', 'racial', 'Soterrado')
+  ++ ('Montaria: Urso Panda', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Adaptação Elemental', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Paquidérmico', 'raca/Ceratops', 'ameacas-de-arton', 'racial', 'Ceratops')
+  ++ ('Pernas Aprimoradas', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Cascos', 'raca/Centauro', 'ameacas-de-arton', 'racial', 'Centauro')
+  ++ ('Terror Vivo', 'raca/Kaijin', 'ameacas-de-arton', 'racial', 'Kaijin')
+  ++ ('Montaria: Selako', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Rinoceronte', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Tumarkhân', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Arma Acoplada', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('O Ousado', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Espada Vespa', 'armas', 'ameacas-de-arton', None, '')
+  ++ ('Plurivalente', 'raca/Minauro', 'ameacas-de-arton', 'racial', 'Minauro')
+  ++ ('Esquife de Gelo', 'raca/Soterrado', 'ameacas-de-arton', 'racial', 'Soterrado')
+  ++ ('Mau Cheiro', 'raca/Trog Anão', 'ameacas-de-arton', 'racial', 'Trog Anão')
+  ++ ('Vigor Brutal', 'raca/Orc', 'ameacas-de-arton', 'racial', 'Orc')
+  ++ ('Sentidos Selvagens', 'raca/Velocis', 'ameacas-de-arton', 'racial', 'Velocis')
+  ++ ('Corpo Vegetal', 'raca/Finntroll', 'ameacas-de-arton', 'racial', 'Finntroll')
+  ++ ('Velocista da Planície', 'raca/Velocis', 'ameacas-de-arton', 'racial', 'Velocis')
+  ++ ('Rainha da Selva', 'raca/Voracis', 'ameacas-de-arton', 'racial', 'Voracis')
+  ++ ('Montaria: Dai-Kabuto', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Homúnculo (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Papel Tribal', 'raca/Ceratops', 'ameacas-de-arton', 'racial', 'Ceratops')
+  ++ ('Kobold (Parceiro)', 'parc/parceiro', 'ameacas-de-arton', 'geral', 'Parceiros')
+  ++ ('Chifre de Unicórnio', 'itens', 'ameacas-de-arton', 'acessorio', '')
+  ++ ('Somos Explosivos', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Amontoados', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Dardo', 'itens', 'ameacas-de-arton', 'ammo', '')
+  ++ ('Disforme', 'raca/Kaijin', 'ameacas-de-arton', 'racial', 'Kaijin')
+  ++ ('Montaria: Brontotério', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Baleote', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Natureza Orgânica', 'raca/Yidishan', 'ameacas-de-arton', 'racial', 'Yidishan')
+  ++ ('Pestes Oportunistas', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Abraço Gélido', 'raca/Soterrado', 'ameacas-de-arton', 'racial', 'Soterrado')
+  ++ ('Saltador', 'raca/Tabrachi', 'ameacas-de-arton', 'racial', 'Tabrachi')
+  ++ ('Fraquezas Ofídicas', 'raca/Nagah', 'ameacas-de-arton', 'racial', 'Nagah')
+  ++ ('Mente Aberta', 'raca/Minauro', 'ameacas-de-arton', 'racial', 'Minauro')
+  ++ ('Uyzrrak Da’ukthra', 'armas', 'ameacas-de-arton', None, '')
+  ++ ('Ajuntamento Escamoso', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Montaria: Sapo Atroz', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Asas de Abutre', 'raca/Harpia', 'ameacas-de-arton', 'racial', 'Harpia')
+  ++ ('Stagh (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Chibi-kabuto (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Linguarudo', 'raca/Tabrachi', 'ameacas-de-arton', 'racial', 'Tabrachi')
+  ++ ('Adaptável', 'raca/Meio-Orc', 'ameacas-de-arton', 'racial', 'Meio-Orc')
+  ++ ('Vapor', 'raca/Golem', 'ameacas-de-arton', 'racial', 'Golem')
+  ++ ('Intolerância a Luz', 'raca/Finntroll', 'ameacas-de-arton', 'racial', 'Finntroll')
+  ++ ('Sopro de Dragão', 'raca/Kallyanach', 'ameacas-de-arton', 'racial', 'Kallyanach')
+  ++ ('Arte da Guerra', 'raca/Hobgoblin', 'ameacas-de-arton', 'racial', 'Hobgoblin')
+  ++ ('Sentidos Dracônicos', 'raca/Kallyanach', 'ameacas-de-arton', 'racial', 'Kallyanach')
+  ++ ('Sentidos Repinantes', 'raca/Pteros', 'ameacas-de-arton', 'racial', 'Pteros')
+  ++ ('Roedor', 'raca/Nezumi', 'ameacas-de-arton', 'racial', 'Nezumi')
+  ++ ('Pequeno, Mas Não Metade', 'raca/Nezumi', 'ameacas-de-arton', 'racial', 'Nezumi')
+  ++ ('Montaria: Hienodonte', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Elemental de Veneno (Parceiro)', 'parc/parceiro', 'ameacas-de-arton', 'geral', 'Parceiros')
+  ++ ('Montaria: Bulette', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Elefante', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Sagrada', 'raca/Golem', 'ameacas-de-arton', 'racial', 'Golem')
+  ++ ('Metalurgia Hobgoblin', 'raca/Hobgoblin', 'ameacas-de-arton', 'racial', 'Hobgoblin')
+  ++ ('Montaria: Cavalo Glacial', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Tigela D’água', 'raca/Kappa', 'ameacas-de-arton', 'racial', 'Kappa')
+  ++ ('Avantajado', 'raca/Centauro', 'ameacas-de-arton', 'racial', 'Centauro')
+  ++ ('Ex-Familiar', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Montaria: Galhada (Macho)', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Camada de Ingenuidade', 'raca/Ogro', 'ameacas-de-arton', 'racial', 'Ogro')
+  ++ ('Mordida', 'raca/Gnoll', 'ameacas-de-arton', 'racial', 'Gnoll')
+  ++ ('Híbrido Mecânico', 'raca/Yidishan', 'ameacas-de-arton', 'racial', 'Yidishan')
+  ++ ('Montaria: Urso Pardo', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Armamento Kallyanach', 'raca/Kallyanach', 'ameacas-de-arton', 'racial', 'Kallyanach')
+  ++ ('Aquin’ne (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Garras', 'raca/Voracis', 'ameacas-de-arton', 'racial', 'Voracis')
+  ++ ('Quase Anão', 'raca/Trog Anão', 'ameacas-de-arton', 'racial', 'Trog Anão')
+  ++ ('Herança Dracônica', 'raca/Kallyanach', 'ameacas-de-arton', 'racial', 'Kallyanach')
+  ++ ('Montaria: Búfalo-de-Guerra', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Feroz', 'raca/Orc', 'ameacas-de-arton', 'racial', 'Orc')
+  ++ ('Caminhante do Céu', 'raca/Tengu', 'ameacas-de-arton', 'racial', 'Tengu')
+  ++ ('Espírito Corvino', 'raca/Tengu', 'ameacas-de-arton', 'racial', 'Tengu')
+  ++ ("T'peel (Familiar)", 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Prática Arcana', 'raca/Kallyanach', 'ameacas-de-arton', 'racial', 'Kallyanach')
+  ++ ('Faro', 'raca/Minauro', 'ameacas-de-arton', 'racial', 'Minauro')
+  ++ ('Alquímica', 'raca/Golem', 'ameacas-de-arton', 'racial', 'Golem')
+  ++ ('Escamas Elementais', 'raca/Kallyanach', 'ameacas-de-arton', 'racial', 'Kallyanach')
+  ++ ('Montaria: Dragão Jovem', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Criatura das Profundezas', 'raca/Meio-Orc', 'ameacas-de-arton', 'racial', 'Meio-Orc')
+  ++ ('Armadilha Terrível', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Ginete Natural', 'raca/Centauro', 'ameacas-de-arton', 'racial', 'Centauro')
+  ++ ('Rendição', 'raca/Gnoll', 'ameacas-de-arton', 'racial', 'Gnoll')
+  ++ ('Montaria: Capivara', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Presentes de Ssaazzaas', 'raca/Nagah', 'ameacas-de-arton', 'racial', 'Nagah')
+  ++ ('Montaria: Unicórnio', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Natureza Esquelética', 'raca/Soterrado', 'ameacas-de-arton', 'racial', 'Soterrado')
+  ++ ('Estirge (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Montaria: Galhada (Fêmea)', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Elemental', 'raca/Golem', 'ameacas-de-arton', 'racial', 'Golem')
+  ++ ('Montaria: Warg', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Chifres', 'raca/Ceratops', 'ameacas-de-arton', 'racial', 'Ceratops')
+  ++ ('Oportunista', 'raca/Gnoll', 'ameacas-de-arton', 'racial', 'Gnoll')
+  ++ ('Auxílio de Mira', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Montaria: Corcel de Kally', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Habitante das Cavernas', 'raca/Orc', 'ameacas-de-arton', 'racial', 'Orc')
+  ++ ('Arma Elemental', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Sangue Orc', 'raca/Meio-Orc', 'ameacas-de-arton', 'racial', 'Meio-Orc')
+  ++ ('Montaria: Hippossauro', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Os do Fundo', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Montaria: Tatu-Montanha', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Inocência Dissimulada', 'raca/Nagah', 'ameacas-de-arton', 'racial', 'Nagah')
+  ++ ('Montaria: Rinoceronte Lanoso', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Sangue Frio', 'raca/Trog Anão', 'ameacas-de-arton', 'racial', 'Trog Anão')
+  ++ ('Carapaça Kappa', 'raca/Kappa', 'ameacas-de-arton', 'racial', 'Kappa')
+  ++ ('Natureza Vegetal', 'raca/Finntroll', 'ameacas-de-arton', 'racial', 'Finntroll')
+  ++ ('Asas Desorientadoras', 'raca/Tengu', 'ameacas-de-arton', 'racial', 'Tengu')
+  ++ ('Montaria: Corcel de Comando', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Platan', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Cria de Masmorra', 'raca/Harpia', 'ameacas-de-arton', 'racial', 'Harpia')
+  ++ ('Cauda', 'raca/Nagah', 'ameacas-de-arton', 'racial', 'Nagah')
+  ++ ('Batráquio', 'raca/Tabrachi', 'ameacas-de-arton', 'racial', 'Tabrachi')
+  ++ ('Terrier (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Dínamo de Mana', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Mãos Rudimentares', 'raca/Pteros', 'ameacas-de-arton', 'racial', 'Pteros')
+  ++ ('Pilão Conspurcado', 'itens', 'ameacas-de-arton', 'acessorio', '')
+  ++ ('Cura das Águas', 'raca/Kappa', 'ameacas-de-arton', 'racial', 'Kappa')
+  ++ ('Reservatório Alquímico', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Sentidos Murídeos', 'raca/Nezumi', 'ameacas-de-arton', 'racial', 'Nezumi')
+  ++ ('Montaria: Cavalo Esqueleto', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Corcel do Deserto', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Sentidos de Predador', 'raca/Bugbear', 'ameacas-de-arton', 'racial', 'Bugbear')
+  ++ ('Fragmento de Filactério', 'itens', 'ameacas-de-arton', 'acessorio', '')
+  ++ ('Sensibilidade a Luz', 'raca/Finntroll', 'ameacas-de-arton', 'racial', 'Finntroll')
+  ++ ('Praga Monstruosa', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Ligação Natural', 'raca/Pteros', 'ameacas-de-arton', 'racial', 'Pteros')
+  ++ ('Tática de Enxame', 'raca/Kobolds', 'ameacas-de-arton', 'racial', 'Kobolds')
+  ++ ('Montaria: Cavalo de Namalkah', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Montaria: Dromedário', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Canalizar Reparos', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Regeneração Vegetal', 'raca/Finntroll', 'ameacas-de-arton', 'racial', 'Finntroll')
+  ++ ('Montaria: Urso das Neves', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Cria das Águas', 'raca/Elfo-do-Mar', 'ameacas-de-arton', 'racial', 'Elfo-do-Mar')
+  ++ ('Asa-assassina (Familiar)', 'parc/familiar', 'ameacas-de-arton', 'classe', 'Arcanista')
+  ++ ('Rompedor da Realidade', 'armas', 'ameacas-de-arton', None, '')
+  ++ ('Montaria: Tigre', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Asas Dracônicas', 'raca/Kallyanach', 'ameacas-de-arton', 'racial', 'Kallyanach')
+  ++ ('Canhão Energético', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Táticas de Guerrilha', 'raca/Hobgoblin', 'ameacas-de-arton', 'racial', 'Hobgoblin')
+  ++ ('Quanto Maior o Tamanho...', 'raca/Ogro', 'ameacas-de-arton', 'racial', 'Ogro')
+  ++ ('Montaria: Urso das Cavernas', 'parc/montaria', 'ameacas-de-arton', 'geral', 'Montaria')
+  ++ ('Peças Metálicas', 'raca/Yidishan', 'ameacas-de-arton', 'racial', 'Yidishan')
+  ++ ('Através de Espinheiros', 'raca/Velocis', 'ameacas-de-arton', 'racial', 'Velocis')
+  ++ ('Saborear Pavor', 'raca/Bugbear', 'ameacas-de-arton', 'racial', 'Bugbear')
+  ++ ('Couraça Rubra', 'raca/Kaijin', 'ameacas-de-arton', 'racial', 'Kaijin')
+  ++ ('Caminho da Perfeição', 'chassi/mashin', 'ameacas-de-arton', 'racial', 'Mashin')
+  ++ ('Cria da Tormenta', 'raca/Kaijin', 'ameacas-de-arton', 'racial', 'Kaijin')
+  ++ ('Treckod', 'itens', 'atlas-de-arton', 'ammo', '')
+  ++ ('Anel com símbolo da família', 'itens', 'atlas-de-arton', None, '')
+  ++ ('Item artístico de origem cultural indefinida', 'itens', 'atlas-de-arton', None, '')
+  ++ ('Nitamuraniano', 'origem/atlas', 'atlas-de-arton', 'origem', 'Valkaria')
+  ++ ('Títulos de terras expirados', 'itens', 'atlas-de-arton', None, '')
+  ++ ('Tranqueiras resgatadas do mar', 'itens', 'atlas-de-arton', None, '')
+  ++ ('Ferramenta agrícola', 'armas', 'atlas-de-arton', None, '')
+  ++ ('Tatuagem Mística', 'itens', 'atlas-de-arton', None, '')
+  ++ ('Véu do Desejo', 'itens', 'deuses-de-arton', 'traje', '')
+  ++ ('Cimitarra Solar (Campeão)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Exploradora', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Colar de Presas', 'armad', 'deuses-de-arton', 'leve', '')
+  ++ ('Amuleto de Khalmyr', 'itens', 'deuses-de-arton', 'material', '')
+  ++ ('Bordão Sabichão (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Linhagem Abençoada Aprimorada', 'class/arcanista/arcanista-base', 'deuses-de-arton', 'classe', 'Arcanista')
+  ++ ('Alguma Coisa de Nimb...', 'armas', 'deuses-de-arton', None, '')
+  ++ ('O Futuro que Vier Disso', 'conceded/Thwor', 'deuses-de-arton', 'concedido', 'Thwor')
+  ++ ('Vestido Noturno', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Escrivaninha Consagrada', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Ossos de Dracônicos (Devoto)', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Adaga Sorrateira (Campeão)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Montaria: Gamo', 'parc/montaria', 'deuses-de-arton', 'geral', 'Montaria')
+  ++ ('Armadura do Julgamento (Campeão)', 'armad', 'deuses-de-arton', 'leve', '')
+  ++ ('Anel Eclesiático', 'itens', 'deuses-de-arton', 'traje', '')
+  ++ ('Montaria: Pégaso de Khalmyr', 'parc/montaria', 'deuses-de-arton', 'geral', 'Montaria')
+  ++ ('Adaga Ofídica', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Mangual Aventureiro', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Mangual Aventureiro (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Bordão Sabichão', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Devoto Fiel (Frade)', 'class/frade/all', 'deuses-de-arton', 'ability', 'Frade')
+  ++ ('Mensageiro do Deserto', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Lança da Dominação', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Falso Amigo', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Robe Professoral', 'itens', 'deuses-de-arton', 'traje', '')
+  ++ ('Espada-Calibre (Arma de Fogo)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Frasco de Luz', 'itesm', 'deuses-de-arton', 'potion', '')
+  ++ ('Maça Monstruosa', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Katana da Determinação (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Machado Lamnoriano', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Dente do Leviatã', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Alfange Dourado', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Cimitarra Solar', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Varinha da Generosidade', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Linhagem Abençoada Básica', 'class/arcanista/arcanista-base', 'deuses-de-arton', 'classe', 'Arcanista')
+  ++ ('Inoculadora', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Espada Imaculada', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Colar de Presas (Devoto)', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Amuleto de Nimb', 'itens', 'deuses-de-arton', 'material', '')
+  ++ ('Martelo dos Trovões', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Katana da Determinação (Campeão)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Panfleto de Aforismo', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Véu Diáfano (Devoto)', 'itens', 'deuses-de-arton', 'traje', '')
+  ++ ('Coroa de flores', 'itens', 'deuses-de-arton', 'traje', '')
+  ++ ('Estudante Deligente', 'class/frade/all', 'deuses-de-arton', 'classe', 'Frade')
+  ++ ('Cajado das Matas (Campeão)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Ossos Dracônicos', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Raio de Sol', 'armas', 'deuses-de-arton', None, '')
+  ++ ('LInhagem Abençoada Superior', 'class/arcanista/arcanista-base', 'deuses-de-arton', 'classe', 'Arcanista')
+  ++ ('Maça Monstruosa (Campeão)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Caldeirão da Vida', 'itens', 'deuses-de-arton', None, '')
+  ++ ('Argolas Místicas', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Espada Monástica', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Benção das Marés', 'itens', 'deuses-de-arton', 'food', '')
+  ++ ('Tridente Aquoso', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Armadura do Julgamento', 'armad', 'deuses-de-arton', 'leve', '')
+  ++ ('Adaga Ofídica (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Labareda', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Kaminari', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Montaria: Pégaso', 'parc/montaria', 'deuses-de-arton', 'geral', 'Montaria')
+  ++ ('Adaga Sorrateira', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Armas da Destuição', 'conceded/Arsenal', 'deuses-de-arton', 'concedido', 'Arsenal')
+  ++ ('Sacrário do Compartilhamneto', 'class/frade/all', 'deuses-de-arton', 'classe', 'Frade')
+  ++ ('Coragem de Sange', 'itens', 'deuses-de-arton', 'food', '')
+  ++ ('Magias (Frade)', 'class/frade/all', 'deuses-de-arton', 'ability', 'Frade')
+  ++ ('Trilha Desempedida', 'conceded/Allihanna', 'deuses-de-arton', 'concedido', 'Allihanna')
+  ++ ('Perceber Farsa', 'conceded/Tanna-Toh', 'deuses-de-arton', 'concedido', 'Tanna-Toh')
+  ++ ('Botas Inquietas', 'armad', 'deuses-de-arton', 'leve', '')
+  ++ ('Machado Lamnoriano (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Machado da Bravura', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Dádiva da Fé: Cólera Divina', 'class/frade/all', 'deuses-de-arton', 'ability', 'Frade')
+  ++ ('Tapeçaria de guerra', 'itens', 'deuses-de-arton', None, '')
+  ++ ('Maça Monstruosa (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Espada Imaculada (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Cubo Armadilha', 'itens', 'deuses-de-arton', None, '')
+  ++ ('Belo Presente', 'itens', 'deuses-de-arton', 'esoterico', '')
+  ++ ('Instrumento da Alegria', 'itens', 'deuses-de-arton', 'ferramenta', '')
+  ++ ('Cajado das Matas', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Katana da Determinação', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Alabarda da Coragem (Devoto)', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Cilíco Vivo - Aharadak', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Jarro das Profundezas', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Vestido Noturno (Devoto)', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Véu Diáfano', 'itens', 'deuses-de-arton', 'traje', '')
+  ++ ('Dádiva da Fé: Proteção Sagrada', 'class/frade/all', 'deuses-de-arton', 'ability', 'Frade')
+  ++ ('Armadura de Arsenal', 'armad', 'deuses-de-arton', 'pesada', '')
+  ++ ('Espalhar Corrupção', 'conceded/Aharadak', 'deuses-de-arton', 'concedido', 'Aharadak')
+  ++ ('Coração Corrompido', 'itens', 'deuses-de-arton', None, '')
+  ++ ('Alabarda da Coragem', 'armas', 'deuses-de-arton', None, '')
+  ++ ('Pira Póstera', 'itens', 'deuses-de-arton', 'acessorio', '')
+  ++ ('Trombeta do Cruzado', 'armad', 'deuses-de-arton', 'leve', '')
+  ++ ('Curar o Espirto', 'conceded/Lena', 'deuses-de-arton', 'concedido', 'Lena')
+  ++ ('Armadura do Julgamento (Devoto)', 'armad', 'deuses-de-arton', 'leve', '')
+  ++ ('Armadilha: Mina', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Material Especial', 'arsenal/aeronauta', 'distincoes', 'distincao', 'Ornitópteros Goblins')
+  ++ ('Evasão do Caçador', 'dist/Caçador de Cabeças', 'distincoes', 'distincao', 'Caçador de Cabeças')
+  ++ ('Armadilha: Buraco Portátil', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Armadilha: Mola', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Armadilha: Atordoante', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Armadilha: Constrangedora', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Destemor Inflamado', 'dist/Caçador de Cabeças', 'distincoes', 'distincao', 'Caçador de Cabeças')
+  ++ ('Armadilha: Fumaça', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Armadilha: Luz', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Armadilha: Barril de Óleo', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Armadilha: Substância Enervante', 'dist/Armadilheiro Mestre', 'distincoes', 'distincao', 'Armadilhas')
+  ++ ('Carapaça Espinhosa', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Mordida', 'armas', 'distincoes', None, '')
+  ++ ('Implante: Garras', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Inovação: Cano Serrado (Arma)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Regeneração', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Inovação: Pólvora de Smokestone (Munição)', 'class/inventor/all', 'distincoes', 'geral', 'inovação')
+  ++ ('Veneno', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Borrão de Tigre-de-Hyninn', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Brutalidade Incontida de Razza’kham', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Interno: Eles', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Arma Natural Extra', 'armas', 'distincoes', None, '')
+  ++ ('Interno: Fora', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Pose: Calor do Combate', 'dist/Herói Henshin', 'distincoes', 'distincao', 'Herói Henshin')
+  ++ ('Procedimento Inicial (Marca)', 'dist-new/cobaia', 'distincoes', 'distincao', 'Cobaia dos Médicos Monstros')
+  ++ ('Inovação: Explosiva (Munição)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Extrapolar o próprio Corpo', 'dist-new/cobaia', 'distincoes', 'distincao', 'Cobaia dos Médicos Monstros')
+  ++ ('Órgão Elemental', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Inovação: Empunhadura de Segurança (Arma)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Interno: Nós', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Conjuração Magibélica: Expandir', 'magic/Geral', 'distincoes', 'geral', 'Conjuração Magibélica')
+  ++ ('Interno: Luz', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Meiose Glópica', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Implante: Tentáculo com Garras', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Implante Exclusivo', 'dist-new/cobaia', 'distincoes', 'distincao', 'Cobaia dos Médicos Monstros')
+  ++ ('Externo: Continuidade', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Interno: Trevas', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Tentáculos', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Pose: Coordenação de Coreografia', 'dist/Herói Henshin', 'distincoes', 'distincao', 'Herói Henshin')
+  ++ ('Círculo Interno', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Implante: Olho Anulador', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Interno: Dentro', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Externo: Início', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Implante: Escamas', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Agarrar Aprimorado', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Implante: Olho Petrificante', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Implante: Olho Desintegrador', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Inovação: Tanque Flamejante (Arma)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Conjuração Magibélica: Intensificar', 'magic/Geral', 'distincoes', 'geral', 'Conjuração Magibélica')
+  ++ ('Externo: Vida', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Inovação: Fragmentável (Munição)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Pose: Defender o Sonho', 'dist/Herói Henshin', 'distincoes', 'distincao', 'Herói Henshin')
+  ++ ('Implante: Asas', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Externo: Fim', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Pose: Terror dos Injustos', 'dist/Herói Henshin', 'distincoes', 'distincao', 'Herói Henshin')
+  ++ ('Rocha Furiosa', 'armas', 'distincoes', None, '')
+  ++ ('Dilacerar', 'destiny/Transformação Monstruosa', 'distincoes', 'geral', 'Transformação Monstruosa')
+  ++ ('Pose: Acrobacia Espalhafatosa', 'dist/Herói Henshin', 'distincoes', 'distincao', 'Herói Henshin')
+  ++ ('Interno: Movimento', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Externo: Mudança', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Implante: Patas de Aranha', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Pose: Poder da Amizade', 'dist/Herói Henshin', 'distincoes', 'distincao', 'Herói Henshin')
+  ++ ('Enxerto Experimental', 'dist-new/cobaia', 'distincoes', 'distincao', 'Cobaia dos Médicos Monstros')
+  ++ ('Interno: Estagnação', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Externo: Ignorância', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Implante: Braço de Ogro', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Garrafa da Felicidade', 'armas', 'distincoes', None, '')
+  ++ ('Inovação: Tambor (Arma)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Corpo Resiliente', 'dist-new/cobaia', 'distincoes', 'distincao', 'Cobaia dos Médicos Monstros')
+  ++ ('Inovação: Cano Duplo (Arma)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Implante: Cauda com Ferrão', 'dist-new/cobaia', 'distincoes', 'geral', '')
+  ++ ('Pose: Julgamento Heroico', 'dist/Herói Henshin', 'distincoes', 'distincao', 'Herói Henshin')
+  ++ ('Círculo Externo', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Inovação: Câmara de Bala (Arma)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Externo: Morte', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Conjuração Magibélica: Fortalecer', 'magic/Geral', 'distincoes', 'geral', 'Conjuração Magibélica')
+  ++ ('Inovação: Mira Calibrável (Arma)', 'class/inventor/all', 'distincoes', 'geral', 'Inovação')
+  ++ ('Conjuração Magibélica: Potencializar', 'magic/Geral', 'distincoes', 'geral', 'Conjuração Magibélica')
+  ++ ('Externo: Conhecimento', 'dist/Exegeta do Akzath', 'distincoes', 'distincao', 'Exegeta do Akzath')
+  ++ ('Glândula de Infusão', 'dist-new/cobaia', 'distincoes', 'distincao', 'Cobaia dos Médicos Monstros')
+  ++ ('Medo Verdadeiro', 'conceded/O Deus do Medo', 'guia-de-deuses-menores', 'concedido', 'O Deus do Medo')
+  ++ ('Mergulho Terrestre', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', 'Miragem')
+  ++ ('Avalanche das Três Mãos', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Limiar da Tempestade', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Disparo Elemental', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Iaijutsu', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Gemas Eternas', 'itens', 'guia-de-npcs-and-dbs', 'acessorio', '')
+  ++ ('Presuntador', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Kiai Estremecedor', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Andar pelas Paredes', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Nuvem Serena', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Tornar-se Sombra', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Ditame da Montanha', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Dança da Areia', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', 'Miragem')
+  ++ ('Carthalkan, a Espada Cristalina', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Batina Consagrada', 'armad', 'guia-de-npcs-and-dbs', 'leve', '')
+  ++ ('Oito Nuvens', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Olhar Assustador', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'ability', 'Samurai')
+  ++ ('Controlar Ar', 'grimorio', 'guia-de-npcs-and-dbs', 'div', '')
+  ++ ('Língua Primordial', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Ditame dos Ventos', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Emblema do Império de Jade', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Auréola Celeste', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Manifestação Elemental: Ar', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Serpentes Dracônicas', 'class/arcanista/arcanista-base', 'guia-de-npcs-and-dbs', 'ability', 'Arcanista')
+  ++ ('Armadura de Crânio Negro', 'armad', 'guia-de-npcs-and-dbs', 'leve', '')
+  ++ ('Tempestade de Areia', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Golpe Congelante', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Ditame do Breu', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Punhal Escarlate', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Ditame das Brumas', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Tradição Oral', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Bordão da Fé', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Demônio de Areia: Escorpião', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Pistola Tambor', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Kyudo', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Manifestação Elemental: Trevas', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Coroa Imperial', 'itens', 'guia-de-npcs-and-dbs', 'acessorio', '')
+  ++ ('Bater e Correr', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Golpe Ardente', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Erguer Areia', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Pele de Areia', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Arsenal do Deserto', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Afinidade Expandida', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Ditame da Profecia', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Emboscar', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Manifestações Elementais', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Comunhão Suprema', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Coroa de Allihanna', 'itens', 'guia-de-npcs-and-dbs', 'acessorio', '')
+  ++ ('Meditação Artística', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Corpo Elemental', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Manifestação Elemental: Água', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Artefato de Cross', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Instinto Guerrilheiro', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'MIragem')
+  ++ ('Arma Reverberante', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Flagelo Elemental', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Movimento Furtivo', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', 'Miragem')
+  ++ ('Afinidade Concentrada', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Serenidade dos Kami', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Visão Noturna', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Magias', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', '')
+  ++ ('Arma Espiritual', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'ability', 'Samurai')
+  ++ ('Propulsão', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Braceletes das Escamas', 'itens', 'guia-de-npcs-and-dbs', 'acessorio', '')
+  ++ ('Ditame dos Portais', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Anel da Felicidade de Vallen', 'itens', 'guia-de-npcs-and-dbs', 'acessorio', '')
+  ++ ('Honra Inabalável', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Elemento Poderoso', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Daisho', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Equilíbrio Interior', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Resistência Tenebrosa', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Ataque Elemental', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Contramágica Elemental', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Corpo de Areia', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', 'Miragem')
+  ++ ('Hidratação', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Empuxo', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Esquiva Instintiva', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Grito de Kiai', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'ability', 'Samurai')
+  ++ ('Demônio de Areia: Raposa', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Demônio de Areia: Serpente', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', '')
+  ++ ('Ira Gentil', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Cortina de Poeira', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', 'Miragem')
+  ++ ('Manifestação Elemental: Terra', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Shogun', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'ability', 'Samurai')
+  ++ ('Ditame Absoluto', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Pacto Elemental', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Dois Céus', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Ditame da Manhã', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Mergulho Longo', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Guerrilheiro das Dunas', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', 'Miragem')
+  ++ ('Golpe Ofuscante', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Wakizashi', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Kiai Assustador', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Montanha Serena', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Manifestação Elemental: Fogo', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Absorver Elemento', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Pacto Mágico', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Sexto Sentido', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Armadura Rochosa', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Sustento Primordial', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Manifestação Elemental: Luz', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Afinidade', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'ability', 'Místico')
+  ++ ('Face Dracônica', 'itens', 'guia-de-npcs-and-dbs', 'acessorio', '')
+  ++ ('Afinidade Maior', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Honra dos Ancestrais', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Ataque Disciplinado', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Veloz', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Ditame da Chuva', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Disparo em Linha', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Investida Acrobática', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'ability', 'Miragem')
+  ++ ('Estabilidade Terrena', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Código do Samurai', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'ability', '')
+  ++ ('Avir', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Espiral Ampla', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Evasão', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Perícia Mística', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Ronin', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Corte da Correnteza', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Ditame das Chamas', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Rio Sereno', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Escavador', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Ditame do Crepúsculo', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Demônio de Areia: Falcão', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Escudo Elemental', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Investida da Tempestade', 'conceded/Barba Branca', 'guia-de-npcs-and-dbs', 'concedido', 'Barba Branca')
+  ++ ('Passos Precisos', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Arma Ancestral', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'ability', 'Samurai')
+  ++ ('Ditame do Espadachim', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Demônio de Areia: Urubu', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Supernova', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Golpe Pujante', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Demônio de Areia: Coiote', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Pacto Cooperativo', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Tesouros do Deserto', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Demônio de Areia', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Elementalismo Marcial', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Golpe Cortante', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Ditame da Cura', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Arma Veloz', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Armadura de Khalmyr', 'armad', 'guia-de-npcs-and-dbs', 'pesada', '')
+  ++ ('Coração de Trovão', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Passo Duplo', 'class/cacador/miragem', 'guia-de-npcs-and-dbs', 'classe', 'Miragem')
+  ++ ('Elemento Penetrante', 'class/mistico/all', 'guia-de-npcs-and-dbs', 'classe', 'Místico')
+  ++ ('Espírito Incisivo', 'class/samurai/all', 'guia-de-npcs-and-dbs', 'classe', 'Samurai')
+  ++ ('Cura Acelerada', 'destiny/Geral', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Resiliência Sombria', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Passo Vampírico', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Manto das Sombras', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Forma de Morcego', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Forma de Lobo', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Drenar Sangue', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Dominação Vampírica', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Natureza Não Viva', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Sede de Sangue', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Sensibilidade ao Sol', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Chamado das Trevas', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Resquícios da Outra Vida', 'raca/Vampiro', 'guia-de-npcs-and-dbs', 'geral', '')
+  ++ ('Garras', 'armas', 'guia-de-npcs-and-dbs', None, '')
+  ++ ('Vitalidade das Fadas (Sílfide)', 'raca/Sílfide', 'herois-de-arton', 'geral', 'Sílfide')
+  ++ ('Ampliar Brado', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Combinação: Um-Dois', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Faro Aprimorado (Moreau do Lobo)', 'moreau/lobo', 'herois-de-arton', 'geral', 'Moreau do Lobo')
+  ++ ('Elixir da eternidade', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Convicção Heroica', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Forma Elemental', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Espada do Guardião', 'armas', 'herois-de-arton', None, '')
+  ++ ('Presença de Muralha', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Guardião Celestial', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Colar da perseverança', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Xamã Místico', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Dupla Prontidão (Gnoll)', 'raca/Gnoll', 'herois-de-arton', 'geral', 'Gnoll')
+  ++ ('Máscara do predador', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Tiro de Abate', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Instigar Violência', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Contingência Arcana', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Arma Natural Aprimorada (Minotauro)', 'raca/Minotauro', 'herois-de-arton', 'geral', 'Minotauro')
+  ++ ('Combinação: Técnica de Sacrifício', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Arma Natural Hábil (Sátiro)', 'raca/Sátiro', 'herois-de-arton', 'geral', 'Sátiro')
+  ++ ('Gingado Elusivo', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Tempo Místico', 'tormenta/Tormenta', 'herois-de-arton', 'geral', 'Tormenta')
+  ++ ('Cinturão do trobo', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Canalizar Abençoado', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Dupla Prontidão (Orc)', 'raca/Orc', 'herois-de-arton', 'geral', 'Orc')
+  ++ ('O Próprio Sangue', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Punhal das profundezas', 'armas', 'herois-de-arton', None, '')
+  ++ ('Anel da chama dançante', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Paixão: Honra', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Entre as Pernas (Hynne)', 'raca/Hynne', 'herois-de-arton', 'geral', 'Hynne')
+  ++ ('Mascote: Mico-Leão Dourado', 'parc/mascote', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Óculos da revelação', 'armad', 'herois-de-arton', 'leve', '')
+  ++ ('Invisibilidade', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Citadino (Hynne)', 'raca/Hynne', 'herois-de-arton', 'geral', 'Hynne')
+  ++ ('Exaltação do Rejeitado (Lefou)', 'raca/Lefou', 'herois-de-arton', 'geral', 'Lefou')
+  ++ ('Rolamento Escapatório', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Paixão: Amor', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Voo', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Memória Súbita', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Magia Performática', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Elo Com a Natureza Maior', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Secreção Cicatrizante', 'tormenta/Tormenta', 'herois-de-arton', 'geral', 'Tormenta')
+  ++ ('Herói do Povo', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Acorde Místico', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Representante Divino', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Celebridade Artoniana', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Tonsura', 'armad', 'herois-de-arton', 'leve', '')
+  ++ ('Familiar de <Elemento>', 'raca/Qareen', 'herois-de-arton', 'geral', 'Qareen')
+  ++ ('Asas de Aço (Kallyanach)', 'raca/Kallyanach', 'herois-de-arton', 'geral', 'Kallyanach')
+  ++ ('Florescer Feérico', 'raca/Feérico', 'herois-de-arton', 'racial', '')
+  ++ ('Apresentação Impactante', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Duende Minúsculo', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Conquistar pelos Números', 'class/treinador/all', 'herois-de-arton', 'ability', 'Treinador')
+  ++ ('Sentidos Místicos', 'raca/Eiradaan', 'herois-de-arton', 'racial', 'Eiradaan')
+  ++ ('Mestre das Posturas', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Amigo Feroz', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Conhecimento Anatômico', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Lanceiro', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Forma de Cardume', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Paixão: Lealdade', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Gema da profanação', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Entre as Pernas (Kobolds)', 'raca/Kobolds', 'herois-de-arton', 'geral', 'Kobolds')
+  ++ ('Cinto da desmaterialização', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Simetria Radial', 'tormenta/Tormenta', 'herois-de-arton', 'geral', 'Tormenta')
+  ++ ('Golpe Pessoal (Novos Efeitos)', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Dupla Prontidão (Kaijin)', 'raca/Kaijin', 'herois-de-arton', 'geral', 'Kaijin')
+  ++ ('Crescimento Feérico (Sílfide)', 'raca/Sílfide', 'herois-de-arton', 'geral', 'Sílfide')
+  ++ ('Gema da santificação', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Escapada Criativa (Meio-elfo)', 'raca/Meio-Elfo', 'herois-de-arton', 'geral', 'Meio-elfo')
+  ++ ('Forma Vegetal', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Lorotas da Terra e do Mar', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Sangue Mágico (Sílfide)', 'raca/Sílfide', 'herois-de-arton', 'geral', 'Sílfide')
+  ++ ('Fragrância de Rosas (Dahllan)', 'raca/Dahllan', 'herois-de-arton', 'geral', 'Dahllan')
+  ++ ('Arcanista de Linha de Frente', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Rei do Crime', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Colar das bolas de fogo', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Amigo Protetor', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Bombardeiro Furtivo', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Sabotagem Corrosiva', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Quadridestria (Orc)', 'raca/Orc', 'herois-de-arton', 'geral', 'Orc')
+  ++ ('Golpe no Joelho (Goblin)', 'raca/Goblin', 'herois-de-arton', 'geral', 'Goblin')
+  ++ ('Duas Cabeças (Trog)', 'raca/Trog', 'herois-de-arton', 'geral', 'Trog')
+  ++ ('Bloqueio Desconcertante', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Capa nebulosa', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Alma Inabalável', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Postura de Combate: Quebra-Magia', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Quatro Braços (Orc)', 'raca/Orc', 'herois-de-arton', 'geral', 'Orc')
+  ++ ('Primeiro Sangue', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Agrilhoar os Caídos', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Legado Mágico', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Lobo do Mar', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Insolência', 'class/bucaneiro/duelista', 'herois-de-arton', 'ability', 'Duelista')
+  ++ ('Oráculo da Natureza', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Dupla Conjuração (Gnoll)', 'raca/Gnoll', 'herois-de-arton', 'geral', 'Gnoll')
+  ++ ('Ameaça Brutal', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Adaga da bruma', 'armas', 'herois-de-arton', None, '')
+  ++ ('Amigo Veterano', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Beberrão Selvagem', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Armadura das Sombras Profundas', 'armad', 'herois-de-arton', 'pesada', '')
+  ++ ('Florete do Vendaval', 'armas', 'herois-de-arton', None, '')
+  ++ ('Técnica Avançada: Escola de Tiro', 'class/bucaneiro/duelista', 'herois-de-arton', 'ability', 'Duelista')
+  ++ ('Bênção de Batalha', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Bloqueio Divino', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Arquiduque', 'class/cavaleiro/vassalo', 'herois-de-arton', 'ability', 'Vassalo')
+  ++ ('Velho de Guerra', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Treino Intensivo (Melhor Amigo)', 'class/treinador/melhoramigo', 'herois-de-arton', 'ability', 'Treinador')
+  ++ ('Cavaleiro das Paixões', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Escudo do Trovão', 'armad', 'herois-de-arton', 'escudo', '')
+  ++ ('Flechas de Caça', 'itens', 'herois-de-arton', 'ammo', '')
+  ++ ('Truque do Chapéu', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Monóculo da franqueza', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Evasão Aprimorada', 'class/ladino/ventanista', 'herois-de-arton', 'ability', 'Ventanista')
+  ++ ('Machado do abismo', 'armas', 'herois-de-arton', None, '')
+  ++ ('Casca Grossa', 'class/lutador/atleta', 'herois-de-arton', 'ability', 'Atleta')
+  ++ ('Curandeiro dos Ermos', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Afinidade Elemental (Água)', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Arma Natural Hábil (Minotauro)', 'raca/Minotauro', 'herois-de-arton', 'geral', 'Minotauro')
+  ++ ('Ordens Agressivas', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Papiro das estrelas', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Técnica Avançada: Escola Ambidestra', 'class/bucaneiro/duelista', 'herois-de-arton', 'ability', 'Duelista')
+  ++ ('Esgrima Sambur', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Sentença Dobrada', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Braceletes da amizade intensa', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Duende Pequeno', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Soldado de Infantaria', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Golpe no Joelho (Hynne)', 'raca/Hynne', 'herois-de-arton', 'geral', 'Hynne')
+  ++ ('Inspiração Espirituosa', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Azagaia Fantasma', 'armas', 'herois-de-arton', None, '')
+  ++ ('Dupla Inteligência (Trog)', 'raca/Trog', 'herois-de-arton', 'geral', 'Trog')
+  ++ ('Armas da Cavalaria', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Flecheiro', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Mascote: Fada-Borboleta', 'parc/mascote', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Quadridestria (Nagah)', 'raca/Nagah', 'herois-de-arton', 'geral', 'Nagah')
+  ++ ('Atração pela Pólvora (Anão)', 'raca/Anão', 'herois-de-arton', 'geral', 'Anão')
+  ++ ('Julgamento Divino: Retribuição', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Presente', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Arma Natural Aprimorada (Sátiro)', 'raca/Sátiro', 'herois-de-arton', 'geral', 'Sátiro')
+  ++ ('Estocada no Flanco', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Braçadeiras da força do colosso', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Chapéu dos truques infinitos', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Canalizar Profanado', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Treinamento de Companhia', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Adereço Musical', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Solo Sagrado', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Caixa dos ecos perdidos', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Vestido Para a Ocasião', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Dupla Conjuração (Lefou)', 'raca/Lefou', 'herois-de-arton', 'geral', 'Lefou')
+  ++ ('Fúria Aterrorizante (Galokk)', 'raca/Galokk', 'herois-de-arton', 'geral', 'Galokk')
+  ++ ('Magia Ofídica (Nagah)', 'raca/Nagah', 'herois-de-arton', 'geral', 'Nagah')
+  ++ ('Relógio do Arcanista', 'itens', 'herois-de-arton', 'esoterico', '')
+  ++ ('Arma Amada (Anão)', 'raca/Anão', 'herois-de-arton', 'geral', 'Anão')
+  ++ ('Cota da Serpente Marinha', 'armad', 'herois-de-arton', 'pesada', '')
+  ++ ('Inspiração Revigorante', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Citadino (Humano)', 'raca/Humano', 'herois-de-arton', 'geral', 'Humano')
+  ++ ('Banquete Selvagem', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Dupla Conjuração (Orc)', 'raca/Orc', 'herois-de-arton', 'geral', 'Orc')
+  ++ ('Vitalidade das Fadas (Sátiro)', 'raca/Sátiro', 'herois-de-arton', 'geral', 'Sátiro')
+  ++ ('Instrumentista Mágico', 'raca/Sátiro', 'herois-de-arton', 'racial', 'Sátiro')
+  ++ ('Familiar Aprimorado', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Chave dos planos', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Virtude Paladinesca: Paciência', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Frigideira do chef anão', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Mascote: Águia Real', 'parc/mascote', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Remise', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Bote', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Escudo da Luz Estelar', 'armad', 'herois-de-arton', 'escudo', '')
+  ++ ('Amigo Mestre', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Dança Acrobática', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Dupla Conjuração (Trog)', 'raca/Trog', 'herois-de-arton', 'geral', 'Trog')
+  ++ ('Arreios Namalkahnianos', 'armad', 'herois-de-arton', 'leve', '')
+  ++ ('Dupla Inteligência (Orc)', 'raca/Orc', 'herois-de-arton', 'geral', 'Orc')
+  ++ ('Duas Cabeças (Lefou)', 'raca/Lefou', 'herois-de-arton', 'geral', 'Lefou')
+  ++ ('Citadino (Meio-elfo)', 'raca/Meio-Elfo', 'herois-de-arton', 'geral', 'Meio-elfo')
+  ++ ('Cristal da voz silenciosa', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Entre as Pernas (Goblin)', 'raca/Goblin', 'herois-de-arton', 'geral', 'Goblin')
+  ++ ('Brado: Retardante', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Armadura do Inverno Perene', 'armad', 'herois-de-arton', 'leve', '')
+  ++ ('Deslocamento Especial', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Usurpar', 'class/clerigo/usurpador', 'herois-de-arton', 'ability', 'Usurpador')
+  ++ ('Estrepes', 'itens', 'herois-de-arton', None, '')
+  ++ ('Bracelete do Coração Vivaz', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Charme Cafajeste', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Arma Tradicional', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Arremesso de Investida', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Exaltação do Rejeitado (Kaijin)', 'raca/Kaijin', 'herois-de-arton', 'geral', 'Kaijin')
+  ++ ('Tomo da técnica definitiva', 'armad', 'herois-de-arton', 'leve', '')
+  ++ ('Corda da resignação', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Paixão: Hospitalidade', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Duende Médio', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Ordens Encorajadoras', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Rei', 'class/cavaleiro/vassalo', 'herois-de-arton', 'ability', 'Vassalo')
+  ++ ('Espiritualista', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Magia Inata', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Sequência Dilaceradora', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Anel do pacto oneroso', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Gole da Coragem', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Veloz', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Combinação: Boca do Estômago', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Música: Réquiem Sombrio', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Redução de Dano', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Triunfo do Amor', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Ordens de Engajamento', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Escudo do Grifo', 'armad', 'herois-de-arton', 'escudo', '')
+  ++ ('Senhor do Submundo', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Besta Estelar', 'armas', 'herois-de-arton', None, '')
+  ++ ('Grão-Mestre', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Machado da Natureza', 'armas', 'herois-de-arton', None, '')
+  ++ ('Algibeira mordedora', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Ciclo da Vida', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Armadilha Alquímica', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Saco dos ventos silenciosos', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Familiar de Luz (Qareen)', 'raca/Qareen da Luz', 'herois-de-arton', 'geral', 'Qareen de Luz')
+  ++ ('Ataque Furtivo Letal', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Linhagem Distinta', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Voz Límpida', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Corte Ágil', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Passo Das Ondas', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Missa: Imposição da Vontade', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Treinamento Defensivo', 'class/treinador/all', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Regeneração Sobrenatural', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Tamborete Tapistana', 'itens', 'herois-de-arton', 'ferramenta', '')
+  ++ ('Bastão do sonhador', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Liturgia Marcial', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Mestre Alquimista', 'class/inventor/alquimista', 'herois-de-arton', 'ability', 'Alquimista')
+  ++ ('Gênio Inovador', 'class/inventor/all', 'herois-de-arton', 'classe', 'inventor')
+  ++ ('Sangue Mágico (Qareen)', 'raca/Qareen', 'herois-de-arton', 'geral', 'Qareen')
+  ++ ('Cinto dos caminhos cruzados', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Duas Cabeças (Gnoll)', 'raca/Gnoll', 'herois-de-arton', 'geral', 'Gnoll')
+  ++ ('Chapéu pensador', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Quatro Braços (Trog)', 'raca/Trog', 'herois-de-arton', 'geral', 'Trog')
+  ++ ('Acólito Escudeiro', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Metamorfose Animal', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Apoteose Rubra', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Anel da beleza ilusória', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Transliteração Impossível', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Discurso de Batalha', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Comandos Distantes', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Coroa da majestade distorcida', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Rilhar os Dentes', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Fúria Bestial', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Coroa da floresta sussurrante', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Couraça do Guardião Celeste', 'armad', 'herois-de-arton', 'leve', '')
+  ++ ('Bastão da grande harmonia', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Pingente da dor partilhada', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Golpe Humilhante', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Determinação Inabalável', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Máscara da raposa', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Criar Oportunidade', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Lâmpada da ilusão impecável', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Camuflagem Mimética (Trog)', 'raca/Trog', 'herois-de-arton', 'geral', 'Trog')
+  ++ ('Sombra dos Ermos', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Vigilância Élfica (Elfo)', 'raca/Elfo', 'herois-de-arton', 'geral', 'Elfo')
+  ++ ('Mestre Assassino', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Afinidade Elemental (Vegetação))', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Líder Enérgico', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Glamour Maior (Duende)', 'raca/Duende', 'herois-de-arton', 'geral', 'Duende')
+  ++ ('Arco do crepúsculo', 'armas', 'herois-de-arton', None, '')
+  ++ ('Investida Convicta', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Mente Disciplinada', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Camuflagem Mimética (Sereia/Tritão)', 'raca/Sereia/Tritão', 'herois-de-arton', 'geral', 'Sereia/Tritão')
+  ++ ('Erupção Elemental', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Forma Esquelética', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Martelo do titã', 'armas', 'herois-de-arton', None, '')
+  ++ ('Magias (Usurpador)', 'class/clerigo/usurpador', 'herois-de-arton', 'ability', 'Usurpador')
+  ++ ('Orgulho', 'class/nobre/burgues', 'herois-de-arton', 'ability', 'Burguês')
+  ++ ('Machado do vulcão', 'armas', 'herois-de-arton', None, '')
+  ++ ('Postura de Combate: Sequência Blindada', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Fragrância de Rosas (Duende)', 'raca/Duende', 'herois-de-arton', 'geral', 'Duende')
+  ++ ('Sangue Mágico (Eiradaan)', 'raca/Eiradaan', 'herois-de-arton', 'geral', 'Eiradaan')
+  ++ ('Lança da Fênix', 'armas', 'herois-de-arton', None, '')
+  ++ ('Sede Sanguinária', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Pernas Caprinas', 'raca/Sátiro', 'herois-de-arton', 'racial', 'Sátiro')
+  ++ ('Auspício da Madrugada', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Solo Profanado', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Invocar os Ancestrais', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Crescimento Feérico (Duende)', 'raca/Duende', 'herois-de-arton', 'geral', 'Duende')
+  ++ ('Vitalidade das Fadas (Duende)', 'raca/Dahllan', 'herois-de-arton', 'geral', 'Dahllan')
+  ++ ('Estampido Ensurdecedor', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Entrada Triunfal', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Herança Erudita (Kallyanach)', 'raca/Kallyanach', 'herois-de-arton', 'geral', 'Kallyanach')
+  ++ ('Duelo Irrecusável', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Aversão a Ferro', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Mais Lá do que Aqui', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Tipo: Monstro', 'class/treinador/all', 'herois-de-arton', 'ability', 'Treinador')
+  ++ ('Ingrediente Especial', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Balada do Atirador', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Escola de Duelo: Ambidestra', 'class/bucaneiro/duelista', 'herois-de-arton', 'ability', 'Duelista')
+  ++ ('Pega!', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Canalizar Poderoso', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Apoteose Dracônica', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Canalizar Concentrado', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Avanço do Predador', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Glamour (Sílfide)', 'raca/Sílfide', 'herois-de-arton', 'geral', 'Sílfide')
+  ++ ('Armadura do Dragão Ancião', 'armad', 'herois-de-arton', 'pesada', '')
+  ++ ('Escapada Criativa (Goblin)', 'raca/Goblin', 'herois-de-arton', 'geral', 'Goblin')
+  ++ ('Combinação: Chute Circular', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Herança Erudita (Eiradaan)', 'raca/Eiradaan', 'herois-de-arton', 'geral', 'Eiradaan')
+  ++ ('Tomo dos companheiros', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Meio-Gigante', 'raca/Galokk', 'herois-de-arton', 'racial', 'Galokk')
+  ++ ('Introdução Calorosa', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Arma Juramentada', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Inspiração Resoluta', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Aversão a Sinos', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Mascote: Minivaca', 'parc/mascote', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Tempestade de Lâminas', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Tipo: Morto-Vivo', 'class/treinador/all', 'herois-de-arton', 'ability', 'Treinador')
+  ++ ('Coração de Pedra (Medusa)', 'raca/Medusa', 'herois-de-arton', 'geral', 'Medusa')
+  ++ ('Proteção Fúngica', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Golpe dos Titãs (Galokk)', 'raca/Galokk', 'herois-de-arton', 'geral', 'Galokk')
+  ++ ('Escola de Duelo: Tiro', 'class/bucaneiro/duelista', 'herois-de-arton', 'ability', 'Duelista')
+  ++ ('Improvisação Arcana', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Manobra Dupla', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Duende Grande', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Anel da proteção mental', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Cristal do tempo célere', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Flechas Assobiadoras', 'itens', 'herois-de-arton', 'ammo', '')
+  ++ ('Elixir da mente dividida', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Brado: Assombroso', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Asas de Aço (Harpia)', 'raca/Harpia', 'herois-de-arton', 'geral', 'Harpia')
+  ++ ('Cascos Poderosos (Minotauro)', 'raca/Minotauro', 'herois-de-arton', 'geral', 'Minotauro')
+  ++ ('Bom de Trago', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Ruas Furiosas', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Infância entre os Pequenos', 'raca/Galokk', 'herois-de-arton', 'racial', 'Galokk')
+  ++ ('Força da Devoção', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Recuperação Gutural', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Transformação Repugnante', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Quatro Braços (Nagah)', 'raca/Nagah', 'herois-de-arton', 'geral', 'Nagah')
+  ++ ('Especialista em Invocações', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Companheiro Aberrante', 'class/druida/druida-base', 'herois-de-arton', 'classe', 'Druida')
+  ++ ('Duelista Escudado', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Espelho da verdade', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Apoteose Celestial', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Algibeira provedora', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Colar do tirano', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Cinto da leveza graciosa', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Quatro Braços (Lefou)', 'raca/Lefou', 'herois-de-arton', 'geral', 'Lefou')
+  ++ ('Martelo da terra', 'armas', 'herois-de-arton', None, '')
+  ++ ('Baluarte', 'class/cavaleiro/vassalo', 'herois-de-arton', 'ability', 'Vassalo')
+  ++ ('Sangue Élfico', 'raca/Meio-Elfo', 'herois-de-arton', 'racial', 'Meio-Elfo')
+  ++ ('Marrada Poderosa (Sátiro)', 'raca/Sátiro', 'herois-de-arton', 'geral', 'Sátiro')
+  ++ ('Operações Combinadas', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Estirpe Arcana (Nagah)', 'raca/Nagah', 'herois-de-arton', 'geral', 'Nagah')
+  ++ ('Tocaia Habilidosa', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Tipo: Animal', 'class/treinador/all', 'herois-de-arton', 'ability', 'Treinador')
+  ++ ('Postura de Combate: Armamento Pesado', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Tabu', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Ampulheta da harmonia temporal', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Cálice Sagrado', 'itens', 'herois-de-arton', 'esoterico', '')
+  ++ ('Essência Feérica', 'raca/Eiradaan', 'herois-de-arton', 'racial', 'Eiradaan')
+  ++ ('Raio Dividido', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Marrada', 'raca/Sátiro', 'herois-de-arton', 'racial', 'Sátiro')
+  ++ ('Devoto Fiel', 'class/druida/ermitao', 'herois-de-arton', 'ability', 'Ermitão')
+  ++ ('Arco das sombras', 'armas', 'herois-de-arton', None, '')
+  ++ ('Música: Sonata da Distração', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Familiar de Trevas (Sulfure)', 'raca/Sulfure', 'herois-de-arton', 'geral', 'Sulfure')
+  ++ ('Faro Aprimorado (Minotauro)', 'raca/Minotauro', 'herois-de-arton', 'geral', 'Minotauro')
+  ++ ('Sequência do Predador', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Bloqueio Brutal', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Assassino em Série', 'class/ladino/ladino-base', 'herois-de-arton', 'classe', 'Ladino')
+  ++ ('Mestre das Combinações', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Mascote: Bicho Preguiça', 'parc/mascote', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Atração pela Pólvora (Hobgoblin)', 'raca/Hobgoblin', 'herois-de-arton', 'geral', 'Hobgoblin')
+  ++ ('Cavaleiro Sagrado', 'class/cavaleiro/cavaleiro-base', 'herois-de-arton', 'classe', 'Cavaleiro')
+  ++ ('Lâminas Guardiãs', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Aquecimento', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Investida Ricochete', 'class/guerreiro/guerreiro-base', 'herois-de-arton', 'classe', 'Guerreiro')
+  ++ ('Golpe do Predador', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Marrada Poderosa (Minotauro)', 'raca/Minotauro', 'herois-de-arton', 'geral', 'Minotauro')
+  ++ ('Engenhosidade', 'class/inventor/alquimista', 'herois-de-arton', 'ability', 'Alquimista')
+  ++ ('Pirouette', 'class/bucaneiro/bucaneiro-base', 'herois-de-arton', 'classe', 'Bucaneiro')
+  ++ ('Dupla Inteligência (Gnoll)', 'raca/Gnoll', 'herois-de-arton', 'geral', 'Gnoll')
+  ++ ('Missa: Mente Abençoada', 'class/clerigo/clerigo-base', 'herois-de-arton', 'classe', 'Clérigo')
+  ++ ('Mascote: Ossinho', 'parc/mascote', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Rigidez Selvagem', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Olhos nas Costas', 'class/ladino/ventanista', 'herois-de-arton', 'ability', 'Ventanista')
+  ++ ('Glamour (Duende)', 'raca/Duende', 'herois-de-arton', 'geral', 'Duende')
+  ++ ('Pena da criação', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Senescal', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Esquiva Sobrenatural', 'class/ladino/ventanista', 'herois-de-arton', 'ability', 'Ventanista')
+  ++ ('Cálice das marés', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Táticas de Matilha', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Encantar Objetos', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Alquimia Arcana', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Mascote: Gekko Malhado', 'parc/mascote', 'herois-de-arton', 'classe', 'Treinador')
+  ++ ('Contramágica Superior', 'class/arcanista/arcanista-base', 'herois-de-arton', 'classe', 'Arcanista')
+  ++ ('Treino Intensivo (Treinador)', 'class/treinador/all', 'herois-de-arton', 'ability', 'Treinador')
+  ++ ('Hedonismo Aristocrático', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Protocolo Impecável', 'class/nobre/nobre-base', 'herois-de-arton', 'classe', 'Nobre')
+  ++ ('Fúria Elemental', 'class/barbaro/barbaro-base', 'herois-de-arton', 'classe', 'Bárbaro')
+  ++ ('Tiro Trespassante', 'class/cacador/cacador-base', 'herois-de-arton', 'classe', 'Caçador')
+  ++ ('Golpe no Joelho (Kobolds)', 'raca/Kobolds', 'herois-de-arton', 'geral', 'Kobolds')
+  ++ ('Lorde: Caminho do Governante', 'class/cavaleiro/vassalo', 'herois-de-arton', 'ability', 'Vassalo')
+  ++ ('Mago Vermelho', 'class/bardo/bardo-base', 'herois-de-arton', 'classe', 'Bardo')
+  ++ ('Dança Marcial', 'class/lutador/lutador-base', 'herois-de-arton', 'classe', 'Lutador')
+  ++ ('Arma Amada (Hobgoblin)', 'raca/Hobgoblin', 'herois-de-arton', 'geral', 'Hobgoblin')
+  ++ ('Botas do andarilho das sombras', 'itens', 'herois-de-arton', 'acessorio', '')
+  ++ ('Entre Dois Mundos', 'raca/Meio-Elfo', 'herois-de-arton', 'racial', 'Meio-Elfo')
+  ++ ('Natureza Animal', 'raca/Duende', 'herois-de-arton', 'racial', 'Duende')
+  ++ ('Virotes Pesados', 'itens', 'herois-de-arton', 'ammo', '')
+  ++ ('Duque', 'class/cavaleiro/vassalo', 'herois-de-arton', 'ability', 'Vassalo')
+  ++ ('Condicionamento Especial', 'class/treinador/melhoramigo', 'herois-de-arton', 'classe', 'Melhor Amigo')
+  ++ ('Paladino do Reino', 'class/paladino/paladino-base', 'herois-de-arton', 'classe', 'Paladino')
+  ++ ('Alto Rei', 'class/cavaleiro/vassalo', 'herois-de-arton', 'ability', 'Vassalo')
+  ++ ('Os materiais especiais que podem ser empregados em ornitópteros, bem como seu custo adicional, são descritos a seguir.', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Casco de monstro*', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Cristal de sol*', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Couro de bulette*', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Couraça de kaiju*', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Gelo eterno', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Lanajuste*', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Matéria vermelha', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Prata*', 'arsenal/aeronauta', 'distincoes', '—', '—')
+  ++ ('Pena de kraken*', 'arsenal/aeronauta', 'distincoes', '—', '—')
+--- DBG golem-st names ---
+  golem? ('Chassi Gracioso', 'geral')
+  golem? ('Programação Holística', 'geral')
+--- DBG moreau sup (name, st) ---
+  mor? ('As Muitas Vidas de Um Gato', 'Moreau (Gato)')
+  mor? ('Asas', 'Moreau (Morcego)')
+  mor? ('Chifres', 'Moreau (Búlfalo)')
+  mor? ('Constritor', 'Moreau (Serpente)')
+  mor? ('Criatura da Noite', 'Moreau (Morcego)')
+  mor? ('Destemor', 'Moreau (Hiena)')
+  mor? ('Ecolocalização', 'Moreau (Morcego)')
+  mor? ('Esperteza Vulpina', 'Moreau (Raposa)')
+  mor? ('Espreitador', 'Moreau (Coruja)')
+  mor? ('Faro', 'Moreau (Búlfalo)')
+  mor? ('Faro', 'Moreau (Hiena)')
+  mor? ('Faro', 'Moreau (Lobo)')
+  mor? ('Faro', 'Moreau (Raposa)')
+  mor? ('Faro', 'Moreau (Urso)')
+  mor? ('Faro Aprimorado (Moreau do Lobo)', 'Moreau do Lobo')
+  mor? ('Garras', 'Moreau (Coruja)')
+  mor? ('Garras', 'Moreau (Gato)')
+  mor? ('Instintos Traiçoeiros', 'Moreau (Serpente)')
+  mor? ('Marrada Impressionante', 'Moreau (Búlfalo)')
+  mor? ('Mordida', 'Moreau (Hiena)')
+  mor? ('Mordida', 'Moreau (Leão)')
+  mor? ('Mordida', 'Moreau (Lobo)')
+  mor? ('Mordida', 'Moreau (Urso)')
+  mor? ('Mordida Poderosa', 'Moreau (Crocodilo)')
+  mor? ('Patas Ligeiras', 'Moreau (Coelho)')
+  mor? ('Predador Aquático', 'Moreau (Crocodilo)')
+  mor? ('Pé de Coelho', 'Moreau (Coelho)')
+  mor? ('Rugido Imponente', 'Moreau (Leão)')
+  mor? ('Sapiência', 'Moreau (Coruja)')
+  mor? ('Senso de Preservação', 'Moreau (Coelho)')
+  mor? ('Sentidos Felinos', 'Moreau (Gato)')
+  mor? ('Sentidos da Realeza', 'Moreau (Leão)')
+  mor? ('Surto Reptiliano', 'Moreau (Crocodilo)')
+  mor? ('Táticas de Matilha', 'Moreau (Lobo)')
+--- ours moreau/raposa check ---
+  raposa: {'agarrame se puderes', 'esperteza vulpina', 'faro'} | urso: {'faro', 'mordida', 'abraco de urso'} | serpente: {'arboricola', 'instintos traicoeiros', 'constritor'} | bufalo: {'marrada impressionante', 'chifres', 'faro'} | leao: {'rugido imponente', 'sentidos da realeza', 'mordida'} | lobo: {'faro aprimorado moreau do lobo', 'taticas de matilha', 'mordida', 'faro'}
+--- marca compares (False = DIVERGE, ours kept) ---
+  MARCA-DIVERGE: ('Aeronauta Goblin', 'Combate Aéreo (Marca)', 'aeronauta goblin', False)
+  marca total: 57 diverges: 1
+--- parse fails ---
+  fam_fail: []
+  tier_fail: ['Montaria: Pégaso de Khalmyr']
+  magia_new: ['Controlar Ar']
+  orig_new: ['Nitamuraniano']
+  arma sem dano: 68 | arma sem tipo_dano: 59 | dist sem req: 35
+--- index sanity ---
+  POW=1775 TRIPLE=1192 DIST2=64 MH=['bufalo', 'coelho', 'coruja', 'crocodilo', 'gato', 'hiena', 'leao', 'lobo', 'morcego', 'raposa', 'serpente', 'urso'] GOLEM={'mashin': 11, 'barro': 1, 'bronze': 1, 'carne': 1, 'espelho': 1, 'ferro': 1, 'gelo': 1, 'pedra': 1, 'sucata': 1, 'dourado': 1} ITF={'itens': 572, 'armas': 183, 'armad': 53, 'itesm': 316} ORIG=162 PAR=191 SPELL=260 ARS=133
+--- EOL ---
+  {'data': '\r\n', 'dist': '\r\n', 'parc': '\n', 'orig': '\n', 'racas': '\n', 'grim': '\n', 'main': '\n', 'phtml': '\n', 'ihtml': '\n', 'itens': '\r\n', 'armas': '\n', 'armad': '\r\n', 'itesm': '\r\n'}
+  anchor data-end: OK
+  anchor dist-end: OK
+  anchor orig-end: OK
+  anchor parc-end: OK
+  anchor grim-end: OK
+  anchor itens-end: OK
+  anchor armas-end: OK
+  anchor armad-end: OK
+  anchor itesm-end: OK
+  anchor arsenal: OK
+  anchor chassi-mashin: OK
+  anchor her-lobo: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Caçador de Cabeças: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Caçador de Cabeças: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Armadilheiro Mestre: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Herói Henshin: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Herói Henshin: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Herói Henshin: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Herói Henshin: OK
+  anchor distpod-Herói Henshin: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Herói Henshin: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Herói Henshin: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor distpod-Exegeta do Akzath: OK
+  anchor P1-opt: OK
+  anchor P2-btn: OK
+  anchor P3-cac: OK
+  anchor P4-tre: OK
+  anchor P5-fra: OK
+  anchor P6-var: OK
+  anchor P7-src: OK
+node: /usr/bin/node
+wrote poderes/js/data.js
+wrote poderes/js/distincoes-data.js
+wrote parceiros/parceiros.js
+wrote poderes/js/origens.js
+wrote calculadora/racas.js
+wrote grimorio/spells_db.js
+wrote poderes/js/main.js
+wrote poderes/index.html
+wrote itens/index.html
+wrote itens/data/itens.js
+wrote itens/data/armas.js
+wrote itens/data/armaduras.js
+wrote itens/data/itensmagicos.js
+backups em /home/user/work/backup-imp/
+NODE-OK poderes/js/data.js
+NODE-OK poderes/js/distincoes-data.js
+NODE-OK parceiros/parceiros.js
+NODE-OK poderes/js/origens.js
+NODE-OK calculadora/racas.js
+NODE-OK grimorio/spells_db.js
+NODE-OK poderes/js/main.js
+NODE-OK itens/data/itens.js
+NODE-OK itens/data/armas.js
+NODE-OK itens/data/armaduras.js
+NODE-OK itens/data/itensmagicos.js
+--- verify adds presentes ---
+  VERIFY-MISS: Montaria: Troll parc/montaria
+  VERIFY-MISS: Montaria: Cocatriz Real parc/montaria
+  VERIFY-MISS: Montaria: Tuntram parc/montaria
+  VERIFY-MISS: Montaria: Leão parc/montaria
+  VERIFY-MISS: Montaria: Deinonico parc/montaria
+  VERIFY-MISS: Montaria: Urso Panda parc/montaria
+  VERIFY-MISS: Montaria: Selako parc/montaria
+  VERIFY-MISS: Montaria: Rinoceronte parc/montaria
+  VERIFY-MISS: Montaria: Tumarkhân parc/montaria
+  VERIFY-MISS: Montaria: Dai-Kabuto parc/montaria
+  VERIFY-MISS: Kobold (Parceiro) parc/parceiro
+  VERIFY-MISS: Montaria: Brontotério parc/montaria
+  VERIFY-MISS: Montaria: Baleote parc/montaria
+  VERIFY-MISS: Montaria: Sapo Atroz parc/montaria
+  VERIFY-MISS: Montaria: Hienodonte parc/montaria
+  VERIFY-MISS: Elemental de Veneno (Parceiro) parc/parceiro
+  VERIFY-MISS: Montaria: Bulette parc/montaria
+  VERIFY-MISS: Montaria: Elefante parc/montaria
+  VERIFY-MISS: Montaria: Cavalo Glacial parc/montaria
+  VERIFY-MISS: Montaria: Galhada (Macho) parc/montaria
+  VERIFY-MISS: Montaria: Urso Pardo parc/montaria
+  VERIFY-MISS: Montaria: Búfalo-de-Guerra parc/montaria
+  VERIFY-MISS: Montaria: Dragão Jovem parc/montaria
+  VERIFY-MISS: Montaria: Capivara parc/montaria
+  VERIFY-MISS: Montaria: Unicórnio parc/montaria
+  VERIFY-MISS: Montaria: Galhada (Fêmea) parc/montaria
+  VERIFY-MISS: Montaria: Warg parc/montaria
+  VERIFY-MISS: Montaria: Corcel de Kally parc/montaria
+  VERIFY-MISS: Montaria: Hippossauro parc/montaria
+  VERIFY-MISS: Montaria: Tatu-Montanha parc/montaria
+  VERIFY-MISS: Montaria: Rinoceronte Lanoso parc/montaria
+  VERIFY-MISS: Montaria: Corcel de Comando parc/montaria
+  VERIFY-MISS: Montaria: Platan parc/montaria
+  VERIFY-MISS: Montaria: Cavalo Esqueleto parc/montaria
+  VERIFY-MISS: Montaria: Corcel do Deserto parc/montaria
+  VERIFY-MISS: Montaria: Cavalo de Namalkah parc/montaria
+  VERIFY-MISS: Montaria: Dromedário parc/montaria
+  VERIFY-MISS: Montaria: Urso das Neves parc/montaria
+  VERIFY-MISS: Montaria: Tigre parc/montaria
+  VERIFY-MISS: Montaria: Urso das Cavernas parc/montaria
+  VERIFY-MISS: Montaria: Gamo parc/montaria
+  VERIFY-MISS: Montaria: Pégaso de Khalmyr parc/montaria
+  VERIFY-MISS: Montaria: Pégaso parc/montaria
+  VERIFY-MISS: Material Especial arsenal/aeronauta
+  VERIFY-MISS: Procedimento Inicial (Marca) dist-new/cobaia
+  VERIFY-MISS: Mascote: Mico-Leão Dourado parc/mascote
+  VERIFY-MISS: Mascote: Fada-Borboleta parc/mascote
+  VERIFY-MISS: Mascote: Águia Real parc/mascote
+  VERIFY-MISS: Mascote: Minivaca parc/mascote
+  VERIFY-MISS: Mascote: Bicho Preguiça parc/mascote
+  VERIFY-MISS: Mascote: Ossinho parc/mascote
+  VERIFY-MISS: Mascote: Gekko Malhado parc/mascote
+verify misses: 52 / 929

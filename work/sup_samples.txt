@@ -1,0 +1,179 @@
+===== Pistola Demoníaca [arma] pack=ameacas-de-arton subtipo=None source=T20 - Ameaças de Arton (pág. 403)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 403)", "equipado": 0, "equipado2": {"slot": 0, "type": "hand"}, "carregado": true, "peso": 1, "espacos": 1, "qtd": 1, "preco": 72250, "pv": {"value": 0, "min": 0, "max": 0}, "rd": 0, "criticoM": 19, "criticoX": 3, "alcance": "short", "tipoUso": "sim", "propriedades": {"ada": false, "agi": false, "alo": false, "dup": false, "ver": false, "adaptavel": false, "agil": false, "alongada": false, "arremesso": false, "ataqueDistancia": true, "duasMaos": false, "dupla": false, "leve": false, "municao": true, "versatil": false, "des": false, "hib": false}, "encantos": {"arremesso": false, "lancinante": false, "lancinating": false}, "ativacao": {"custo": null, "condicao": "", "execucao": "", "qtd": "", "special": ""}, "consume": {"type": "", "target": "", "amount": null, "mpMultiplier": false}, "origin": "", "tags": [], "upgrades": {"melhoria1": "", "melhori
+DESC: Esta pistola ameaçadora formidável e profana não pode ser fabricada por nenhum meio conhecido por mortais e só pode ser obtida através de um pacto com um demônio da pólvora (veja p. 255). Uma pistola demoníaca está sempre carregada e não precisa de munição. Uma vez por dia, em um momento escolhido pelo mestre (ou na primeira ocasião em que houver outras pessoas próximas), o portador da arma é atingido pelo impulso homicida de disparar contra uma criatura inteligente aleatória à vista (incluindo aliados). O portador pode resistir a esse impulso por este dia passando em um teste de Vontade (CD 25). Qualquer medida para evitar acidentes (manter a pistola guardada, descarregada ou mesmo trancada
+
+===== Atributos - Kobolds [poder] pack=ameacas-de-arton subtipo=Kobolds source=T20 - Ameaças de Arton (pág. 183)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 183)", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": 0, "width": 0, "units": "", "type": ""}, "range": {"value": 0, "units": ""}, "consume": {"type": "", "target": "", "amount": 0, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "racial", "subtipo": "Kobolds", "origin": "", "tags": []}
+DESC: Destreza +2, Força –1.
+
+===== Dente de Wisphago [tesouro] pack=ameacas-de-arton subtipo=None source=T20 - Ameaças de Arton (pág. 396)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 396)", "equipado": false, "equipado2": {"slot": 0, "type": ""}, "carregado": true, "peso": 0, "espacos": 1, "qtd": 1, "preco": 100, "pv": {"value": 0, "min": 0, "max": 0}, "rd": 0, "container": false, "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "", "qtd": "", "special": ""}, "consume": {"amount": 0, "mpMultiplier": false, "target": "", "type": ""}, "duracao": {"units": "", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "target": {"type": "", "value": 0, "width": 0}, "alcance": "", "alvo": "", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}}
+DESC: Um dente de wisphago pode ser vestido como um amuleto. Quando faz um teste de resistência contra uma magia arcana, você pode gastar o amuleto para rolar novamente esse teste com um bônus de +2. Uma vez ativado, o amuleto se desfaz. Um dente de wisphago não pode ser fabricado.
+
+===== Armadura de Ossos [equipamento] pack=ameacas-de-arton subtipo=None source=T20 - Ameaças de Arton (pág. 395)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 395)", "equipado": false, "equipado2": {"slot": 0, "type": "body"}, "carregado": true, "peso": 0, "espacos": 2, "qtd": 1, "preco": 120, "pv": {"value": 3, "min": 0, "max": 3}, "rd": 0, "tipo": "leve", "armadura": {"value": 3, "penalidade": 2, "maxAtr": 0}, "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "", "qtd": "", "special": ""}, "upgrades": {"melhoria1": "", "melhoria2": "", "melhoria3": "", "melhoria4": "", "material": "", "encanto1": "", "encanto2": "", "encanto3": ""}, "melhorias": {}, "encantos": {}, "enableAutoUpgrades": false}
+DESC: Os nezumi e outros povos são conhecidos por produzir estas armaduras sinistras. Combinando um aspecto assustador e energias negativas de ossadas, esta armadura fornece +1 em Intimidação e na CD de seus efeitos de medo (cumulativo com a melhoria macabra).
+
+===== Montaria: Troll [poder] pack=ameacas-de-arton subtipo=Montaria source=T20 - Ameaças de Arton (pág. 344)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 344)", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "inst", "special": ""}, "efeito": "", "alcance": "none", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "geral", "subtipo": "Montaria", "origin": "", "tags": [], "range": {"units": "", "value": 0}, "area": ""}
+DESC: Nas raras ocasiões que um cavaleiro finntroll é derrotado e seu troll sobrevive, um personagem treinado em Adestramento pode conquistar a criatura e transformá-la em uma valiosa montaria. Um troll adestrado desta forma é um parceiro montaria Grande que fornece os benefícios a seguir.
+
+Iniciante: seu deslocamento muda para 12m e, uma vez por rodada, você recebe +1d8 em uma rolagem de dano corpo a corpo.
+
+Veterano: o bônus em rolagens aumenta para +1d10 e você recebe +2 em testes para agarrar e derrubar.
+
+Mestre: o bônus em rolagens aumenta para +2d8 e o bônus para agarrar e derrubar aumenta para +5.
+
+Regras de Montarias• Para usar um parceiro montaria você precisa montar nele. Para passá-lo p
+
+===== Pakk (Familiar) [poder] pack=ameacas-de-arton subtipo=Arcanista source=T20 - Ameaças de Arton (pág. 88)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 88)", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "inst", "special": ""}, "range": {"value": null, "units": ""}, "efeito": "", "alcance": "none", "area": "", "resistencia": {"pericia": "", "atributo": "sab", "bonus": 0, "txt": ""}, "tipo": "classe", "subtipo": "Arcanista", "origin": "", "tags": ["Arcanista"]}
+DESC: Um familiar é uma criatura mágica. Em termos de jogo, é um parceiro especial com o qual você pode se comunicar telepaticamente em alcance longo. Ele obedece a suas ordens, mas ainda está limitado ao que uma criatura de sua espécie pode fazer. Se ele morrer, você fica atordoado por uma rodada. Você pode invocar um novo familiar com um ritual que exige um dia e T$ 100 em ingredientes.
+
+Pakk. Um pakk familiar permite que você lance Explosão de Chamas. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.
+
+===== Bomba de fumaça [consumivel] pack=ameacas-de-arton subtipo= source=T20 - Ameaças de Arton (pág. 396)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 396)", "equipado": false, "equipado2": {"slot": 0, "type": ""}, "carregado": true, "peso": 0, "espacos": 0.5, "qtd": 1, "preco": 15, "pv": {"value": 0, "min": 0, "max": 0}, "rd": 0, "ativacao": {"execucao": "", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": 0, "width": 0, "units": "", "type": ""}, "range": {"value": 0, "units": ""}, "consume": {"type": "", "target": "", "amount": 0, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "alchemy", "uses": {"autoDestroy": false}, "origin": "", "tags": [], "upgrades": {"melhoria1": "", "melhoria2": "", "melhoria3": "", "melhoria4": "", "material": "", "encanto1": "", "encanto2": "", "encanto3": ""}, "melhorias": {}, 
+DESC: Saco de estopa com pavio, contendo uma pólvora especial que produz mais fumaça do que fogo. Segue as mesmas regras da bomba, mas, em vez de causar dano, emite uma nuvem de fumaça espessa com 6m de raio, que obscurece toda a visão e dura até o fim da cena. Criaturas a até 1,5m têm camuflagem leve e criaturas a partir de 3m têm camuflagem total.
+
+===== Ferro [poder] pack=ameacas-de-arton subtipo= source=T20 - Ameaças de Arton (pág. 134)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 134)", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": 0, "width": 0, "units": "", "type": ""}, "range": {"value": 0, "units": ""}, "consume": {"type": "", "target": "", "amount": 0, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "ability", "subtipo": "", "origin": "", "tags": []}
+DESC: Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe +2 na Defesa, mas possui penalidade de armadura –2.
+
+===== Mashin [race] pack=ameacas-de-arton subtipo=None source=
+SYS: {"source": "", "origin": "", "tags": [], "atributos": {"for": 0, "des": 0, "con": 0, "int": 0, "sab": 0, "car": 0}, "atributosDinamicos": {"value": ["for", "des", "con", "int", "sab", "car"], "description": "+1 em dois atributos a sua escolha"}}
+DESC: 
+
+===== Chassi - Mashin [poder] pack=ameacas-de-arton subtipo=Mashin source=T20 - Ameaças de Arton (pág. 160)
+SYS: {"source": "T20 - Ameaças de Arton (pág. 160)", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": null, "width": null, "units": "", "type": ""}, "range": {"value": null, "units": ""}, "consume": {"type": "", "target": "", "amount": null, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "sab", "bonus": 0, "txt": ""}, "tipo": "racial", "subtipo": "Mashin", "origin": "", "tags": []}
+DESC: +1 em dois atributos a sua escolha. 
+
+Você se torna treinado em duas perícias a sua escolha e pode substituir uma dessas perícias por uma maravilha mecânica. Entretanto, você é sempre Médio.
+
+===== Bola de Fogo Flamejante [magia] pack=deuses-de-arton subtipo=None source=
+SYS: {"source": "", "origin": "", "tags": [], "ativacao": {"custo": 2, "condicao": "", "execucao": "action", "qtd": "", "special": ""}, "consume": {"amount": 0, "mpMultiplier": false, "target": "", "type": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "medium", "alvo": "", "area": "", "efeito": "", "resistencia": {"txt": "Reflexos", "pericia": "", "atributo": "", "bonus": 0}, "circulo": 1, "escola": "evo", "tipo": "sim", "preparada": false, "equipado2": {"slot": 0, "type": ""}}
+DESC: 
+
+===== Devoção Ampla [poder] pack=deuses-de-arton subtipo= source=T20 - Deuses de Arton (pág. 11)
+SYS: {"source": "T20 - Deuses de Arton (pág. 11)", "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "passive", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "geral", "subtipo": ""}
+DESC: Clérigos e frades do Panteão, druidas de Arton e paladinos do bem não recebem poderes concedidos. Em compensação, por sua devoção ampla, recebem +2 PM por patamar.
+
+===== Armadilha: Mina [poder] pack=distincoes subtipo=Armadilhas source=Herois de Arton. Pg 117
+SYS: {"source": "Herois de Arton. Pg 117", "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "passive", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "spec", "area": "3m", "efeito": "empurradas 3m na direção oposta", "resistencia": {"txt": "Reflexos CD Int reduz à metade e evita o empurrão", "pericia": "", "atributo": "int", "bonus": 0}, "tipo": "distincao", "subtipo": "Armadilhas"}
+DESC: Criaturas na área sofrem 4d6 pontos de dano de impacto e são empurradas 3m na direção oposta ao centro da armadilha (Reflexos CD Int reduz à metade e evita o empurrão).
+
+Armadilhas - Regra Mestre Armadilheiro
+Esses poderes compartilham as seguintes regras.
+
+• Preparar uma armadilha gasta uma ação completa e 3 PM.
+
+• Uma armadilha afeta uma área de 3m de lado adjacente a você e é acionada pela primeira criatura que entrar na área.
+
+• Uma criatura que o veja preparando a armadilha saberá que ela está lá.
+
+• É possível aplicar veneno a uma armadilha, como se ela fosse uma arma.
+
+Uma criatura que não o veja preparando a armadilha pode encontrá-la se gastar uma ação padrão procurando e passar em 
+
+===== Chuva de Flechas [poder] pack=distincoes subtipo=Arqueiro de Lenórienn source=Herois de Arton. Pg 120
+SYS: {"source": "Herois de Arton. Pg 120", "origin": "", "tags": [], "ativacao": {"custo": null, "condicao": "", "execucao": "action", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "distincao", "subtipo": "Arqueiro de Lenórienn"}
+DESC: Você pode gastar uma ação padrão e 2 PM para multiplicar seu disparo. Faça um ataque à distância com seu arco e compare-o com a Defesa de um número de inimigos a sua escolha, no alcance do arco, limitado por seu atributo-chave para magias arcanas. Então faça uma única rolagem de dano e aplique-a a cada inimigo atingido. Você gasta apenas uma munição. Pré-requisitos: Energizar Arco, lançar magias arcanas de 3º círculo
+
+===== Jogo Perigoso [poder] pack=distincoes subtipo= source=Herois de Arton. Pg 138
+SYS: {"source": "Herois de Arton. Pg 138", "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "full", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "geral", "subtipo": ""}
+DESC: Você pode gastar uma ação completa para fazer uma aposta com uma entidade sobrenatural. Escolha uma magia de 1º círculo, arcana ou divina, e faça um teste de Jogatina (CD 20 + o custo em PM da magia). Se passar, até o fim da cena, ou até usar este poder novamente, você pode lançar essa magia (atributo- -chave Carisma) e pode usar seus aprimoramentos como se tivesse acesso aos mesmos círculos de magia que um bardo do seu nível. Se falhar, você perde 2 PM para cada círculo da magia. A cada dois outros poderes da distinção, você pode escolher magias de um círculo acima do 1º. Pré-requisitos: treinado em Misticismo, Ás na Manga
+
+===== Implante: Garras [poder] pack=distincoes subtipo= source=T20 - Heróis de Arton (pág. 150)
+SYS: {"source": "T20 - Heróis de Arton (pág. 150)", "origin": "", "tags": [], "ativacao": {"custo": 1, "condicao": "", "execucao": "free", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "geral", "subtipo": ""}
+DESC: Suas mãos se transformam em armas naturais de garra (dano 1d6 cada, crítico x2, corte). Uma vez por rodada, quando usa a ação agredir para atacar com uma arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com uma das garras, desde que ela esteja livre e não tenha sido usada para atacar nesse turno. Como alternativa, se tiver habilidades que exijam uma arma secundária (como Estilo de Duas Armas), você pode usá-las com suas garras. 
+
+Preço T$ 27.000.
+
+===== Inovação: Cano Serrado (Arma) [poder] pack=distincoes subtipo=Inovação source=T20 - Deuses de Arton (pág. 110)
+SYS: {"source": "T20 - Deuses de Arton (pág. 110)", "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "passive", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "geral", "subtipo": "Inovação"}
+DESC: O cano da arma é mais curto, o que diminui sua precisão mas torna mais fácil manuseá-la em corpo a corpo. Quando faz um ataque à distância com a arma contra um oponente adjacente, você causa um dado de dano extra do mesmo tipo. Entretanto, você sofre –2 em testes de ataque contra alvos que não estejam adjacentes.
+
+===== Mestre Dracônico (Marca) [poder] pack=distincoes subtipo= source=
+SYS: {"source": "", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "inst", "special": ""}, "range": {"value": 0, "units": ""}, "efeito": "", "alcance": "none", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "ability", "subtipo": "", "origin": "", "tags": []}
+DESC: Escolha um Dragão-Real para ser seu mestre, entre Behluga (escolha entre frio ou luz), Benthos (ácido), Hydora (eletricidade), Mzzileyn (trevas), Sckhar (fogo), Tarso (trevas) e Zadbblein (veneno).
+
+Uma vez feita, essa escolha não pode ser mudada. Quando você lança uma magia de dano ou perda de PV do mesmo tipo da essência de seu mestre, ela causa +2 pontos de dano ou perda de PV.
+
+===== Medo Verdadeiro [poder] pack=guia-de-deuses-menores subtipo=O Deus do Medo source=Guia de Deuses Menores - Pg 39
+SYS: {"source": "Guia de Deuses Menores - Pg 39", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "efeito": "", "alcance": "none", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "concedido", "subtipo": "O Deus do Medo", "origin": "", "tags": []}
+DESC: Você recebe +2 em Intimidação e na CD de seus efeitos de medo, e pode escolher poderes relacionados a efeitos de medo sem necessidade de cumprir pré-requisitos de classe ou devoção. Por fim, pode aprender magias de medo como magias divinas.
+
+===== Avalanche das Três Mãos [poder] pack=guia-de-npcs-and-dbs subtipo=Samurai source=Dragão Brasil #199
+SYS: {"source": "Dragão Brasil #199", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "inst", "special": ""}, "range": {"value": 0, "units": ""}, "efeito": "", "alcance": "none", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "classe", "subtipo": "Samurai", "origin": "", "tags": []}
+DESC: Se estiver usando sua arma ancestral com as duas mãos, você soma sua Constituição nas rolagens de dano (limitado pelo seu nível). 
+Pré-requisitos: Con 1.
+
+===== Disparo Elemental [poder] pack=guia-de-npcs-and-dbs subtipo=Místico source=Dragão Brasil #199
+SYS: {"source": "Dragão Brasil #199", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "inst", "special": ""}, "range": {"value": 0, "units": ""}, "efeito": "", "alcance": "none", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "classe", "subtipo": "Místico", "origin": "", "tags": []}
+DESC: Você pode usar Ataque Elemental com armas de ataque à distância.
+Pré-requisito: treinado em Pontaria.
+
+===== Oito Nuvens [poder] pack=guia-de-npcs-and-dbs subtipo=Místico source=Dragão Brasil #199
+SYS: {"source": "Dragão Brasil #199", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "inst", "special": ""}, "range": {"value": 0, "units": ""}, "efeito": "", "alcance": "none", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "classe", "subtipo": "Místico", "origin": "", "tags": []}
+DESC: Quando lança uma magia de ilusão ou que cause dano de eletricidade, você pode usar uma ação de movimento e gastar até 8 PM para ser rodeado por nuvens até o final da cena. Para cada PM gasto, você recebe uma nuvem, que concede +1 na Defesa. Além disso, se tiver pelo menos cinco nuvens, você recebe camuflagem leve. Sempre que um ataque contra você errar, uma nuvem é dissipada e o bônus na Defesa diminui em 1. 
+Pré-requisito: Afinidade (ar).
+
+===== Controlar Ar [magia] pack=guia-de-npcs-and-dbs subtipo=None source=Dragão Brasil #199
+SYS: {"source": "Dragão Brasil #199", "ativacao": {"execucao": "action", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "scene", "special": ""}, "range": {"value": 0, "units": ""}, "consume": {"type": "", "target": "", "amount": 0, "mpMultiplier": false}, "efeito": "", "alcance": "medium", "alvo": "", "area": "Varia", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": "veja texto."}, "tipo": "div", "circulo": 2, "preparada": false, "escola": "tra", "origin": "", "tags": [], "equipado2": {"slot": 0, "type": ""}}
+DESC: Você pode controlar os movimentos e comportamentos de massas de ar. Ao lançar a magia, escolha um dos efeitos abaixo.
+
+Ascender: cria uma corrente de ar ascendente capaz de erguer do chão uma criatura ou objeto médio, fazendo o alvo ﬂutuar para cima e para baixo conforme sua vontade. Você pode gastar uma ação de movimento para subir ou descer o alvo até 6m por rodada, até um máximo de 30m de altura. Você não pode mover o alvo horizontalmente — mas o alvo pode, por exemplo, escalar uma colina ou se apoiar no teto para mover-se lateralmente (com metade de seu deslocamento normal). Uma criatura que esteja flutuando fica vulnerável e sofre –2 nas jogadas de ataque. Alvos involuntários têm direit
+
+===== Código do Samurai [poder] pack=guia-de-npcs-and-dbs subtipo= source=Dragão Brasil #199
+SYS: {"source": "Dragão Brasil #199", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "inst", "special": ""}, "range": {"value": 0, "units": ""}, "efeito": "", "alcance": "none", "area": "", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "ability", "subtipo": "", "origin": "", "tags": []}
+DESC: Você deve sempre manter sua palavra e nunca pode recusar um pedido de ajuda de alguém inocente. Além disso, nunca pode mentir, trapacear ou roubar. Se violar o código, você perde todos os seus PM e só pode recuperá-los a partir do próximo dia.
+
+===== Cura Acelerada [poder] pack=guia-de-npcs-and-dbs subtipo= source=DB#220, Pag 73
+SYS: {"source": "DB#220, Pag 73", "origin": "", "tags": [], "ativacao": {"custo": 1, "condicao": "", "execucao": "passive", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "geral", "subtipo": ""}
+DESC: No início de cada um dos seus turnos, você pode gastar 1 PM para recuperar 5 PV. A partir do 5º nível, você pode escolher esta bênção uma segunda vez para aumentar a cura para 10 PV por PM gasto.
+
+===== Forma de Morcego [poder] pack=guia-de-npcs-and-dbs subtipo= source=DB#220, Pag 74
+SYS: {"source": "DB#220, Pag 74", "origin": "", "tags": [], "ativacao": {"custo": 3, "condicao": "", "execucao": "action", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "geral", "subtipo": ""}
+DESC: Você pode gastar uma ação padrão e 3 PM para se transformar em um morcego. Você se torna Minúsculo (+5 em Furtividade e –5 em testes de manobra) e recebe deslocamento de voo 12m. Seu equipamento é absorvido (retornando quando você volta ao normal) e suas outras estatísticas não são alteradas. A transformação dura quanto tempo você desejar, mas termina caso faça um ataque, lance uma magia ou sofra dano.
+
+===== Herança de Ordine [poder] pack=herois-de-arton subtipo=Suraggel source=T20 - Deuses de Arton (pág. 36)
+SYS: {"source": "T20 - Deuses de Arton (pág. 36)", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": null, "width": null, "units": "", "type": ""}, "range": {"value": null, "units": ""}, "consume": {"type": "", "target": "", "amount": null, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "sab", "bonus": 0, "txt": ""}, "tipo": "racial", "subtipo": "Suraggel", "origin": "", "tags": []}
+DESC: As forças da lei e ordem de Khalmyr afetam suas ações. Você recebe +2 em Intuição, em Investigação e em testes sem rolagens de dados (ao escolher 0, 10 ou 20).
+
+===== Citadino Abastado [poder] pack=herois-de-arton subtipo=Mundana source=T20 - Heróis de Arton (pág. 47)
+SYS: {"source": "T20 - Heróis de Arton (pág. 47)", "ativacao": {"execucao": "passive", "custo": 2, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": null, "width": null, "units": "", "type": ""}, "range": {"value": null, "units": ""}, "consume": {"type": "", "target": "", "amount": null, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "sab", "bonus": 0, "txt": ""}, "tipo": "origem", "subtipo": "Mundana", "origin": "", "tags": []}
+DESC: Você é treinado em Nobreza e em um Ofício a sua escolha. Se estiver em uma cidade grande (a critério do mestre), pode gastar tibares para aprender algum conhecimento local útil. O custo é T$ 10 x seu nível. Se fizer isso, escolha um poder de combate, de destino ou de uma de suas classes cujos pré-requisitos você cumpra (o mestre determina se um poder está disponível na cidade). Até o fim da aventura, ou até usar esta habilidade novamente, você pode usar o poder escolhido por uma cena.
+
+===== Tempo Místico [poder] pack=herois-de-arton subtipo=Tormenta source=T20 - Heróis de Arton (pág. 83)
+SYS: {"source": "T20 - Heróis de Arton (pág. 83)", "ativacao": {"execucao": "", "custo": 2, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": null, "width": null, "units": "", "type": ""}, "range": {"value": null, "units": ""}, "consume": {"type": "", "target": "", "amount": null, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "sab", "bonus": 0, "txt": ""}, "tipo": "geral", "subtipo": "Tormenta", "tags": ["Tormenta"], "origin": ""}
+DESC: Você é capaz de acessar uma pequena parte do controle dos lefeu sobre o tempo. Uma vez por rodada, quando você lança uma magia com execução de movimento, padrão ou completa, pode gastar 2 PM e perder 1d6, 1d8 ou 1d12 PV para diminuir o tempo de execução da magia em um, dois ou três passos, respectivamente (até um mínimo de ação livre). Essa perda de vida só pode ser curada com descanso. Pré-requisito: dois outros poderes da Tormenta.
+
+===== Mascote: Mico-Leão Dourado [poder] pack=herois-de-arton subtipo=Treinador source=Heróis de Arton, pg. 19
+SYS: {"source": "Heróis de Arton, pg. 19", "ativacao": {"execucao": "", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "efeito": "", "alcance": "none", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "classe", "subtipo": "Treinador", "origin": "", "tags": []}
+DESC: Permite usar Ladinagem para punga em alcance curto.
+
+===== Bode Espiatório [poder] pack=herois-de-arton subtipo=Grupo source=T20 - Heróis de Arton (pág. 93)
+SYS: {"source": "T20 - Heróis de Arton (pág. 93)", "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "passive", "qtd": "", "special": ""}, "duracao": {"units": "inst", "value": 0, "special": ""}, "range": {"units": "", "value": 0}, "alcance": "none", "area": "", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "geral", "subtipo": "Grupo"}
+DESC: Você e seu grupo estão sempre dispostos a assumir a culpa uns pelos outros, mesmo que precisem “forçar os limites da verdade” para isso. Sempre que a categoria de atitude de um NPC piorar em relação a um personagem com este poder, você pode automaticamente assumir a culpa por qualquer evento ou interação que tenha causado isso. A categoria de atitude do NPC piora para você, permanecendo a mesma para seu aliado.
+
+===== Chef Hynne [poder] pack=herois-de-arton subtipo=Mundana source=T20 - Heróis de Arton (pág. 47)
+SYS: {"source": "T20 - Heróis de Arton (pág. 47)", "ativacao": {"execucao": "passive", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "target": {"value": null, "width": null, "units": "", "type": ""}, "range": {"value": null, "units": ""}, "consume": {"type": "", "target": "", "amount": null, "mpMultiplier": false}, "efeito": "", "alcance": "none", "alvo": "", "area": "", "resistencia": {"pericia": "", "atributo": "sab", "bonus": 0, "txt": ""}, "tipo": "origem", "subtipo": "Mundana", "origin": "", "tags": []}
+DESC: Você é treinado em Ofício (cozinheiro). Quando prepara um prato especial, seu benefício dura mais 1 dia (se for um benefício com um uso diário, ele pode ser usado novamente nesse dia).
+
+===== Melhor Amigo [poder] pack=herois-de-arton subtipo=Treinador source=T20 - Heróis de Arton (pág. 17)
+SYS: {"source": "T20 - Heróis de Arton (pág. 17)", "origin": "", "tags": [], "ativacao": {"custo": 0, "condicao": "", "execucao": "passive", "qtd": "", "special": ""}, "duracao": {"units": "", "value": 0, "special": ""}, "alcance": "none", "efeito": "", "resistencia": {"txt": "", "pericia": "", "atributo": "", "bonus": 0}, "tipo": "ability", "subtipo": "Treinador"}
+DESC: Você recebe um melhor amigo, um parceiro especial que o acompanha em suas aventuras. Veja a página 20 para as regras do melhor amigo. Ele começa com dois truques a sua escolha e recebe um novo truque a cada três níveis seguintes. Caso seu melhor amigo morra, você fica atordoado por 1d4 rodadas. Você pode treinar um novo melhor amigo com um mês de trabalho.
+
+===== Florescer Feérico [poder] pack=herois-de-arton subtipo= source=T20 - Heróis de Arton (pág, 9)
+SYS: {"source": "T20 - Heróis de Arton (pág, 9)", "ativacao": {"execucao": "passive", "custo": 1, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "efeito": "", "alcance": "none", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "racial", "subtipo": "", "origin": "", "tags": []}
+DESC: Uma vez por rodada, pode gastar uma quantidade de PM limitada pela sua Constituição para curar 2d8 PV por PM gasto no início do seu próximo turno
+
+===== Amigo Feroz [poder] pack=herois-de-arton subtipo=Melhor Amigo source=Heróis de Arton, pg. 21
+SYS: {"source": "Heróis de Arton, pg. 21", "ativacao": {"execucao": "", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "efeito": "", "alcance": "none", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "classe", "subtipo": "Melhor Amigo", "origin": "", "tags": []}
+DESC: Seu melhor amigo recebe +2 em testes de ataque e na margem de ameaça com suas armas naturais, e o dano delas aumenta em um passo.
+
+===== Afinidade Elemental (Água) [poder] pack=herois-de-arton subtipo=Duende source=T20 - Heróis de Arton (pág. 9)
+SYS: {"source": "T20 - Heróis de Arton (pág. 9)", "ativacao": {"execucao": "", "custo": 0, "qtd": "", "condicao": "", "special": ""}, "duracao": {"value": 0, "units": "", "special": ""}, "efeito": "", "alcance": "none", "resistencia": {"pericia": "", "atributo": "", "bonus": 0, "txt": ""}, "tipo": "racial", "subtipo": "Duende", "origin": "", "tags": []}
+DESC: Você possui ligação com um tipo de elemento do mundo natural, entre água, fogo ou vegetação (escolha uma quando adquirir este presente). Seu atributo-chave para as magias a seguir é Carisma. Caso aprenda novamente qualquer uma delas, seu custo diminui em –1 PM.
+
+Água. Você é ligado a lagos e rios. Provavelmente tem a pele e/ou os cabelos azulados. Você recebe deslocamento de natação igual ao seu deslocamento base e pode lançar as magias @UUID[Compendium.tormenta20.magias.Item.vvVVqYlYER6WpqhM]{Criar Elementos} (apenas água) e @UUID[Compendium.tormenta20.magias.Item.atEVWEfDYu76wyCO]{Névoa}.

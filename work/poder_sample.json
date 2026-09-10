@@ -1,0 +1,117 @@
+{
+ "folder": "3wTn2KWcG6HRtm2Y",
+ "name": "Pés Rapinantes",
+ "type": "poder",
+ "_id": "0Qb3pSsZtL0nvocb",
+ "img": "icons/creatures/birds/raptor-hawk-flying.webp",
+ "system": {
+  "description": {
+   "value": "<p>Seus pés são duas armas naturais de garras (dano 1d6 cada, crítico x2, corte). Uma vez por rodada, quando usa a ação agredir para atacar com uma arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com uma das garras, desde que ela esteja livre e não tenha sido usada para atacar neste turno. Como alternativa, se tiver habilidades que exijam uma arma secundária (como Estilo de Duas Armas), você pode usá-las com suas garras.</p>",
+   "chat": "",
+   "unidentified": ""
+  },
+  "source": "T20 - Ameaças de Arton (pág. 267)",
+  "ativacao": {
+   "execucao": "passive",
+   "custo": 1,
+   "qtd": "",
+   "condicao": "",
+   "special": ""
+  },
+  "duracao": {
+   "value": 0,
+   "units": "",
+   "special": ""
+  },
+  "target": {
+   "value": 0,
+   "width": 0,
+   "units": "",
+   "type": ""
+  },
+  "range": {
+   "value": 0,
+   "units": ""
+  },
+  "consume": {
+   "type": "",
+   "target": "",
+   "amount": 0,
+   "mpMultiplier": false
+  },
+  "efeito": "",
+  "alcance": "none",
+  "alvo": "",
+  "area": "",
+  "resistencia": {
+   "pericia": "",
+   "atributo": "",
+   "bonus": 0,
+   "txt": ""
+  },
+  "rolls": [
+   {
+    "name": "Ataque",
+    "key": "ataque0",
+    "type": "ataque",
+    "parts": [
+     [
+      "1d20",
+      "",
+      ""
+     ],
+     [
+      "luta",
+      "",
+      ""
+     ],
+     [
+      "",
+      "",
+      ""
+     ]
+    ],
+    "versatil": ""
+   },
+   {
+    "name": "Dano",
+    "key": "dano1",
+    "type": "dano",
+    "parts": [
+     [
+      "1d6",
+      "corte",
+      ""
+     ]
+    ],
+    "versatil": ""
+   }
+  ],
+  "tipo": "racial",
+  "subtipo": "Pteros",
+  "origin": "",
+  "tags": [],
+  "rolltags": [],
+  "chatFlavor": "",
+  "chatGif": ""
+ },
+ "effects": [],
+ "sort": 0,
+ "ownership": {
+  "default": 2,
+  "YI7kHvr5Roa9CAvi": 3,
+  "GQP2vhN0Okb2vXTH": 3
+ },
+ "flags": {},
+ "_stats": {
+  "compendiumSource": null,
+  "duplicateSource": null,
+  "coreVersion": "13.345",
+  "systemId": "tormenta20",
+  "systemVersion": "1.5.002",
+  "createdTime": 1747696074438,
+  "modifiedTime": 1749823345406,
+  "lastModifiedBy": "G5EaYf87n6aQWlD8",
+  "exportSource": null
+ }
+}

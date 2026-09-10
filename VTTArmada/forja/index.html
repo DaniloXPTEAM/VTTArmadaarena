@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forja de Heróis — Evolução Automática Tormenta 20</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="../poderes/js/data.js"></script>
+</head>
+
+<body class="py-4">
+
+    <div class="container sheet p-4">
+
+        <!-- HEADER DA APLICAÇÃO -->
+        <div class="header-bar d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <a href="../index.html" class="btn btn-outline-secondary btn-sm" title="Voltar ao Hub de Projetos">
+                    <i class="bi bi-arrow-left"></i> Hub
+                </a>
+                <h2 class="fs-3 titulo-app mb-0">Forja de Heróis</h2>
+                <span class="badge bg-danger-subtle text-danger border border-danger-subtle badge-status">
+                    <i class="bi bi-cpu-fill me-1"></i> Calculadora Automática T20
+                </span>
+            </div>
+
+            <!-- BOTÕES DE INTEGRAÇÃO COM A FICHA -->
+            <div class="d-flex gap-2 flex-wrap">
+                <button type="button" class="btn btn-outline-warning btn-sm fw-bold" id="btnCarregarFicha" title="Importar os dados da ficha salva no navegador">
+                    <i class="bi bi-download me-1"></i> Puxar da Ficha
+                </button>
+                <button type="button" class="btn btn-t20-primary btn-sm" id="btnEnviarFicha" title="Salvar estes cálculos diretamente na sua Ficha T20">
+                    <i class="bi bi-upload me-1"></i> Enviar para a Ficha
+                </button>
+                <a href="../ficha/index.html" target="_blank" class="btn btn-outline-light btn-sm" title="Abrir Ficha T20 em nova aba">
+                    <i class="bi bi-journal-text me-1"></i> Abrir Ficha
+                </a>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots-vertical"></i> Opções
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" id="btnExportarJson"><i class="bi bi-file-earmark-code me-2"></i> Exportar JSON</a></li>
+                        <li><a class="dropdown-item" href="#" id="btnImportarJson"><i class="bi bi-file-earmark-arrow-up me-2"></i> Importar JSON</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" id="btnResetar"><i class="bi bi-arrow-counterclockwise me-2"></i> Resetar Dados</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" id="btnLimparTudo"><i class="bi bi-trash me-2"></i> Limpar Tudo</a></li>
+                    </ul>
+                </div>
+                <div class="theme-switcher">
+                    <button class="theme-btn active" data-theme="escuro" title="Tema Escuro"><i class="bi bi-moon-stars-fill"></i></button>
+                    <button class="theme-btn" data-theme="padrao" title="Tema Padrão"><i class="bi bi-sun-fill"></i></button>
+                    <button class="theme-btn" data-theme="vermelho" title="Tema Vermelho"><i class="bi bi-fire"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUMO DA EVOLUÇÃO E STATUS DA FICHA -->
+        <div class="alert alert-secondary bg-surface border-secondary-subtle d-flex align-items-center justify-content-between p-3 mb-4 rounded-3 flex-wrap gap-2">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-info-circle-fill text-danger fs-5"></i>
+                <span class="small" id="statusSyncText">A Forja calcula automaticamente PV, PM, Perícias, Defesa e Carga com base no Nível e Atributos do seu personagem. Ative a chave ao lado para sincronizar automaticamente ao carregar.</span>
+            </div>
+            <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" id="autoCalcSwitch">
+                <label class="form-check-label small fw-bold" for="autoCalcSwitch">Sincronizar Automaticamente</label>
+            </div>
+        </div>
+
+        <!-- CABEÇALHO DO PERSONAGEM -->
+        <div class="card-secao p-3 mb-4">
+            <div class="row g-3">
+                <div class="col-md-5">
+                    <label class="t20-label">Nome do Personagem</label>
+                    <input type="text" class="form-control t20-input" id="nomePersonagem" placeholder="Ex: Arkhan de Arton">
+                </div>
+                <div class="col-md-4">
+                    <label class="t20-label">Jogador(a)</label>
+                    <input type="text" class="form-control t20-input" id="nomeJogador" placeholder="Nome do jogador">
+                </div>
+                <div class="col-md-3">
+                    <label class="t20-label">XP Total</label>
+                    <input type="number" class="form-control t20-input" id="xpTotal" value="0" min="0" step="500">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="t20-label">Raça</label>
+                    <input type="text" class="form-control t20-input" id="raca" placeholder="Humano, Anão, Elfo..." list="listaRacas">
+                    <datalist id="listaRacas">
+                        <option value="Humano"><option value="Anão"><option value="Elfo"><option value="Dahllan">
+                        <option value="Goblin"><option value="Hynne"><option value="Kliren"><option value="Lefou">
+                        <option value="Minotauro"><option value="Qareen"><option value="Osteon"><option value="Sereia/Tritão">
+                        <option value="Trog"><option value="Aggelus"><option value="Sulfure">
+                    </datalist>
+                </div>
+                <div class="col-md-3">
+                    <label class="t20-label">Origem</label>
+                    <input type="text" class="form-control t20-input" id="origem" placeholder="Acólito, Soldado, Amorfo...">
+                </div>
+                <div class="col-md-3">
+                    <label class="t20-label">Divindade</label>
+                    <input type="text" class="form-control t20-input" id="divindade" placeholder="Aharadak, Khalmyr, Tenebra...">
+                </div>
+                <div class="col-md-3">
+                    <label class="t20-label">Nível Total &amp; Bônus Treino</label>
+                    <div class="nivel-total-box d-flex justify-content-around align-items-center">
+                        <div>
+                            <span class="small d-block text-muted">Nível</span>
+                            <span id="nivelTotal" class="fw-bold fs-4 text-danger">1</span>
+                        </div>
+                        <div class="vr"></div>
+                        <div>
+                            <span class="small d-block text-muted">½ Nível</span>
+                            <span id="meioNivelDisplay" class="fw-bold fs-5 text-warning">+0</span>
+                        </div>
+                        <div class="vr"></div>
+                        <div>
+                            <span class="small d-block text-muted">Treino</span>
+                            <span id="bonustreinoDisplay" class="fw-bold fs-5 text-success">+2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROGRESSO DE XP -->
+                <div class="col-12 mt-2">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="t20-label">Progresso de XP para o próximo Nível</span>
+                        <span class="small text-muted" id="xpProgressText">0 / 1.000 XP (Nível 2)</span>
+                    </div>
+                    <div class="xp-progress-bar">
+                        <div class="xp-progress-fill" id="xpProgressFill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- CLASSES / MULTICLASSE -->
+                <div class="col-12 mt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label class="t20-label mb-0">Classes do Personagem (Multiclasse)</label>
+                        <span class="small text-muted"><i class="bi bi-star-fill text-warning"></i> A 1ª classe define os Pontos de Vida e Mana Iniciais</span>
+                    </div>
+                    <div id="classesList"></div>
+                    <button type="button" class="btn-add-classe mt-1" id="btnAddClasse">
+                        <i class="bi bi-plus-lg me-1"></i> Adicionar Classe
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATRIBUTOS DO PERSONAGEM (ESCUDOS) -->
+        <div class="card-secao p-3 mb-4">
+            <div class="card-header-t20 mb-3 rounded">
+                <span><i class="bi bi-shield-shaded me-2"></i> Atributos (Modificadores T20)</span>
+                <span class="small text-lowercase font-sans opacity-75">Clique em + ou - para ajustar</span>
+            </div>
+            <div class="attr-grid text-center">
+                <div class="attr-box" data-attr="FOR">
+                    <span class="attr-label">FOR</span>
+                    <input type="number" class="attr-val" id="atrFor" value="0">
+                    <div class="attr-controls">
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrFor', -1)">-</button>
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrFor', 1)">+</button>
+                    </div>
+                </div>
+                <div class="attr-box" data-attr="DES">
+                    <span class="attr-label">DES</span>
+                    <input type="number" class="attr-val" id="atrDes" value="0">
+                    <div class="attr-controls">
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrDes', -1)">-</button>
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrDes', 1)">+</button>
+                    </div>
+                </div>
+                <div class="attr-box" data-attr="CON">
+                    <span class="attr-label">CON</span>
+                    <input type="number" class="attr-val" id="atrCon" value="0">
+                    <div class="attr-controls">
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrCon', -1)">-</button>
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrCon', 1)">+</button>
+                    </div>
+                </div>
+                <div class="attr-box" data-attr="INT">
+                    <span class="attr-label">INT</span>
+                    <input type="number" class="attr-val" id="atrInt" value="0">
+                    <div class="attr-controls">
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrInt', -1)">-</button>
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrInt', 1)">+</button>
+                    </div>
+                </div>
+                <div class="attr-box" data-attr="SAB">
+                    <span class="attr-label">SAB</span>
+                    <input type="number" class="attr-val" id="atrSab" value="0">
+                    <div class="attr-controls">
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrSab', -1)">-</button>
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrSab', 1)">+</button>
+                    </div>
+                </div>
+                <div class="attr-box" data-attr="CAR">
+                    <span class="attr-label">CAR</span>
+                    <input type="number" class="attr-val" id="atrCar" value="0">
+                    <div class="attr-controls">
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrCar', -1)">-</button>
+                        <button type="button" class="btn-attr-step" onclick="alterarAttr('atrCar', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL PRINCIPAL: CALCULADORAS E SEÇÕES -->
+        <ul class="nav nav-tabs mb-3" id="forjaTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-status-tab" data-bs-toggle="tab" data-bs-target="#tab-status" type="button" role="tab">
+                    <i class="bi bi-heart-pulse-fill me-1"></i> Status &amp; Defesa
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-pericias-tab" data-bs-toggle="tab" data-bs-target="#tab-pericias" type="button" role="tab">
+                    <i class="bi bi-journal-check me-1"></i> Perícias (<span id="countPericiasTreinadas">0</span>/<span id="countPericiasDisponiveis">0</span>)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-combate-tab" data-bs-toggle="tab" data-bs-target="#tab-combate" type="button" role="tab">
+                    <i class="bi bi-crosshair me-1"></i> Ataques &amp; Equipamento
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-poderes-tab" data-bs-toggle="tab" data-bs-target="#tab-poderes" type="button" role="tab">
+                    <i class="bi bi-lightning-fill me-1"></i> Poderes
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-roadmap-tab" data-bs-toggle="tab" data-bs-target="#tab-roadmap" type="button" role="tab">
+                    <i class="bi bi-diagram-3-fill me-1"></i> Evolução por Nível
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="forjaTabsContent">
+
+            <!-- ABA 1: STATUS & DEFESA -->
+            <div class="tab-pane fade show active" id="tab-status" role="tabpanel">
+                <div class="row g-3">
+
+                    <!-- PONTOS DE VIDA (PV) -->
+                    <div class="col-md-6">
+                        <div class="card-secao p-3 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="t20-label text-danger mb-0"><i class="bi bi-heart-fill me-1"></i> Pontos de Vida (PV)</span>
+                                <span class="badge bg-danger-subtle text-danger" id="pvFormulaBadge">Fórmula: Classe + CON</span>
+                            </div>
+                            
+                            <div class="row g-2 align-items-center mb-3">
+                                <div class="col-6">
+                                    <div class="stat-card">
+                                        <div class="small text-muted">PV Máximo Calculado</div>
+                                        <div class="stat-val-calc text-danger" id="pvMaxCalc">0</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="stat-card">
+                                        <div class="small text-muted">PV Atual da Ficha</div>
+                                        <div class="d-flex align-items-center gap-1 mt-1">
+                                            <input type="number" class="form-control t20-input text-center fw-bold fs-5 text-danger" id="pvAtual" value="0">
+                                            <button type="button" class="btn btn-sm btn-outline-warning py-0" id="btnIgualarPv" title="Igualar ao máximo calculado"><i class="bi bi-arrow-down-left-square"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BÔNUS DE PV -->
+                            <div class="border-top border-secondary-subtle pt-2">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <span class="small text-muted">Bônus de PV (poderes, itens)</span>
+                                    <button type="button" class="btn btn-sm btn-outline-success py-0" id="btnAddBonusPv"><i class="bi bi-plus-circle"></i> Adicionar</button>
+                                </div>
+                                <div id="pvBonusList"></div>
+                                <div class="small text-muted mt-2" id="pvBreakdownText">
+                                    <i class="bi bi-calculator"></i> Ajuste as classes para recalcular o PV automaticamente.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PONTOS DE MANA (PM) -->
+                    <div class="col-md-6">
+                        <div class="card-secao p-3 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="t20-label text-primary mb-0"><i class="bi bi-lightning-charge-fill me-1"></i> Pontos de Mana (PM)</span>
+                                <span class="badge bg-primary-subtle text-primary" id="pmFormulaBadge">Fórmula: Classe + Atributo</span>
+                            </div>
+
+                            <div class="row g-2 align-items-center mb-3">
+                                <div class="col-6">
+                                    <div class="stat-card">
+                                        <div class="small text-muted">PM Máximo Calculado</div>
+                                        <div class="stat-val-calc text-primary" id="pmMaxCalc">0</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="stat-card">
+                                        <div class="small text-muted">PM Atual da Ficha</div>
+                                        <div class="d-flex align-items-center gap-1 mt-1">
+                                            <input type="number" class="form-control t20-input text-center fw-bold fs-5 text-primary" id="pmAtual" value="0">
+                                            <button type="button" class="btn btn-sm btn-outline-warning py-0" id="btnIgualarPm" title="Igualar ao máximo calculado"><i class="bi bi-arrow-down-left-square"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BÔNUS DE PM -->
+                            <div class="border-top border-secondary-subtle pt-2">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <span class="small text-muted">Bônus de PM (poderes, itens)</span>
+                                    <button type="button" class="btn btn-sm btn-outline-success py-0" id="btnAddBonusPm"><i class="bi bi-plus-circle"></i> Adicionar</button>
+                                </div>
+                                <div id="pmBonusList"></div>
+                                <div class="small text-muted mt-2" id="pmBreakdownText">
+                                    <i class="bi bi-calculator"></i> Ajuste as classes para recalcular o PM automaticamente.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DEFESA -->
+                    <div class="col-12">
+                        <div class="card-secao p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="t20-label mb-0"><i class="bi bi-shield-fill-check me-1"></i> Defesa Automática</span>
+                                <span class="badge bg-warning-subtle text-warning">Total = 10 + DES + Armadura + Escudo + Outros</span>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2 flex-wrap justify-content-between bg-surface p-3 rounded-3 border border-secondary-subtle">
+                                <div class="text-center">
+                                    <label class="small text-muted d-block">Total</label>
+                                    <input type="number" class="form-control t20-input text-center fw-bold fs-4 text-warning" id="defTotal" value="10" style="width:85px;" readonly>
+                                </div>
+                                <span class="fs-4 fw-bold">=</span>
+                                <div class="text-center">
+                                    <label class="small text-muted d-block">Base</label>
+                                    <span class="fw-bold fs-5">10</span>
+                                </div>
+                                <span class="fs-4 fw-bold">+</span>
+                                <div class="text-center">
+                                    <label class="small text-muted d-block">Atributo (<span id="defAttrDisplay">DES</span>)</label>
+                                    <div class="d-flex align-items-center gap-1">
+                                        <select class="form-select form-select-sm t20-input" id="defAttrSelect" style="width:75px;">
+                                            <option value="DES">DES</option>
+                                            <option value="FOR">FOR</option>
+                                            <option value="CON">CON</option>
+                                            <option value="INT">INT</option>
+                                            <option value="SAB">SAB</option>
+                                            <option value="CAR">CAR</option>
+                                            <option value="NENHUM">Nenhum</option>
+                                        </select>
+                                        <input class="form-check-input ms-1" type="checkbox" id="defUsaDes" checked title="Aplicar atributo na defesa">
+                                    </div>
+                                </div>
+                                <span class="fs-4 fw-bold">+</span>
+                                <div class="text-center">
+                                    <label class="small text-muted d-block">Armadura</label>
+                                    <input type="number" class="form-control t20-input text-center" id="defArmadura" value="0" style="width:75px;">
+                                </div>
+                                <span class="fs-4 fw-bold">+</span>
+                                <div class="text-center">
+                                    <label class="small text-muted d-block">Escudo</label>
+                                    <input type="number" class="form-control t20-input text-center" id="defEscudo" value="0" style="width:75px;">
+                                </div>
+                                <span class="fs-4 fw-bold">+</span>
+                                <div class="text-center">
+                                    <label class="small text-muted d-block">Outros</label>
+                                    <input type="number" class="form-control t20-input text-center" id="defOutros" value="0" style="width:75px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DESLOCAMENTO, TAMANHO E CARGA -->
+                    <div class="col-12">
+                        <div class="card-secao p-3">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <label class="t20-label">Tamanho</label>
+                                    <select class="form-select t20-input" id="tamanho">
+                                        <option value="Minúsculo">Minúsculo</option>
+                                        <option value="Pequeno">Pequeno</option>
+                                        <option value="Médio" selected>Médio</option>
+                                        <option value="Grande">Grande</option>
+                                        <option value="Enorme">Enorme</option>
+                                        <option value="Colossal">Colossal</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="t20-label">Deslocamento</label>
+                                    <input type="text" class="form-control t20-input" id="deslocamento" value="9m">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="t20-label">Limite de Carga</label>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="text-muted small">10 + 2x</span>
+                                        <select class="form-select form-select-sm t20-input" id="cargaAttr" style="width:80px;">
+                                            <option value="FOR">FOR</option>
+                                            <option value="DES">DES</option>
+                                            <option value="CON">CON</option>
+                                            <option value="INT">INT</option>
+                                            <option value="SAB">SAB</option>
+                                            <option value="CAR">CAR</option>
+                                        </select>
+                                        <span class="fw-bold text-warning" id="limiteCargaDisplay">10</span>
+                                        <input type="hidden" id="limiteCarga" value="10">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="t20-label">Carga Usada</label>
+                                    <input type="number" class="form-control t20-input fw-bold" id="cargaUsada" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ABA 2: PERÍCIAS AUTOMÁTICAS -->
+            <div class="tab-pane fade" id="tab-pericias" role="tabpanel">
+                <div class="card-secao p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <div>
+                            <span class="t20-label mb-0 fs-6"><i class="bi bi-journal-check me-1"></i> Tabela Automática de Perícias</span>
+                            <div class="small text-muted">Fórmula: ½ Nível (<span class="text-warning fw-bold" id="periciasMeioNivelTag">+0</span>) + Atributo + Treino (<span class="text-success fw-bold" id="periciasTreinoTag">+2</span>) + Outros - Penalidade</div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-danger btn-sm" id="btnAutoTreinarClasse">
+                                <i class="bi bi-magic me-1"></i> Perícias Recomendadas
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" id="btnLimparTreinos">
+                                Limpar Treinos
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-secondary d-flex align-items-center justify-content-between p-2 mb-3 rounded-2 flex-wrap gap-1 small" id="periciasPontosDisplay">
+                        <span><i class="bi bi-star-fill text-warning me-1"></i> Pontos de Perícia: <strong id="periciasPontosGastos">0</strong> de <strong id="periciasPontosTotal">0</strong> gastos</span>
+                        <span class="text-muted" id="periciasPontosDetalhe"></span>
+                    </div>
+
+                    <div class="row text-muted small fw-bold px-2 mb-2 border-bottom pb-1">
+                        <div class="col-1 text-center">Treinado</div>
+                        <div class="col-4">Perícia</div>
+                        <div class="col-2 text-center">Atributo</div>
+                        <div class="col-2 text-center">Outros</div>
+                        <div class="col-3 text-center">Bônus Total</div>
+                    </div>
+
+                    <div id="listaPericias"></div>
+                </div>
+            </div>
+
+            <!-- ABA 3: ATAQUES & EQUIPAMENTO -->
+            <div class="tab-pane fade" id="tab-combate" role="tabpanel">
+                <!-- ATAQUES -->
+                <div class="card-secao p-3 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="t20-label mb-0 fs-6"><i class="bi bi-sword me-1"></i> Ataques do Personagem</span>
+                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="adicionarLinhaAtaque()">
+                            <i class="bi bi-plus-lg me-1"></i> Adicionar Ataque
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-sm text-center align-middle mb-0">
+                            <thead>
+                                <tr class="t20-label">
+                                    <th class="text-start">Arma</th>
+                                    <th>Bônus</th>
+                                    <th>Dano</th>
+                                    <th>Crítico</th>
+                                    <th>Tipo</th>
+                                    <th>Alcance</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaAtaques"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- EQUIPAMENTO -->
+                <div class="card-secao p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="t20-label mb-0 fs-6"><i class="bi bi-backpack me-1"></i> Inventário &amp; Equipamento</span>
+                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="adicionarLinhaEquipamento()">
+                            <i class="bi bi-plus-lg me-1"></i> Adicionar Item
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-sm text-center align-middle mb-3">
+                            <thead>
+                                <tr class="t20-label">
+                                    <th class="text-start">Item</th>
+                                    <th style="width:100px;">Qtd.</th>
+                                    <th style="width:100px;">Slots</th>
+                                    <th style="width:60px;">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaEquipamento"></tbody>
+                        </table>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="t20-label">Tibares de Ouro (T$)</label>
+                            <input type="number" class="form-control t20-input" id="tibares" value="0">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="t20-label">Tibares do Ofício / Outros (TO$)</label>
+                            <input type="number" class="form-control t20-input" id="tibaresTO" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 4: PODERES -->
+            <div class="tab-pane fade" id="tab-poderes" role="tabpanel">
+                <div class="card-secao p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <div>
+                            <span class="t20-label mb-0 fs-6"><i class="bi bi-lightning-fill me-1"></i> Poderes &amp; Habilidades</span>
+                            <div class="small text-muted">Selecione os poderes do seu personagem usando o database completo.</div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <input type="text" class="form-control form-control-sm t20-input" id="poderesBusca" placeholder="Buscar poder..." style="width:200px;">
+                            <select class="form-select form-select-sm t20-input" id="poderesFiltroTipo" style="width:130px;">
+                                <option value="all">Todos os tipos</option>
+                                <option value="class">Classe</option>
+                                <option value="combat">Combate</option>
+                                <option value="destiny">Destino</option>
+                                <option value="magic">Magia</option>
+                                <option value="conceded">Concedido</option>
+                                <option value="tormenta">Tormenta</option>
+                                <option value="raca">Racial</option>
+                                <option value="grupo">Grupo</option>
+                                <option value="complication">Complicação</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="poderesSelecionados" class="mb-3"></div>
+
+                    <div class="row g-2" id="poderesLista" style="max-height:500px;overflow-y:auto;"></div>
+                </div>
+            </div>
+
+            <!-- ABA 5: ROADMAP DE EVOLUÇÃO -->
+            <div class="tab-pane fade" id="tab-roadmap" role="tabpanel">
+                <div class="card-secao p-3">
+                    <div class="mb-3">
+                        <span class="t20-label mb-0 fs-6"><i class="bi bi-diagram-3-fill me-1"></i> Trilha de Progressão por Nível (Nível 1 ao 20)</span>
+                        <div class="small text-muted">Acompanhe os ganhos de PV, PM, Perícias e Poderes acumulados em cada nível do seu herói.</div>
+                    </div>
+
+                    <div class="accordion" id="roadmapAccordion"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NOTAS E CARACTERÍSTICAS -->
+        <div class="card-secao p-3 mt-4">
+            <label class="t20-label"><i class="bi bi-card-checklist me-1"></i> Proficiências &amp; Poderes da Evolução</label>
+            <textarea class="form-control t20-input" id="proficiencias" rows="3" placeholder="Proficiências com armas, armaduras e poderes adquiridos ao longo da evolução..."></textarea>
+        </div>
+
+    </div>
+
+    <!-- TOAST DE NOTIFICAÇÃO -->
+    <div class="toast-container toast-container-fixed">
+        <div id="toastNotification" class="toast align-items-center text-white bg-dark border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Operação concluída com sucesso!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

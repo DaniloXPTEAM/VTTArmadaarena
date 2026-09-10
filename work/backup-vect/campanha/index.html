@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Banco de Ameaças Oficial -->
+    <script src="../ameacas/db/ameacas_db.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Gerador de Missões T20</h1>
+        <div class="header-btns">
+            <a href="../index.html" class="header-home-btn" title="VTTArmada do Mestre">🏠 Hub</a>
+            <!-- Theme Switcher -->
+            <div class="theme-switcher" id="theme-switcher">
+                <button class="theme-btn" data-theme="blood" title="Tema Sangue (padrão)">🩸</button>
+                <button class="theme-btn" data-theme="dark" title="Tema Sombras (STR escuro)">🌑</button>
+                <button class="theme-btn" data-theme="classic" title="Tema Clássico (STR claro)">📜</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="config-panel">
+            <div class="control-row">
+                <div class="input-group" style="flex: 2;">
+                    <label>Nome da Missão:</label>
+                    <input type="text" id="nomeMissao" placeholder="Ex: O Resgate em Valkaria" onchange="salvarDados()">
+                </div>
+                <div class="input-group">
+                    <label>Nível do Grupo: <span class="tooltip-icon" tabindex="0"
+                            aria-label="O nível determina os valores de CD (Classe de Dificuldade) e ND (Nível de Desafio) das cenas">?</span></label>
+                    <input type="number" id="selectNivel" value="1" min="1" max="20"
+                        onchange="atualizarCenasExistentes()" aria-label="Nível do grupo de 1 a 20">
+                </div>
+                <div class="input-group" style="flex-grow: 1;">
+                    <label>Sugestão Automática:</label>
+                    <div class="btn-group">
+                        <button onclick="gerarSugestao('simples')"
+                            title="Gera uma missão com 3 cenas: Social, Exploração e Boss">Simples</button>
+                        <button onclick="gerarSugestao('comum')"
+                            title="Gera uma missão com 4 cenas: Social, Exploração, Combate e Boss">Comum</button>
+                        <button onclick="gerarSugestao('complexa')"
+                            title="Gera uma missão com 5 cenas: Social, Exploração, Combate, Exploração e Boss">Complexa</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-row">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label>Adicionar Cena:</label>
+                    <div class="btn-group">
+                        <button class="btn-add" onclick="adicionarCena('Interpretacao')"
+                            title="Cena social, investigação, diálogo" aria-label="Adicionar cena social">+
+                            Social</button>
+                        <button class="btn-add" onclick="adicionarCena('Exploracao')"
+                            title="Viagem, masmorra, rastreamento" aria-label="Adicionar cena de exploração">+
+                            Explorar</button>
+                        <button class="btn-add" onclick="adicionarCena('Combate')"
+                            title="Combate contra criaturas ou guardas" aria-label="Adicionar cena de combate">+
+                            Combate</button>
+                        <button class="btn-add" onclick="adicionarCena('Boss')"
+                            title="Confronto final com vilão ou monstro lendário" aria-label="Adicionar cena de boss">+
+                            Boss</button>
+                        <button class="btn-add btn-add-nota" onclick="adicionarCena('Anotacao')"
+                            title="Bloco de anotações livre, não conta como cena" aria-label="Adicionar anotação">+
+                            Nota</button>
+                    </div>
+                </div>
+                <div class="input-group" style="flex: 0 0 auto;">
+                    <label>Estrutura:</label>
+                    <button class="btn-add-parte" onclick="adicionarParte()" title="Agrupa cenas em uma nova parte da aventura">📑 + Parte</button>
+                </div>
+            </div>
+            <div class="btn-group" style="flex: 0 1 auto; gap: 10px;">
+                <button id="btnCopiar" onclick="copiarResumo()"
+                    title="Copia o resumo da missão para a área de transferência">Copiar Texto</button>
+                <button id="btnExportar" onclick="exportarPDF()" title="Exporta a missão atual como PDF">Exportar
+                    PDF</button>
+                <button id="btnLimpar" onclick="limparTudo()" title="Limpa todas as cenas da missão atual">Limpar
+                    Tudo</button>
+            </div>
+        </section>
+
+        <section class="ficha-panel">
+            <div class="ficha-header">
+                <label>Biblioteca de Fichas:
+                    <span class="tooltip-icon" tabindex="0"
+                        aria-label="Importe várias fichas JSON. Elas ficarão salvas para você escolher qual inserir em cada cena.">?</span>
+                </label>
+                <div class="biblioteca-controles-wrapper">
+                    <div class="links-criacao-row">
+                        <a href="../ficha/index.html" target="_blank" class="link-ficha-modelo">📝 Criar
+                            ficha</a>
+                        <a href="https://fichasdenimb.com.br/gerador-ameacas" target="_blank"
+                            class="link-ficha-modelo">📝 Criar ameaça Fichas de Nimb</a>
+                    </div>
+                    <div class="botoes-importacao-row">
+                        <button id="btnImportarFicha" onclick="importarFicha()">🧙 Ficha T20</button>
+                        <button id="btnImportarAmeacaT20" onclick="importarAmeacaT20()">🩸 Ameaça T20</button>
+                        <button id="btnImportarAmeacaFoundry" onclick="importarAmeacaFoundry()">🎲 Ameaça
+                            Foundry</button>
+                    </div>
+                    <div class="db-import-search-wrap">
+                        <input type="text" id="dbAmeacaSearch" list="dbAmeacaDatalist" placeholder="🔍 Importar do BD Oficial...">
+                        <datalist id="dbAmeacaDatalist"></datalist>
+                    </div>
+                </div>
+            </div>
+            <div id="listaFichasBiblioteca" class="ficha-list-container">
+            </div>
+        </section>
+
+        <section class="campaign-manager">
+            <div class="campaign-header">
+                <label>Minha Campanha (Aventuras Salvas):</label>
+                <button id="btnSalvarAventura" onclick="salvarAventuraNaCampanha()"
+                    title="Salva a missão atual na campanha">💾 Salvar Missão Atual</button>
+            </div>
+            <div id="abasCampanha" class="tabs-container">
+            </div>
+            <div id="campanhaActions" style="display:none; margin-top: 10px;">
+                <button id="btnExportarCampanha" onclick="exportarCampanhaPDF()"
+                    title="Exporta todas as missões salvas como um único PDF"
+                    aria-label="Exportar campanha completa como PDF">📚 Exportar Campanha (PDF)</button>
+                <button id="btnExportarJSON" onclick="exportarCampanhaJSON()"
+                    title="Exporta a campanha como arquivo JSON para backup ou compartilhamento"
+                    aria-label="Exportar campanha como JSON">💾 Exportar JSON</button>
+                <button id="btnLimparCampanha" onclick="limparCampanha()" style="background: #2b2b2b;"
+                    title="Remove todas as missões da campanha" aria-label="Limpar toda a campanha">Limpar
+                    Campanha</button>
+            </div>
+            <div style="margin-top: 8px;">
+                <button id="btnImportarJSON" onclick="importarCampanhaJSON()"
+                    title="Importa uma campanha a partir de um arquivo JSON"
+                    aria-label="Importar campanha de arquivo JSON"
+                    style="background: #2b2b2b; flex: 0 1 auto; min-width: 0; font-size: 0.85rem; padding: 6px 12px;">
+                    📂 Importar Campanha (JSON)
+                </button>
+            </div>
+        </section>
+
+        <section id="resumoMissao"></section>
+
+        <div id="listaCenas"></div>
+    </main>
+
+    <!-- Overlay de loading (inicialmente oculto) -->
+    <div id="loadingOverlay"
+        style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center; color: white; font-size: 1.5rem; flex-direction: column;">
+        <div style="background: #2f3f4f; padding: 20px; border-radius: 15px; text-align: center;">
+            <div class="spinner"></div>
+            <p>Gerando PDF, aguarde...</p>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Modal de Perigos Complexos -->
+    <div id="modalPerigos" style="display:none;" class="modal-overlay"
+        onclick="if(event.target===this)fecharModalPerigos()">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2 class="modal-titulo">⚠️ Perigos Complexos</h2>
+                <button class="modal-fechar" onclick="fecharModalPerigos()" aria-label="Fechar">✕</button>
+            </div>
+            <div class="modal-filtros">
+                <input type="text" id="perigoSearch" placeholder="🔍 Buscar por nome, tipo, fonte..."
+                    oninput="renderizarListaPerigos()" class="perigo-input-busca">
+                <div class="perigo-selects">
+                    <select id="perigoFiltroND" onchange="renderizarListaPerigos()" class="perigo-select">
+                        <option value="">Todos os NDs</option>
+                        <option value="1/2">ND ½</option>
+                        <option value="1">ND 1</option>
+                        <option value="2">ND 2</option>
+                        <option value="3">ND 3</option>
+                        <option value="4">ND 4</option>
+                        <option value="5">ND 5</option>
+                        <option value="6">ND 6</option>
+                        <option value="7">ND 7</option>
+                        <option value="8">ND 8</option>
+                        <option value="9">ND 9</option>
+                        <option value="10">ND 10</option>
+                        <option value="11">ND 11</option>
+                        <option value="12">ND 12</option>
+                        <option value="14">ND 14</option>
+                        <option value="15">ND 15</option>
+                        <option value="16">ND 16</option>
+                        <option value="17">ND 17</option>
+                        <option value="20">ND 20</option>
+                        <option value="3 a 11">ND 3 a 11</option>
+                    </select>
+                    <select id="perigoFiltroTipo" onchange="renderizarListaPerigos()" class="perigo-select">
+                        <option value="">Todos os Tipos</option>
+                        <option>Armadilha de Masmorra</option>
+                        <option>Ameaça de Masmorra</option>
+                        <option>Desastre Natural</option>
+                        <option>Desastre Urbano</option>
+                        <option>Desastre em Viagem</option>
+                        <option>Desafio Social</option>
+                        <option>Desafio</option>
+                        <option>Viagem</option>
+                        <option>Fuga</option>
+                        <option>Perigo Ambiental</option>
+                        <option>Fenômeno Mágico</option>
+                        <option>Exploração de Masmorra</option>
+                        <option>Exploração Perigosa</option>
+                        <option>Missão de Salvamento</option>
+                        <option>Perseguição Dimensional</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-corpo">
+                <div id="perigoLista" class="perigo-lista"></div>
+                <div id="perigoPreviewPanel" class="perigo-preview-panel">
+                    <div class="perigo-preview-vazio">← Clique em um perigo para ver os detalhes</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="../perigos/index.html" target="_blank" class="link-perigos-externo">
+                    🔗 Ver todos em Perigos
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- ASSINATURA / CRÉDITOS (STR-style) -->
+  <section class="sig-wrap" aria-label="Sobre e créditos">
+    <details class="sig-card">
+      <summary class="sig-summary">
+        <div class="sig-summary-left">
+          <span class="sig-badge">Sobre</span>
+          <span class="sig-title">Créditos e outros projetos</span>
+        </div>
+        <div class="sig-summary-right">
+          <span class="sig-hint">clique para abrir</span>
+          <span class="sig-chevron" aria-hidden="true">▾</span>
+        </div>
+      </summary>
+
+      <div class="sig-body">
+        <div class="sig-hero">
+          <h3 class="sig-h3">Quem fez isso?</h3>
+          <p class="sig-p">
+            Olá! Meu nome é <strong>Nicholas Lemos</strong>.
+            Sou jogador de RPG, desenvolvedor de software e entusiasta de ferramentas para <strong>Tormenta20</strong>.
+          </p>
+          <p class="sig-p">
+            Criei este <strong>Gerenciador de Campanhas</strong> para o mestre poder organizar suas aventuras e campanhas um ambiente simples e responsivo. 
+          </p>
+          <p class="sig-p">
+            Feedbacks, sugestões e ideias são sempre bem-vindos.
+          </p>
+        </div>
+        <div class="sig-col">
+          <h4 class="sig-h4">Contato</h4>
+
+          <a class="sig-link"
+            href="https://api.whatsapp.com/send/?phone=5531992825753&text=Ol%C3%A1%2C+gostaria+de+tirar+uma+d%C3%BAvida.&type=phone_number&app_absent=0"
+            target="_blank" rel="noopener noreferrer">
+            <div class="sig-link-main">
+              <span class="sig-link-name">WhatsApp</span>
+              <span class="sig-link-url">Fale comigo diretamente</span>
+            </div>
+            <span class="sig-ext">↗</span>
+          </a>
+
+          <a class="sig-link" href="https://www.linkedin.com/in/nicholas-lemos/" target="_blank"
+            rel="noopener noreferrer">
+            <div class="sig-link-main">
+              <span class="sig-link-name">LinkedIn</span>
+              <span class="sig-link-url">Perfil profissional</span>
+            </div>
+            <span class="sig-ext">↗</span>
+          </a>
+
+          <a class="sig-link" href="https://github.com/nicholemos" target="_blank" rel="noopener noreferrer">
+            <div class="sig-link-main">
+              <span class="sig-link-name">GitHub</span>
+              <span class="sig-link-url">Repositórios e projetos</span>
+            </div>
+            <span class="sig-ext">↗</span>
+          </a>
+
+          <div class="sig-note sig-cta">
+            <div class="sig-note-title">Que tal um site para você?</div>
+            <div class="sig-note-text">
+              Dê uma olhada no modelo de site e me chame para conversarmos.
+              <br>
+              <a href="../index.html" target="_blank" rel="noopener noreferrer">
+                🏰 VTTArmada
+              </a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="sig-grid">
+          <div class="sig-col">
+            <h4 class="sig-h4">Conheça meus outros projetos</h4>
+
+            <a class="sig-link" href="../STR/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">STR – Supremo Tribunal Regreiro</span>
+                <span class="sig-link-url">nicholemos.github.io/STR</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../ficha/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Ficha Automática de Tormenta20</span>
+                <span class="sig-link-url">nicholemos.github.io/ficha</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../itens/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Compilado de Itens</span>
+                <span class="sig-link-url">nicholemos.github.io/itens</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../poderes/index.html" target="_blank" rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Compilado de Poderes</span>
+                <span class="sig-link-url">nicholemos.github.io/poderes</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../calculadora/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Calculadora de Atributos</span>
+                <span class="sig-link-url">nicholemos.github.io/calculadora</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../EncontrosAleatorios/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Encontros Aleatórios</span>
+                <span class="sig-link-url">nicholemos.github.io/EncontrosAleatorios</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="sig-link" href="../calculadoraND_Tormenta/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Calculadora de ND</span>
+                <span class="sig-link-url">nicholemos.github.io/calculadoraND_Tormenta</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="sig-col">
+            <h4 class="sig-h4">Este projeto</h4>
+
+            <a class="sig-link sig-link-primary" href="../combate/index.html" target="_blank"
+              rel="noopener noreferrer">
+              <div class="sig-link-main">
+                <span class="sig-link-name">Gerenciador de Campanha</span>
+                <span class="sig-link-url">nicholemos.github.io/campanha</span>
+              </div>
+              <span class="sig-ext" aria-hidden="true">↗</span>
+            </a>
+
+            <div class="sig-note">
+              <div class="sig-note-title">Dica rápida</div>
+              <div class="sig-note-text">
+                Os links abrem em nova aba. Durante a semana vamos polir cada ferramenta aos poucos.
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="sig-footer">
+          <span class="sig-footer-text">Feito para mesa rápida. Feedbacks são bem-vindos.</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
+
+</body>
+<script src="../assets/templates/theme-init.js"></script>
+</html>
