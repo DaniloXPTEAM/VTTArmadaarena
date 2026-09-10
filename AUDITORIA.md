@@ -14,11 +14,14 @@ no chat P2P e 20 dos 22 módulos seguindo a regra de tema do README.
 
 Foram encontrados **2 bugs reais** (1 com risco de perda de dados) e **~34 MB de peso removível**.
 
-| Severidade | Qtd | Resumo |
-|---|---|---|
-| 🔴 Alta | 2 | Perda silenciosa de cenas do VTT; `campanha/` sem `<title>`/charset/viewport |
-| 🟡 Média | 5 | Bancos duplicados divergentes, 708 hotlinks, sem SRI, sem LICENSE, `.nojekyll` ausente |
-| 🟢 Baixa | 6 | Duplicatas de arquivo, órfãos, `console.log`, `target=_blank`, catch vazio, histórico Git |
+| Severidade | Qtd | Resumo | Situação |
+|---|---|---|---|
+| 🔴 Alta | 2 | Perda silenciosa de cenas do VTT; `campanha/` sem `<title>`/charset/viewport | ✅ corrigidos |
+| 🟡 Média | 5 | Bancos duplicados, hotlinks, SRI, LICENSE, `.nojekyll` | ✅ 3 resolvidos · 🛠️ 1 com ferramenta · ⏸️ LICENSE aguarda decisão |
+| 🟢 Baixa | 6 | Duplicatas, órfãos, `console.log`, `target=_blank`, catch vazio, histórico Git | ✅ 3 resolvidos |
+
+**Estado atual:** 68 MB → 30 MB · 500 → 377 arquivos · 0 erro de sintaxe · 0 link quebrado ·
+23/23 módulos sem erro de runtime.
 
 ---
 
@@ -130,7 +133,7 @@ do risco de alguém editar o arquivo errado.
 
 ---
 
-## 🟡 MÉDIA — 4. 708 hotlinks de imagem (link rot)
+## 🟡 MÉDIA — 4. 630 hotlinks de imagem (link rot) — 🛠️ FERRAMENTA CRIADA
 
 Nenhuma dessas imagens está no repositório; todas dependem de terceiros:
 
@@ -143,20 +146,57 @@ Nenhuma dessas imagens está no repositório; todas dependem de terceiros:
 | `files.d20.io` | 9 | 🔴 **URL com timestamp — expira** |
 | outros (tumblr, gifer, redd.it…) | ~136 | 🟡 |
 
-Casa com o que o `relatorio-foundry.md` já apontava. **Sugestão:** um script de verificação
-(`HEAD` em cada URL) rodando periodicamente, para detectar links mortos antes dos jogadores.
+Casa com o que o `relatorio-foundry.md` já apontava.
+
+**Feito:** criado o `tools/check-hotlinks.mjs` — varre `.js`/`.html`/`.css`, extrai as URLs de
+imagem externas e testa cada uma (`HEAD`, com fallback para `GET` parcial em hosts que recusam
+`HEAD`; detecta também o placeholder que o Imgur devolve com status 200 quando a imagem foi
+removida). Reporta o arquivo e a linha de cada link quebrado e sai com código 1, o que permite
+plugar em CI.
+
+```bash
+node tools/check-hotlinks.mjs                # verifica os 630
+node tools/check-hotlinks.mjs --list         # só inventário, sem rede
+node tools/check-hotlinks.mjs --host i.imgur.com --json rel.json
+```
+
+⚠️ **A varredura completa ainda não foi executada:** o sandbox onde a auditoria rodou bloqueia
+tráfego para esses hosts (todas as URLs dão "erro de rede", inclusive as sabidamente boas). A
+lógica foi validada contra um servidor local controlado — acerta o 200, pega o 404 e faz o
+fallback de `HEAD` para `GET`. **Rode na sua máquina** para obter o resultado real.
 
 ---
 
-## 🟡 MÉDIA — 5. Segurança: CDNs sem SRI
+## 🟡 MÉDIA — 5. Segurança: CDNs sem SRI — ✅ CORRIGIDO (parcial)
 
-**0 de 8** tags `<script src="https://...">` têm atributo `integrity`. Se um CDN for comprometido,
-o código malicioso executa com acesso total às fichas no `localStorage`.
+Nenhuma tag de CDN tinha `integrity`. Se um CDN for comprometido, o código malicioso executa com
+acesso total às fichas no `localStorage`.
 
-Bibliotecas: PeerJS 1.5.4, Sortable (1.15.0 e 1.15.2 — **versões inconsistentes**), JSZip 3.10.1,
-Bootstrap 5.3.2, pdf-lib, html2pdf.
+**Feito — 17 tags protegidas** com `integrity` + `crossorigin="anonymous"` +
+`referrerpolicy="no-referrer"`, cobrindo jsDelivr (`/npm/`) e unpkg:
+Bootstrap 5.3.2 (JS e CSS), Bootstrap 5.3.3 (CSS), Bootstrap Icons 1.11.1 e 1.11.3,
+SortableJS 1.15.0 e PeerJS 1.5.4.
 
-**Correção:** adicionar `integrity="sha384-..."` + `crossorigin="anonymous"` e padronizar o Sortable.
+Também **fixada a versão do pdf-lib**: era `unpkg.com/pdf-lib/...` (sempre a última publicada),
+o que é incompatível com SRI e já era um risco por si só — qualquer release nova entraria no
+projeto sem revisão. Agora é `pdf-lib@1.17.1`.
+
+Como os hashes foram obtidos: o sandbox bloqueia as CDNs e as APIs de SRI, então baixei os
+**pacotes oficiais do npm** (`npm pack`) e calculei `sha384` sobre os arquivos exatos que
+jsDelivr `/npm/` e unpkg servem verbatim. Validação cruzada: os valores gerados para o Bootstrap
+5.3.2 conferem com os que o próprio projeto Bootstrap publica na documentação.
+
+**Pendente** — 12 arquivos usam `cdnjs.cloudflare.com` (Font Awesome, Sortable, JSZip, html2pdf).
+O cdnjs tem pipeline de build própria e **não** serve os bytes do npm; como não consigo acessá-lo
+daqui, gerar o hash a partir do npm produziria um `integrity` **errado, que quebraria o site**.
+Preferi não arriscar. Para completar, rode em uma máquina com rede:
+
+```bash
+curl -s https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js \
+  | openssl dgst -sha384 -binary | openssl base64 -A
+```
+
+Fica também a recomendação anterior de **padronizar o Sortable** (hoje convivem 1.15.0 e 1.15.2).
 
 > ✅ **O que está certo:** o chat P2P escapa corretamente. `escHTML()` (linha 61) cobre `& < > " '`,
 > e `formatChatText()` **escapa antes** de aplicar o markdown — ordem correta, sem brecha de XSS.
@@ -165,12 +205,21 @@ Bootstrap 5.3.2, pdf-lib, html2pdf.
 
 ---
 
-## 🟡 MÉDIA — 6. Faltam `LICENSE` e `.nojekyll`
+## 🟡 MÉDIA — 6. `LICENSE` e `.nojekyll`
 
-- **Sem `LICENSE`**: sem licença explícita, "todos os direitos reservados" é o padrão legal — ninguém
-  pode legalmente reusar, e isso conflita com a intenção de hub comunitário.
-- **Sem `.nojekyll`**: no GitHub Pages, o Jekyll ignora pastas iniciadas por `_`. Hoje não há
-  nenhuma, mas o arquivo vazio é barato e evita bug futuro difícil de diagnosticar.
+- ✅ **`.nojekyll` criado.** No GitHub Pages o Jekyll ignora pastas iniciadas por `_`; hoje não há
+  nenhuma, mas o arquivo vazio é barato e evita um bug futuro difícil de diagnosticar.
+- ⏸️ **`LICENSE` não foi criado — precisa de decisão do dono do projeto.** Escolher uma licença é
+  um ato jurídico, e há dois complicadores concretos:
+  1. **Autoria de terceiro.** Vários módulos creditam **Nicholas Lemos** (assinatura e LinkedIn em
+     `index.html`, `ficha/`, `poderes/`, `calculadora/` e outros), e a `ficha/` aponta para
+     `arsenal-delta.vercel.app`. Não dá para licenciar código de outra pessoa sem o acordo dela.
+  2. **Conteúdo derivado de Tormenta 20** (Jambô Editora) — o próprio `STR/index.html` traz o aviso
+     de "material gratuito não-oficial, feito por fãs". Uma licença permissiva no repositório todo
+     poderia sugerir, incorretamente, que os dados de regras também estão liberados.
+
+  Caminho sugerido: licenciar **o código** (ex.: MIT ou AGPL-3.0, se quiser impedir uso fechado),
+  manter os **dados de T20** sob aviso de fan content, e alinhar com o Nicholas antes de publicar.
 
 ---
 
@@ -188,7 +237,8 @@ intencionais: `images/logo.jpeg` e `calculadoraND_Tormenta/{vectorius.jpeg, logo
 
 **Outros:**
 - 19 `console.log` em produção
-- 3 links `target="_blank"` sem `rel="noopener"`
+- ~~3 links `target="_blank"` sem `rel="noopener"`~~ → ✅ corrigidos (só os **externos**; os
+  internos não oferecem risco de `window.opener` e foram deixados como estavam)
 - 1 nome de arquivo com espaços e acentos (`espolio/T20 - Tabela de geração de tesouros.xlsx`) —
   funciona, mas dá dor de cabeça em URL
 - `.git` tem **48 MB** porque o `VTTArmada.zip` (25 MB) segue no histórico mesmo após remoção.
@@ -228,6 +278,10 @@ intencionais: `images/logo.jpeg` e `calculadoraND_Tormenta/{vectorius.jpeg, logo
 5. Adicionar `LICENSE` e `.nojekyll` — pendente
 
 **Backlog**
-6. SRI nas CDNs + padronizar versão do Sortable
-7. Verificador automático de hotlinks
-8. Mapas do VTT em IndexedDB (resolve a raiz do bug nº 1)
+6. ~~SRI nas CDNs~~ — ✅ feito nas 17 tags de jsDelivr/unpkg; **faltam as 12 do cdnjs**
+   (exige rede para gerar o hash correto) + padronizar a versão do Sortable
+7. ~~Verificador automático de hotlinks~~ — ✅ `tools/check-hotlinks.mjs` criado;
+   **falta rodar** a varredura real fora do sandbox
+8. Decidir a licença (ver seção 6) — envolve conversar com o Nicholas Lemos
+9. Mapas do VTT em IndexedDB (resolve a raiz do bug nº 1)
+10. Remover os 19 `console.log`
