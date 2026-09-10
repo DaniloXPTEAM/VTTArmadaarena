@@ -22,7 +22,10 @@ Foram encontrados **2 bugs reais** (1 com risco de perda de dados) e **~34 MB de
 
 ---
 
-## 🔴 ALTA — 1. Cenas do VTT somem sem avisar (perda de dados)
+> **Atualização (2026-09-10):** os dois itens 🔴 abaixo já foram **corrigidos** — ver commit
+> "Corrige perda silenciosa de cenas no VTT e head do módulo campanha".
+
+## 🔴 ALTA — 1. Cenas do VTT somem sem avisar (perda de dados) — ✅ CORRIGIDO
 
 **Arquivo:** `Vtt/app.js:19744`
 
@@ -60,7 +63,7 @@ function _setCenas(arr) {
 
 ---
 
-## 🔴 ALTA — 2. `campanha/index.html` sem `<head>` mínimo
+## 🔴 ALTA — 2. `campanha/index.html` sem `<head>` mínimo — ✅ CORRIGIDO
 
 Único módulo que falha na checagem de metadados básicos:
 
@@ -194,9 +197,10 @@ Bootstrap 5.3.2, pdf-lib, html2pdf.
 
 ## Plano de ação sugerido
 
-**Agora (rápido, alto impacto)**
-1. Corrigir o `<head>` do `campanha/` — 3 linhas
-2. Fazer `_setCenas` avisar em vez de engolir o erro — evita perda de dados
+**Agora (rápido, alto impacto)** — ✅ **concluído**
+1. ~~Corrigir o `<head>` do `campanha/`~~ — feito
+2. ~~Fazer `_setCenas` avisar em vez de engolir o erro~~ — feito (e os 4 chamadores deixaram de
+   exibir "Cena salva!" quando a gravação falha)
 
 **Depois (limpeza, −7 MB)**
 3. Migrar as 10 ameaças exclusivas e apagar as cópias mortas em `ficha/` (−2,9 MB)

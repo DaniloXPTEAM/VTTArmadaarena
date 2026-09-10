@@ -19742,7 +19742,20 @@ function _getCenas() {
 }
 
 function _setCenas(arr) {
-  try { localStorage.setItem(CENAS_KEY, JSON.stringify(arr)); } catch(e) {}
+  try {
+    localStorage.setItem(CENAS_KEY, JSON.stringify(arr));
+    return true;
+  } catch (e) {
+    // QuotaExceededError: o mapa é salvo como base64 e o localStorage tem ~5 MB.
+    // Antes o erro era engolido em silêncio e a cena era perdida sem aviso.
+    console.error('Falha ao salvar cenas no localStorage', e);
+    const quota = e && (e.name === 'QuotaExceededError' ||
+                        e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || e.code === 22);
+    toast(quota
+      ? '⚠️ Limite de armazenamento atingido — a cena NÃO foi salva. Exclua cenas antigas ou use mapa por URL em vez de upload.'
+      : '⚠️ Não foi possível salvar a cena. Veja o console para detalhes.', 6000);
+    return false;
+  }
 }
 
 function _capturarEstadoAtual() {
@@ -19800,7 +19813,7 @@ function salvarCenaAtual() {
       cenas[idx].state = _capturarEstadoAtual();
       cenas[idx].thumb = _capturarThumb();
       cenas[idx].atualizado = Date.now();
-      _setCenas(cenas);
+      if (!_setCenas(cenas)) return;
       if (input) input.value = '';
       toast(`Cena "${nome}" atualizada!`);
       renderizarListaCenas();
@@ -19812,7 +19825,7 @@ function salvarCenaAtual() {
   const id = 'cena_' + Date.now();
   cenas.push({ id, nome, state: _capturarEstadoAtual(), thumb: _capturarThumb(),
     criado: Date.now(), atualizado: Date.now() });
-  _setCenas(cenas);
+  if (!_setCenas(cenas)) return;
   cenaAtualId = id;
   if (input) input.value = '';
   toast(`Cena "${nome}" salva!`);
@@ -19886,7 +19899,7 @@ function renomearCena(id) {
   const novo = prompt('Novo nome:', cena.nome);
   if (!novo?.trim()) return;
   cena.nome = novo.trim();
-  _setCenas(cenas);
+  if (!_setCenas(cenas)) return;
   renderizarListaCenas();
   toast(`Cena renomeada para "${cena.nome}".`);
 }
@@ -19911,7 +19924,7 @@ function _sobreescreverCena(id) {
   cenas[idx].state = _capturarEstadoAtual();
   cenas[idx].thumb = _capturarThumb();
   cenas[idx].atualizado = Date.now();
-  _setCenas(cenas);
+  if (!_setCenas(cenas)) return;
   cenaAtualId = id;
   toast(`Cena "${cenas[idx].nome}" sobrescrita!`);
   renderizarListaCenas();
