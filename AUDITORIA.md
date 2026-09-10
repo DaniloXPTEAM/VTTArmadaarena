@@ -85,30 +85,48 @@ compartilhamento fica ruim.
 
 ---
 
-## 🟡 MÉDIA — 3. Bancos duplicados e **divergentes** (viola a Regra 2 do README)
+## 🟡 MÉDIA — 3. Bancos duplicados e **divergentes** (viola a Regra 2 do README) — ✅ RESOLVIDO
+
+> **Correção do diagnóstico (2026-09-10).** A primeira leitura desta seção dizia que a cópia tinha
+> "10 ameaças que não existem no canônico". **Isso estava errado** — o erro veio de comparar nomes
+> de forma sensível a maiúsculas/acentos. Comparando por nome normalizado, os 624 registros da cópia
+> casam com o canônico: as 10 "exclusivas" eram apenas grafias diferentes
+> (`Dragão Bicéfalo` ↔ `Dragão bicéfalo`, `Fera Cacto -Líder` ↔ `Fera Cacto-Líder`).
+>
+> Auditei também campo a campo, considerando os nomes repetidos dentro de cada banco
+> (o canônico tem 9 nomes duplicados; a cópia, 33). Resultado: **nenhum dado exclusivo real**.
+> Os 3 candidatos finais se explicam:
+> - `Dragão Feral` / `Dragão Bicéfalo` — o campo `equipamento` da cópia já está no `tesouro` do
+>   canônico, e a versão da cópia ainda tem erro de digitação (`para.extrair`);
+> - `Gorlogg` — a habilidade `Parceiro` está preservada em `parceiros/parceiros.js`
+>   ("Gorlogg (Montaria)", com os três tiers);
+> - `Finntroll Caçador` — nomenclatura alternativa das mesmas habilidades
+>   (`Corpo Vegetal` = `Natureza Vegetal` + `Regeneração Vegetal`).
+>
+> Em vários casos o canônico é **mais completo** (descrições longas onde a cópia traz só
+> "Vontade CD 33 evita."). `ficha/spells_db.js` é subconjunto exato do canônico (259 de 260).
+> **Os dois arquivos foram removidos** — nada foi perdido.
 
 O README manda não duplicar bancos. Existem duas cópias, e elas **já divergiram**:
 
-| Arquivo | Entradas | Carregado por alguém? |
-|---|---|---|
-| `ameacas/db/ameacas_db.js` (canônico) | **620** | ✅ 9 módulos |
-| `ficha/ameacas_db.js` | **624** | ❌ **ninguém** |
-| `grimorio/spells_db.js` (canônico) | **260** | ✅ 6 módulos |
-| `ficha/spells_db.js` | **259** | ❌ **ninguém** |
+| Arquivo | Entradas | Carregado por alguém? | Situação |
+|---|---|---|---|
+| `ameacas/db/ameacas_db.js` (canônico) | **620** | ✅ 9 módulos | mantido |
+| `ficha/ameacas_db.js` | 624 | ❌ **ninguém** | **removido** |
+| `grimorio/spells_db.js` (canônico) | **260** | ✅ 6 módulos | mantido |
+| `ficha/spells_db.js` | 259 | ❌ **ninguém** | **removido** |
 
 Confirmei por `grep` em todos os HTML: **nenhum arquivo carrega as cópias de `ficha/`** — o próprio
 `ficha/index.html` importa os canônicos (linhas 1633 e 1650). São **2,9 MB de código morto**.
 
-Divergências reais medidas:
-- **30 ameaças** só no canônico (ex.: `Avatar de Valkaria`, `Dracomante do Fogo`)
-- **10 ameaças** só na cópia (ex.: `Dragão Bicéfalo`, `Senhor do Gigante Rubro Forma Final`)
-- **484 ameaças** com mesmo nome e conteúdo diferente — a diferença é o campo **`img`**:
-  o canônico tem imagem em **514/620**, a cópia em **0/624**
+Divergências medidas (por nome normalizado, considerando homônimos):
+- **624/624** registros da cópia casam com o canônico — **0 criaturas exclusivas**
+- 596 idênticos; 28 divergentes, quase todos por redação mais curta ou `tipo` de habilidade
+- o canônico tem imagem em **514/620**; a cópia, em **0/624**
 - 1 magia (`Controlar Ar`) só no canônico
-- Erros de digitação isolados na cópia (`Fera Cacto -Líder` com espaço a mais)
 
-**Recomendação:** antes de apagar, resgatar as **10 ameaças exclusivas** da cópia para o canônico —
-depois remover os dois arquivos. Ganho: **−2,9 MB** e fim do risco de alguém editar o arquivo errado.
+**Resolução:** os dois arquivos foram removidos após a verificação acima. Ganho: **−1,8 MB** e fim
+do risco de alguém editar o arquivo errado.
 
 ---
 
@@ -158,15 +176,15 @@ Bootstrap 5.3.2, pdf-lib, html2pdf.
 
 ## 🟢 BAIXA — achados menores
 
-**Duplicatas exatas (mesmo MD5)** — 12 pares, ~2,5 MB:
-- `assets/imagens/*.png` ↔ `ficha/imagens/*.png` (6 ícones de atributo) e
-  `assets/fonts/Tormenta.ttf` ↔ `ficha/Tormenta.ttf` → **violam as Regras 3 do README**
-- `uploads/image-1.png` ↔ `image-2.png` (idênticos, 1,9 MB cada)
-- 4 pares em `itens/data/img/` que parecem intencionais (`carroca`/`carruagem`, `garra`/`garras`)
+**Duplicatas exatas (mesmo MD5)** — ✅ resolvidas:
+- ~~`assets/imagens/*.png` ↔ `ficha/imagens/*.png` (6 ícones) e `assets/fonts/Tormenta.ttf` ↔
+  `ficha/Tormenta.ttf`~~ → **removidas**; o `ficha/` já apontava para `../assets/`
+  (`style.css:4` e `script.js:89`), então eram peso morto
+- ~~`uploads/image-1.png` ↔ `image-2.png`~~ → **pasta removida** (−3,8 MB)
+- 4 pares em `itens/data/img/` mantidos — parecem intencionais (`carroca`/`carruagem`, `garra`/`garras`)
 
-**Arquivos órfãos** (6 arquivos, 4,5 MB) — não referenciados por nenhum HTML/CSS/JS:
-`uploads/image-1.png`, `uploads/image-2.png`, `images/logo.jpeg`,
-`calculadoraND_Tormenta/{vectorius.jpeg, logo_vectora.png, qr_code.png}`
+**Arquivos órfãos** — os de `uploads/` foram removidos. Seguem no repo, por serem plausivelmente
+intencionais: `images/logo.jpeg` e `calculadoraND_Tormenta/{vectorius.jpeg, logo_vectora.png, qr_code.png}`
 
 **Outros:**
 - 19 `console.log` em produção
@@ -202,10 +220,12 @@ Bootstrap 5.3.2, pdf-lib, html2pdf.
 2. ~~Fazer `_setCenas` avisar em vez de engolir o erro~~ — feito (e os 4 chamadores deixaram de
    exibir "Cena salva!" quando a gravação falha)
 
-**Depois (limpeza, −7 MB)**
-3. Migrar as 10 ameaças exclusivas e apagar as cópias mortas em `ficha/` (−2,9 MB)
-4. Remover órfãos e duplicatas de `assets`↔`ficha` (−4 MB, alinha com o README)
-5. Adicionar `LICENSE` e `.nojekyll`
+**Depois (limpeza)** — ✅ **concluído**
+3. ~~Apagar as cópias mortas em `ficha/`~~ — feito (−1,8 MB). A verificação mostrou que não havia
+   ameaças exclusivas a migrar (ver correção do diagnóstico na seção 3).
+4. ~~Remover órfãos e duplicatas de `assets`↔`ficha`~~ — feito (−6,1 MB): fonte e 6 ícones
+   duplicados (o `ficha/` já usava `../assets/`) e a pasta `uploads/`.
+5. Adicionar `LICENSE` e `.nojekyll` — pendente
 
 **Backlog**
 6. SRI nas CDNs + padronizar versão do Sortable
