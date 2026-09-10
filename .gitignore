@@ -17,3 +17,7 @@ Desktop.ini
 # Dependências / build (o projeto é estático, mas por segurança)
 node_modules/
 dist/
+
+# Artefatos de trabalho/importação (não versionar)
+work/
+*.zip
